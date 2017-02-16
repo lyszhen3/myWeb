@@ -113,9 +113,9 @@ public class ReadFromFile {
 
     public static void main(String[] args) {
         String xx="C:\\Users\\pc\\Desktop\\新建文本文档.txt";
-//        ReadFromFile.readFileBytes(xx);
-        ReadFromFile.readFileByChars(xx);
+//        ReadFromFile.readFileByChars(xx);
 //        ReadFromFile.readFileByLines(xx);
+//        ReadFromFile.readFileBytes(xx);
     }
 
 }
