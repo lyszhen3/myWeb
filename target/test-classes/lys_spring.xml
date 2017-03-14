@@ -28,6 +28,7 @@
     </bean>
     <!--插入spring文件(●'◡'●)这块区域给spring连接池-->
     <import resource="spring-database/local.xml"/>
+    <import resource="spring-database/redis.xml"/>
 
 <!--阿里巴巴拦截器-->
     <bean id="druid-stat-interceptor"
