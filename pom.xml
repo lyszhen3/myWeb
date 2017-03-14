@@ -66,6 +66,11 @@
             <artifactId>spring-expression</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
         <!--链接数据池包-->
         <dependency>
@@ -73,6 +78,8 @@
             <artifactId>druid</artifactId>
             <version>1.0.15</version>
         </dependency>
+
+
         <!--spring mybatis链接包-->
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -88,6 +95,18 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
+        </dependency>
+        <!--redis链接-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.0.2.RELEASE</version>
+
         </dependency>
         <!--日志包-->
 

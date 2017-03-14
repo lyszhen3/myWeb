@@ -1,3 +1,5 @@
+package com;
+
 import java.io.*;
 
 /**
@@ -20,7 +22,7 @@ public class TestCopy {
         BufferedReader reader=null;
         try {
             out=new OutputStreamWriter(new FileOutputStream(targetFile));
-             reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));//编码会导致中文乱码 ，看来这个只适合用来读中文字符
+             reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));//编码会导致复制后中文乱码 ，看来这个只适合用来读中文字符
             String temp=null;
             while((temp=reader.readLine())!=null){
                 out.write(temp);
