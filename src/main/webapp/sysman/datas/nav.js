@@ -4,9 +4,9 @@ var navs = [{
 	"spread": true,
 	"children": [
 		{
-		"title": "杭州店铺列表",
+		"title": "材料列表",
 		"icon": "&#xe63c;",
-		"href": "/sysman/shop/list.htm?website=hz"
+		"href": "/cllist.htm"
 	},
 		{
 			"title": "广州店铺列表",

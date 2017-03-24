@@ -6,10 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Table</title>
-    <link rel="stylesheet" href="${back_man_host}/sysman/plugins/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="${back_man_host}/sysman/css/global.css" media="all">
-    <link rel="stylesheet" type="text/css" href="${back_man_host}/sysman/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${back_man_host}/sysman/css/table.css" />
+    <link rel="stylesheet" href="sysman/plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="sysman/css/global.css" media="all">
+    <link rel="stylesheet" type="text/css" href="sysman/css/font-awesome.min.css">
+    <link rel="stylesheet" href="sysman/css/table.css" />
 
 
     <style>
@@ -28,8 +28,8 @@
 
 
 
-        <form class="layui-form" action="${back_man_host}/sysman/shop/list.htm" id="searchForm" method="post">
-            <input type="hidden" name="currentPage" id="currentPage" value="${bo.currentPage}"/>
+        <form class="layui-form" action="cllist.htm" id="searchForm" method="post">
+            <input type="hidden" name="page" id="currentPage" value="${bo.page}"/>
             <input type="hidden" name="website" value="${bo.website}"/>
             <div class="layui-form-item">
                 <label class="layui-form-label">用户名</label>
@@ -80,6 +80,7 @@
         <a href="javascript:;" class="layui-btn layui-btn-small" id="search">
             <i class="layui-icon">&#xe615;</i> 搜索
         </a>
+        <button class="layui-btn"  onclick="tanchu()">增加</button>
     </blockquote>
     <fieldset class="layui-elem-field">
         <legend>店铺列表</legend>
@@ -109,7 +110,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#list pager.content as shop>
+                <#list list as shop>
                 <tr>
                     <td><input type="checkbox"></td>
                     <td>${shop.shopId}</td>
@@ -158,10 +159,10 @@
     <div id="page" class="page">
     </div>
 </div>
-<script type="text/javascript" src="${back_man_host}/sysman/js/jquery/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="${back_man_host}/sysman/plugins/layui/layui.js"></script>
-<script type="text/javascript" src="${back_man_host}/sysman/plugins/layer/layer.js"></script>
-<script type="text/javascript" src="${back_man_host}/sysman/js/custom_common.js"></script>
+<script type="text/javascript" src="sysman/js/jquery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="sysman/plugins/layui/layui.js"></script>
+<script type="text/javascript" src="sysman/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="sysman/js/custom_common.js"></script>
 
 <script>
     function search(){
@@ -172,6 +173,19 @@
         base: '/sysman/plugins/layui/modules/'
     });
 
+    layui.use(['form', 'layedit', 'laydate'], function() {
+        var form = layui.form(),
+                layer = layui.layer,
+                layedit = layui.layedit,
+                laydate = layui.laydate;
+        var editIndex = layedit.build('LAY_demo_editor');
+        form.on('select(market)', function(data){
+            floorajaxlist();
+            form.render('select'); //刷新selec
+        });
+    });
+
+
     layui.use(['icheck', 'laypage','layer'], function() {
         var $ = layui.jquery,
                 laypage = layui.laypage,
@@ -180,8 +194,9 @@
             checkboxClass: 'icheckbox_flat-green'
         });
 
-        var totalPage = '${pager.totalPages!}';
-        var currentPage = '${pager.number}';
+        var totalPage = '${bo.totalPage!}';
+        var currentPage = '${bo.page}';
+        console.log(totalPage)
         //page
         laypage({
             cont: 'page',
@@ -231,17 +246,6 @@
         });
     });
 
-    layui.use(['form', 'layedit', 'laydate'], function() {
-        var form = layui.form(),
-                layer = layui.layer,
-                layedit = layui.layedit,
-                laydate = layui.laydate;
-
-        form.on('select(market)', function(data){
-            floorajaxlist();
-            form.render('select'); //刷新selec
-        });
-    });
 
     // 楼层
     function floorajaxlist(){
@@ -325,6 +329,56 @@
     }
 
 
+//    layui.use(['form', 'layedit', 'laydate'], function(){
+//        var form = layui.form()
+//                ,layer = layui.layer
+//                ,layedit = layui.layedit
+//                ,laydate = layui.laydate;
+//
+//        //创建一个编辑器
+//        var editIndex = layedit.build('LAY_demo_editor');
+//
+//
+//
+//
+//    });
+
+
+    function tanchu(){
+        layer.open({
+            type:1,
+            title:"添加",
+            shadeClose: false,
+            area: ['1000px' , '600px'],
+            shade: [0.3, '#000'],
+            //maxmin: true, //开启最大化最小化按钮
+            content:$("#myform"),
+            success: function(){
+
+
+
+                layui.use(['layedit'], function() {
+
+
+                     var layedit = layui.layedit
+                     layedit.set({
+                        uploadImage: {
+                            url: 'upimg.json', //接口url
+                            type: 'post' //默认post
+                        }
+                    });
+                    layedit.build('LAY_demo_editor');
+
+                });
+            }
+
+
+
+        })
+    }
+
+
+
     var marketId = '${bo.marketId}';
     var floorId = '${bo.floorId}';
     $(document).ready(function(){
@@ -338,6 +392,67 @@
     });
 
 </script>
+
+    <form style="display: none" id="myform" class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">单行输入框</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">验证必填项</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">开关-默认开</label>
+            <div class="layui-input-block">
+                <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">单选框</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="男" title="男" checked="">
+                <input type="radio" name="sex" value="女" title="女">
+                <input type="radio" name="sex" value="禁" title="禁用" disabled="">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">普通文本域</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">编辑器</label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
 </body>
 
 </html>
