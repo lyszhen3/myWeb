@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-
+    <description>我的天啊</description>
     <properties>
         <spring.version>4.1.6.RELEASE</spring.version>
     </properties>
