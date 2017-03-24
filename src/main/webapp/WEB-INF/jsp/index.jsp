@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <ul><li>${count}</li></ul>
 </head>
 <body>
 

@@ -68,7 +68,7 @@
     <tx:annotation-driven transaction-manager="local_mapper" />
     <bean class= "org.mybatis.spring.mapper.MapperScannerConfigurer" >
         <property name= "basePackage"
-                  value= "com/lin/mappers" />
+                  value= "com/lin/test/mappers" />
         <property name= "sqlSessionFactoryBeanName" value="systemSqlSessionFactory" />
     </bean>
 </beans>

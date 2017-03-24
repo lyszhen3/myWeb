@@ -1,4 +1,4 @@
-package com.lin.mappers;
+package com.lin.test.mappers;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Scope;
  */
 @Scope("singleton")
 @Lazy(true)
-public interface testMapper {
+public interface TestMapper {
 
+
+    int testCount();
 
 }
