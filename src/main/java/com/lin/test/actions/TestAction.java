@@ -91,4 +91,15 @@ public class TestAction {
         return obj;
 
     }
+    @RequestMapping("addOne")
+    @ResponseBody
+    public JSONObject addOne(UserBo bo){
+        System.out.println(bo.getContent());
+        System.out.println(bo.getTitle());
+        JSONObject obj=new JSONObject();
+        obj.put("msg","成功");
+        obj.put("result","error");
+
+        return obj;
+    }
 }

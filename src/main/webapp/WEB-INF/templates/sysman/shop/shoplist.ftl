@@ -178,11 +178,11 @@
                 layer = layui.layer,
                 layedit = layui.layedit,
                 laydate = layui.laydate;
-        var editIndex = layedit.build('LAY_demo_editor');
         form.on('select(market)', function(data){
             floorajaxlist();
             form.render('select'); //刷新selec
         });
+
     });
 
 
@@ -196,7 +196,7 @@
 
         var totalPage = '${bo.totalPage!}';
         var currentPage = '${bo.page}';
-        console.log(totalPage)
+        console.log("为什么调起我？")
         //page
         laypage({
             cont: 'page',
@@ -329,20 +329,7 @@
     }
 
 
-//    layui.use(['form', 'layedit', 'laydate'], function(){
-//        var form = layui.form()
-//                ,layer = layui.layer
-//                ,layedit = layui.layedit
-//                ,laydate = layui.laydate;
-//
-//        //创建一个编辑器
-//        var editIndex = layedit.build('LAY_demo_editor');
-//
-//
-//
-//
-//    });
-
+    var fuindex;
 
     function tanchu(){
         layer.open({
@@ -357,9 +344,9 @@
 
 
 
-                layui.use(['layedit'], function() {
+                layui.use(['form','layedit'], function() {
 
-
+                     var form=layui.form();
                      var layedit = layui.layedit
                      layedit.set({
                         uploadImage: {
@@ -367,7 +354,32 @@
                             type: 'post' //默认post
                         }
                     });
-                    layedit.build('LAY_demo_editor');
+                     fuindex= layedit.build('LAY_demo_editor');
+
+                    form.on('submit(demo1)',function(data){
+                        var content= layedit.getContent(fuindex);
+                        var paramdata=$("#myform").serialize()+content;
+                        console.log(paramdata)
+                        $.ajax({
+                            type:"post",
+                            url:"addOne.json",
+                            async:true,
+                            data:paramdata,
+                            dataType:"json",
+                            success:function(data){
+                                if(data.result=="success"){
+                                    alert(data.msg);
+                                    location.reload();
+                                }else{
+                                    alert("失败");
+                                }
+
+                            }
+
+
+                        })
+                        return false;
+                    })
 
                 });
             }
@@ -378,6 +390,32 @@
     }
 
 
+    function subjson(){
+
+       //var content= layui.layedit.getContent(fuindex);
+       var paramdata=$("#myform").serialize();
+       console.log(paramdata)
+
+        $.ajax({
+            type:"post",
+            url:"addOne.json",
+            async:true,
+            data:paramdata,
+            dataType:"json",
+            success:function(data){
+                if(data.result=="success"){
+                    alert(data.msg);
+                    location.reload();
+                }else{
+                    alert("失败");
+                }
+
+            }
+
+
+        })
+
+    }
 
     var marketId = '${bo.marketId}';
     var floorId = '${bo.floorId}';
@@ -393,7 +431,7 @@
 
 </script>
 
-    <form style="display: none" id="myform" class="layui-form" action="">
+    <form style="display: none" id="myform" class="layui-form" action="addOne.json">
         <div class="layui-form-item">
             <label class="layui-form-label">单行输入框</label>
             <div class="layui-input-block">
@@ -407,32 +445,20 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">开关-默认开</label>
-            <div class="layui-input-block">
-                <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">单选框</label>
-            <div class="layui-input-block">
-                <input type="radio" name="sex" value="男" title="男" checked="">
-                <input type="radio" name="sex" value="女" title="女">
-                <input type="radio" name="sex" value="禁" title="禁用" disabled="">
-            </div>
-        </div>
+        <#--<div class="layui-form-item">-->
+            <#--<label class="layui-form-label">开关-默认开</label>-->
+            <#--<div class="layui-input-block">-->
+                <#--<input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">-->
+            <#--</div>-->
+        <#--</div>-->
+        <#--<div class="layui-form-item">-->
+            <#--<label class="layui-form-label">单选框</label>-->
+            <#--<div class="layui-input-block">-->
+                <#--<input type="radio" name="sex" value="男" title="男" checked="">-->
+                <#--<input type="radio" name="sex" value="女" title="女">-->
+                <#--<input type="radio" name="sex" value="禁" title="禁用" disabled="">-->
+            <#--</div>-->
+        <#--</div>-->
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">普通文本域</label>
             <div class="layui-input-block">
@@ -447,8 +473,8 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <button class="layui-btn" lay-submit=""  <#--onclick="subjson()"--> lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary"     >重置</button>
             </div>
         </div>
     </form>
