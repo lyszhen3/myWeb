@@ -32,7 +32,7 @@ public class TestAction {
     @RequestMapping(value="test")
     public String test(Model model){
        int i= testService.testCount();
-
+        model.addAttribute("userName","我的天啊");
        model.addAttribute("count",i);
 
        return "sysman/mainIndex";

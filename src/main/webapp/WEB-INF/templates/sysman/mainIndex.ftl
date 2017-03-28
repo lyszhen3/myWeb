@@ -43,7 +43,7 @@
                 </li>-->
                 <li class="layui-nav-item">
                     <a href="javascript:;" class="admin-header-user">
-                        <img src="${back_man_host}/sysman/images/0.jpg" />
+                        <img src="sysman/images/0.jpg" />
                         <span>${userName}</span>
                     </a>
                     <dl class="layui-nav-child">
@@ -59,7 +59,7 @@
                             </a>
                         </dd>-->
                         <dd>
-                            <a href="${back_man_host}/sysman/system/loginout.htm"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+                            <a href="sysman/system/loginout.htm"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
                         </dd>
                     </dl>
                 </li>
