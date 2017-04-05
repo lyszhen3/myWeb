@@ -76,8 +76,6 @@ public class Cia {
                     writeMethod.invoke(target,value);
 
                 }
-
-
             }
 
         } catch (IntrospectionException e) {
