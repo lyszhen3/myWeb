@@ -38,6 +38,26 @@ public class MyTest {
 
     public static void main(String[] args) {
 //        testAllocation();
-        testTenuringThreshold();
+        //testTenuringThreshold();
+        testTenuringThreshold2();
+    }
+
+    /**
+     * 相同年龄超过survivor一半空间 直接进入老年代
+     * 注释掉allocation1和allocation2其中一个再对比。。
+     */
+
+    @SuppressWarnings("unused")
+    public static void testTenuringThreshold2(){
+
+        byte[] allocation1,allocation2,allocation3,allocation4;
+        allocation1=new byte[_1MB / 4];
+        allocation2=new byte[_1MB / 4];
+       // allocation1+allocation2等于survivor一半内存
+        allocation3=new byte[4*_1MB];
+        allocation4=new byte[4*_1MB];
+        allocation4=null;
+        allocation4=new byte[4*_1MB];
+
     }
 }
