@@ -1,5 +1,7 @@
 package com;
 
+import org.junit.Test;
+
 /**
  * Created by pc on 2017-02-13.
  *jvm 测试
@@ -14,18 +16,20 @@ package com;
 public class MyTest {
 
     public static final int _1MB=1024*1024;
-
-    public static  void testAllocation(){
+    @SuppressWarnings("unused")
+    public  static void testAllocation(){
+        //运行就占用2644    eden+from>m>eden 触发Minor GC m>eden+from 直接进入老年代 如果新生代进入老年代的内存占用一半以上则触发full gc
         byte[] allocation1,allocation2,allocation3,allocation4;
         allocation1=new byte[2*_1MB];
-        allocation2=new byte[2*_1MB];
-        allocation3=new byte[2*_1MB];
-        allocation4=new byte[4*_1MB];
+        allocation2=new byte[1*_1MB];
+        allocation3=new byte[3*_1MB];
+        allocation4=new byte[2*_1MB];
     }
     /**
-     * -XX:MaxTenuringThreshold=1
+     * -XX:MaxTenuringThreshold=1 年龄阀值
      * -XX:+PrintTenuringDistribution
      * */
+    @SuppressWarnings("unused")
     public static  void testTenuringThreshold(){
         byte[] allocation1,allocation2,allocation3;
         allocation1=new byte[_1MB / 4];
@@ -37,9 +41,9 @@ public class MyTest {
 
 
     public static void main(String[] args) {
-//        testAllocation();
-        //testTenuringThreshold();
-        testTenuringThreshold2();
+        testAllocation();
+//        testTenuringThreshold();；
+//        testTenuringThreshold2();
     }
 
     /**
@@ -47,7 +51,7 @@ public class MyTest {
      * 注释掉allocation1和allocation2其中一个再对比。。
      */
 
-    @SuppressWarnings("unused")
+
     public static void testTenuringThreshold2(){
 
         byte[] allocation1,allocation2,allocation3,allocation4;
