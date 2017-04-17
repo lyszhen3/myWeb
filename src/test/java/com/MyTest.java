@@ -18,12 +18,13 @@ public class MyTest {
     public static final int _1MB=1024*1024;
     @SuppressWarnings("unused")
     public  static void testAllocation(){
-        //运行就占用2644    eden+from>m>eden 触发Minor GC m>eden+from 直接进入老年代 如果新生代进入老年代的内存占用一半以上则触发full gc
+        //运行就占用2644    eden+from>m>eden 触发Minor GC m>eden+from 直接进入老年代（连续的大对象from放不下eden放不下也直接进入老年代）
+        // 如果新生代进入老年代的内存占用一半以上则触发full gc
         byte[] allocation1,allocation2,allocation3,allocation4;
         allocation1=new byte[2*_1MB];
         allocation2=new byte[1*_1MB];
-        allocation3=new byte[3*_1MB];
-        allocation4=new byte[2*_1MB];
+        allocation3=new byte[2*_1MB];
+        allocation4=new byte[1*_1MB];
     }
     /**
      * -XX:MaxTenuringThreshold=1 年龄阀值
@@ -31,18 +32,20 @@ public class MyTest {
      * */
     @SuppressWarnings("unused")
     public static  void testTenuringThreshold(){
-        byte[] allocation1,allocation2,allocation3;
-        allocation1=new byte[_1MB / 4];
-        allocation2=new byte[4*_1MB];
-        allocation3=new byte[4*_1MB];
+        byte[] allocation1,allocation2,allocation3,allocation4;
+        allocation1=new byte[_1MB ];
+        allocation2=new byte[2*_1MB];
+        allocation3=new byte[2*_1MB];
         allocation3=null;
-        allocation3=new byte[4*_1MB];
+        allocation3=new byte[3*_1MB];
+        allocation4=new byte[1*_1MB];
+
     }
 
 
     public static void main(String[] args) {
-        testAllocation();
-//        testTenuringThreshold();；
+//        testAllocation();
+        testTenuringThreshold();
 //        testTenuringThreshold2();
     }
 
