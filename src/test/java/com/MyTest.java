@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * Created by pc on 2017-02-13.
  *jvm 测试
- * -verbose:gc -Xms20m -Xmx20m -Xmn10m -XX:SurvivorRatio=8 -XX:+PrintGCDetails
+ * -verbose:gc -Xms20m -Xmx20m -Xmn10m -XX:SurvivorRatio=8 -XX:+PrintGCDetails -XX:+PrintHeapAtGC
  * @author pc
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
