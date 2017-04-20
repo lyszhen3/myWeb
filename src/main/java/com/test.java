@@ -8,7 +8,6 @@ package com;
  * @since 3.0.0-SNAPSHOT
  */
 public class test {
-    public static void main(String[] args) {
-        System.out.println(11);
-    }
+
+
 }

@@ -120,4 +120,8 @@ public class ReadFromFile {
 //        ReadFromFile.readFileBytes(xx);
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
