@@ -45,8 +45,9 @@ public class MyTest {
 
     public static void main(String[] args) {
 //        testAllocation();
-        testTenuringThreshold();
+          testTenuringThreshold();
 //        testTenuringThreshold2();
+        //test_branch
     }
 
     /**
