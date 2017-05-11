@@ -19,4 +19,7 @@ public class test {
         System.out.println("master");
     }
 
+    public void test2(){
+        System.out.println("test_2");
+    }
 }
