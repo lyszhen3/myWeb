@@ -12,7 +12,7 @@ public class test {
         System.out.println("test_lin");
     }
     public void test1(){
-        System.out.println("test_1");
+        System.out.println("test_1_2_1");
     }
 
 }
