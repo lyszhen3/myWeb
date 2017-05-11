@@ -11,6 +11,9 @@ public class test {
     public static void main(String[] args) {
         System.out.println("test_lin");
     }
+    public void test1(){
+        System.out.println("test_1");
+    }
 
     public void masterTest(){
         System.out.println("master");
