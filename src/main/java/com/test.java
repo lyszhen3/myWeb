@@ -12,4 +12,8 @@ public class test {
         System.out.println("test_lin");
     }
 
+    public void masterTest(){
+        System.out.println("master");
+    }
+
 }
