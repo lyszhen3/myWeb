@@ -21,7 +21,7 @@ import java.util.*;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.shigu.**.actions")
+@ComponentScan(basePackages = "com.lin.**.actions")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 
@@ -72,7 +72,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 //        p.setProperty("auto_import", "/common/head.ftl as h");
         freeMarkerConfigurer.setFreemarkerSettings(p);
         Map<String, Object> variables = new HashMap<String, Object>();
-        //variables.put("shiro", new ShiroTags());
+//        variables.put("shiro", new ShiroTags());
         freeMarkerConfigurer.setFreemarkerVariables(variables);
         return freeMarkerConfigurer;
 
