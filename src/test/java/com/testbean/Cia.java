@@ -69,12 +69,13 @@ public class Cia {
 
                 if(!pd.getName().equals("class")){
                     PropertyDescriptor sourcePd=descriptorMap.get(pd.getName());
-                    Method readMethod=sourcePd.getReadMethod();
-                    Object value = readMethod.invoke(source);
-                    Method writeMethod=pd.getWriteMethod();
+                    if(sourcePd!=null) {
+                        Method readMethod = sourcePd.getReadMethod();
+                        Object value = readMethod.invoke(source);
+                        Method writeMethod = pd.getWriteMethod();
 
-                    writeMethod.invoke(target,value);
-
+                        writeMethod.invoke(target, value);
+                    }
                 }
             }
 
