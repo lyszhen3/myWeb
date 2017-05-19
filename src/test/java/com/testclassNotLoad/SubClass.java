@@ -11,5 +11,5 @@ public class SubClass extends SuperClass {
     static{
         System.out.println("subClass init");
     }
-    public static final String HelowWorld="hello world";//final 编译时就会进入常量池
+    public static final String HelowWorld="hello world";//final 编译时就会进入常量池 （运行时常量池是方法区的一部分）
 }
