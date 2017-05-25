@@ -3,8 +3,16 @@
 <mapper namespace="com.lin.test.mappers.TestMapper">
 
 
+
+
     <select id="testCount" resultType="int">
         select count(*) from account;
+
+    </select>
+
+    <select id="selList"  resultType="com.lin.test.beans.Account">
+
+        select*from account;
 
     </select>
 </mapper>

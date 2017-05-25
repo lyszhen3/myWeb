@@ -1,5 +1,6 @@
 package com.lin.test.actions;
 import com.alibaba.fastjson.JSONObject;
+import com.lin.test.beans.Account;
 import com.lin.test.beans.Shop;
 import com.lin.test.bo.UserBo;
 import com.lin.test.services.TestService;
@@ -37,6 +38,17 @@ public class TestAction {
        model.addAttribute("count",i);
 
        return "sysman/mainIndex";
+    }
+
+    @RequestMapping(value="testDemo")
+    public String testDemo(Model model){
+        return "demo/index";
+    }
+    @RequestMapping(value="testList")
+    public String testList(Model model){
+        List<Account> list=testService.selList();
+        model.addAttribute("list",list);
+        return "demo/lists";
     }
 
     @RequestMapping(value = "rightPanel" , method = RequestMethod.GET)
