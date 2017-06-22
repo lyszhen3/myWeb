@@ -59,6 +59,7 @@ public class TestThread {
         thread2.start();
     }
     //不同对象
+    @Test
     public void Test2(){
         TestThread t=new TestThread();
         TestThread t2=new TestThread();
