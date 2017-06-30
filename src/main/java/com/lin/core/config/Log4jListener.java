@@ -7,7 +7,7 @@ import javax.servlet.ServletContextEvent;
 
 /**
  * log4J监听器
- * Created by zhaohongbo on 16/7/1.
+ * Created by lin on 16/7/1.
  */
 public class Log4jListener extends Log4jConfigListener {
     public static final String log4jdirkey = "LOG_DIR";

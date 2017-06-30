@@ -69,6 +69,7 @@ public class ReadFromFile {
                     for (int i=0; i<charread; i++){
                         if(tempchars[i] == 'r'){
                             continue;
+//                            System.out.print(tempchars[i]);
                         }else{
                             System.out.print(tempchars[i]);
                         }
@@ -115,7 +116,7 @@ public class ReadFromFile {
 
     public static void main(String[] args) {
         String xx="C:\\Users\\pc\\Desktop\\新建文本文档.txt";
-//        ReadFromFile.readFileByChars(xx);
+        ReadFromFile.readFileByChars(xx);
 //        ReadFromFile.readFileByLines(xx);
 //        ReadFromFile.readFileBytes(xx);
     }
