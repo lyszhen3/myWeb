@@ -28,6 +28,9 @@ public class TestService {
     }
 
     public List<Account> selList() {
+        Account account = testMapper.selectByPrimaryKey(1);
+        System.out.println(account.getEmail());
+
 
         return testMapper.selList();
     }

@@ -42,15 +42,16 @@
 
 
 
-        <Root level="INFO">
+        <Root level="debug">
             <AppenderRef ref="Daijia"/>
             <AppenderRef ref="STDOUT" />
 
         </Root>
         <!--<Logger name="org.apache" level="info" />-->
         <!--<Logger name="org.springframework" level="debug"  />-->
-        <Logger name="com.opentae.data.daifa" level="debug"  additivity="false">
+        <Logger name="com.lin.test.mappers" level="debug"  additivity="false">
             <AppenderRef ref="sqllog" />
+            <AppenderRef ref="STDOUT" />
         </Logger>
 
 

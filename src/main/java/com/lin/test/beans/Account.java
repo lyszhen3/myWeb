@@ -1,5 +1,7 @@
 package com.lin.test.beans;
 
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
@@ -10,8 +12,9 @@ import java.io.Serializable;
  * @since 3.0.0-SNAPSHOT
  */
 public class Account implements Serializable {
-
+    @Transient
     private static final long serialVersionUID = -933999565330729570L;
+    @Id
     private Long id;
     private String name;
     private String email;

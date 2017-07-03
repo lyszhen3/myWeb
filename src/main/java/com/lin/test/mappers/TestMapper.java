@@ -1,6 +1,7 @@
 package com.lin.test.mappers;
 
 import com.lin.test.beans.Account;
+import com.lin.test.mappers.base.Mapper;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
@@ -15,10 +16,11 @@ import java.util.List;
  */
 @Scope("singleton")
 @Lazy(true)
-public interface TestMapper {
+public interface TestMapper extends Mapper<Account> {
 
 
     int testCount();
 
     List<Account> selList();
+
 }
