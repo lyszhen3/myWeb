@@ -2,7 +2,7 @@ package com.testclassNotLoad;
 
 /**
  * Created by pc on 2017-05-18.
- *
+ *被动引用不初始化
  * @author pc
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT

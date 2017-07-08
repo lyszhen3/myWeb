@@ -5,7 +5,7 @@
          version="3.1">
 
     <listener>
-        <listener-class>com.shigu.core.config.Log4jListener</listener-class>
+        <listener-class>com.lin.core.config.Log4jListener</listener-class>
     </listener>
 
 

@@ -31,7 +31,12 @@ public class TestAction {
     @Resource(name="lin_testService")
     TestService testService;
 
-    @RequestMapping(value="test")
+    /**
+     * 老layuidemo
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="oldindex")
     public String test(Model model){
        int i= testService.testCount();
         model.addAttribute("userName","我的天啊");
@@ -40,6 +45,11 @@ public class TestAction {
        return "sysman/mainIndex";
     }
 
+    /**
+     * layui demo
+     * @param model
+     * @return
+     */
     @RequestMapping(value="testDemo")
     public String testDemo(Model model){
         return "demo/index";
@@ -114,5 +124,10 @@ public class TestAction {
         obj.put("result","error");
 
         return obj;
+    }
+    @RequestMapping("test")
+    public String testFtl(Model model){
+        model.addAttribute("name","负载2");
+        return "test";
     }
 }

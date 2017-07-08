@@ -49,16 +49,29 @@
                 <ref bean="mapperInterceptor"></ref>
             </list>
         </property>
-        <property name="dataSource" ref="daifa_dataSource"></property>
+        <property name="dataSource" ref="local_dataSource"></property>
         &lt;!&ndash;<property name="configLocation" value="classpath:mybatis-config.xml"></property>&ndash;&gt;
         <property name="mapperLocations" value="classpath*:/daifa/mybatis/*.xml" />
         <property name="typeAliasesPackage" value="com.opentae.data.daifa"></property>
     </bean>-->
 
+    <bean id="mapperInterceptor" class="com.lin.test.mappers.base.MapperInterceptor">
+        <property name="properties">
+            <map>
+                <entry key="mappers" value="com.lin.test.mappers.base.Mapper"></entry>
+            </map>
+        </property>
+    </bean>
     <bean id="systemSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="local_dataSource" />
+
+        <property name="plugins">
+            <list>
+                <ref bean="mapperInterceptor"></ref>
+            </list>
+        </property>
+        <property name="dataSource" ref="local_dataSource"/>
         <!--<property name="configLocation" value="classpath:mybatis.xml" />--><!--这个事打印sql。。-->
-        <property name="mapperLocations" value="classpath*:/lin/mybatis/*.xml" />
+        <property name="mapperLocations" value="classpath*:/lin/mybatis/*.xml"/>
     </bean>
     <!--事务-->
     <bean id="local_mapper" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
