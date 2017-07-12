@@ -18,6 +18,6 @@ public  interface Mapper<T> {
      * @return
      */
     @SelectProvider(type=MapperProvider.class, method="dynamicSQL")
-    public  T selectByPrimaryKey(Object paramObject);
+      T selectByPrimaryKey(Object paramObject);
 
 }
