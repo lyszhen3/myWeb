@@ -12,6 +12,7 @@
     <description>我的天啊</description>
     <properties>
         <spring.version>4.1.6.RELEASE</spring.version>
+        <aspectj>1.8.9</aspectj>
     </properties>
     <dependencies>
 
@@ -70,6 +71,16 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj}</version>
         </dependency>
 
         <!--链接数据池包-->

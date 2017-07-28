@@ -83,6 +83,5 @@
         <property name="maxInMemorySize" value="4096" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
-
-
+    <aop:aspectj-autoproxy expose-proxy="true"/>
 </beans>
