@@ -51,7 +51,7 @@
             </list>
         </property>
     </bean>
-
+    <aop:aspectj-autoproxy expose-proxy="true"/>
     <!-- 异常处理-->
 
     <!--<bean id="exceptionResolver"-->
