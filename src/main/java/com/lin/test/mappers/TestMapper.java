@@ -2,6 +2,7 @@ package com.lin.test.mappers;
 
 import com.lin.test.beans.Account;
 import com.lin.test.mappers.base.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
@@ -22,5 +23,9 @@ public interface TestMapper extends Mapper<Account> {
     int testCount();
 
     List<Account> selList();
+
+
+    int insertOne(@Param("name") String name,@Param("email") String email);
+    int deleteOne(@Param("id") Long id);
 
 }

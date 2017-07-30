@@ -1,4 +1,5 @@
 package com.lin.test.actions;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lin.test.beans.Account;
 import com.lin.test.beans.Shop;
@@ -129,5 +130,17 @@ public class TestAction {
     public String testFtl(Model model){
         model.addAttribute("name","负载2");
         return "test";
+    }
+
+    /**
+     * 测试spring事务
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("test2")
+    @ResponseBody
+    public JSONObject testTransaction() throws Exception {
+        testService.testTransation();
+        return JSON.parseObject("{'result':'success','msg':'去死吧'}");
     }
 }
