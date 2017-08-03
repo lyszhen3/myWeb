@@ -241,6 +241,12 @@
             <version>1.0</version>
         </dependency>
 
+         <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>3.6.5</version>
+ </dependency>
+
  <!--解决注解debug报错-->
     </dependencies>
  <build>
@@ -255,4 +261,17 @@
         </plugin>
     </plugins>
 </build>
+
+    <repositories>
+		<repository>
+			<id>nexus</id>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
 </project>
