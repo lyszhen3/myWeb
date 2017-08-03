@@ -15,4 +15,16 @@
         select*from account;
 
     </select>
+    <insert id="insertOne">
+        insert into account (name,email) VALUES (#{name},#{email});
+
+    </insert>
+
+
+    <delete id="deleteOne" parameterType="java.lang.Long" >
+        delete from beans where id = ${id}
+
+
+    </delete>
+
 </mapper>
