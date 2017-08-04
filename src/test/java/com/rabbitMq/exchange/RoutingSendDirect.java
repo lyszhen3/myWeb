@@ -18,9 +18,9 @@ public class RoutingSendDirect {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         //声明交换机
-        channel.exchangeDeclare(EXCHANGE_NAME,"direct");//注意是direct
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
-        channel.queueBind(QUEUE_NAME,EXCHANGE_NAME,"");
+        channel.exchangeDeclare(EXCHANGE_NAME,"direct",true);//注意是direct
+        channel.queueDeclare(QUEUE_NAME,true,false,false,null);
+        channel.queueBind(QUEUE_NAME,EXCHANGE_NAME,"info");
 
         //发送信息
         for (String routingKey:routingKeys){

@@ -3,6 +3,7 @@ package com.rabbitMq.exchange;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -15,25 +16,26 @@ import java.util.concurrent.TimeoutException;
  * @description
  * @since 3.0.0-SNAPSHOT
  */
-public class EmitLog {
-    private final static  String EXCHANGE_NAME = "logs";
-    private final static  String QUEUE_NAME = "fanout_queue";
+public class EmitLogFanout {
+    private final static String EXCHANGE_NAME = "logs";
+    private final static String QUEUE_NAME = "fanout_queue";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("127.0.0.1");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
-        channel.exchangeDeclare(EXCHANGE_NAME,"fanout");//fanout表示分发，所有的消费者得到同样的队列信息
-        channel.basicQos(1);
-        channel.queueDeclare(QUEUE_NAME,false,false,false,null);
-        channel.queueBind(QUEUE_NAME,EXCHANGE_NAME,"");
-        //分发信息
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout",true);//fanout表示分发，所有的消费者得到同样的队列信息
 
+        channel.queueDeclare("queueName",false,false,false,null);
+        channel.queueBind("queueName", EXCHANGE_NAME, "routingKey");
 
-        for (int i=0;i<5;i++){
-            String message="Hello World"+i;
-            channel.basicPublish(EXCHANGE_NAME,"",null,message.getBytes());
+        channel.queueDeclare("queueName1",false,false,false,null);
+        channel.queueBind("queueName1", EXCHANGE_NAME, "routingKey1");
+
+        for (int i = 0; i < 5; i++) {
+            String message = "Hello World" + i;
+            channel.basicPublish(EXCHANGE_NAME, "routingKey", null, message.getBytes());
             System.out.println("EmitLog Sent '" + message + "'");
         }
         channel.close();
