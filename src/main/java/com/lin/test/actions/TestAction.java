@@ -5,6 +5,7 @@ import com.lin.test.beans.Account;
 import com.lin.test.beans.Shop;
 import com.lin.test.bo.UserBo;
 import com.lin.test.services.TestService;
+import com.lin.utils.ValidateCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -127,9 +131,32 @@ public class TestAction {
         return obj;
     }
     @RequestMapping("test")
-    public String testFtl(Model model){
+    public String testFtl(Model model, HttpServletResponse response) throws IOException {
+//        response.setContentType("image/png");
+//        vCode.write(response.getOutputStream());
+//        response.addHeader("Content-Disposition", "attachment;filename=image.png");
         model.addAttribute("name","负载2");
         return "test";
+    }
+
+    /**
+     * 返回验证码图片
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("verCode")
+    public void verCode(HttpServletRequest request,HttpServletResponse response) throws IOException {
+         response.setContentType("image/png");
+
+        ValidateCode vCode = new ValidateCode(120,40,5,100);
+
+        vCode.write(response.getOutputStream());
+        HttpSession session = request.getSession();
+        session.setAttribute("verCode",ValidateCode.getCode());
+        response.getOutputStream().flush();
+
+
     }
 
     /**
@@ -139,8 +166,20 @@ public class TestAction {
      */
     @RequestMapping("test2")
     @ResponseBody
-    public JSONObject testTransaction() throws Exception {
+    public JSONObject testTransaction(HttpServletRequest request) throws Exception {
         testService.testTransation();
-        return JSON.parseObject("{'result':'success','msg':'去死吧'}");
+        return JSON.parseObject("{'result':'success','msg':'草。。'}");
+    }
+
+    /**
+     * 验证下验证码是否正确
+     * @param request
+     * @return
+     */
+    @RequestMapping("testVerCode")
+    @ResponseBody
+    public JSONObject testVerCode(HttpServletRequest request){
+        String verCode = (String) request.getSession().getAttribute("verCode");
+        return JSON.parseObject("{'result':'success','msg':'"+verCode+"'}");
     }
 }
