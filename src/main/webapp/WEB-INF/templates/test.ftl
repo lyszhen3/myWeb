@@ -6,7 +6,7 @@
 </head>
 <body>
     ${name}
-
+    <img width="120px" height="40px" src="/verCode.htm" />
 
 </body>
 </html>

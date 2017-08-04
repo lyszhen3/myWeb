@@ -12,31 +12,31 @@ import java.util.concurrent.*;
 
 public class CallableDemo {
     public static void main(String[] args) {
-//        ExecutorService executorService = Executors.newCachedThreadPool();
-//        List<Future<String>> futureList = new ArrayList<>();
-//
-//        for (int i = 0; i < 10; i++) {
-//            Future submit = executorService.submit(new TaskWithResource(i));
-//            futureList.add(submit);
-//        }
-//
-//        for (Future<String> fs : futureList) {
-//            while (!fs.isDone()) ;
-//            try {
-//                System.out.println(fs.get());
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            } catch (ExecutionException e) {
-//                e.printStackTrace();
-//            } finally {
-//                executorService.shutdown();
-//            }
-//        }
-            NIOtest();
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        List<Future<String>> futureList = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            Future submit = executorService.submit(new TaskWithResource(i));
+            futureList.add(submit);
+        }
+
+        for (Future<String> fs : futureList) {
+            while (!fs.isDone()) ;
+            try {
+                System.out.println(fs.get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } finally {
+                executorService.shutdown();
+            }
+        }
+//            NIOtest();
 
     }
 
-
+    //nio例子
     public static void NIOtest() {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
 
