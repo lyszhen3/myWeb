@@ -14,7 +14,17 @@ import java.lang.annotation.Annotation;
 public class AnnotationsTest {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException {
         AnnotationsTest annotationsTest = new AnnotationsTest();
-        Lys annotation = annotationsTest.getClass().getAnnotation(Lys.class);
-        System.out.println(annotation.author());
+        Class<? extends AnnotationsTest> aClass = annotationsTest.getClass();
+
+        Annotation[] annotations = annotationsTest.getClass().getAnnotations();
+        if(aClass.isAnnotationPresent(Lys.class)){//是否包含Lys注解
+            Lys annotation = annotationsTest.getClass().getAnnotation(Lys.class);
+            System.out.println(annotation.author());
+        }
+        for (Annotation annotation1 : annotations) {
+            System.out.println(annotation1);
+            System.out.println(annotation1.annotationType());
+
+        }
     }
 }
