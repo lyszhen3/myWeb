@@ -16,12 +16,18 @@ public class DynamicProxyTest {
 
     interface IHello{
         void sayHello();
+        void sayByeBye();
     }
     static class Hello implements IHello{
 
         @Override
         public void sayHello() {
             System.out.println("hello world");
+        }
+
+        @Override
+        public void sayByeBye() {
+            System.out.println("bye bye");
         }
     }
     static class DynamicProxy implements InvocationHandler{
@@ -49,7 +55,7 @@ public class DynamicProxyTest {
 
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         IHello hello = (IHello) new DynamicProxy().bind(new Hello());
-        hello.sayHello();
+        hello.sayByeBye();
     }
 
 }
