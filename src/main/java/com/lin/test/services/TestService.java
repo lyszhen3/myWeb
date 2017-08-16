@@ -19,8 +19,7 @@ import java.util.List;
  */
 @Service("lin_testService")
 public class TestService {
-
-    @Resource
+    @Autowired
     TestMapper testMapper;
 
     @Autowired
