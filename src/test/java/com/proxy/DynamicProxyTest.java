@@ -6,7 +6,8 @@ import java.lang.reflect.Proxy;
 
 /**
  * Created by pc on 2017-07-12.
- *动态代理测试
+ * 动态代理测试
+ *
  * @author pc
  * @version 3.0.0-SNAPSHOT
  * @description
@@ -14,11 +15,12 @@ import java.lang.reflect.Proxy;
  */
 public class DynamicProxyTest {
 
-    interface IHello{
+    interface IHello {
         void sayHello();
         void sayByeBye();
     }
-    static class Hello implements IHello{
+
+    static class Hello implements IHello {
 
         @Override
         public void sayHello() {
@@ -30,12 +32,14 @@ public class DynamicProxyTest {
             System.out.println("bye bye");
         }
     }
-    static class DynamicProxy implements InvocationHandler{
+
+    static class DynamicProxy implements InvocationHandler {
 
         Object originObj;
-        Object bind(Object originObj){
+
+        Object bind(Object originObj) {
             this.originObj = originObj;
-             return Proxy.newProxyInstance(originObj.getClass().getClassLoader(),originObj.getClass().getInterfaces(),this);
+            return Proxy.newProxyInstance(originObj.getClass().getClassLoader(), originObj.getClass().getInterfaces(), this);
         }
 
         @Override
@@ -47,7 +51,6 @@ public class DynamicProxyTest {
             return invoke;
         }
     }
-
 
 
     public static void main(String[] args) {

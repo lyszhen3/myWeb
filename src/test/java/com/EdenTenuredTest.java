@@ -13,7 +13,7 @@ import org.junit.Test;
  * ps -XX:-UseParallelGC新生代多线程 老年代单线程
  *    -XX:-UseParallelOldGC 新生老年都是多线程
  */
-public class MyTest {
+public class EdenTenuredTest {
 
     public static final int _1MB=1024*1024;
     @SuppressWarnings("unused")
