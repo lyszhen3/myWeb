@@ -45,6 +45,31 @@ public class DoubleLinkedList<E> {
         }
         last = node;
     }
+    public void deleteFirst() throws Exception {
+        if(first == null){
+            throw new Exception("empty");
+        }
+        if(first.next ==null){
+            first = null;
+            last = null;
+        }else {
+            first.next.prev = null;
+            first = first.next;
+        }
+
+    }
+    public void deleteLast() throws Exception {
+        if(last ==null){
+            throw  new Exception("empty");
+        }
+        if(last.prev ==null){
+            last =null;
+            first = null;
+        }else{
+            last.prev.next =null;
+            last = last.prev;
+        }
+    }
 
 
     /**
@@ -80,7 +105,7 @@ public class DoubleLinkedList<E> {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         DoubleLinkedList<Integer> doubleLinkedList = new DoubleLinkedList<>();
         doubleLinkedList.insertFirst(4);
         doubleLinkedList.insertFirst(3);
@@ -90,12 +115,16 @@ public class DoubleLinkedList<E> {
         doubleLinkedList.insertLast(6);
         doubleLinkedList.displayPtoN();
         doubleLinkedList.displayNtoP();
-        LinkedList<Integer> list = new LinkedList();
+        doubleLinkedList.deleteFirst();
+        doubleLinkedList.displayPtoN();
+        doubleLinkedList.displayNtoP();
+        doubleLinkedList.deleteLast();
+         doubleLinkedList.displayPtoN();
+        doubleLinkedList.displayNtoP();
+        //研究list源代码
+         LinkedList<Integer> list = new LinkedList();
         ArrayList<Integer> arrayList = new ArrayList();
         arrayList.add(1);
-//        list.get(1);
-        System.out.println(1>>1);
-        Date date = new Date();
     }
 
 }
