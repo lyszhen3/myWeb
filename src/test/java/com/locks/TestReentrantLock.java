@@ -18,6 +18,8 @@ public class TestReentrantLock {
           try {
               if(lock.tryLock(6,TimeUnit.SECONDS)){
                   System.out.println(Thread.currentThread().getName()+"老子获取到锁了感谢天");
+                  //1.如果程序里执行了超过或等于六秒钟的时间则只有一个线程可以获取到锁其他线程因为没有等到锁而被另外安排
+                  //2.如果程序执行了小于6秒钟，则至少两条线程可以获取到锁
                     Thread.sleep(5000);
                   System.out.println(System.currentTimeMillis());
                   System.out.println("卧槽");
