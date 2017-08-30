@@ -19,8 +19,11 @@ import java.util.List;
  */
 @Service("lin_testService")
 public class TestService {
-    @Autowired
     TestMapper testMapper;
+    @Autowired
+    public void setTestMapper(TestMapper testMapper) {
+        this.testMapper = testMapper;
+    }
 
     @Autowired
     TestService2 testService2;

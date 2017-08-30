@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -16,8 +17,8 @@ import java.util.List;
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-@Component
-@Scope("singleton")
+@Repository
+@Scope
 @Lazy(true)
 public interface TestMapper extends Mapper<Account> {
 

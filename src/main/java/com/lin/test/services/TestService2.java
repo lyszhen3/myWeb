@@ -18,9 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TestService2 {
 
-    @Autowired
     TestMapper testMapper;
-//    @Transactional(propagation= Propagation.REQUIRED,rollbackFor = {Exception.class})
+    @Autowired
+    public void setTestMapper(TestMapper testMapper) {
+        this.testMapper = testMapper;
+    }
+
+    //    @Transactional(propagation= Propagation.REQUIRED,rollbackFor = {Exception.class})
     public void delete() throws Exception {
 
         testMapper.deleteOne(4L);

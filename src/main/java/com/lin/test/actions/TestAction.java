@@ -182,4 +182,9 @@ public class TestAction {
         String verCode = (String) request.getSession().getAttribute("verCode");
         return JSON.parseObject("{'result':'success','msg':'"+verCode+"'}");
     }
+    @RequestMapping("testDemo2")
+    @ResponseBody
+    public JSONObject testMvcJSON(){
+        return JSON.parseObject("{'result':'success','msg':'去死吧'}");
+    }
 }
