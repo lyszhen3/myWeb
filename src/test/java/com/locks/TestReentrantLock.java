@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by pc on 2017-06-01.
- *
+ *测试ReentrantLock
  * @author pc
  * @version 3.0.0-SNAPSHOT
  * @description
