@@ -73,8 +73,8 @@ public class JconsoleThread {
 
         public static void main(String[] args) {
             for(int i=0;i<100;i++){
-                new Thread(new SynAddRunnable(1,2),"我的1").start();
-                new Thread(new SynAddRunnable(2,1),"我的2").start();
+                new Thread(new SynAddRunnable(1,2),"我的1:第"+i+"个").start();
+                new Thread(new SynAddRunnable(2,1),"我的2:第"+i+"个").start();
             }
         }
     }
