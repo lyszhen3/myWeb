@@ -55,7 +55,7 @@ public class MapperProvider extends MapperTemplate{
     public SqlNode selectByPrimaryKey(MappedStatement ms)
     {
         Class entityClass = getSelectReturnType(ms);
-
+        System.out.println("我的天哪---"+entityClass);
 //        List<ParameterMapping> parameterMappings = getPrimaryKeyParameterMappings(ms);
 //
 //        if(parameterMappings==null||parameterMappings.size()==0){
