@@ -51,4 +51,33 @@ public class TestService {
 
 
     }
+    @Transactional(rollbackFor = Exception.class)
+    public void updateByPK(Long id) {
+
+
+        Account account  =new Account();
+        account.setId(id);
+        account.setName("修改");
+        testService2.updateOne(account);
+//        testMapper.updateByPrimaryKeySelective(account);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        account.setName("修复");
+        testMapper.updateByPrimaryKeySelective(account);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    @Transactional
+    public Account selOne(Long id) {
+
+        Account account = testMapper.selectByPrimaryKey(id);
+        System.out.println(account.getName());
+        return account;
+    }
 }

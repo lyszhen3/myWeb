@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * Created by pc on 2017-08-12.
@@ -26,19 +23,24 @@ public class MySort {
     }
 
     public static void main(String[] args) {
-        MySort sort = new MySort();
-        Runnable run = new Runnable() {
-            @Override
-            public void run() {
-                String name = Thread.currentThread().getName();
-                System.out.print(name);
-                sort.test(name);
-            }
-        };
-        for(int i=0;i<5;i++){
-            Thread thread = new Thread(run);
-            thread.setName(i+"");
-            thread.start();
-        }
+//        MySort sort = new MySort();
+//        Runnable run = new Runnable() {
+//            @Override
+//            public void run() {
+//                String name = Thread.currentThread().getName();
+//                System.out.print(name);
+//                sort.test(name);
+//            }
+//        };
+//        for(int i=0;i<5;i++){
+//            Thread thread = new Thread(run);
+//            thread.setName(i+"");
+//            thread.start();
+//        }
+        LinkedList<Integer> integers = new LinkedList<>();
+        Long m = 100L;
+        double v = m * .01;
+        System.out.println(v);
+
     }
 }

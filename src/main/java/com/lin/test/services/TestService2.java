@@ -1,5 +1,6 @@
 package com.lin.test.services;
 
+import com.lin.test.beans.Account;
 import com.lin.test.mappers.TestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,12 @@ public class TestService2 {
 
         testMapper.deleteOne(4L);
        // throw new Exception("我的天");
-        String xx = null;
-        xx.split("|");
+//        String xx = null;
+//        xx.split("|");
+    }
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void updateOne(Account account) {
+        testMapper.updateByPrimaryKeySelective(account);
+
     }
 }

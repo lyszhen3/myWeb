@@ -3,6 +3,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lin.test.beans.Account;
 import com.lin.test.beans.Shop;
+import com.lin.test.beans.TestUser;
 import com.lin.test.bo.UserBo;
 import com.lin.test.services.TestService;
 import com.lin.utils.ValidateCode;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by pc on 2017-03-21.
@@ -32,7 +34,7 @@ import java.util.List;
  */
 @Controller
 public class TestAction {
-
+    static final ReentrantLock lock  =new ReentrantLock();
     @Resource(name="lin_testService")
     TestService testService;
 
@@ -187,4 +189,67 @@ public class TestAction {
     public JSONObject testMvcJSON(){
         return JSON.parseObject("{'result':'success','msg':'去死吧'}");
     }
+
+    /**
+     * 测试事务可读性
+     * 修改
+     * 增加lock 使testFirst 和testFirst2串行化
+     * @return
+     */
+    @RequestMapping("testFirst")
+    @ResponseBody
+    public JSONObject testTransaction2(Long id){
+
+        try {
+            lock.lock();
+            testService.updateByPK(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            lock.unlock();
+        }
+
+        return JSON.parseObject("{'result':'success','msg':'去死吧'}");
+    }
+
+    /**
+     * 查询
+     * @return
+     */
+     @RequestMapping("testFirst2")
+    @ResponseBody
+    public JSONObject testTransaction3(Long id){
+         Account account;
+         try {
+             lock.lock();
+             account = testService.selOne(id);
+         } finally {
+             lock.unlock();
+         }
+         return JSON.parseObject(JSON.toJSONString(account));
+    }
+
+    /**
+     * 测试负载session共享 所以呢不是session共享不要访问了
+     * @param request
+     * @return
+     */
+    @RequestMapping("testLogin")
+    @ResponseBody
+    public JSONObject testLogin(HttpServletRequest request){
+        String id = request.getSession().getId();
+        TestUser testUser = (TestUser) request.getSession().getAttribute("testUser");
+        String name ="没有用户";
+        if(testUser == null){
+            testUser = new TestUser();
+            testUser.setId(1111L);
+            testUser.setName("元盛");
+            request.getSession().setAttribute("testUser",testUser);
+        }else{
+            name = testUser.getName();
+        }
+
+        return JSON.parseObject("{'sessionId':'"+id+"','userName':'"+name+"'}");
+    }
+
 }
