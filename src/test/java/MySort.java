@@ -1,3 +1,6 @@
+
+import com.DeepCopy;
+
 import java.util.LinkedList;
 
 /**
@@ -41,6 +44,7 @@ public class MySort {
         Long m = 100L;
         double v = m * .01;
         System.out.println(v);
-
+        Class<?> clazz = MySort.class;
+        System.out.println(clazz.getName());
     }
 }
