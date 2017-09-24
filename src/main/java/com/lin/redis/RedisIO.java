@@ -12,6 +12,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wxc on 2017/3/8.
@@ -246,6 +247,34 @@ public class RedisIO {
             returnJedis(jedis);
         }
     }
+
+    public Boolean hmset(String key,Map<String,String> map){
+        Jedis jedis = getJedis();
+        String result="";
+        try {
+            result = jedis.hmset(key, map);
+        } finally {
+            returnJedis(jedis);
+        }
+        if(result.equalsIgnoreCase("OK")){
+            return true;
+        }
+        return false;
+    }
+
+
+    public List<String> hmget(String key,String... str){
+        Jedis jedis = getJedis();
+        try {
+            List<String> hmget = jedis.hmget(key, str);
+
+            return hmget;
+        } finally {
+            returnJedis(jedis);
+        }
+
+    }
+
 
 //    @Override
 //    protected void finalize() throws Throwable {

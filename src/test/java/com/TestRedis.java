@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Created by pc on 2017-03-14.
- *
+ *需要redis.xml
  * @author pc
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
