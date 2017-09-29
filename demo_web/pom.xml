@@ -2,32 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>myWeb</artifactId>
+        <groupId>myWeb</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>myWeb</groupId>
-    <artifactId>myWeb</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>suiyiTest</module>
-        <module>databeans</module>
-        <module>demo_web</module>
-    </modules>
-    <packaging>pom</packaging>
-
-    <description>我的天啊</description>
-    <properties>
-        <spring.version>4.1.6.RELEASE</spring.version>
-        <aspectj>1.8.9</aspectj>
-    </properties>
-   <!-- <dependencies>
-        &lt;!&ndash;<dependency>&ndash;&gt;
-            &lt;!&ndash;<groupId>myWeb</groupId>&ndash;&gt;
-            &lt;!&ndash;<artifactId>data-beans</artifactId>&ndash;&gt;
-            &lt;!&ndash;<version>${project.version}</version>&ndash;&gt;
-        &lt;!&ndash;</dependency>&ndash;&gt;
+    <name>demo-web</name>
+    <artifactId>demo-web</artifactId>
+    <packaging>war</packaging>
 
 
-        &lt;!&ndash;spring部分 &ndash;&gt;
+    <dependencies>
+        <dependency>
+        <groupId>myWeb</groupId>
+        <artifactId>data-beans</artifactId>
+        <version>${project.version}</version>
+        </dependency>
+
+
+        <!--spring部分 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
@@ -94,7 +88,7 @@
             <version>${aspectj}</version>
         </dependency>
 
-        &lt;!&ndash;链接数据池包&ndash;&gt;
+        <!--链接数据池包-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
@@ -102,7 +96,7 @@
         </dependency>
 
 
-        &lt;!&ndash;spring mybatis链接包&ndash;&gt;
+        <!--spring mybatis链接包-->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -118,7 +112,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
         </dependency>
-        &lt;!&ndash;redis链接&ndash;&gt;
+        <!--redis链接-->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
@@ -130,7 +124,7 @@
             <version>1.0.2.RELEASE</version>
 
         </dependency>
-        &lt;!&ndash;日志包&ndash;&gt;
+        <!--日志包-->
 
         <dependency>
             <groupId>commons-logging</groupId>
@@ -176,11 +170,11 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.3.1</version>
         </dependency>
-        &lt;!&ndash; <dependency>
+        <!-- <dependency>
              <groupId>com.fasterxml.jackson.core</groupId>
              <artifactId>jackson-databind</artifactId>
              <version>2.8.3</version>
-         </dependency>&ndash;&gt;
+         </dependency>-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -193,7 +187,7 @@
             <version>2.0</version>
         </dependency>
 
-        &lt;!&ndash;zookeeper&ndash;&gt;
+        <!--zookeeper-->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
@@ -207,7 +201,7 @@
         </dependency>
 
 
-        &lt;!&ndash;log4j2&ndash;&gt;
+        <!--log4j2-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -240,11 +234,11 @@
             <version>1.0.2</version>
         </dependency>
 
-        &lt;!&ndash;解决注解debug报错&ndash;&gt;
+        <!--解决注解debug报错-->
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>annotations</artifactId>
-            <version>2.0.3</version> &lt;!&ndash; Any version should work &ndash;&gt;
+            <version>2.0.3</version> <!-- Any version should work -->
         </dependency>
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -276,7 +270,7 @@
             <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
-        &lt;!&ndash; jsonpath用的&ndash;&gt;
+        <!-- jsonpath用的-->
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
@@ -284,31 +278,7 @@
             <scope>test</scope>
         </dependency>
 
-        &lt;!&ndash;解决注解debug报错&ndash;&gt;
-    </dependencies>-->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+        <!--解决注解debug报错-->
+    </dependencies>
 
-    <repositories>
-        <repository>
-            <id>nexus</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
 </project>

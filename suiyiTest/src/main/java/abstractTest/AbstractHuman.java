@@ -10,4 +10,5 @@ package abstractTest;
  */
 public abstract class AbstractHuman {
     public abstract String sayName();
+    public abstract void sayHello();
 }
