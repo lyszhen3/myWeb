@@ -47,5 +47,5 @@ Temporary Items
 .apdisk
 # idea Project
 .idea
-.iml
+*.iml
 target/
