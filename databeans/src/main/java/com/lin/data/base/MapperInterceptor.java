@@ -12,10 +12,7 @@ import org.apache.ibatis.plugin.Plugin;
 
 import java.util.Properties;
 
-/**
- * Mybatis拦截器
- * Created by zhaohongbo on 15/9/15.
- */
+
 @Intercepts({@org.apache.ibatis.plugin.Signature(type = Executor.class,method = "query",args = {MappedStatement.class,Object.class,org.apache.ibatis.session.RowBounds.class,org.apache.ibatis.session.ResultHandler.class}),@org.apache.ibatis.plugin.Signature(type = Executor.class,method = "update",args = {MappedStatement.class,Object.class})})
 public class MapperInterceptor implements Interceptor {
 

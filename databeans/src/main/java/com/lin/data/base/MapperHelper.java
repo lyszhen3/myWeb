@@ -10,9 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import java.lang.reflect.Method;
 import java.util.*;
 
-/**
- * Created by zhaohongbo on 15/9/15.
- */
+
 public class MapperHelper {
     private Map<Class<?>,MapperTemplate> registerMapper=new HashMap<Class<?>, MapperTemplate>();
     private Map<String,MapperTemplate> msIdCache=new HashMap<String, MapperTemplate>();

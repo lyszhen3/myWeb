@@ -23,9 +23,7 @@ import java.lang.reflect.Type;
 import java.text.MessageFormat;
 import java.util.*;
 
-/**
- * Created by zhaohongbo on 15/9/15.
- */
+
 public class MapperTemplate {
 
     private Map<String,Method> methodMap=new HashMap<String, Method>();

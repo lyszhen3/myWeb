@@ -5,9 +5,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
-/**
- * Created by zhaohongbo on 15/9/15.
- */
+
 public class EntityHelper {
     private static final Map<Class<?>,EntityTable> entityTableMap=new HashMap<Class<?>, EntityTable>();
 

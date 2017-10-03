@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by zhaohongbo on 15/9/15.
- */
+
 public class MapperProvider extends MapperTemplate{
     public MapperProvider(Class<?> mapperClass, MapperHelper mapperHelper) {
         super(mapperClass, mapperHelper);
