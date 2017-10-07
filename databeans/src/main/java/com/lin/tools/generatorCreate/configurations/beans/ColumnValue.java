@@ -12,12 +12,14 @@ public class ColumnValue {
     public ColumnValue(String type, String name) {
         this.type = type;
         this.name = name;
+
     }
 
     public ColumnValue() {
 
     }
-
+    String isKey;
+    String isForeignKey;
     String name;
     String type;
 
@@ -35,5 +37,21 @@ public class ColumnValue {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getIsKey() {
+        return isKey;
+    }
+
+    public void setIsKey(String isKey) {
+        this.isKey = isKey;
+    }
+
+    public String getIsForeignKey() {
+        return isForeignKey;
+    }
+
+    public void setIsForeignKey(String isForeignKey) {
+        this.isForeignKey = isForeignKey;
     }
 }

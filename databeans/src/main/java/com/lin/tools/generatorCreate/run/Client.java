@@ -1,10 +1,8 @@
 package com.lin.tools.generatorCreate.run;
 
 
-import com.lin.tools.generatorCreate.configurations.DefaultInfo;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.util.Scanner;
 
 /**
  * Created by pc on 2017/9/30.
@@ -17,5 +15,29 @@ import java.util.List;
 public class Client {
     public static void main(String[] args) {
 
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("请输入文件输出地址");
+        File file = new File(scan.next());
+        scan.nextLine();
+        StringBuilder bd = new StringBuilder();
+        try {
+            if (file.exists()) {
+                System.out.println("请输入表DDL");
+                while (scan.hasNextLine()){
+                    String line = scan.nextLine();
+                    bd.append(line);
+                    if(line.endsWith(";")){
+                        break;
+                    }
+
+                }
+            }else{
+                throw new RuntimeException("文件路径不存在");
+            }
+        } finally {
+            scan.close();
+        }
     }
+
 }

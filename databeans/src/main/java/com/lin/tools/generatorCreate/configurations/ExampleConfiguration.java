@@ -4,10 +4,7 @@ import com.lin.tools.generatorCreate.configurations.beans.ColumnValue;
 import com.lin.tools.generatorCreate.configurations.beans.MethodValue;
 
 import java.net.URL;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.StringJoiner;
+import java.util.*;
 
 import static com.lin.tools.generatorCreate.configurations.ExampleConfiguration.ConditionTypeEnum.*;
 
@@ -42,20 +39,44 @@ public class ExampleConfiguration extends DefaultConfiguration {
 
     @Override
     public String createCode() {
+        StringBuilder conditionCode = new StringBuilder();
         columnValues.forEach(c -> {
             StringBuilder condicationBd = new StringBuilder();
             ConditionTypeEnum[] typeEnums = values();
             for (ConditionTypeEnum typeEnum : typeEnums) {
                 switch (typeEnum) {
-                    case ISNULL: {
+                    default: {
                         condicationBd.append("public Criteria ")
                                 .append(typeEnum.value.replace("#{column}", nameFirstUp(c.getName())));
-                        StringJoiner joiner = new StringJoiner(",","(",")");
-                        for (int i = 0; i < typeEnum.paramNum; i++) {
-                            joiner.add(c.getType()+" "+"value"+(i+1));
-                        }
-                        condicationBd.append(joiner.toString()).append("{");
+                        StringJoiner joiner = new StringJoiner(",", "(", ")");
+                        StringBuilder methodCodeBd = new StringBuilder();
+                        methodCodeBd.append(indent + indent + indent).append("addCriterion(\"")
+                                .append(space)
+                                .append(fieldFormat(c.getName()))
+                                .append(space)
+                                .append(typeEnum.operation)
+                                .append("\"");
 
+                        for (int i = 0; i < typeEnum.paramNum; i++) {
+                            if (typeEnum == ConditionTypeEnum.LIKE) {
+                                //like只能使用String类型
+                                joiner.add("String" + space + "value" + (i + 1));
+                            } else {
+                                joiner.add(c.getType() + " " + "value" + (i + 1));
+                            }
+                            methodCodeBd.append(",").append("value").append(i + 1);
+                            if(i == typeEnum.paramNum -1){
+                                methodCodeBd.append(",").append(c.getName());
+                            }
+                        }
+                        methodCodeBd.append(")").append("\n")
+                                .append(indent + indent + indent)
+                                .append("return (Criteria) this;");
+                        condicationBd.append(joiner.toString())
+                                .append("{").append("\n").append(methodCodeBd.toString())
+                                .append("\n").append(indent + indent)
+                                .append("}").append(row_2);
+                       conditionCode.append(condicationBd.toString());
                         break;
                     }
                 }
@@ -63,13 +84,28 @@ public class ExampleConfiguration extends DefaultConfiguration {
         });
 
 
-        return null;
+        return conditionCode.toString();
     }
-    private String nameFirstUp(String name){
-        String first = name.substring(0,1);
-        name = name.replaceFirst(first,first.toUpperCase());
+
+    private static String fieldFormat(String field) {
+        char[] chars = field.toCharArray();
+        StringBuilder bd = new StringBuilder();
+        for (char aChar : chars) {
+
+            if ((int) aChar == (int) Character.toUpperCase(aChar)) {
+                bd.append("_");
+            }
+            bd.append(Character.toLowerCase(aChar));
+        }
+        return bd.toString();
+    }
+
+    private String nameFirstUp(String name) {
+        String first = name.substring(0, 1);
+        name = name.replaceFirst(first, first.toUpperCase());
         return name;
     }
+
     enum ConditionTypeEnum {
         ISNULL("and#{column}IsNull", "is null", 0),
         ISNOTNULL("and#{column}IsNotNull", "is not null", 0),
@@ -109,15 +145,9 @@ public class ExampleConfiguration extends DefaultConfiguration {
     }
 
     public static void main(String[] args) {
-        URL resource = ExampleConfiguration.class.getResource("");
-        String path = resource.getPath();
-        path = path.replace("target/classes/", "");
-        if (path.endsWith("/")) {
-            path = path.substring(0, path.length() - 1);
-        }
-        int i = path.lastIndexOf("/");
-        path = path.substring(0, i) + "/mould/ExampleMould";
-
+        String name = "niHaoA";
+        String s = fieldFormat(name);
+        System.out.println(s);
 
     }
 

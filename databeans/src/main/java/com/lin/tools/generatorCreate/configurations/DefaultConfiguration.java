@@ -14,6 +14,14 @@ public abstract class DefaultConfiguration   {
     public static final String space = " ";
     public static final String extendsStr = "extends";
     public static final String implementsStr = "implements";
-    private String resource;
+    private Object resource;
     public abstract String createCode();
+
+    public Object getResource() {
+        return resource;
+    }
+
+    public void setResource(Object resource) {
+        this.resource = resource;
+    }
 }
