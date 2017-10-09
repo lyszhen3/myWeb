@@ -18,7 +18,7 @@ public class ColumnValue {
     public ColumnValue() {
 
     }
-    String isKey;
+    Boolean isKey;
     String isForeignKey;
     String name;
     String type;
@@ -39,12 +39,12 @@ public class ColumnValue {
         this.type = type;
     }
 
-    public String getIsKey() {
+    public Boolean getKey() {
         return isKey;
     }
 
-    public void setIsKey(String isKey) {
-        this.isKey = isKey;
+    public void setKey(Boolean key) {
+        isKey = key;
     }
 
     public String getIsForeignKey() {

@@ -1,5 +1,8 @@
 package com.lin.tools.generatorCreate.configurations;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  * Created by pc on 2017/9/30.
  *
@@ -15,7 +18,9 @@ public abstract class DefaultConfiguration   {
     public static final String extendsStr = "extends";
     public static final String implementsStr = "implements";
     private Object resource;
-    public abstract String createCode();
+    private String outPutPath;
+    private String packagePath;
+    public abstract String createCode() throws IOException;
 
     public Object getResource() {
         return resource;
@@ -23,5 +28,21 @@ public abstract class DefaultConfiguration   {
 
     public void setResource(Object resource) {
         this.resource = resource;
+    }
+
+    public String getOutPutPath() {
+        return outPutPath;
+    }
+
+    public void setOutPutPath(String outPutPath) {
+        this.outPutPath = outPutPath;
+    }
+
+    public String getPackagePath() {
+        return packagePath;
+    }
+
+    public void setPackagePath(String packagePath) {
+        this.packagePath = packagePath;
     }
 }
