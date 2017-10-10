@@ -2,6 +2,7 @@ package com.lin.test.services;
 
 import com.lin.data.beans.Account;
 import com.lin.data.mappers.TestMapper;
+import com.lin.demo.services.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -29,6 +30,12 @@ public class TestService {
     @Autowired
     public void setTestService2(TestService2 testService2) {
         this.testService2 = testService2;
+    }
+
+    DemoService demoService;
+    @Autowired
+    public void setDemoService(DemoService demoService) {
+        this.demoService = demoService;
     }
 
     public int testCount(){
@@ -83,5 +90,9 @@ public class TestService {
         Account account = testMapper.selectByPrimaryKey(id);
         System.out.println(account.getName());
         return account;
+    }
+    //调用dubbo测试
+    public void testDubbo(){
+        demoService.helloWorld();
     }
 }

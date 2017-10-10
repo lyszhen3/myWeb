@@ -58,4 +58,7 @@
     <!--<bean id="exceptionResolver"-->
           <!--class="com.shigu.resolver.ExceptionResolver">-->
     <!--</bean>-->
+
+    <!--添加dubbo服务-->
+    <import resource="dubbo_application.xml"/>
 </beans>

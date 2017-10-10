@@ -251,5 +251,11 @@ public class TestAction {
 
         return JSON.parseObject("{'sessionId':'"+id+"','userName':'"+name+"'}");
     }
+    @RequestMapping("testDubbo")
+    @ResponseBody
+    public JSONObject testDubbo(){
+        testService.testDubbo();
+        return JSON.parseObject("{'result':'success'}");
+    }
 
 }
