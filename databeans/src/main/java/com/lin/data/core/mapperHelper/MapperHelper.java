@@ -1,4 +1,4 @@
-package com.lin.data.base;
+package com.lin.data.core.mapperHelper;
 
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;

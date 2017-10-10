@@ -1,0 +1,22 @@
+package com.lin.data.mappers;
+
+
+import com.lin.data.base.Mapper;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Lazy;
+import #{beanSource};
+
+import java.util.List;
+
+/**
+ * Created  on #{date}.
+ *
+ * @author 自动生成
+ */
+@Repository
+@Scope
+@Lazy
+public interface #{bean}Mapper extends Mapper<#{bean}> {
+
+}

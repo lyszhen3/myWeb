@@ -2,8 +2,10 @@ package com.lin.tools.generatorCreate.run;
 
 
 import com.lin.tools.generatorCreate.Beans.TableInfo;
+import com.lin.tools.generatorCreate.configurations.BeanConfiguration;
 import com.lin.tools.generatorCreate.configurations.DefaultConfiguration;
 import com.lin.tools.generatorCreate.configurations.ExampleConfiguration;
+import com.lin.tools.generatorCreate.configurations.MapperConfiguration;
 import com.lin.tools.generatorCreate.run.create.Create;
 
 import java.io.File;
@@ -38,15 +40,21 @@ public class Client {
                     if(line.endsWith(";")){
                         TableInfo info = StringParseUtil.parseDDL(bd.toString());
                         DefaultConfiguration ex = new ExampleConfiguration(info);
-                        ex.setPackagePath("com.lin.data.examples;");
-                        ex.setOutPutPath(file.getPath()+"/examples/"+StringParseUtil.firstUpCase(info.getTableName())+"Example.java");
+                        ex.setPackagePath(getBasePackage(file.getPath()));
+                        ex.setOutPutPath(file.getPath());
+                        DefaultConfiguration mp = new MapperConfiguration(info);
+                        mp.setPackagePath(getBasePackage(file.getPath()));
+                        mp.setOutPutPath(file.getPath());
+                        DefaultConfiguration bn = new BeanConfiguration(info);
+                        bn.setPackagePath(getBasePackage(file.getPath()));
+                        bn.setOutPutPath(file.getPath());
                         Create create = new Create();
                         List<DefaultConfiguration> list = new ArrayList<>();
                         list.add(ex);
+                        list.add(mp);
+                        list.add(bn);
                         create.setConfigurations(list);
                         create.createNow();
-
-
                         break;
                     }
 
@@ -57,6 +65,10 @@ public class Client {
         }finally {
             scan.close();
         }
+    }
+    public static String getBasePackage(String path){
+        int i = path.indexOf("java\\")+5;
+        return path.substring(i,path.length()).replace("\\",".");
     }
 
 }

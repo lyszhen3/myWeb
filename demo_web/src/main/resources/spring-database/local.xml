@@ -55,10 +55,10 @@
         <property name="typeAliasesPackage" value="com.opentae.data.daifa"></property>
     </bean>-->
 
-    <bean id="mapperInterceptor" class="com.lin.data.base.MapperInterceptor">
+    <bean id="mapperInterceptor" class="com.lin.data.core.mapperHelper.MapperInterceptor">
         <property name="properties">
             <map>
-                <entry key="mappers" value="com.lin.data.base.Mapper"></entry>
+                <entry key="mappers" value="com.lin.data.core.mapper.Mapper"></entry>
             </map>
         </property>
     </bean>

@@ -18,10 +18,11 @@ public class ColumnValue {
     public ColumnValue() {
 
     }
-    Boolean isKey;
-    String isForeignKey;
+    Boolean key = false;
+    String foreignKey;
     String name;
     String type;
+    String comment;
 
     public String getName() {
         return name;
@@ -40,18 +41,26 @@ public class ColumnValue {
     }
 
     public Boolean getKey() {
-        return isKey;
+        return key;
     }
 
     public void setKey(Boolean key) {
-        isKey = key;
+        this.key = key;
     }
 
-    public String getIsForeignKey() {
-        return isForeignKey;
+    public String getForeignKey() {
+        return foreignKey;
     }
 
-    public void setIsForeignKey(String isForeignKey) {
-        this.isForeignKey = isForeignKey;
+    public void setForeignKey(String foreignKey) {
+        this.foreignKey = foreignKey;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

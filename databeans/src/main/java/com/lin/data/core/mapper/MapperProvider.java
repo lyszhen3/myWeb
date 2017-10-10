@@ -1,5 +1,8 @@
-package com.lin.data.base;
+package com.lin.data.core.mapper;
 
+import com.lin.data.core.mapperHelper.EntityHelper;
+import com.lin.data.core.mapperHelper.MapperHelper;
+import com.lin.data.core.mapperHelper.MapperTemplate;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.scripting.xmltags.*;
 
@@ -8,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 
-public class MapperProvider extends MapperTemplate{
+public class MapperProvider extends MapperTemplate {
     public MapperProvider(Class<?> mapperClass, MapperHelper mapperHelper) {
         super(mapperClass, mapperHelper);
     }

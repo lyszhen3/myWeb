@@ -55,10 +55,10 @@
          <property name="mapperLocations" value="classpath*:/daifa/mybatis/*.xml" />
          <property name="typeAliasesPackage" value="com.opentae.data.daifa"></property>
      </bean>-->
-    <bean id="mapperInterceptor" class="com.lin.data.base.base.MapperInterceptor">
+    <bean id="mapperInterceptor" class="com.lin.data.core.mapperHelper.MapperInterceptor">
         <property name="properties">
             <map>
-                <entry key="mappers" value="com.lin.data.base.base.Mapper"></entry>
+                <entry key="mappers" value="com.lin.data.core.mapper.Mapper"></entry>
             </map>
         </property>
     </bean>
@@ -80,7 +80,7 @@
     <tx:annotation-driven transaction-manager="local_mapper"/>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage"
-                  value="com/lin/test/mappers"/>
+                  value="com/lin/data/mappers"/>
         <property name="sqlSessionFactoryBeanName" value="systemSqlSessionFactory"/>
     </bean>
 </beans>

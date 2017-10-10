@@ -1,0 +1,18 @@
+package #{package}
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+/**
+ *@author 自动生成
+ *@see #{bean}
+ *@remark 自动生成
+ *生成日期：#{date}
+ *完成日期：
+ *内容摘要：
+ *
+ */
+public class #{bean}{
+
+#{innerCode}
+}

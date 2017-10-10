@@ -67,7 +67,7 @@ public class ControllerTest {
     //测试键值put get
     @Test
     public void testRedisPut(){
-        redisIO.put("lin","元豪");
+        redisIO.put("lin","xx");
         String value = redisIO.get("lin");
         System.out.println(value);
     }

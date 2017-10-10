@@ -1,7 +1,7 @@
 package com.lin.data.mappers;
 
 
-import com.lin.data.base.Mapper;
+import com.lin.data.core.mapper.Mapper;
 import com.lin.data.beans.Account;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Lazy;

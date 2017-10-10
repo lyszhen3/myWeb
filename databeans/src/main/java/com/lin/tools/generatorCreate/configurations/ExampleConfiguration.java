@@ -1,6 +1,8 @@
 package com.lin.tools.generatorCreate.configurations;
 
+import com.lin.data.examples.Example;
 import com.lin.tools.generatorCreate.Beans.TableInfo;
+import com.lin.tools.generatorCreate.configurations.beans.ColumnValue;
 import com.lin.tools.generatorCreate.configurations.beans.MethodValue;
 import com.lin.tools.generatorCreate.run.StringParseUtil;
 
@@ -23,15 +25,16 @@ import static com.lin.tools.generatorCreate.configurations.ExampleConfiguration.
  * @since 3.0.0-SNAPSHOT
  */
 public class ExampleConfiguration extends DefaultConfiguration {
+
     public final static String mouldLocation;
 
     static {
         URL resource = ExampleConfiguration.class.getResource("");
         String path = resource.getPath();
-
         int tindex = path.indexOf("target/classes/") + 14;
         path = path.substring(0, tindex) + "/mould/ExampleMould";
         mouldLocation = path;
+
     }
 
     private TableInfo info;
@@ -75,17 +78,16 @@ public class ExampleConfiguration extends DefaultConfiguration {
 
     private String createConditionCode() {
         StringBuilder conditionCode = new StringBuilder();
-        info.getList().forEach(c -> {
-            StringBuilder condicationBd = new StringBuilder();
+        for (ColumnValue c : info.getList()) {
+
             ConditionTypeEnum[] typeEnums = values();
             for (ConditionTypeEnum typeEnum : typeEnums) {
-
+                StringBuilder condicationBd = new StringBuilder();
                 condicationBd.append(suojin(2)).append("public Criteria ")
                         .append(typeEnum.value.replace("#{column}", nameFirstUp(c.getName())));
                 StringJoiner joiner = new StringJoiner(",", "(", ")");
                 StringBuilder methodCodeBd = new StringBuilder();
                 methodCodeBd.append(suojin(3)).append("addCriterion(\"")
-                        .append(space)
                         .append(fieldFormat(c.getName()))
                         .append(space)
                         .append(typeEnum.operation)
@@ -96,7 +98,11 @@ public class ExampleConfiguration extends DefaultConfiguration {
                         //like只能使用String类型
                         joiner.add("String" + space + "value" + (i + 1));
                     } else {
-                        joiner.add(c.getType() + " " + "value" + (i + 1));
+                        if (c.getType().equals("Date")) {
+                            joiner.add("java.util." + c.getType() + " " + "value" + (i + 1));
+                        } else {
+                            joiner.add(c.getType() + " " + "value" + (i + 1));
+                        }
                     }
                     methodCodeBd.append(",").append("value").append(i + 1);
                     if (i == typeEnum.paramNum - 1) {
@@ -112,7 +118,7 @@ public class ExampleConfiguration extends DefaultConfiguration {
                         .append("}").append(row_2);
                 conditionCode.append(condicationBd.toString());
             }
-        });
+        }
 
 
         return conditionCode.toString();
@@ -167,13 +173,6 @@ public class ExampleConfiguration extends DefaultConfiguration {
 
     }
 
-    private String suojin(int offset) {
-        StringBuilder sbd = new StringBuilder();
-        for (int i = 0; i < offset; i++) {
-            sbd.append(indent);
-        }
-        return sbd.toString();
-    }
 
     public static void main(String[] args) {
         String name = "niHaoA";
@@ -182,5 +181,13 @@ public class ExampleConfiguration extends DefaultConfiguration {
 
     }
 
+    @Override
+    public void setOutPutPath(String outPutPath) {
+        super.setOutPutPath(outPutPath + "/examples/" + StringParseUtil.firstUpCase(info.getTableName()) + "Example.java");
+    }
 
+    @Override
+    public void setPackagePath(String packagePath) {
+        super.setPackagePath(packagePath + ".examples;");
+    }
 }

@@ -24,8 +24,13 @@ public class TestService {
         this.testMapper = testMapper;
     }
 
-    @Autowired
+
     TestService2 testService2;
+    @Autowired
+    public void setTestService2(TestService2 testService2) {
+        this.testService2 = testService2;
+    }
+
     public int testCount(){
        int i= testMapper.testCount();
        return i;

@@ -45,4 +45,13 @@ public abstract class DefaultConfiguration   {
     public void setPackagePath(String packagePath) {
         this.packagePath = packagePath;
     }
+
+
+    protected String suojin(int offset) {
+        StringBuilder sbd = new StringBuilder();
+        for (int i = 0; i < offset; i++) {
+            sbd.append(indent);
+        }
+        return sbd.toString();
+    }
 }

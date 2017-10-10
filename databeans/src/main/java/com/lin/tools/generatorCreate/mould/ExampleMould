@@ -190,7 +190,7 @@ public class #{bean}Example extends Example{
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        #{andCondition}
+#{andCondition}
     }
     /**
      * This field was generated  Generator.

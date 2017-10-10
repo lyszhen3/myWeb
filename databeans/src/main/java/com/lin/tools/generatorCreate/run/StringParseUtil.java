@@ -23,6 +23,7 @@ public class StringParseUtil {
     public static final String tableNameReg = "TABLE.(`[^`]*`)";
     public static final String priMarykeyReg = "PRIMARY KEY.(\\([^\\(\\)]*\\))";
     public static final String typeReg = "%s\\s(\\w[^\\s]*)\\s";
+    public static final String commentReg = "%s.*COMMENT\\s('.*')";
     public static HashMap<String,String> correMap = new HashMap<>();
     static {
         /**
@@ -102,6 +103,8 @@ public class StringParseUtil {
             String finalType = type.substring(0,type.indexOf("(")>0?type.indexOf("("):type.length());
 
             ColumnValue cp = new ColumnValue();
+
+
             cp.setName(underLineCamelCase(c));
             fi:for (Map.Entry<String, String> typeEntry : correMap.entrySet()) {
                 String value = typeEntry.getValue();
@@ -120,6 +123,12 @@ public class StringParseUtil {
             }
             if(cp.getType() == null){
                 throw new RuntimeException(String.format("数据库属性:%s暂且不支持转化",finalType));
+            }
+            Pattern cmp = Pattern.compile(String.format(commentReg,"`"+c+"`"));
+            Matcher cmm = cmp.matcher(ddl);
+            String comment = cmm.find()?cmm.group(1):null;
+            if(comment != null){
+                cp.setComment(comment.substring(1,comment.length()-1));
             }
             cList.add(cp);
 

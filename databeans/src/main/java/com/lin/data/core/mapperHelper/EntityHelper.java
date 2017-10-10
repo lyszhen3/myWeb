@@ -1,4 +1,6 @@
-package com.lin.data.base;
+package com.lin.data.core.mapperHelper;
+
+import com.lin.data.core.mapperHelper.MapperHelper;
 
 import javax.persistence.*;
 import java.lang.reflect.Field;

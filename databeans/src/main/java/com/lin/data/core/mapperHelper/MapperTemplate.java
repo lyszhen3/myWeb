@@ -1,5 +1,6 @@
-package com.lin.data.base;
+package com.lin.data.core.mapperHelper;
 
+import com.lin.data.base.MoreSiteBean;
 import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.executor.keygen.NoKeyGenerator;
