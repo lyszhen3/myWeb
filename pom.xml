@@ -6,7 +6,13 @@
 
     <groupId>myWeb</groupId>
     <artifactId>myWeb</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
+    <!--
+    mvn versions:set -DnewVersion=1.0.1-SNAPSHOT
+    mvn -N versions:update-child-modules
+    mvn versions:commit
+
+    -->
     <modules>
         <module>suiyiTest</module>
         <module>data_beans</module>
