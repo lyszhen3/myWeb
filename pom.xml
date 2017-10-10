@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>suiyiTest</module>
-        <module>databeans</module>
+        <module>data_beans</module>
         <module>demo_web</module>
     </modules>
     <packaging>pom</packaging>

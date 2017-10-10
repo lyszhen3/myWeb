@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
         <groupId>myWeb</groupId>
-        <artifactId>data-beans</artifactId>
+        <artifactId>data_beans</artifactId>
         <version>${project.version}</version>
         </dependency>
 
