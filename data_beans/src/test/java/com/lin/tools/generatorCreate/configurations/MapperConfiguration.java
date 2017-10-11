@@ -17,16 +17,14 @@ import java.time.LocalDate;
  * @description
  * @since 3.0.0-SNAPSHOT
  */
-public class MapperConfiguration extends DefaultConfiguration{
+public class MapperConfiguration extends DefaultConfiguration {
 
     public final static String mouldLocation;
 
     static {
-        URL resource = ExampleConfiguration.class.getResource("");
+        URL resource = ExampleConfiguration.class.getResource("/");
         String path = resource.getPath();
-
-        int tindex = path.indexOf("target/classes/") + 14;
-        path = path.substring(0, tindex) + "/mould/MapperMould";
+        path = path+ "mould/MapperMould";
         mouldLocation = path;
     }
     private TableInfo info;

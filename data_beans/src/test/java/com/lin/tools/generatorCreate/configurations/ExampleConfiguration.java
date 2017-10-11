@@ -1,6 +1,5 @@
 package com.lin.tools.generatorCreate.configurations;
 
-import com.lin.data.examples.Example;
 import com.lin.tools.generatorCreate.Beans.TableInfo;
 import com.lin.tools.generatorCreate.configurations.beans.ColumnValue;
 import com.lin.tools.generatorCreate.configurations.beans.MethodValue;
@@ -14,7 +13,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.StringJoiner;
 
-import static com.lin.tools.generatorCreate.configurations.ExampleConfiguration.ConditionTypeEnum.values;
 
 /**
  * Created by pc on 2017/9/30.
@@ -29,10 +27,9 @@ public class ExampleConfiguration extends DefaultConfiguration {
     public final static String mouldLocation;
 
     static {
-        URL resource = ExampleConfiguration.class.getResource("");
+        URL resource = ExampleConfiguration.class.getResource("/");
         String path = resource.getPath();
-        int tindex = path.indexOf("target/classes/") + 14;
-        path = path.substring(0, tindex) + "/mould/ExampleMould";
+        path = path + "mould/ExampleMould";
         mouldLocation = path;
 
     }
@@ -80,7 +77,7 @@ public class ExampleConfiguration extends DefaultConfiguration {
         StringBuilder conditionCode = new StringBuilder();
         for (ColumnValue c : info.getList()) {
 
-            ConditionTypeEnum[] typeEnums = values();
+            ConditionTypeEnum[] typeEnums = ConditionTypeEnum.values();
             for (ConditionTypeEnum typeEnum : typeEnums) {
                 StringBuilder condicationBd = new StringBuilder();
                 condicationBd.append(suojin(2)).append("public Criteria ")

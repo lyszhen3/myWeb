@@ -3,7 +3,10 @@ package com.lin.tools.generatorCreate.run;
 import com.lin.tools.generatorCreate.Beans.TableInfo;
 import com.lin.tools.generatorCreate.configurations.beans.ColumnValue;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -23,7 +26,7 @@ public class StringParseUtil {
     public static final String tableNameReg = "TABLE.(`[^`]*`)";
     public static final String priMarykeyReg = "PRIMARY KEY.(\\([^\\(\\)]*\\))";
     public static final String typeReg = "%s\\s(\\w[^\\s]*)\\s";
-    public static final String commentReg = "%s.*COMMENT\\s('.*')";
+    public static final String commentReg = "%s.*?COMMENT\\s('.*?')";//非贪婪
     public static HashMap<String,String> correMap = new HashMap<>();
     static {
         /**
@@ -129,6 +132,7 @@ public class StringParseUtil {
             String comment = cmm.find()?cmm.group(1):null;
             if(comment != null){
                 cp.setComment(comment.substring(1,comment.length()-1));
+                System.out.println(cp.getComment());
             }
             cList.add(cp);
 
@@ -154,7 +158,7 @@ public class StringParseUtil {
     }
 
     public static void main(String[] args) {
-        String xx = "CREATE TABLE `account` ( `id` bigint(20) NOT NULL AUTO_INCREMENT,`name` varchar(64) NOT NULL,`email` varchar(128) DEFAULT NULL,`hash_password` varchar(255) DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8";
+        String xx = "";
         List<String> list = new ArrayList<>();
         list.add("1");
         list.add("2");
@@ -167,15 +171,9 @@ public class StringParseUtil {
         });
         List<String> collect = list.stream().distinct().collect(Collectors.toList());
         System.out.println(collect);
-        String format = String.format(typeReg, "`oo`");
-        System.out.println(format);
-        String woc = "TINYINT";
-        String p = "";
-        String tableName = "wo_cao_ni";
-        String s = underLineCamelCase(tableName);
-        System.out.println(s);
-        System.out.println((int)'A');
-        System.out.println("int".toUpperCase().equals("INT"));
+        String format = String.format(commentReg, "`id`");
+
+
     }
 
 

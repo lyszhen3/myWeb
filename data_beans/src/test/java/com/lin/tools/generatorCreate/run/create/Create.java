@@ -2,6 +2,7 @@ package com.lin.tools.generatorCreate.run.create;
 
 import com.lin.tools.generatorCreate.configurations.DefaultConfiguration;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,6 +31,10 @@ public class Create {
     }
 
     public void outPut(String outPutPath, String source) throws IOException {
+        File file = new File(source);
+        if(!file.getParentFile().exists()){
+            file.getParentFile().mkdirs();
+        }
         FileWriter writer = new FileWriter(outPutPath);
         writer.write(source);
         writer.close();

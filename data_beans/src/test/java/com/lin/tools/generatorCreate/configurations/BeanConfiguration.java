@@ -9,8 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.StringJoiner;
 
 /**
  * Created by pc on 2017-10-10.
@@ -26,10 +24,9 @@ public class BeanConfiguration extends DefaultConfiguration {
     public final static String mouldLocation;
 
     static {
-        URL resource = ExampleConfiguration.class.getResource("");
+        URL resource = ExampleConfiguration.class.getResource("/");
         String path = resource.getPath();
-        int tindex = path.indexOf("target/classes/") + 14;
-        path = path.substring(0, tindex) + "/mould/BeanMould";
+        path = path + "mould/BeanMould";
         mouldLocation = path;
 
     }
