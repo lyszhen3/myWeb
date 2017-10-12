@@ -2,10 +2,9 @@ package com.lin.tools.generatorCreate.run.create;
 
 import com.lin.tools.generatorCreate.configurations.DefaultConfiguration;
 
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.List;
 
 /**
@@ -35,9 +34,12 @@ public class Create {
         if(!file.getParentFile().exists()){
             file.getParentFile().mkdirs();
         }
-        FileWriter writer = new FileWriter(outPutPath);
-        writer.write(source);
-        writer.close();
+        FileChannel channel = new FileOutputStream(outPutPath).getChannel();
+        channel.write(ByteBuffer.wrap(source.getBytes()));
+        channel.close();
+//        FileWriter writer = new FileWriter(outPutPath);
+//        writer.write(source);
+//        writer.close();
     }
 
     public List<DefaultConfiguration> getConfigurations() {
