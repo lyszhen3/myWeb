@@ -1,6 +1,7 @@
 package com.lin.data.mappers;
 
 
+import com.lin.data.core.mapper.Mapper;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import org.springframework.context.annotation.Lazy;
