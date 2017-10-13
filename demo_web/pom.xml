@@ -15,9 +15,9 @@
 
     <dependencies>
         <dependency>
-        <groupId>myWeb</groupId>
-        <artifactId>data_beans</artifactId>
-        <version>${project.version}</version>
+            <groupId>myWeb</groupId>
+            <artifactId>data_beans</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
 
@@ -245,7 +245,7 @@
             <artifactId>jsr311-api</artifactId>
             <version>1.0</version>
         </dependency>
-
+        <!--解决注解debug报错-->
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
@@ -282,7 +282,7 @@
             <artifactId>demo_api</artifactId>
             <version>${project.version}</version>
         </dependency>
-         <!-- dubbo-->
+        <!-- dubbo-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
@@ -301,6 +301,8 @@
                     <artifactId>netty</artifactId>
                 </exclusion>
             </exclusions>
+
+
         </dependency>
 
         <dependency>
@@ -314,7 +316,14 @@
             <artifactId>zkclient</artifactId>
             <version>0.1</version>
         </dependency>
-        <!--解决注解debug报错-->
+
+
+        <!-- elasticsearch-->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>5.6.3</version>
+        </dependency>
     </dependencies>
 
 </project>
