@@ -258,4 +258,27 @@ public class TestAction {
         return JSON.parseObject("{'result':'success'}");
     }
 
+    /**
+     * 分布式锁测试
+     * @return json
+     */
+    @RequestMapping("testZkLockRead")
+    @ResponseBody
+    public JSONObject testZkLockRead(){
+
+        return testService.testZkLockRead();
+
+    }
+
+    /**
+     * 分布式锁测试
+     * @return json
+     */
+    @RequestMapping("testZkLockWrite")
+    @ResponseBody
+    public JSONObject testZkLockWrite(){
+
+        return testService.testZkLockWrite();
+    }
+
 }

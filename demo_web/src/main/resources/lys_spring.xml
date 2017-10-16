@@ -23,6 +23,7 @@
             <list>
                 <value>classpath:local.properties</value>
                 <value>classpath:redis.properties</value>
+                <value>classpath:zk.properties</value>
             </list>
         </property>
     </bean>
@@ -58,6 +59,12 @@
     <!--<bean id="exceptionResolver"-->
           <!--class="com.shigu.resolver.ExceptionResolver">-->
     <!--</bean>-->
+
+    <!-- 分布式锁的注入-->
+    <bean id="retryPolicy" class="org.apache.curator.retry.ExponentialBackoffRetry">
+        <constructor-arg index="0" value="1000"/>
+        <constructor-arg index="1" value="3"/>
+    </bean>
 
     <!--添加dubbo服务-->
     <import resource="dubbo_application.xml"/>

@@ -3,35 +3,44 @@
                status="debug"
                strict="true"
                monitorInterval="30"
-               schema="Log4J-V2.0.xsd" >
+               schema="Log4J-V2.0.xsd">
 
     <!--<properties>-->
-        <!--<property name="filters">org.apache</property>-->
+    <!--<property name="filters">org.apache</property>-->
     <!--</properties>-->
 
 
     <Appenders>
-        <RollingRandomAccessFile   name="sqllog" fileName="${sys:LOG_DIR}/mysql.log"
-                                   filePattern="%d{yyyy.MM}.log" Append="true"  encoding="UTF-8" >
+        <RollingRandomAccessFile name="sqllog" fileName="${sys:LOG_DIR}/mysql.log"
+                                 filePattern="%d{yyyy.MM}.log" Append="true" encoding="UTF-8">
             <PatternLayout charset="utf-8" pattern="%d{yyyy/MM/dd HH:mm:ss} %p %C  %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1"
-                                           modulate="true" />
+                                           modulate="true"/>
                 <SizeBasedTriggeringPolicy size="250 MB"/>
             </Policies>
 
-        </RollingRandomAccessFile >
+        </RollingRandomAccessFile>
 
-        <RollingFile  name="Daijia" fileName="${sys:LOG_DIR}/root.log"
-                      filePattern="${sys:LOG_DIR}/root%d{yyyy-MM}.log" Append="true"  encoding="UTF-8" >
+        <RollingFile name="Daijia" fileName="${sys:LOG_DIR}/root.log"
+                     filePattern="${sys:LOG_DIR}/root%d{yyyy-MM}.log" Append="true" encoding="UTF-8">
             <PatternLayout charset="utf-8" pattern="%d{yyyy/MM/dd HH:mm:ss} %p %C  %m%n"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="1MB"/>
             </Policies>
             <DefaultRolloverStrategy fileIndex="min" max="16"/>
             <RegexFilter regex="com.opentae.data.daifa" onMatch="DENY" onMismatch="ACCEPT"/>
-        </RollingFile >
+        </RollingFile>
 
+        <RollingFile name="info" fileName="${sys:LOG_DIR}/info.log"
+                     filePattern="${sys:LOG_DIR}/root%d{yyyy-MM}.log" Append="true" encoding="UTF-8">
+            <PatternLayout charset="utf-8" pattern="%d{yyyy/MM/dd HH:mm:ss} %p %C  %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="1MB"/>
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="min" max="16"/>
+            <RegexFilter regex="com.opentae.data.daifa" onMatch="DENY" onMismatch="ACCEPT"/>
+        </RollingFile>
 
 
         <Console name="STDOUT" target="SYSTEM_OUT">
@@ -41,23 +50,25 @@
     <Loggers>
 
 
-
         <Root level="debug">
             <AppenderRef ref="Daijia"/>
-            <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="STDOUT"/>
+
+
+        </Root>
+        <Root level="info">
+            <AppenderRef ref = "info"/>
 
         </Root>
         <!--<Logger name="org.apache" level="info" />-->
         <!--<Logger name="org.springframework" level="debug"  />-->
-        <Logger name="com.lin.test.mappers" level="debug"  additivity="false">
-            <AppenderRef ref="sqllog" />
-            <AppenderRef ref="STDOUT" />
+        <Logger name="com.lin.test.mappers" level="debug" additivity="false">
+            <AppenderRef ref="sqllog"/>
+            <AppenderRef ref="STDOUT"/>
         </Logger>
 
 
-
     </Loggers>
-
 
 
 </Configuration>

@@ -1,5 +1,6 @@
 package com.tree;
 
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -152,6 +153,24 @@ public class BinaryTree {
             visted(subTree);
         }
 	}
+	//层序遍历
+	public void levelOrder(TreeNode root){
+
+		LinkedList<TreeNode> linked = new LinkedList<>();
+		linked.offer(root);
+		TreeNode current = null;
+		while ( !linked.isEmpty()){
+			current = linked.pop();
+			System.out.print(current.data+"-->");
+			if(current.leftChild != null){
+				linked.offer(current.leftChild);
+			}
+			if(current.rightChild != null){
+				linked.offer(current.rightChild);
+			}
+		}
+
+	}
 	
 	//前序遍历的非递归实现
 	public void nonRecPreOrder(TreeNode p){
@@ -273,5 +292,7 @@ public class BinaryTree {
         System.out.println("***非递归实现****(后序遍历)[DEBFCA]遍历*****************");
         bt.noRecPostOrder(bt.root);
 
+        System.out.println("*************层序遍历**********************");
+		bt.levelOrder(bt.root);
 	}
 }

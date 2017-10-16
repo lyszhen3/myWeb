@@ -30,12 +30,12 @@ public class TestMapperDemo {
     BookMapper bookMapper;
     @Test
     public void test(){
-        Account account = mapper.selectByPrimaryKey(1);
-        System.out.println(account.getName());
-        Book book = bookMapper.selectByPrimaryKey(1);
-        BookExample example = new BookExample();
-        example.createCriteria().andTitleEqualTo("DSL实战");
-        List<Book> books = bookMapper.selectByExample(example);
-        System.out.println(books.get(0).getId());
+        Book book = new Book();
+        book.setStatus("不行");
+        book.setTitle("我觉得ok");
+        book.setDoubanId("11");
+        book.setOwnerId(111L);
+        bookMapper.insertSelective(book);
+        System.out.println(book.getId());
     }
 }
