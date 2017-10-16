@@ -38,15 +38,9 @@ public class Client {
                     bd.append(line);
                     if(line.endsWith(";")){
                         TableInfo info = StringParseUtil.parseDDL(bd.toString());
-                        DefaultConfiguration ex = new ExampleConfiguration(info);
-                        ex.setPackagePath(getBasePackage(file.getPath()));
-                        ex.setOutPutPath(file.getPath());
-                        DefaultConfiguration mp = new MapperConfiguration(info);
-                        mp.setPackagePath(getBasePackage(file.getPath()));
-                        mp.setOutPutPath(file.getPath());
-                        DefaultConfiguration bn = new BeanConfiguration(info);
-                        bn.setPackagePath(getBasePackage(file.getPath()));
-                        bn.setOutPutPath(file.getPath());
+                        DefaultConfiguration ex = new ExampleConfiguration(info,getBasePackage(file.getPath()),file.getPath());
+                        DefaultConfiguration mp = new MapperConfiguration(info,getBasePackage(file.getPath()),file.getPath());
+                        DefaultConfiguration bn = new BeanConfiguration(info,getBasePackage(file.getPath()),file.getPath());
                         Create create = new Create();
                         List<DefaultConfiguration> list = new ArrayList<>();
                         list.add(ex);

@@ -66,6 +66,8 @@
         <constructor-arg index="1" value="3"/>
     </bean>
 
+
+
     <!--添加dubbo服务-->
     <import resource="dubbo_application.xml"/>
 </beans>

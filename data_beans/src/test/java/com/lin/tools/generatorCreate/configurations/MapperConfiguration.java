@@ -29,8 +29,10 @@ public class MapperConfiguration extends DefaultConfiguration {
     }
     private TableInfo info;
 
-    public MapperConfiguration(TableInfo info) {
+    public MapperConfiguration(TableInfo info,String packagePath,String outPutPaht) {
         this.info = info;
+        setPackagePath(packagePath);
+        setOutPutPath(outPutPaht);
     }
     @Override
     public String createCode() throws IOException {

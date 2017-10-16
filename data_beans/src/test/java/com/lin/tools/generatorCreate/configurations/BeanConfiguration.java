@@ -33,8 +33,10 @@ public class BeanConfiguration extends DefaultConfiguration {
 
     private TableInfo info;
 
-    public BeanConfiguration(TableInfo info) {
+    public BeanConfiguration(TableInfo info,String packagePath,String outPutPath) {
         this.info = info;
+        setPackagePath(packagePath);
+        setOutPutPath(outPutPath);
     }
 
 

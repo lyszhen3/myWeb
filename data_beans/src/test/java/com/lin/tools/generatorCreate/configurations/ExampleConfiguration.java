@@ -36,8 +36,10 @@ public class ExampleConfiguration extends DefaultConfiguration {
 
     private TableInfo info;
 
-    public ExampleConfiguration(TableInfo info) {
+    public ExampleConfiguration(TableInfo info,String packagePath,String outPutPath) {
         this.info = info;
+        setPackagePath(packagePath);
+        setOutPutPath(outPutPath);
     }
 
     @Override
