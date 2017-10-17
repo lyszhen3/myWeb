@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.lin.data.beans.Account;
 import com.lin.data.mappers.TestMapper;
 import com.lin.demo.services.DemoService;
+import com.lin.springUtils.WebSpringFactory;
 import com.lin.test.services.abstracts.MoneyVipPolicy;
 import com.lin.zkLock.Callback;
 import com.lin.zkLock.ZkDistributedLockTemplate;
@@ -34,11 +35,17 @@ public class TestService {
 //    public void setOrderLockClient(OrderLockClient orderLockClient) {
 //        this.orderLockClient = orderLockClient;
 //    }
-    private CuratorFramework curatorFramework;
-    @Autowired
-    public void setCuratorFramework(CuratorFramework curatorFramework) {
-        this.curatorFramework = curatorFramework;
-    }
+//    private CuratorFramework curatorFramework;
+//    @Autowired
+//    public void setCuratorFramework(CuratorFramework curatorFramework) {
+//        this.curatorFramework = curatorFramework;
+//    }
+
+//    private ZkDistributedLockTemplate template;
+//    @Autowired
+//    public void setTemplate(ZkDistributedLockTemplate template) {
+//        this.template = template;
+//    }
 
     private TestMapper testMapper;
 
@@ -139,9 +146,8 @@ public class TestService {
     }
 
     public JSONObject testZkLockWrite() {
-
-        final ZkDistributedLockTemplate template = new ZkDistributedLockTemplate(curatorFramework);//本类多线程安全,可通过spring注入
-
+//        final ZkDistributedLockTemplate template = new ZkDistributedLockTemplate(curatorFramework);
+        ZkDistributedLockTemplate template = WebSpringFactory.getBean(ZkDistributedLockTemplate.class);
         Object execute = template.execute("12306", 5000, new Callback() {
             @Override
             public Object onGetLock() throws InterruptedException {
@@ -161,8 +167,8 @@ public class TestService {
 
     public JSONObject testZkLockRead() {
 
-        final ZkDistributedLockTemplate template = new ZkDistributedLockTemplate(curatorFramework);//本类多线程安全,可通过spring注入
-
+//        final ZkDistributedLockTemplate template = new ZkDistributedLockTemplate(curatorFramework);
+        ZkDistributedLockTemplate template = WebSpringFactory.getBean(ZkDistributedLockTemplate.class);
         Object execute = template.execute("12306", 5000, new Callback() {
             @Override
             public Object onGetLock() throws InterruptedException {

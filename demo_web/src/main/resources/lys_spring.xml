@@ -73,6 +73,7 @@
     </bean>
 
 
+
     <!--添加dubbo服务-->
     <import resource="dubbo_application.xml"/>
 </beans>

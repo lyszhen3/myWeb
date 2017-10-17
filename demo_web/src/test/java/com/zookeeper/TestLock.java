@@ -1,12 +1,6 @@
 package com.zookeeper;
 
-import com.lin.zookeeper.lock.WriteLock;
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.ZooKeeper;
 import org.junit.Test;
-
-import java.io.IOException;
 
 /**
  * Created by pc on 2017-06-14.
