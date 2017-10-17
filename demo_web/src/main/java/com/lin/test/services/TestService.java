@@ -7,7 +7,6 @@ import com.lin.demo.services.DemoService;
 import com.lin.test.services.abstracts.MoneyVipPolicy;
 import com.lin.zkLock.Callback;
 import com.lin.zkLock.ZkDistributedLockTemplate;
-import com.lin.zkLock.client.OrderLockClient;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,10 +29,15 @@ import java.util.List;
 @Service("lin_testService")
 public class TestService {
     private final static Logger log = LogManager.getLogger(TestService.class);
-    OrderLockClient orderLockClient;
+//    OrderLockClient orderLockClient;
+//    @Autowired
+//    public void setOrderLockClient(OrderLockClient orderLockClient) {
+//        this.orderLockClient = orderLockClient;
+//    }
+    private CuratorFramework curatorFramework;
     @Autowired
-    public void setOrderLockClient(OrderLockClient orderLockClient) {
-        this.orderLockClient = orderLockClient;
+    public void setCuratorFramework(CuratorFramework curatorFramework) {
+        this.curatorFramework = curatorFramework;
     }
 
     private TestMapper testMapper;
@@ -120,7 +124,7 @@ public class TestService {
     /**
      * 匿名内部类呢可以引用到springbean
      *
-     * @return
+     * @return long
      */
     public Long payMoney() {
         Long money = 0L;
@@ -135,10 +139,8 @@ public class TestService {
     }
 
     public JSONObject testZkLockWrite() {
-        CuratorFramework client = orderLockClient.getClient();
-        client.start();
 
-        final ZkDistributedLockTemplate template = new ZkDistributedLockTemplate(client);//本类多线程安全,可通过spring注入
+        final ZkDistributedLockTemplate template = new ZkDistributedLockTemplate(curatorFramework);//本类多线程安全,可通过spring注入
 
         Object execute = template.execute("12306", 5000, new Callback() {
             @Override
@@ -158,10 +160,8 @@ public class TestService {
     }
 
     public JSONObject testZkLockRead() {
-        CuratorFramework client = orderLockClient.getClient();
-        client.start();
 
-        final ZkDistributedLockTemplate template = new ZkDistributedLockTemplate(client);//本类多线程安全,可通过spring注入
+        final ZkDistributedLockTemplate template = new ZkDistributedLockTemplate(curatorFramework);//本类多线程安全,可通过spring注入
 
         Object execute = template.execute("12306", 5000, new Callback() {
             @Override
@@ -179,6 +179,7 @@ public class TestService {
                 return new JSONObject().fluentPut("订单12306查看", "系统繁忙");
             }
         });
+
         return (JSONObject) execute;
 
     }
