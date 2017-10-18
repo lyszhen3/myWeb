@@ -1,7 +1,10 @@
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by pc on 2017-10-11.
@@ -13,10 +16,9 @@ import java.util.Date;
  */
 public class Test {
     public static void main(String[] args) {
-        LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
-        Date start = Date.from(now.plusMinutes(-10).atZone(ZoneId.systemDefault()).toInstant());
-        Date end = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
-        System.out.println(start);
-        System.out.println(end);
+        TimeUnit microseconds = TimeUnit.MILLISECONDS;
+        System.out.println(microseconds);
+        long l = System.currentTimeMillis();
+        System.out.println(l);
     }
 }

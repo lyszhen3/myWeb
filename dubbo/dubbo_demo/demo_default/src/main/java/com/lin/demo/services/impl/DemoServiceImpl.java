@@ -1,5 +1,7 @@
 package com.lin.demo.services.impl;
 
+import com.alibaba.dubbo.common.logger.Logger;
+import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.lin.demo.services.DemoService;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,10 @@ import org.springframework.stereotype.Service;
  */
 @Service("demoService")
 public class DemoServiceImpl implements DemoService {
+    private final static Logger log =  LoggerFactory.getLogger(DemoServiceImpl.class);
     @Override
     public void helloWorld() {
-        System.out.println("hello dubbo"
-        );
+        System.out.println("hello dubbo");
+        log.info("hello");
     }
 }

@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 基于Zookeeper的可重入互斥锁(关于重入:仅限于持有zk锁的jvm内重入)
@@ -20,7 +22,7 @@ public class ZkReentrantLock implements DistributedReentrantLock {
     /**
      * 线程池
      */
-    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(10);
+    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(10,new UnLockThreadPoolFactory());
 
     /**
      * 所有PERSISTENT锁节点的根位置
@@ -106,6 +108,22 @@ public class ZkReentrantLock implements DistributedReentrantLock {
             } catch (Exception e) {
                 log.error(e.getMessage(), e);//准备删除时,正好有线程创建锁
             }
+        }
+    }
+    static class UnLockThreadPoolFactory implements ThreadFactory{
+        final AtomicInteger threadNumber = new AtomicInteger(1);
+        final String namePrefix = "清理节点";
+
+        UnLockThreadPoolFactory(){
+        }
+        @Override
+        public Thread newThread(Runnable r) {
+           Thread t = new Thread( r,namePrefix + threadNumber.getAndIncrement());
+            if (t.isDaemon())
+                t.setDaemon(true);
+            if (t.getPriority() != Thread.NORM_PRIORITY)
+                t.setPriority(Thread.NORM_PRIORITY);
+            return t;
         }
     }
 }

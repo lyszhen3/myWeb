@@ -1,7 +1,8 @@
 package com.lin.zkLock;
 
 import org.apache.curator.framework.CuratorFramework;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class ZkDistributedLockTemplate implements DistributedLockTemplate {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(ZkDistributedLockTemplate.class);
+    private static final Logger log = LogManager.getLogger(ZkDistributedLockTemplate.class);
 
     @Autowired
     private CuratorFramework client;
