@@ -6,5 +6,4 @@
     <!-- 要引用的服务 -->
     <dubbo:reference interface="com.lin.demo.services.DemoService" id="demoService" timeout="10000" check="false"  />
 
-
 </beans>

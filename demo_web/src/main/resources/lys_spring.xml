@@ -15,7 +15,7 @@
 						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
     <!--扫描注入-->
-    <context:component-scan base-package="com.*" >
+    <context:component-scan base-package="com.*">
     </context:component-scan>
     <!--数据库链接地址-->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -34,14 +34,14 @@
     <!--改用bean配置-->
     <!--<import resource="spring-database/redis.xml"/>-->
 
-<!--阿里巴巴拦截器-->
+    <!--阿里巴巴拦截器-->
     <bean id="druid-stat-interceptor"
           class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
     </bean>
 
     <bean
             class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-        <property name="proxyTargetClass" value="true" />
+        <property name="proxyTargetClass" value="true"/>
         <property name="beanNames">
             <list>
                 <value>*Service</value>
@@ -57,24 +57,33 @@
     <!-- 异常处理-->
 
     <!--<bean id="exceptionResolver"-->
-          <!--class="com.shigu.resolver.ExceptionResolver">-->
+    <!--class="com.shigu.resolver.ExceptionResolver">-->
     <!--</bean>-->
 
     <!-- 分布式锁的注入-->
-    <bean id="retryPolicy" class="org.apache.curator.retry.ExponentialBackoffRetry">
+    <!--<bean id="retryPolicy" class="org.apache.curator.retry.ExponentialBackoffRetry">
         <constructor-arg index="0" value="1000"/>
         <constructor-arg index="1" value="3"/>
     </bean>
     <bean id="curatorFramework" class="org.apache.curator.framework.CuratorFrameworkFactory" factory-method="newClient"
-          init-method="start" destroy-method="close">
+          init-method="start" destroy-method="close" >
         <constructor-arg index="0" value="${zookeeper.host}:${zookeeper.port}"/>
         <constructor-arg index="1" value="10000"/>
         <constructor-arg index="2" value="6000"/>
         <constructor-arg index="3" ref="retryPolicy"/>
-    </bean>
+    </bean>-->
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean class="com.lin.interceptors.MySelfInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 
     <!--添加dubbo服务-->
     <import resource="dubbo_application.xml"/>
+    <!-- 添加shiro-->
+    <import resource="shiro/apache-shiro.xml"/>
+
 </beans>

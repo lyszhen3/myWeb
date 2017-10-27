@@ -1,6 +1,6 @@
 package #{package}
 
-
+import java.util.List
 /**
  *
  *@author 自动生成

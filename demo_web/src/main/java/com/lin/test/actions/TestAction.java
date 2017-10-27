@@ -8,8 +8,14 @@ import com.lin.test.beans.TestUser;
 import com.lin.test.bo.UserBo;
 import com.lin.test.services.TestService;
 import com.lin.utils.ValidateCode;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +28,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -61,6 +68,45 @@ public class TestAction {
     public String testDemo(Model model){
         return "demo/index";
     }
+
+    /**
+     * shiro login
+     * @param name
+     * @param password
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="testShiroLogin")
+    public String testShiroLogin(String name,String password,Model model){
+        String message = "";
+        UsernamePasswordToken token = new UsernamePasswordToken(name,password);
+        token.setRememberMe(true);
+        Subject subject = SecurityUtils.getSubject();
+        if(!subject.isAuthenticated()){
+
+            try {
+                subject.login(token);
+
+                return "redirect:testDemo";
+            } catch (UnknownAccountException ex) {//用户名没有找到
+//ex.printStackTrace;
+                message = "用户名不存在";
+            } catch (IncorrectCredentialsException ex) {//用户名密码不匹配
+// ex.printStackTrace;
+                message = "用户名和密码不匹配";
+            }catch (LockedAccountException lae) {// 用户被锁定
+//lae.printStackTrace;
+                message = "用户被锁定";
+            }catch (AuthenticationException e) {//其他的登录错误
+                message = "系统错误";
+            }
+
+        }
+        model.addAttribute("msg",message);
+        return "demo/login";
+
+    }
+
     @RequestMapping(value="testList")
     public String testList(Model model){
         List<Account> list=testService.selList();
@@ -280,5 +326,9 @@ public class TestAction {
 
         return testService.testZkLockWrite();
     }
+
+
+
+
 
 }

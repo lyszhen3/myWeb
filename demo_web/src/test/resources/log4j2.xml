@@ -11,7 +11,7 @@
 
 
     <Appenders>
-        <RollingRandomAccessFile   name="sqllog" fileName="${sys:LOG_DIR}/mysql.log"
+        <!--<RollingRandomAccessFile   name="sqllog" fileName="${sys:LOG_DIR}/mysql.log"
                                    filePattern="%d{yyyy.MM}.log" Append="true"  encoding="UTF-8" >
             <PatternLayout charset="utf-8" pattern="%d{yyyy/MM/dd HH:mm:ss} %p %C  %m%n"/>
             <Policies>
@@ -32,7 +32,7 @@
             <RegexFilter regex="com.opentae.data.daifa" onMatch="DENY" onMismatch="ACCEPT"/>
         </RollingFile >
 
-
+-->
 
         <Console name="STDOUT" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{yyyy/MM/dd HH:mm:ss} %p %C  %m%n"/>
@@ -43,7 +43,6 @@
 
 
         <Root level="INFO">
-            <AppenderRef ref="Daijia"/>
             <AppenderRef ref="STDOUT" />
 
         </Root>

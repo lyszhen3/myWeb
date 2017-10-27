@@ -63,7 +63,7 @@ public class TestService {
 
     private DemoService demoService;
 
-    @Resource
+    @Autowired
     public void setDemoService(DemoService demoService) {
         this.demoService = demoService;
     }

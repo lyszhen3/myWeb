@@ -8,6 +8,7 @@ package com.lin.test.beans;
  * @since 3.0.0-SNAPSHOT
  */
 public class Shop {
+
     private String shopName;
     private String userName;
 

@@ -13,7 +13,7 @@
     <div class="admin-login">
 		<fieldset class="layui-elem-field">
 			<legend>管理员登录</legend>
-			<form class="layui-form layui-form-pane" method="post" action="">
+			<form class="layui-form layui-form-pane" method="post" action="/testShiroLogin">
 				<div class="layui-form-item">
 					<label class="layui-form-label">账号</label>
 					<div class="layui-input-block">
@@ -29,7 +29,7 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">验证码</label>
 					<div class="layui-input-inline input-code">
-						<input type="text" name="code" autocomplete="off" placeholder="请输入验证码" class="layui-input" lay-verify="required|number|code">
+						<input type="text" name="code" autocomplete="off" placeholder="请输入验证码" class="layui-input" <#--lay-verify="required|number|code"-->>
 					</div>
 					<div class="layui-input-inline code">
 						<div><img src="img/code.png" alt="验证码"/></div>
@@ -47,19 +47,19 @@
 		layui.use(['form'],function(){
 			var $ = layui.jquery;
 			var form = layui.form();
-			form.verify({
-				name: function(value){
-					if(value.length < 5){
-						return '管理员账号长度不低于5个字符';
-					}
-				},
-				password: [/(.+){6,}$/, '密码长度不能少于6位'],
-				code: function(value){
-					if(value.length != 4){
-						return '请输入4位数字验证码';
-					}
-				}
-			});
+//			form.verify({
+//				name: function(value){
+//					if(value.length < 5){
+//						return '管理员账号长度不低于5个字符';
+//					}
+//				},
+//				password: [/(.+){6,}$/, '密码长度不能少于6位'],
+//				code: function(value){
+//					if(value.length != 4){
+//						return '请输入4位数字验证码';
+//					}
+//				}
+//			});
 			form.on('submit(login)', function(data){
 				var formData = sczw.getFormData($(data.elem).parents("form"));
 				sczw.layerSubmit("<{:url('index')}>",formData);

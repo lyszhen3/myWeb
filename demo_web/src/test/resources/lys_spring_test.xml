@@ -20,6 +20,8 @@
         <context:exclude-filter type="regex" expression="com.lin.core.config.WebMvcConfig" />  <!--排除springmvc配置-->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
         <context:exclude-filter type="annotation" expression="javax.annotation.Resource"/>
+        <context:exclude-filter type="regex" expression="com.lin.zkLock.client.OrderLockClient"/>
+        <context:exclude-filter type="regex" expression="com.lin.zkLock.ZkDistributedLockTemplate"/>
 
     </context:component-scan>
     <!--数据库链接地址-->
@@ -28,6 +30,7 @@
             <list>
                 <value>classpath:local.properties</value>
                 <value>classpath:redis.properties</value>
+                <value>classpath:zk.properties</value>
             </list>
         </property>
     </bean>

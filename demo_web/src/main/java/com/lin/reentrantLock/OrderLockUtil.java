@@ -1,7 +1,5 @@
 package com.lin.reentrantLock;
-
-import org.elasticsearch.search.aggregations.metrics.max.Max;
-import org.jboss.netty.util.internal.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by pc on 2017-10-18.

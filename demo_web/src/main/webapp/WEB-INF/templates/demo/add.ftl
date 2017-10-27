@@ -42,6 +42,7 @@
 					<input name="status" value="1" title="禁用" type="radio"/> 
 				</div>
 			</div>
+			<input type="file" multiple="multiple">
 		</form>
 	</div>
 
