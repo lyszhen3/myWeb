@@ -1,5 +1,7 @@
 package com.lin.base;
 
+import java.io.Serializable;
+
 /**
  * Created by pc on 2017-03-24.
  *
@@ -7,7 +9,8 @@ package com.lin.base;
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-public class BaseBo {
+public class BaseBo implements Serializable{
+    private static final long serialVersionUID = 3864925683060476254L;
     private Integer page;
     private Integer rows;
     private Integer count;

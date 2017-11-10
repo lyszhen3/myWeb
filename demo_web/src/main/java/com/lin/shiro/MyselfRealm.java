@@ -8,8 +8,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,9 +18,10 @@ import java.util.List;
  * @description
  * @since 3.0.0-SNAPSHOT
  */
-public class MyselfRealm extends AuthorizingRealm{
+public class MyselfRealm extends AuthorizingRealm {
 
     UserMapper userMapper;
+
     @Autowired
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
@@ -30,6 +29,7 @@ public class MyselfRealm extends AuthorizingRealm{
 
     /**
      * 授权
+     *
      * @param principals
      * @return
      */
@@ -39,7 +39,8 @@ public class MyselfRealm extends AuthorizingRealm{
     }
 
     /**
-     *认证
+     * 认证
+     *
      * @param token
      * @return
      * @throws AuthenticationException
@@ -55,7 +56,7 @@ public class MyselfRealm extends AuthorizingRealm{
                 .andLoginPassEqualTo(String.valueOf(uptoken.getPassword()));
         List<User> users = userMapper.selectByExample(userExample);
 
-        if(users.isEmpty()){
+        if (users.isEmpty()) {
             throw new UnknownAccountException("用户不存在");
         }
         User user = users.get(0);
@@ -63,7 +64,7 @@ public class MyselfRealm extends AuthorizingRealm{
         shiroUser.setUserId(user.getUserId());
         shiroUser.setUserName(user.getUserName());
 
-        return new SimpleAuthenticationInfo(shiroUser,user.getLoginPass(),getName());
+        return new SimpleAuthenticationInfo(shiroUser, user.getLoginPass(), getName());
     }
 
     public static void main(String[] args) {

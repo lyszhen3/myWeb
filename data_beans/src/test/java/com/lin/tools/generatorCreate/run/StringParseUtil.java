@@ -27,9 +27,8 @@ public class StringParseUtil {
     public static final String priMarykeyReg = "PRIMARY KEY.(\\([^\\(\\)]*\\))";
     public static final String typeReg = "%s\\s(\\w[^\\s]*)\\s";
     public static final String commentReg = "%s.*?COMMENT\\s('.*?')";//非贪婪
-    public static HashMap<String,String> correMap = new HashMap<>();
-    static {
-        /**
+    public static HashMap<String,String> correMap = new HashMap(){{
+         /**
          * jdbcType:TINYINT,SMALLINT,MEDIUMINT,INT,INTEGER --javaType:Integer
          * jdbcType:BIGINT -- javaType:Long
          * jdbcType:FLOAT--javaType:Float
@@ -37,13 +36,15 @@ public class StringParseUtil {
          * jdbcType:DATE ,DATETIME ,TIMESTAMP--javaType:Date
          * jdbcType:CHAR,VARCHAR,TINYTEXT ,TEXT --javaType:String
          */
-        correMap.put("Integer","TINYINT,SMALLINT,MEDIUMINT,INT,INTEGER");
-        correMap.put("Long","BIGINT");
-        correMap.put("Float","FLOAT");
-        correMap.put("Double","DOUBLE");
-        correMap.put("Date","DATE ,DATETIME ,TIMESTAMP");
-        correMap.put("String","CHAR,VARCHAR,TINYTEXT ,TEXT");
-    }
+        put("Integer","TINYINT,SMALLINT,MEDIUMINT,INT,INTEGER");
+        put("Long","BIGINT");
+        put("Float","FLOAT");
+        put("Double","DOUBLE");
+        put("Date","DATE,DATETIME,TIMESTAMP");
+        put("String","CHAR,VARCHAR,TINYTEXT ,TEXT");
+
+    }};
+
 
     //外键暂且忽略
 //    public static final String foreignKey = "key.*(\\(`[^`]*`\\))";

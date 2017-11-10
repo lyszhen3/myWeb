@@ -38,13 +38,13 @@ public class Client {
                     bd.append(line);
                     if(line.endsWith(";")){
                         TableInfo info = StringParseUtil.parseDDL(bd.toString());
-                        DefaultConfiguration ex = new ExampleConfiguration(info,getBasePackage(file.getPath()),file.getPath());
-                        DefaultConfiguration mp = new MapperConfiguration(info,getBasePackage(file.getPath()),file.getPath());
+//                        DefaultConfiguration ex = new ExampleConfiguration(info,getBasePackage(file.getPath()),file.getPath());
+//                        DefaultConfiguration mp = new MapperConfiguration(info,getBasePackage(file.getPath()),file.getPath());
                         DefaultConfiguration bn = new BeanConfiguration(info,getBasePackage(file.getPath()),file.getPath());
                         Create create = new Create();
                         List<DefaultConfiguration> list = new ArrayList<>();
-                        list.add(ex);
-                        list.add(mp);
+//                        list.add(ex);
+//                        list.add(mp);
                         list.add(bn);
                         create.setConfigurations(list);
                         create.createNow();

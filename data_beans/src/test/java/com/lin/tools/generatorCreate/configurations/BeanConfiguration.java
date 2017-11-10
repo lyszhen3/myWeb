@@ -22,6 +22,7 @@ public class BeanConfiguration extends DefaultConfiguration {
 
 
     public final static String mouldLocation;
+    private final static String dir = "domain";
 
     static {
         URL resource = ExampleConfiguration.class.getResource("/");
@@ -137,13 +138,13 @@ public class BeanConfiguration extends DefaultConfiguration {
 
     @Override
     public void setOutPutPath(String outPutPath) {
-        super.setOutPutPath(outPutPath + "/beans/" + StringParseUtil.firstUpCase(info.getTableName()) + ".java");
+        super.setOutPutPath(outPutPath + "/"+dir+"/" + StringParseUtil.firstUpCase(info.getTableName()) + ".java");
     }
 
     @Override
     public void setPackagePath(String packagePath) {
 
-        super.setPackagePath(packagePath + ".beans;");
+        super.setPackagePath(packagePath + "."+dir+";");
     }
 
 

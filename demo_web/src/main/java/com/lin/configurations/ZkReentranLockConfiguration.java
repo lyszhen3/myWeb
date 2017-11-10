@@ -50,7 +50,6 @@ public class ZkReentranLockConfiguration {
         RetryPolicy retryPolicy = new RetryNTimes(3,1000);
         CuratorFramework curatorFramework = CuratorFrameworkFactory
                 .newClient(host+":"+port,sessionTimeout,connectTimeout,retryPolicy);
-
         return curatorFramework;
     }
 }
