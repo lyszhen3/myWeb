@@ -1,7 +1,7 @@
 import abstractTest.Son;
-import abstractTest.Student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
  */
 public class ListToMap {
     public static void main(String[] args) {
+        String[] ids = {"我的"};
         List<Son> list = new ArrayList<>();
         Son son = new Son();
         son.setId(1L);
@@ -32,7 +33,8 @@ public class ListToMap {
         list.add(son3);
 
         Map<Long, Son> collect = list.stream().collect(Collectors.toMap(Son::getId, Function.identity(),(key1, key2)->key2));
-        System.out.println(collect);
+        list.stream().filter(rr-> !Arrays.asList(ids).contains(rr.getName())).collect(Collectors.toList()).forEach(rrr-> System.out.println(rrr.getName()));
+//        System.out.println(collect);
     }
 
 

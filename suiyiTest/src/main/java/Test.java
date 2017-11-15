@@ -3,8 +3,9 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 /**
  * Created by pc on 2017-10-11.
@@ -16,9 +17,30 @@ import java.util.concurrent.TimeUnit;
  */
 public class Test {
     public static void main(String[] args) {
-        TimeUnit microseconds = TimeUnit.MILLISECONDS;
-        System.out.println(microseconds);
-        long l = System.currentTimeMillis();
-        System.out.println(l);
+       List<String > values = Arrays.asList("E","A","B","C","d");
+
+        Collections.sort(values, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+               int i = o1.compareToIgnoreCase(o2);
+                return i;
+            }
+        });
+
+        values.sort(String::compareToIgnoreCase);
+        values.forEach(System.out::println);
+        UUID uuid = UUID.fromString("507-211-43-45-23");
+        System.out.println(uuid);
+        Function ff = new Function() {
+            @Override
+            public Object apply(Object o) {
+                return null;
+            }
+        };
+        Comparator<String> a;
+        a = (s1,s2)->s1.compareToIgnoreCase(s2);
+        List<String> slist = new ArrayList<>();
+        slist.stream().map();
+
     }
 }

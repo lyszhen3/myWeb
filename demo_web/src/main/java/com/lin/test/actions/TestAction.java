@@ -329,6 +329,14 @@ public class TestAction {
 
         return testService.testZkLockWrite();
     }
+
+    /**
+     * 标签验证参数
+     * @param id
+     * @param bo
+     * @param result
+     * @return
+     */
     @RequestMapping(value="testValid/{id}",method = RequestMethod.GET)
     @ResponseBody
     public String testValid(@PathVariable("id")Integer id,@Valid Shop bo , BindingResult result){
