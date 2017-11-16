@@ -20,8 +20,7 @@ import java.util.List;
  */
 public class MyselfRealm extends AuthorizingRealm {
 
-    UserMapper userMapper;
-
+    private UserMapper userMapper;
     @Autowired
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;

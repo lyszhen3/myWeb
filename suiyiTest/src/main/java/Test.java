@@ -40,7 +40,6 @@ public class Test {
         Comparator<String> a;
         a = (s1,s2)->s1.compareToIgnoreCase(s2);
         List<String> slist = new ArrayList<>();
-        slist.stream().map();
 
     }
 }
