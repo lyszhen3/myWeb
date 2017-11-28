@@ -33,7 +33,7 @@ public class RedisIO {
     private int PORT;           // 端口
     @Value("${redis.pass}")
     private String AUTH;          // 密码(原始默认是没有密码)
-    @Value("${redis.maxActive}")
+    @Value("${redis.maxTotal}")
     private int MAX_ACTIVE;           // 最大连接数
     @Value("${redis.maxIdle}")
     private int MAX_IDLE;// 设置最大空闲数

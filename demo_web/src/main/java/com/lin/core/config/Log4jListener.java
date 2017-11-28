@@ -2,6 +2,7 @@ package com.lin.core.config;
 
 
 import org.springframework.web.util.Log4jConfigListener;
+import org.springframework.web.util.Log4jWebConfigurer;
 
 import javax.servlet.ServletContextEvent;
 

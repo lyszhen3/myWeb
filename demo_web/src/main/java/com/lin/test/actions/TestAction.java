@@ -8,6 +8,8 @@ import com.lin.test.beans.TestUser;
 import com.lin.test.bo.UserBo;
 import com.lin.test.services.TestService;
 import com.lin.utils.ValidateCode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -44,48 +46,52 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 @Controller
 public class TestAction {
-    static final ReentrantLock lock  =new ReentrantLock();
-    @Resource(name="lin_testService")
+    private final static Logger log = LogManager.getLogger(TestAction.class);
+    static final ReentrantLock lock = new ReentrantLock();
+    @Resource(name = "lin_testService")
     TestService testService;
 
     /**
      * 老layuidemo
+     *
      * @param model
      * @return
      */
-    @RequestMapping(value="oldindex")
-    public String test(Model model){
-       int i= testService.testCount();
-        model.addAttribute("userName","我的天啊");
-       model.addAttribute("count",i);
+    @RequestMapping(value = "oldindex")
+    public String test(Model model) {
+        int i = testService.testCount();
+        model.addAttribute("userName", "我的天啊");
+        model.addAttribute("count", i);
 
-       return "sysman/mainIndex";
+        return "sysman/mainIndex";
     }
 
     /**
      * layui demo
+     *
      * @param model
      * @return
      */
-    @RequestMapping(value="testDemo")
-    public String testDemo(Model model){
+    @RequestMapping(value = "testDemo")
+    public String testDemo(Model model) {
         return "demo/index";
     }
 
     /**
      * shiro login
+     *
      * @param name
      * @param password
      * @param model
      * @return
      */
-    @RequestMapping(value="testShiroLogin")
-    public String testShiroLogin(String name,String password,Model model){
+    @RequestMapping(value = "testShiroLogin")
+    public String testShiroLogin(String name, String password, Model model) {
         String message = "";
-        UsernamePasswordToken token = new UsernamePasswordToken(name,password);
+        UsernamePasswordToken token = new UsernamePasswordToken(name, password);
         token.setRememberMe(true);
         Subject subject = SecurityUtils.getSubject();
-        if(!subject.isAuthenticated()){
+        if (!subject.isAuthenticated()) {
 
             try {
                 subject.login(token);
@@ -97,56 +103,56 @@ public class TestAction {
             } catch (IncorrectCredentialsException ex) {//用户名密码不匹配
 // ex.printStackTrace;
                 message = "用户名和密码不匹配";
-            }catch (LockedAccountException lae) {// 用户被锁定
+            } catch (LockedAccountException lae) {// 用户被锁定
 //lae.printStackTrace;
                 message = "用户被锁定";
-            }catch (AuthenticationException e) {//其他的登录错误
+            } catch (AuthenticationException e) {//其他的登录错误
                 message = "系统错误";
             }
 
         }
-        model.addAttribute("msg",message);
+        model.addAttribute("msg", message);
         return "demo/login";
 
     }
 
-    @RequestMapping(value="testList")
-    public String testList(Model model){
-        List<Account> list=testService.selList();
-        model.addAttribute("list",list);
+    @RequestMapping(value = "testList")
+    public String testList(Model model) {
+        List<Account> list = testService.selList();
+        log.info("#testList:info--测试info");
+        model.addAttribute("list", list);
         return "demo/lists";
     }
 
-    @RequestMapping(value = "rightPanel" , method = RequestMethod.GET)
-    public String rightPanel(){
+    @RequestMapping(value = "rightPanel", method = RequestMethod.GET)
+    public String rightPanel() {
 
         return "sysman/common/rightPanel";
     }
 
-    @RequestMapping(value={"cllist"})
-    public String cllist(UserBo bo,Model model){
+    @RequestMapping(value = {"cllist"})
+    public String cllist(UserBo bo, Model model) {
 
-        List<Shop> shops=new ArrayList<Shop>();
-        for(int i=0;i<10;i++){
-            Shop shop=new Shop();
+        List<Shop> shops = new ArrayList<Shop>();
+        for (int i = 0; i < 10; i++) {
+            Shop shop = new Shop();
             shop.setShopName("啊");
             shop.setUserName("嗯");
             shops.add(shop);
         }
 
 
-        if(bo.getPage()==null){
+        if (bo.getPage() == null) {
             bo.setPage(1);
 
         }
-        if(bo.getRows()==null){
+        if (bo.getRows() == null) {
             bo.setRows(10);
         }
         bo.setTotalPage(10);
 
-        model.addAttribute("list",shops);
-        model.addAttribute("bo",bo);
-
+        model.addAttribute("list", shops);
+        model.addAttribute("bo", bo);
 
 
         return "sysman/shop/shoplist";
@@ -158,7 +164,7 @@ public class TestAction {
         InputStream in = file.getInputStream();
         JSONObject obj = new JSONObject();
 
-        obj= JSONObject.parseObject("{\n" +
+        obj = JSONObject.parseObject("{\n" +
                 "            \"code\": 0 //0表示成功，其它失败\n" +
                 "                ,\"msg\": \"\" //提示信息 //一般上传失败后返回\n" +
                 "                ,\"data\": {\n" +
@@ -170,41 +176,44 @@ public class TestAction {
         return obj;
 
     }
+
     @RequestMapping("addOne")
     @ResponseBody
-    public JSONObject addOne(UserBo bo){
+    public JSONObject addOne(UserBo bo) {
         System.out.println(bo.getContent());
         System.out.println(bo.getTitle());
-        JSONObject obj=new JSONObject();
-        obj.put("msg","成功");
-        obj.put("result","error");
+        JSONObject obj = new JSONObject();
+        obj.put("msg", "成功");
+        obj.put("result", "error");
 
         return obj;
     }
+
     @RequestMapping("test")
     public String testFtl(Model model, HttpServletResponse response) throws IOException {
 //        response.setContentType("image/png");
 //        vCode.write(response.getOutputStream());
 //        response.addHeader("Content-Disposition", "attachment;filename=image.png");
-        model.addAttribute("name","负载2");
+        model.addAttribute("name", "负载2");
         return "test";
     }
 
     /**
      * 返回验证码图片
+     *
      * @param request
      * @param response
      * @throws IOException
      */
     @RequestMapping("verCode")
-    public void verCode(HttpServletRequest request,HttpServletResponse response) throws IOException {
-         response.setContentType("image/png");
+    public void verCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("image/png");
 
-        ValidateCode vCode = new ValidateCode(120,40,5,100);
+        ValidateCode vCode = new ValidateCode(120, 40, 5, 100);
 
         vCode.write(response.getOutputStream());
         HttpSession session = request.getSession();
-        session.setAttribute("verCode",ValidateCode.getCode());
+        session.setAttribute("verCode", ValidateCode.getCode());
         response.getOutputStream().flush();
 
 
@@ -212,6 +221,7 @@ public class TestAction {
 
     /**
      * 测试spring事务
+     *
      * @return
      * @throws Exception
      */
@@ -224,18 +234,20 @@ public class TestAction {
 
     /**
      * 验证下验证码是否正确
+     *
      * @param request
      * @return
      */
     @RequestMapping("testVerCode")
     @ResponseBody
-    public JSONObject testVerCode(HttpServletRequest request){
+    public JSONObject testVerCode(HttpServletRequest request) {
         String verCode = (String) request.getSession().getAttribute("verCode");
-        return JSON.parseObject("{'result':'success','msg':'"+verCode+"'}");
+        return JSON.parseObject("{'result':'success','msg':'" + verCode + "'}");
     }
+
     @RequestMapping("testDemo2")
     @ResponseBody
-    public JSONObject testMvcJSON(){
+    public JSONObject testMvcJSON() {
         return JSON.parseObject("{'result':'success','msg':'去死吧'}");
     }
 
@@ -243,18 +255,19 @@ public class TestAction {
      * 测试事务可读性
      * 修改
      * 增加lock 使testFirst 和testFirst2串行化
+     *
      * @return
      */
     @RequestMapping("testFirst")
     @ResponseBody
-    public JSONObject testTransaction2(Long id){
+    public JSONObject testTransaction2(Long id) {
 
         try {
             lock.lock();
             testService.updateByPK(id);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
         }
 
@@ -263,57 +276,61 @@ public class TestAction {
 
     /**
      * 查询
+     *
      * @return
      */
-     @RequestMapping("testFirst2")
+    @RequestMapping("testFirst2")
     @ResponseBody
-    public JSONObject testTransaction3(Long id){
-         Account account;
-         try {
-             lock.lock();
-             account = testService.selOne(id);
-         } finally {
-             lock.unlock();
-         }
-         return JSON.parseObject(JSON.toJSONString(account));
+    public JSONObject testTransaction3(Long id) {
+        Account account;
+        try {
+            lock.lock();
+            account = testService.selOne(id);
+        } finally {
+            lock.unlock();
+        }
+        return JSON.parseObject(JSON.toJSONString(account));
     }
 
     /**
      * 测试负载session共享 所以呢不是session共享不要访问了
+     *
      * @param request
      * @return
      */
     @RequestMapping("testLogin")
     @ResponseBody
-    public JSONObject testLogin(HttpServletRequest request){
+    public JSONObject testLogin(HttpServletRequest request) {
         String id = request.getSession().getId();
         TestUser testUser = (TestUser) request.getSession().getAttribute("testUser");
-        String name ="没有用户";
-        if(testUser == null){
+        String name = "没有用户";
+        if (testUser == null) {
             testUser = new TestUser();
             testUser.setId(1111L);
             testUser.setName("元盛");
-            request.getSession().setAttribute("testUser",testUser);
-        }else{
+            request.getSession().setAttribute("testUser", testUser);
+        } else {
             name = testUser.getName();
         }
 
-        return JSON.parseObject("{'sessionId':'"+id+"','userName':'"+name+"'}");
+        return JSON.parseObject("{'sessionId':'" + id + "','userName':'" + name + "'}");
     }
+
     @RequestMapping("testDubbo")
     @ResponseBody
-    public JSONObject testDubbo(){
+    public JSONObject testDubbo() {
         testService.testDubbo();
         return JSON.parseObject("{'result':'success'}");
     }
 
     /**
      * 分布式锁测试
+     *
      * @return json
      */
     @RequestMapping("testZkLockRead")
     @ResponseBody
-    public JSONObject testZkLockRead(){
+    public JSONObject testZkLockRead() {
 
         return testService.testZkLockRead();
 
@@ -321,40 +338,42 @@ public class TestAction {
 
     /**
      * 分布式锁测试
+     *
      * @return json
      */
     @RequestMapping("testZkLockWrite")
     @ResponseBody
-    public JSONObject testZkLockWrite(){
+    public JSONObject testZkLockWrite() {
 
         return testService.testZkLockWrite();
     }
 
     /**
      * 标签验证参数
+     *
      * @param id
      * @param bo
      * @param result
      * @return
      */
-    @RequestMapping(value="testValid/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "testValid/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public String testValid(@PathVariable("id")Integer id,@Valid Shop bo , BindingResult result){
+    public String testValid(@PathVariable("id") Integer id, @Valid Shop bo, BindingResult result) {
         String msg = "";
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             msg = result.getAllErrors().get(0).getDefaultMessage();
         }
 
         return msg;
     }
+
     @RequestMapping("tttttt")
     @ResponseBody
-    public String tttttt(Shop shop,TestUser user){
+    public String tttttt(Shop shop, TestUser user) {
         System.out.println(shop.getShopName());
         System.out.println(user.getName());
         return "hello";
     }
-
 
 
 }

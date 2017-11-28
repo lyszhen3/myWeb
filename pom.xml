@@ -23,7 +23,7 @@
 
     <description>我的天啊</description>
     <properties>
-        <spring.version>4.1.6.RELEASE</spring.version>
+        <spring.version>4.3.10.RELEASE</spring.version>
         <aspectj>1.8.9</aspectj>
     </properties>
 

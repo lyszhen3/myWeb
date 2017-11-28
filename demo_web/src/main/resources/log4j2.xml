@@ -8,10 +8,13 @@
     <!--<properties>-->
     <!--<property name="filters">org.apache</property>-->
     <!--</properties>-->
-
+    <properties>
+        <property name="path">${log4j:configParentLocation}/applogs/</property>
+        <!--<property name="path">${web:contextPath}/applogs/</property>-->
+    </properties>
 
     <Appenders>
-        <RollingRandomAccessFile name="sqllog" fileName="${sys:LOG_DIR}/mysql.log"
+        <RollingRandomAccessFile name="sqllog" fileName="${path}/mysql.log"
                                  filePattern="%d{yyyy.MM}.log" Append="true" encoding="UTF-8">
             <PatternLayout charset="utf-8" pattern="%d{yyyy/MM/dd HH:mm:ss} %p %C  %m%n"/>
             <Policies>
@@ -22,25 +25,32 @@
 
         </RollingRandomAccessFile>
 
-        <RollingFile name="Daijia" fileName="${sys:LOG_DIR}/root.log"
-                     filePattern="${sys:LOG_DIR}/root%d{yyyy-MM}.log" Append="true" encoding="UTF-8">
+        <RollingRandomAccessFile name="Daijia" fileName="${path}/root.log"
+                     filePattern="${path}/root%d{yyyy-MM}.log" Append="true" encoding="UTF-8">
             <PatternLayout charset="utf-8" pattern="%d{yyyy/MM/dd HH:mm:ss} %p %C  %m%n"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="1MB"/>
             </Policies>
             <DefaultRolloverStrategy fileIndex="min" max="16"/>
-            <RegexFilter regex="com.opentae.data.daifa" onMatch="DENY" onMismatch="ACCEPT"/>
-        </RollingFile>
+            <RegexFilter regex="com.lin.data" onMatch="DENY" onMismatch="ACCEPT"/>
+        </RollingRandomAccessFile>
 
-        <RollingFile name="info" fileName="${sys:LOG_DIR}/info.log"
-                     filePattern="${sys:LOG_DIR}/root%d{yyyy-MM}.log" Append="true" encoding="UTF-8">
+        <RollingRandomAccessFile name="info" fileName="${path}/info.log"
+                     filePattern="${path}/root%d{yyyy-MM}.log" Append="true" encoding="UTF-8">
             <PatternLayout charset="utf-8" pattern="%d{yyyy/MM/dd HH:mm:ss} %p %C  %m%n"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="1MB"/>
             </Policies>
             <DefaultRolloverStrategy fileIndex="min" max="16"/>
-            <RegexFilter regex="com.opentae.data.daifa" onMatch="DENY" onMismatch="ACCEPT"/>
-        </RollingFile>
+            <Filters>
+                <!--只接受info级别 -->
+                <!-- DENY，日志将立即被抛弃不再经过其他过滤器；
+                      NEUTRAL，有序列表里的下个过滤器过接着处理日志；
+                      ACCEPT，日志会被立即处理，不再经过剩余过滤器。 -->
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
 
 
         <Console name="STDOUT" target="SYSTEM_OUT">
@@ -53,16 +63,13 @@
         <Root level="debug">
             <AppenderRef ref="Daijia"/>
             <AppenderRef ref="STDOUT"/>
-
-
-        </Root>
-        <Root level="info">
-            <AppenderRef ref = "info"/>
+            <AppenderRef ref="info" />
 
         </Root>
+
         <!--<Logger name="org.apache" level="info" />-->
         <!--<Logger name="org.springframework" level="debug"  />-->
-        <Logger name="com.lin.test.mappers" level="debug" additivity="false">
+        <Logger name="com.lin.data.mappers" level="debug" additivity="false">
             <AppenderRef ref="sqllog"/>
             <AppenderRef ref="STDOUT"/>
         </Logger>

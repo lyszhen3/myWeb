@@ -24,7 +24,7 @@ import java.util.Properties;
  * @description
  * @since 3.0.0-SNAPSHOT
  */
-@Configuration
+//@Configuration
 public class ElasticConfiguration {
     @Bean(name ="elasticConfig")
     Properties properties() throws IOException {
