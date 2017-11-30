@@ -1,3 +1,5 @@
+import java.util.Map;
+
 /**
  * Created by lys on 11/16/2017.
  *
@@ -15,5 +17,8 @@ public class Hello {
 
     public static void main(String[] args) {
 
+    }
+    public static boolean xx(Class<?> clazz){
+        return byte[].class == clazz;
     }
 }

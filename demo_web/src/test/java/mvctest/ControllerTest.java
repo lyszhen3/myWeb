@@ -94,6 +94,7 @@ public class ControllerTest {
     public void testRedisHset() {
         Car car = new Car("宝马");
         redisIO.hset("hash_lin", "1", car);
+        redisIO.put("357","同一时间");
         System.out.println(redisIO.hget("hash_lin", "1", Car.class).getName());
     }
     //测试hash all
