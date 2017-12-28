@@ -16,10 +16,7 @@
 
 package com.lin.redis.springRedis;
 
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
-
-import javax.swing.*;
 
 // tag::class[]
 public class Initializer extends AbstractHttpSessionApplicationInitializer { // <1>

@@ -1,7 +1,9 @@
 package mvctest;
 
 import com.lin.data.beans.Book;
+import com.lin.data.beans.Role;
 import com.lin.data.mappers.BookMapper;
+import com.lin.data.mappers.RoleMapper;
 import com.lin.data.mappers.TestMapper;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -35,8 +37,9 @@ public class TestMapperDemo {
     TestMapper mapper;
     @Autowired
     BookMapper bookMapper;
+
     @Autowired
-    TransportClient client;
+    RoleMapper roleMapper;
     @Test
     public void test() {
         Book book = new Book();
@@ -62,17 +65,11 @@ public class TestMapperDemo {
         thread.start();
     }
     @Test
-    public  void elasticTest() throws IOException {
+    public void testBaomidou(){
+        Role role = new Role();
+        role.setId(11111L);
 
-        IndexResponse response = client.prepareIndex("twitter", "tweet", "1")
-                .setSource(XContentFactory.jsonBuilder()
-                        .startObject()
-                        .field("user", "kimchy")
-                        .field("postDate", new Date())
-                        .field("message", "trying out Elasticsearch")
-                        .endObject()
-                )
-                .get();
-        System.out.println(response.toString());
+        roleMapper.insert(role);
     }
+
 }

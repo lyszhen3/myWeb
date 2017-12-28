@@ -23,7 +23,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 /**
  * @author jitendra on 3/3/16.
  */
-@EnableRedisHttpSession
+//@EnableRedisHttpSession
 public class SessionConfig   {
 
 

@@ -16,9 +16,9 @@ public class Hello {
     }
 
     public static void main(String[] args) {
+        Hello hello = new Hello();
+        hello.r1.run();
+        hello.r2.run();
+    }
 
-    }
-    public static boolean xx(Class<?> clazz){
-        return byte[].class == clazz;
-    }
 }

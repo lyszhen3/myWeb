@@ -18,6 +18,7 @@
         <module>data_beans</module>
         <module>demo_web</module>
         <module>dubbo</module>
+        <module>data_baomidou</module>
     </modules>
     <packaging>pom</packaging>
 

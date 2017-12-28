@@ -1,9 +1,7 @@
 package com.lin.redis.springRedis;
 
-import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import redis.clients.jedis.JedisPoolConfig;
@@ -16,7 +14,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * @since 3.0.0-SNAPSHOT
  */
 //@Configuration
-//@EnableRedisHttpSession
+@EnableRedisHttpSession
 public class SpringRedisConfig {
     @Value("${redis.host}")
     private String IP;   // ip
