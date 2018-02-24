@@ -1,0 +1,36 @@
+@startuml
+
+class CharDisplay{
++display(String type):void
+}
+note left:没有开闭原则
+class PieChart{
++display():void
+}
+class BarChart{
++display():void
+}
+CharDisplay..>PieChart
+CharDisplay..>BarChart
+class CharDisplay2{
+-chart:AbstractChart
++setChart(AbstractChart abstractChart):void
++dispay():void
+}
+note bottom:char.display()
+abstract class AbstractChart{
++abstract display():void
+}
+class PieChart2{
++display():void
+}
+class BarChart2{
++display():void
+}
+PieChart2--|>AbstractChart
+BarChart2--|>AbstractChart
+
+CharDisplay2..>AbstractChart
+
+note "开闭原则\n'软件实体应对扩展开放，而对修改关闭 '" as N1
+@enduml

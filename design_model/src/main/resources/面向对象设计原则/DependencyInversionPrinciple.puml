@@ -1,0 +1,42 @@
+@startuml
+
+class TXTDataConvertor{
++readFile():void
+}
+
+class ExcelDataConvertor{
++readFile():void
+}
+
+class CustomerDao{
++addCustomers():void
+}
+note left:没有使用依赖倒转
+CustomerDao..>TXTDataConvertor
+CustomerDao..>ExcelDataConvertor
+
+abstract class AbstractDataConvertor{
++abstract readFile():void
+}
+class TXTDataConvertor2{
++readFile():void
+}
+class ExcelDataConvertor2{
++readFile():void
+}
+class CustomerDao2{
++addCustomers():void
+}
+mix_file config.xml
+note bottom:<classNmae>TXTDataConvertor</className>
+TXTDataConvertor2--|>AbstractDataConvertor
+ExcelDataConvertor2--|>AbstractDataConvertor
+CustomerDao2..>AbstractDataConvertor
+CustomerDao2..>config.xml
+
+note "依赖倒转原则\n'抽象不应该依赖于细节，细节应该依赖于抽象'" as N1
+
+
+
+
+@enduml

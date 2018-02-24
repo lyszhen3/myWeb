@@ -1,0 +1,34 @@
+@startuml
+
+class CustomerDataChart{
++getConnection()
++findCustomers()
++createChart()
++displayChart()
+}
+note right:一个类负责多职责
+
+class DButil{
++getConnection
+}
+class CustomerDao{
+-util:DButil
++findCustomers():List
+}
+class CustomerDataChart2{
+-dao:CustomerDao
++createChart()
++displayChart()
+}
+CustomerDataChart2-->CustomerDao
+CustomerDao-->DButil
+note "职责分离" as N2
+note "单一职责原则\n'一个类只负责一个功能领域中的相应职责'" as N1
+DButil.N2
+CustomerDao.N2
+CustomerDataChart2.N2
+
+
+
+
+@enduml

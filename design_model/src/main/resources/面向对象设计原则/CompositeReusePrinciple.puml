@@ -1,0 +1,27 @@
+@startuml
+
+class DBUtil{
++getConnection():Connection
+}
+class CustomerDAO{
++addCustomer():void
+}
+note right:super.getConnection();
+CustomerDAO--|>DBUtil
+
+class DBUtil2{
++getConnection():Connection
+}
+class OracleDBUtil{
++getConnection():Connection
+}
+OracleDBUtil--|>DBUtil2
+class CustomerDAO2{
+-util:DBUtil2
++addCustomer():void
+}
+note left:util.getConnection();
+CustomerDAO2..>DBUtil2
+
+note "合成复用原则(原来使用mysql后来添加了oracle)\n'尽量使用对象组合，而不是继承来达到复用的目的'" as N1
+@enduml

@@ -1,0 +1,50 @@
+@startuml
+
+class Client{
+}
+interface CustomerDataDisplay{
++dataRead()
++transformToXML()
++createChart()
++displayChart()
++createReport()
++displayReport()
+}
+note top:没有使用接口分离职责过重
+class ConcreteClass{
++dataRead()
++transformToXML()
++createChart()
++displayChart()
++createReport()
++displayReport()
+}
+Client.>CustomerDataDisplay
+ConcreteClass..|>CustomerDataDisplay
+package "interface"{
+interface DataHandler{
++dataRead()
+}
+interface XMLTransformer{
++transformToXML()
+}
+interface ChartHandler{
++createChart()
++displayChart()
+}
+interface ReportHandler(){
++createReport()
++displayReport()
+}
+}
+Client2..>DataHandler
+Client2..>ChartHandler
+ConcreteClass2..|>DataHandler
+ConcreteClass2..|>ChartHandler
+ConcreteClass2 : +dataRead()
+ConcreteClass2 : +createChart()
+ConcreteClass2 : +displayChart()
+
+note "接口隔离原则\n'使用多个专门的接口，而不使用单一的总接口'" as N1
+
+@enduml

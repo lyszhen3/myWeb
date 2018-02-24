@@ -1,0 +1,24 @@
+@startuml
+
+class Button{
+}
+note left:未使用迪米特法则
+Button-->TextBox
+Button-->ComboBox
+Button-->List
+Button-->Label
+List--ComboBox
+List--TextBox
+ComboBox--TextBox
+
+class Mediator{
+}
+
+Mediator-->Button2
+Mediator-->TextBox2
+Mediator-->List2
+Mediator-->Label2
+Mediator-->ComboBox2
+
+note "迪米特法则\n'一个软件实体应当尽可能少地与其他实体发生相互作用'" as N1
+@enduml
