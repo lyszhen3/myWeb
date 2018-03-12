@@ -1,0 +1,21 @@
+@startuml
+
+class Adaptee{
++specificRequest()
+}
+class Adapter{
++request()
+}
+abstract class Target{
++{abstract} request()
+}
+class Client{
+
+}
+Adapter -up-|> Target
+Adapter -up-> Adaptee:adaptee
+Adapter -up-|> Adaptee:class adaptee(类适配模式)
+Client ..>Target
+
+
+@enduml

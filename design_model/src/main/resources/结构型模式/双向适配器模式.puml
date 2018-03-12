@@ -1,0 +1,33 @@
+@startuml
+interface Adaptee{
++specificRequest()
+}
+interface Target{
++request()
+}
+class ConcreteAdaptee{
++specificRequest()
+}
+class ConcreteTarget{
+}
+class Adapter{
+-Adaptee adaptee
+-Target target
++Adapter(Target target)
++Adapter(Adaptee adaptee)
++request()
++specificRequest()
+}
+note bottom:target.request(),\nadaptee.specificRequest();
+
+Adapter .up.|> Adaptee
+Adapter .up.|> Target
+Adapter -up-> Adaptee
+Adapter -up-> Target
+
+ConcreteAdaptee .up.|> Adaptee
+ConcreteTarget .up.|>Target
+
+
+
+@enduml

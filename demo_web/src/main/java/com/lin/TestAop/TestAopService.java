@@ -1,6 +1,6 @@
 package com.lin.TestAop;
 
-import com.lin.TestAop.actions.LysFactory;
+import com.lin.springUtils.WebSpringFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestAopService {
 
-
-    public void testService(){
+    @Lys
+    public void testService(String hello_aop){
         System.out.println("我正在走");
 
         System.out.println(this);
 
-        TestAopService bean = LysFactory.getBean(TestAopService.class);
+        TestAopService bean = WebSpringFactory.getBean(TestAopService.class);
         System.out.println(bean);
 
     }

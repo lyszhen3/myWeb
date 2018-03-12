@@ -29,9 +29,9 @@ public class TestService2 {
     public void delete() throws Exception {
 
         testMapper.deleteOne(4L);
-       // throw new Exception("我的天");
-//        String xx = null;
-//        xx.split("|");
+//        throw new Exception("我的天");
+        String xx = null;
+        xx.split("|");
     }
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updateOne(Account account) {

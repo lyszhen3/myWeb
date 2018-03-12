@@ -1,0 +1,69 @@
+@startuml
+
+interface SkinFactory{
++Button createButton()
++TextField createTextField()
++ComboBox createComboBox()
+}
+interface Button{
++void display()
+}
+interface TextField{
++void display()
+}
+interface ComboBox{
++void display()
+}
+class SpringSkinFactory{
++Button createButton()
++TextField createTextField()
++ComboBox createComboBox()
+}
+class SummerSkinFactory{
++Button createButton()
++TextField createTextField()
++ComboBox createComboBox()
+}
+class SpringButton{
++void display()
+}
+class SummerButton{
++void display()
+}
+class SpringTextField{
++void display()
+}
+class SummerTextField{
++void display()
+}
+class SpringComboBox{
++void display()
+}
+class SummerComboBox{
++void display()
+}
+SpringSkinFactory .up.|> SkinFactory
+SummerSkinFactory .up.|> SkinFactory
+
+SpringButton .down.|> Button
+SummerButton .down.|> Button
+
+SpringTextField .down.|> TextField
+SummerTextField .down.|> TextField
+
+SpringComboBox .down.|> ComboBox
+SummerComboBox .down.|> ComboBox
+
+SpringSkinFactory .down.> SpringButton:<<create>>
+SpringSkinFactory .down.> SpringTextField:<<create>>
+SpringSkinFactory .down.> SpringComboBox:<<create>>
+
+SummerSkinFactory .down.> SummerButton:<<create>>
+SummerSkinFactory .down.> SummerTextField:<<create>>
+SummerSkinFactory .down.> SummerComboBox:<<create>>
+
+Client .right.> SkinFactory
+Client ..> Button
+Client ..> TextField
+Client ..> ComboBox
+@enduml

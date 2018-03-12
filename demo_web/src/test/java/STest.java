@@ -8,6 +8,7 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Test;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -59,11 +60,8 @@ public class STest {
     }
 
     public static void main(String[] args) {
-        Car car = new Car();
-        car.setName(null);
-        String s = JSON.toJSONString(car);
-        JSONObject jsonObject1 = JSON.parseObject(s);
-        System.out.println(jsonObject1);
+        System.out.println(StringUtils.hasText(null));
+        System.out.println(StringUtils.isEmpty(""));
     }
 
 }

@@ -1,0 +1,54 @@
+@startuml
+
+class Actor{
+-String type
+-String sex
+-String face
+-String costume
+-String hairstyle
+..get set ..
++void set...()
++Object get...()
+..get set ..
+}
+abstract class ActorBuilder{
+#Actor actor = new Actor
++{abstract} void buildType()
++{abstract} void buildSex()
++{abstract} void buildFace()
++{abstract} void buildCostume()
++{abstract} void buildHairstyle()
+}
+
+class HeroBuilder{
++ void buildType()
++ void buildSex()
++ void buildFace()
++ void buildCostume()
++ void buildHairstyle()
+}
+class AngelBuilder{
++ void buildType()
++ void buildSex()
++ void buildFace()
++ void buildCostume()
++ void buildHairstyle()
+}
+class DevilBuilder{
++ void buildType()
++ void buildSex()
++ void buildFace()
++ void buildCostume()
++ void buildHairstyle()
+}
+class ActorController{
++Actor construct(ActorBuilder ab)
+}
+
+HeroBuilder -up-|> ActorBuilder
+AngelBuilder -up-|> ActorBuilder
+DevilBuilder -up-|> ActorBuilder
+Actor <-up-* ActorBuilder
+ActorController -right->ActorBuilder
+
+@enduml

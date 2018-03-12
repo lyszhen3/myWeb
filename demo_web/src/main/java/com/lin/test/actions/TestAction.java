@@ -6,19 +6,20 @@ import com.lin.data.beans.Account;
 import com.lin.test.beans.Shop;
 import com.lin.test.beans.TestUser;
 import com.lin.test.bo.UserBo;
+import com.lin.test.services.TestMore;
 import com.lin.test.services.TestService;
+import com.lin.test.services.TransactionalService;
 import com.lin.utils.ValidateCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +34,6 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -49,7 +49,17 @@ public class TestAction {
     private final static Logger log = LogManager.getLogger(TestAction.class);
     static final ReentrantLock lock = new ReentrantLock();
     @Resource(name = "lin_testService")
-    TestService testService;
+    private TestService testService;
+
+    @Autowired
+    private TransactionalService TransactionnalServiceImpl;
+
+    private TestMore testMore;
+    @Autowired
+    @Qualifier("moreSecondImpl")
+    public void setTestMore(TestMore testMore) {
+        this.testMore = testMore;
+    }
 
     /**
      * 老layuidemo
@@ -228,7 +238,11 @@ public class TestAction {
     @RequestMapping("test2")
     @ResponseBody
     public JSONObject testTransaction(HttpServletRequest request) throws Exception {
-        testService.testTransation();
+        try {
+            testService.testTransation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return JSON.parseObject("{'result':'success','msg':'草。。'}");
     }
 
@@ -375,5 +389,38 @@ public class TestAction {
         return "hello";
     }
 
+    /**
+     * 通过实现接口来通过jdk代理
+     * 调用接口中得方法事务同样可以回滚
+     * @return
+     */
+    @RequestMapping("testAopTransactional")
+    @ResponseBody
+    public String testAopTransactional(){
+        TransactionnalServiceImpl.a();
+        return "ok";
+    }
+
+    /**
+     * 测试重复读
+     * @return
+     */
+    @RequestMapping("testSpringPropagation")
+    @ResponseBody
+    public String testSpringPropagation(){
+        testService.testSpringPropagation();
+        return "ok";
+    }
+
+    /**
+     * 测试 Qualifier 注解的使用
+     * @return
+     */
+    @RequestMapping("testSpringMoreImpl")
+    @ResponseBody
+    public String testSpringMoreImpl(){
+        testMore.say();
+        return "ok";
+    }
 
 }

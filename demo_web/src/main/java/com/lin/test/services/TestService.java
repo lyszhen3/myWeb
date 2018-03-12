@@ -8,15 +8,14 @@ import com.lin.springUtils.WebSpringFactory;
 import com.lin.test.services.abstracts.MoneyVipPolicy;
 import com.lin.zkLock.Callback;
 import com.lin.zkLock.ZkDistributedLockTemplate;
-import org.apache.curator.framework.CuratorFramework;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -78,6 +77,12 @@ public class TestService {
 
 
         return testMapper.selList();
+    }
+
+    private TestService testService;
+    @Autowired
+    public void setTestService(TestService testService) {
+        this.testService = testService;
     }
 
     /**
@@ -188,5 +193,25 @@ public class TestService {
 
         return (JSONObject) execute;
 
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ, rollbackFor = {Exception.class, RuntimeException.class})
+    public void testSpringPropagation() {
+        Account accountOri = testMapper.selectByPrimaryKey(1L);
+        System.out.println(accountOri.getName());
+        Account modifyAccount = new Account();
+        modifyAccount.setId(1L);
+        modifyAccount.setName("修改后的name");
+        //同一个类中要注入调用才能启动事务
+        testService.updateAccountById(modifyAccount);
+        Account accountNew = testMapper.selectByPrimaryKey(1L);
+        System.out.println(accountNew.getName());
+        modifyAccount.setName("user1");
+        updateAccountById(modifyAccount);
+    }
+
+    @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRES_NEW)
+    public void updateAccountById(Account account) {
+        testMapper.updateByPrimaryKeySelective(account);
     }
 }

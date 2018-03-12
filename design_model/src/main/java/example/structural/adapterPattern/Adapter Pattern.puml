@@ -1,0 +1,30 @@
+@startuml
+
+
+class QuickSort{
++int[] quickSort(int array[])
++void sort(int array[],int p,int r)
++int partition(int a[],int p,int r)
++void swap(int a[],int i,int j)
+}
+class BinarySearch{
++binarySearch(int array[],int key)
+}
+
+interface ScoreOperation{
++int[] sort(int array[])
++int search(int array[],int key)
+}
+class OperationAdapter{
+-QuickSort sortObj
+-BinarySearch searchObj
++OperationAdapter()
++int[] sort(int array[])
++int search(int aaray[],int key)
+}
+OperationAdapter .up.|> ScoreOperation
+OperationAdapter *-right-> QuickSort
+OperationAdapter *.right.-> BinarySearch
+Client..>ScoreOperation
+
+@enduml

@@ -27,7 +27,7 @@ public class TestAop {
     @ResponseBody
     public JSONObject testAop(){
         System.out.println("???");
-        service.testService();
+        service.testService("hello aop");
         System.out.println("over");
         JSONObject jsonObject = JSON.parseObject("{'name':'lys'}");
         return jsonObject;

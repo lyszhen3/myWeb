@@ -1,0 +1,46 @@
+@startuml
+
+interface Factory{
++AbstractProductA createProductA()
++AbstractProductB createProductB()
+}
+interface AbstractProductA{
+}
+interface AbstractProductB{
+}
+class ConcreteProductA1{
+}
+class ConcreteProductA2{
+}
+class ConcreteProductB1{
+}
+class ConcreteProductB2{
+}
+class ConcreteFactory1{
++AbstractProductA createProductA()
++AbstractProductB createProductB()
+}
+class ConcreteFactory2{
++AbstractProductA createProductA()
++AbstractProductB createProductB()
+}
+ConcreteProductA1 .up.|> AbstractProductA
+ConcreteProductA2 .up.|> AbstractProductA
+
+ConcreteProductB1 .up.|> AbstractProductB
+ConcreteProductB2 .up.|> AbstractProductB
+
+ConcreteFactory1 .up.|> Factory
+ConcreteFactory2 .up.|> Factory
+
+ConcreteFactory1 ..> ConcreteProductA1:<<create>>
+ConcreteFactory1 ..> ConcreteProductB1:<<create>>
+
+ConcreteFactory2 ..> ConcreteProductA2:<<create>>
+ConcreteFactory2 ..> ConcreteProductB2:<<create>>
+
+Client .down.> Factory
+Client .down.> AbstractProductA
+Client .down.> AbstractProductB
+note "Abstract Factory Pattern(抽象工厂方法)" as N1
+@enduml

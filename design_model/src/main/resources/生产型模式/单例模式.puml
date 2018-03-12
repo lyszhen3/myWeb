@@ -1,0 +1,34 @@
+@startuml
+
+class Singleton{
+-{static} Singleton instance
+-Singleton()
++{static} Singleton GetInstance()
+}
+note bottom:if(instance==null){\n instance = new Singleton();\n return instance;}
+Singleton <--o  Singleton
+
+class EagerSingleton{
+-{static} EagerSingleton instance = new EagerSingleton()
+-EagerSingleton()
++{static} EagerSingleton getInstance()
+}
+note bottom:饿汉模式
+EagerSingleton <--o EagerSingleton
+EagerSingleton <.. EagerSingleton:create
+
+class LazySingleton{
+-{static} LazySingleton = null
+-LazySingleton()
++{static} LazySingleton getInstance()
+
+}
+note "懒汉模式" as N2
+note "if(instance==null){\n instance=new LazySingleton;\n return instance;}" as N3
+
+LazySingleton .down. N2
+LazySingleton .down. N3
+LazySingleton <--o LazySingleton:instance
+LazySingleton..>LazySingleton:creates
+
+@enduml

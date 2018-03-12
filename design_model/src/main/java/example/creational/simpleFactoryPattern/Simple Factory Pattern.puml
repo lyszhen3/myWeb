@@ -1,0 +1,31 @@
+@startuml
+
+interface Chart{
++display():void
+}
+class HistogramChart{
++HistogramChart()
++display():void
+}
+class LineChart{
++LineChart()
++display():void
+}
+class PieChart{
++LineChart()
++display():void
+}
+
+class ChartFactory{
++getChart(String type):Chart
+}
+HistogramChart..|>Chart
+LineChart..|>Chart
+PieChart..|>Chart
+
+ChartFactory..>HistogramChart:<<create>>
+ChartFactory..>LineChart:<<create>>
+ChartFactory..>PieChart:<<create>>
+
+note "简单工厂模式实例" as N
+@enduml

@@ -19,6 +19,7 @@
         <module>demo_web</module>
         <module>dubbo</module>
         <module>data_baomidou</module>
+        <module>design_model</module>
     </modules>
     <packaging>pom</packaging>
 

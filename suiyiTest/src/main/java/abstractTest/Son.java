@@ -8,19 +8,19 @@ package abstractTest;
  * @description
  * @since 3.0.0-SNAPSHOT
  */
-public class Son  {
+public class Son  extends Human{
     private Long id;
     private String name;
+    public Son(Long id,String name){
+        this.id = id ;
+        this.name = name;
+    }
+    public Son(){
+
+    }
     public static void main(String[] args) {
-        String id = "888";
-        String name = "lll";
-        Student student = new Student(id,name) {
-            @Override
-            public void sayHello() {
-                System.out.println(this.getId()+"你好啊");
-            }
-        };
-        student.sayHello();
+        Human h = new Son(11L,"JIA");
+        Family f = new Family();
     }
 
     public Long getId() {

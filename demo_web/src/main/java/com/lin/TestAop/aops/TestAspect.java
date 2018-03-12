@@ -31,6 +31,7 @@ public class TestAspect {
 
     @Before("aopTest()")
     public void beforeExcution(JoinPoint joinPoint){
+
         System.out.println("之前");
         joinPoint.getStaticPart();
     }

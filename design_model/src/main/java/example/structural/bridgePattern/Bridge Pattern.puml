@@ -1,0 +1,45 @@
+@startuml
+abstract class Image{
+#ImageImp imp
++void setImageImp(ImageImp imp)
++void parseFile(String fileName)
+}
+interface  ImageImp{
++void doPrint(Matrix m)
+}
+class WindowsImp{
++void doPrint(Matrix m)
+}
+class UnixImp{
++void doPrint(Matrix m)
+}
+class LinuxImp{
++void doPrint(Matrix m)
+}
+WindowsImp .up.|>ImageImp
+UnixImp .up.|>ImageImp
+LinuxImp .up.|>ImageImp
+
+class JPGImage{
++void parseFile(String fileName)
+}
+class PNGImage{
++void parseFile(String fileName)
+}
+class BMPImage{
++void parseFile(String fileName)
+}
+class GIFImage{
++void parseFile(String fileName)
+}
+class Matrix{
+}
+ImageImp .up.> Matrix
+JPGImage -down-|> Image
+PNGImage -down-|> Image
+BMPImage -up-|>Image
+GIFImage -up-|>Image
+
+Image o-right-> ImageImp
+
+@enduml

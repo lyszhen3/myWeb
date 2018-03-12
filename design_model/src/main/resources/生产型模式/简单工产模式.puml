@@ -1,0 +1,13 @@
+@startuml
+
+interface Product{
+
+}
+ConcreteProductA..|>Product
+ConcreteProductB..|>Product
+class Factory{
++factoryMethod(String arg):Product
+}
+Factory.>Product
+note "Simple Factory Pattern" as N1
+@enduml

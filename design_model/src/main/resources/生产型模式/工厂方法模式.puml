@@ -1,0 +1,19 @@
+@startuml
+
+abstract class AbstractProduct{
+
+}
+class ConcreteProduct{
+}
+abstract class AbstractFactory{
++{abstract} factoryMethod()
+}
+class ConcreteFactory{
++factoryMethod()
+}
+note right:return new ConcreteProduct()
+ConcreteProduct--|>AbstractProduct
+ConcreteFactory--|>AbstractFactory
+ConcreteFactory..>ConcreteProduct
+note "Factory Method Pattern(工厂方法模式)" as N1
+@enduml

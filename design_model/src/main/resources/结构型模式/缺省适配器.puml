@@ -1,0 +1,19 @@
+@startuml
+interface ServiceInterface{
+void serviceMethod1();
+void serviceMethod2();
+void serviceMethod3();
+}
+
+abstract class AbstractServiceClass{
+void serviceMethod1();
+void serviceMethod2();
+void serviceMethod3();
+}
+class ConcreteServiceClass{
++void serviceMethod1();
+}
+ConcreteServiceClass -up-|>AbstractServiceClass
+AbstractServiceClass .up.|>ServiceInterface
+note "Default Adapter Pattern(缺省适配器模式：可以选择性的选择方法重写)" as N1
+@enduml

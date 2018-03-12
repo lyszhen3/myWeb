@@ -1,0 +1,28 @@
+@startuml
+
+abstract class Builder{
++{abstract} void buildPartA()
++{abstract} void buildPartB()
++{abstract} void buildPartC()
++{abstract} void getResult()
+}
+class ConcreteBuilder{
++void buildPartA()
++void buildPartB()
++void buildPartC()
++void getResult()
+}
+
+class Product{
+}
+class Director{
+-Builder builder
++construct()
+}
+
+ConcreteBuilder -up-|>Builder
+ConcreteBuilder .right.> Product
+Director o..right.>Builder
+
+note "Builder Pattern(建造者模式)" as N1
+@enduml

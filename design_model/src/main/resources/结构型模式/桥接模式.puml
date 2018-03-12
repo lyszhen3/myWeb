@@ -1,0 +1,30 @@
+@startuml
+
+abstract class Abstraction{
++operation()
+}
+
+interface Implementor{
++operationImpl()
+}
+class RefinedAbstraction{
++operation()
+}
+class ConcreteImplementorA{
++operationImpl()
+}
+class ConcreteImplementorB{
++operationImpl()
+}
+class Client{
+}
+RefinedAbstraction -up-|>Abstraction
+ConcreteImplementorA .up.|>Implementor
+ConcreteImplementorB .up.|>Implementor
+Abstraction o-right->Implementor:impl(桥)
+Client .down.>Implementor
+Client -down->Abstraction
+
+
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+
+class WeeklyLog{
+-Attchment attchment
+}
+WeeklyLog --|> Object
+WeeklyLog ..|> Cloneable
+
+WeeklyLog o.left.> Attchment
+
+@enduml
