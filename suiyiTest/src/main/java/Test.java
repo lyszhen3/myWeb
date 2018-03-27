@@ -18,8 +18,12 @@ import java.util.function.Function;
  * @since 3.0.0-SNAPSHOT
  */
 public class Test {
-    public static void main(String[] args) {
-        System.out.println(9>>2);
+
+    @org.junit.Test
+    public void test(){
+        List<Integer> xx= new ArrayList<>(1);
+        xx.add(1);
+        xx.add(2);
     }
 
 

@@ -22,7 +22,7 @@
 
 
     <delete id="deleteOne" parameterType="java.lang.Long" >
-        delete from beans where id = ${id}
+        delete from account where id = ${id}
 
 
     </delete>
