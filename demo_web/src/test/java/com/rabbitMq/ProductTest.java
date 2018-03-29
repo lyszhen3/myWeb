@@ -63,7 +63,7 @@ public class ProductTest {
     }
 
     /**
-     * 一种比事务吞吐量大的模式
+     * 一种比事务吞吐量大 product 和 broker之间的消息确认模式
      */
     @Test
     public void exchangeDirectConfirm(String message) throws IOException, TimeoutException, InterruptedException {
