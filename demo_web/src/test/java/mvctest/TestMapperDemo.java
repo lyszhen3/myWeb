@@ -5,17 +5,14 @@ import com.lin.data.beans.Role;
 import com.lin.data.mappers.BookMapper;
 import com.lin.data.mappers.RoleMapper;
 import com.lin.data.mappers.TestMapper;
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.xcontent.XContentFactory;
+import com.lin.test.services.abstracts.AbstractSmsTest;
+import com.lin.test.services.abstracts.SmsTestImple;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.IOException;
-import java.util.Date;
 import java.util.logging.Logger;
 
 /**
@@ -40,6 +37,8 @@ public class TestMapperDemo {
 
     @Autowired
     RoleMapper roleMapper;
+    @Autowired
+    AbstractSmsTest abstractSmsTest;
     @Test
     public void test() {
         Book book = new Book();
@@ -51,7 +50,6 @@ public class TestMapperDemo {
         log.info(String.valueOf(book.getId()));
 
     }
-
     @Test
     public void testMoreThread() {
         Thread thread = new Thread(new Runnable() {
@@ -66,10 +64,10 @@ public class TestMapperDemo {
     }
     @Test
     public void testBaomidou(){
-        Role role = new Role();
-        role.setId(11111L);
+    	abstractSmsTest.setNamef("nihao");
+        System.out.println(abstractSmsTest.getName());
+        abstractSmsTest.ssout();
 
-        roleMapper.insert(role);
     }
 
 }

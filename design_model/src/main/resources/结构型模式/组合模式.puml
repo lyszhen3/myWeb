@@ -1,0 +1,20 @@
+@startuml
+abstract class Component{
++opreation();
++add(Component c);
++remove(Component c);
++getChild(int i);
+}
+
+class Leaf{
++opreation();
+}
+class Composite{
++opreation();
++add(Component c);
++remove(Component c);
++getChild(int i);
+}
+note left:for(Component child:children){\nchild.opreateion();\n}
+
+@enduml

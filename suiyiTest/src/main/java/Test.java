@@ -22,14 +22,26 @@ public class Test {
 
     @org.junit.Test
     public void test(){
-       List<Integer> integers = new ArrayList<>();
-       List<Integer> integerList = new ArrayList<>();
-       for (int i = 0;i<100;i++){
-           integers.add(i);
-       }
-       integers.forEach(i->integerList.add(i));
-        System.out.println(integerList.size());
-        System.out.println(0x11);
+      Test test =null;
+        System.out.println("上一个test"+test);
+      if(test == null && (test = new Test())==null){
+          System.out.println("空空");
+      }
+        System.out.println("下一个test"+test);
+    }
+
+
+    public void xx(Inin in){
+        if(in instanceof IninImpl3){
+            System.out.println("impl1");
+        }else{
+            System.out.println("impl2");
+        }
+    }
+
+    public static void main(String[] args) {
+        Test test = new Test();
+        test.xx(new IninImpl3());
     }
 
 

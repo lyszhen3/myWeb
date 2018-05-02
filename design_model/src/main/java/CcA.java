@@ -7,16 +7,18 @@ import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-public class CcA  extends Cc{
-    @Override
-    void pp() {
-        name = "卧槽";
-    }
+public class CcA extends Cc {
 
-    public static void main(String[] args) {
+	@Override
+	void pp() {
+		name = "卧槽";
+	}
 
-        Object o = new CcA();
-        Cc cc = (Cc)o;
-        cc.introMy();
-    }
+	public static void main(String[] args) {
+
+		Object o = new CcA();
+		Cc cc = (Cc) o;
+		cc.introMy();
+
+	}
 }
