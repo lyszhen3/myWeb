@@ -1,9 +1,9 @@
 @startuml
 abstract class Component{
-+opreation();
-+add(Component c);
-+remove(Component c);
-+getChild(int i);
++{abstract} opreation();
++{abstract} add(Component c);
++{abstract} remove(Component c);
++{abstract} getChild(int i);
 }
 
 class Leaf{
@@ -16,5 +16,15 @@ class Composite{
 +getChild(int i);
 }
 note left:for(Component child:children){\nchild.opreateion();\n}
+
+
+class Client{
+
+}
+Leaf -up-|> Component
+Composite -up-|>Component
+Composite o-->Component:children
+Client .right..> Component
+
 
 @enduml

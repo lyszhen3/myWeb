@@ -1,9 +1,9 @@
 @startuml
 interface Adaptee{
-+specificRequest()
++{abstract} specificRequest()
 }
 interface Target{
-+request()
++{abstract} request()
 }
 class ConcreteAdaptee{
 +specificRequest()

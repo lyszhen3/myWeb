@@ -1,0 +1,41 @@
+@startuml
+
+abstract class Component{
++{abstract} void display();
+}
+class ComponentDecorator{
+-Component component;
++ComponentDecorator(Component component);
++void display();
+}
+
+class Window{
++void display();
+}
+
+class TextBox{
++void display();
+}
+class ListBox{
++void display();
+}
+class ScrollBarDecorator{
++ScrollBarDecorator(Component);
++void display();
++void setScrollBar();
+}
+
+class BlackBorderDecorator{
++BlackBorderDecorator(Component);
++void display();
++void setBlackBorder();
+}
+ComponentDecorator -right--|>Component
+ComponentDecorator o-right-->Component
+Window -up-|>Component
+TextBox -up-|>Component
+ListBox -up-|>Component
+
+ScrollBarDecorator -up-|>ComponentDecorator
+BlackBorderDecorator -up-|>ComponentDecorator
+@enduml

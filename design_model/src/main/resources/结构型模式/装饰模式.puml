@@ -1,0 +1,30 @@
+@startuml
+abstract class Component{
++{abstract} void operation();
+}
+
+abstract class Decorator{
++void operation();
+}
+
+class ConcreteComponent{
++void operation();
+}
+
+class ConcreteDecoratorA{
+-addedState;
++void operation();
+}
+class ConcreteDecoratorB{
++void operation();
++void addedBehavior();
+}
+note left:super.operation();\naddBehavior();
+
+ConcreteComponent -right--|>Component
+Decorator -up-|>Component
+Decorator o-up->Component:component
+
+ConcreteDecoratorA -up-|>Decorator
+ConcreteDecoratorB -up-|>Decorator
+@enduml

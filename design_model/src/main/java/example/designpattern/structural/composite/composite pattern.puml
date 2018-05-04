@@ -1,0 +1,50 @@
+@startuml
+abstract class AbstractFile{
++void add(AbstractFile file);
++void remove(AbstractFile file);
++AbstractFile getChild(int i);
++void killVirus();
+}
+
+class ImageFile{
+-String name;
++ImageFile(String name);
++void add(AbstractFile file);
++void remove(AbstractFile file);
++AbstractFile getChild(int i);
++void killVirus();
+}
+
+class VideoFile{
+-String name;
++VideoFile(String name);
++void add(AbstractFile file);
++void remove(AbstractFile file);
++AbstractFile getChild(int i);
++void killVirus();
+}
+
+class TextFile{
+-String name;
++TextFile(String name);
++void add(AbstractFile file);
++void remove(AbstractFile file);
++AbstractFile getChild(int i);
++void killVirus();
+}
+class Folder{
+-ArrayList fileList;
+-String name;
++Folder(String name);
++void add(AbstractFile file);
++void remove(AbstractFile file);
++AbstractFile getChild(int i);
++void killVirus();
+}
+
+ImageFile -up-|>AbstractFile
+VideoFile -up-|>AbstractFile
+TextFile -up-|>AbstractFile
+Folder -up-|>AbstractFile
+Folder o..>AbstractFile:fileList
+@enduml

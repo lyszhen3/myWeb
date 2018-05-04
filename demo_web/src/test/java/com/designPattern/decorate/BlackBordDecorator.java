@@ -8,23 +8,20 @@ package com.designPattern.decorate;
  * @description
  * @since 3.0.0-SNAPSHOT
  */
-public class BlackBordDecorator extends CompentDecorator{
+public class BlackBordDecorator extends CompentDecorator {
 
+	public BlackBordDecorator(Compent compent) {
+		super(compent);
+	}
 
-    public BlackBordDecorator(Compent compent) {
-        super(compent);
-    }
+	@Override
+	public void display() {
+		super.display();
+		setBlack();
+	}
 
-
-    @Override
-    public void display() {
-
-        setBlack();
-        super.display();
-    }
-
-    public void setBlack(){
-        System.out.println("变黑吧");
-    }
+	public void setBlack() {
+		System.out.println("变黑吧");
+	}
 
 }

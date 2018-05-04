@@ -8,21 +8,20 @@ package com.designPattern.decorate;
  * @description
  * @since 3.0.0-SNAPSHOT
  */
-public class AddBoxDecorator extends CompentDecorator{
-    public AddBoxDecorator(Compent compent) {
-        super(compent);
-    }
+public class AddBoxDecorator extends CompentDecorator {
 
+	public AddBoxDecorator(Compent compent) {
+		super(compent);
+	}
 
-    @Override
-    public void display() {
+	@Override
+	public void display() {
+		super.display();
+		setBox();
+	}
 
-        setBox();
-        super.display();
-    }
-
-    public void setBox(){
-        System.out.println("加框框");
-    }
+	public void setBox() {
+		System.out.println("加框框");
+	}
 
 }

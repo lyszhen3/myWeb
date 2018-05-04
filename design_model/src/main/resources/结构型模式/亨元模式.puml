@@ -1,0 +1,27 @@
+@startuml
+
+interface Flyweight{
++{abstract} void operation(String extrinsicState);
+}
+
+class FlyweightFactory{
+-HashMap flyweights;
++getFlyWeight(String key);
+}
+
+class ConcreteFlyweight{
+-intrinsicState
++void operation(String extrinsicState);
+}
+
+class UnsharedConcreteFlyweight{
+-allState
++void operation(String extrinsicState);
+}
+
+ConcreteFlyweight .up.|>Flyweight
+UnsharedConcreteFlyweight .up.|>Flyweight
+
+FlyweightFactory o-->Flyweight:flyweights
+
+@enduml
