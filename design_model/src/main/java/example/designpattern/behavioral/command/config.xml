@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config>
+    <className>HelpCommand</className>
+
+    <className>MinimizeCommand</className>
+</config>

@@ -1,0 +1,23 @@
+@startuml
+
+abstract class Handler{
+-Handler successor;
++void setSuccessor(Handler successor);
++{abstract} handlerRequest();
+}
+
+
+class ConcreteHandlerA{
++handlerRequest();
+}
+class ConcreteHandlerB{
++handlerRequest();
+}
+
+ConcreteHandlerA -up-|>Handler
+ConcreteHandlerB -up-|>Handler
+
+Client ..|>Handler
+Handler o-->Handler:successor
+
+@enduml

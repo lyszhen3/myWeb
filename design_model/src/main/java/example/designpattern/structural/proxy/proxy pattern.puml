@@ -1,0 +1,39 @@
+@startuml
+
+interface Searcher{
++{abstract} string doSearch(String userId,String keyword);
+}
+
+
+class ProxySearcher{
+-RealSearcher realSearcher;
+-AccessValidator validator;
+-Logger logger;
+
++string doSearch(String userId,String keyword);
++boolean validate(String userId)
++void log(String userId);
+}
+
+class RealSearcher{
++string doSearch(String userId,String keyword);
+}
+
+class AccessValidator{
++boolean validate(String userId);
+}
+class Logger{
++void log(String userId);
+}
+
+
+ProxySearcher .up.|> Searcher
+
+RealSearcher .up.|>Searcher
+
+ProxySearcher o-right->RealSearcher
+
+AccessValidator <-down-o ProxySearcher
+Logger <-down-o ProxySearcher
+
+@enduml

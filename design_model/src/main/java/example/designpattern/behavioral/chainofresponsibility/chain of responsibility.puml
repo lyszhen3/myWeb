@@ -1,0 +1,48 @@
+@startuml
+
+abstract class Approver{
+#Approver successor;
+#String name;
++Approver(String name);
++void setSuccessor(Approver sucessor);
++{abstract} void processRequest();
+}
+
+class Director{
++Director(String name);
++void processReqeust();
+}
+
+class Congress{
++Congress(String name);
++void processReqeust();
+}
+
+class VicePresident{
++VicePresident(String name);
++void processReqeust();
+}
+
+class President{
++President(String name);
++void processReqeust();
+}
+
+class PurchaseRequest{
+-double amount;
+-int number;
+-String purpose;
+..set..
+..get..
++PurchaseRequest(double amount,int number,String purpose)
+
+}
+
+Director -up-|>Approver
+Congress -up-|>Approver
+VicePresident -up-|>Approver
+President -up-|>Approver
+
+Approver .left.>PurchaseRequest
+
+@enduml

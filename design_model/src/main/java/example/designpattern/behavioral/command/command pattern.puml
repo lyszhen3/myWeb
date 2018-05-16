@@ -1,0 +1,53 @@
+@startuml
+
+abstract class Command{
++{abstract} void +execute();
+}
+
+class MinimizeCommand{
+-WindowHandler whObj;
++void execute();
+}
+
+class WindowHandler{
++void minimize();
+}
+
+class HelpCommand{
+-HelpHandler hhObj;
++void execute();
+}
+
+class HelpHandler{
++void display();
+}
+
+class FunctionButton{
+-Command command;
+-String name;
++FunctionButton(String name);
++String getName();
++void setCommand(Command command);
++void onClick();
+}
+
+class FBSettingWindow{
+-String title;
+-ArrayList<FunctionButton> functionButtons;
++FBSettingWindwo(String title);
++void setTitle(String title);
++String getTitle();
++void addFunctionButton(FunctionButton fb);
++void removeFunctionButton(FunctionButton fb);
++void display();
+}
+
+MinimizeCommand -up-|>Command
+HelpCommand -up-|>Command
+WindowHandler <-right-* MinimizeCommand
+HelpHandler <-left-* HelpCommand
+FunctionButton o-right->Command
+FBSettingWindow *-->FunctionButton
+
+
+@enduml

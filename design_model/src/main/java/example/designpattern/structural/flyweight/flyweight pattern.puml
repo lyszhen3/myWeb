@@ -1,0 +1,27 @@
+@startuml
+abstract class IgoChessman{
++{abstract} String getColor();
++{abstract} void display();
+}
+
+class IgoChessmanFactory{
+-IgoChessmanFactory instance;
+-Hashtable ht;
+-IgoChessmanFactory();
++IgoChessmanFactory getInstance();
++IgoChessman getLgoChessman(String color);
+}
+
+class BlackIgoChessman{
++String getColor();
+}
+class WhiteIgoChessman{
++String getColor();
+}
+
+BlackIgoChessman -up-|>IgoChessman
+WhiteIgoChessman -up-|>IgoChessman
+
+IgoChessmanFactory ..>IgoChessman
+
+@enduml

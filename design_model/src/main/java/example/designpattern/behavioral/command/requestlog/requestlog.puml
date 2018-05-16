@@ -1,0 +1,25 @@
+@startuml
+
+abstract class Command <<implements Serializable>>{
++{abstract} void execute();
+}
+
+class InsertCommand{
++void execute();
+}
+
+class ModifyCommand{
++void execute();
+}
+
+class ConfigOperator<<implements Serializable>>{
+}
+InsertCommand -up-|>Command
+ConfigOperator <-down--o Command
+ModifyCommand -up-|>Command
+
+ConfigSettingWindows o-right->Command
+ConfigSettingWindows ..>FileUtil
+FileUtil ..> log.config
+
+@enduml
