@@ -1,0 +1,24 @@
+@startuml
+
+class Memento<<备忘录>>{
+-state;
++getState();
++setState();
+}
+
+class Caretaker<<负责人>>{
+
+}
+
+class Originator<<原发器>>{
+-state;
++restoreMemento(Memento m);
++createMemento();
+}
+note left:state=m.getState();\nreturn new Memento(state)
+
+Caretaker o-up->Memento
+Originator .right.>Memento
+
+
+@enduml

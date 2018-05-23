@@ -17,13 +17,13 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -387,10 +387,33 @@ public class TestAction {
 
 	@RequestMapping("tttttt")
 	@ResponseBody
-	public String tttttt(Shop shop, TestUser user) {
+	public String tttttt(Shop shop, @Valid TestUser user, Errors errors) {
+		if(errors.hasErrors()){
+			throw new NullException(errors.getAllErrors().get(0).getDefaultMessage());
+		}
 		System.out.println(shop.getShopName());
 		System.out.println(user.getName());
 		return "hello";
+	}
+
+	public class NullException extends RuntimeException{
+
+		private static final long serialVersionUID = 2014051027509027137L;
+
+		NullException(String msg){
+			super(msg);
+		}
+	}
+
+	/**
+	 * 异常处理
+	 * @param ex
+	 * @return
+	 */
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<JSONObject> handleRuntimeException(RuntimeException ex){
+		JSONObject jsonObject = JSON.parseObject(String.format("{\"message\":\"%s\"}", ex.getMessage()));
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(jsonObject);
 	}
 
 	/**

@@ -1,7 +1,7 @@
-package example.designpattern.structural.defaultadapter;
+package example.designpattern.structural.adapter.defaultadapter;
 
 /**
- * Created by lys on 5/2/2018.
+ * Created by lys on 5/18/2018.
  *
  * @author lys
  * @version 3.0.0-SNAPSHOT
@@ -9,6 +9,6 @@ package example.designpattern.structural.defaultadapter;
  */
 public interface ServiceInterface {
 
-	void saydie();
 	void saylive();
+	void saydie();
 }

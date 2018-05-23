@@ -1,17 +1,17 @@
 @startuml
 
-abstract class Command{
+abstract class Command<<抽象命令类>>{
 +{abstract} execute();
 }
 
-class ConcreteCommand{
+class ConcreteCommand<<具体命令类>>{
 -state;
 +execut();
 }
-class Invoker{
+class Invoker<<调用者(请求发送者)>>{
 
 }
-class Receiver{
+class Receiver<<接收者>>{
 +action();
 }
 

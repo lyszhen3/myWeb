@@ -117,8 +117,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         media.add(MediaType.APPLICATION_JSON);
         converter.setSupportedMediaTypes(media);
         // 返回JSON格式时候的中文乱码问题
-        converter.setCharset(Charset.forName("UTF-8"));
-
+        converter.setDefaultCharset(Charset.forName("UTF-8"));
         converters.add(converter);
         super.configureMessageConverters(converters);
     }

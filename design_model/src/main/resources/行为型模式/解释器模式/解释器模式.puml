@@ -1,0 +1,24 @@
+@startuml
+
+abstract class AbstractExpression<<抽象表达式>>{
++{abstract} interpret(Context ctx);
+}
+
+class TerminalExpression<<终结符表达式>>{
++ interpret(Context ctx);
+}
+class NonterminalExpression<<非终结符表达式>>{
++interpret(Context ctx);
+}
+class Context<<环境类>>{
+}
+
+TerminalExpression -up-|>AbstractExpression
+NonterminalExpression -up-|>AbstractExpression
+NonterminalExpression o-->AbstractExpression
+AbstractExpression .up.>Context
+Client .right.>Context
+Client .right.>AbstractExpression
+
+
+@enduml

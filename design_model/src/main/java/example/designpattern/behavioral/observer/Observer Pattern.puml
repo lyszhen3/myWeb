@@ -1,0 +1,42 @@
+@startuml
+
+interface Observer{
++{abstract} String getName();
++{abstract} void setName(String name);
++{abstract} void help();
++{abstract} void beAttacked(AllControlCenter acc);
+}
+
+class Player{
+-String name;
++Player(String name);
++ void setName(String name);
++ void help();
++ void beAttacked(AllControlCenter acc);
+}
+note bottom:acc.notifyObserver(name);
+
+abstract class AllyControlCenter{
+#String allyName;
+#ArrayList players;
++void setAllyName(String allyName);
++String getAllyName();
++void join(Observer obs);
++void quit(Observer obs);
++{abstract} void notifyObserver(String name);
+}
+class ConcreteAllyControlCenter{
++ConcreteAllyControlCenter(String allyName);
++void notifyObsever(String name);
+}
+note bottom:for(Observer obs:players){\nif(!((Observer)obs).getName().equalsIgnoreCase(name)){\n((Observer)obs).help();}}
+
+Player .up.|>Observer
+ConcreteAllyControlCenter-up-|>AllyControlCenter
+AllyControlCenter o-right->Observer
+Observer .left.>AllyControlCenter
+
+
+
+
+@enduml

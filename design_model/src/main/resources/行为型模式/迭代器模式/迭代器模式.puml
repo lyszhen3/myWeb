@@ -1,0 +1,30 @@
+@startuml
+
+interface  Iterator<<抽象迭代器>>{
++{abstract} first();
++{abstract} next();
++{abstract} hasNext();
++{abstract} currentItem();
+}
+
+class ConcreteIterator<<具体迭代器>>{
++first();
++next();
++hasNext();
++currentItem();
+}
+
+interface Aggregate<<抽象聚合类>>{
++{abstract} createIterator();
+}
+class ConcreteAggregate<<具体聚合类>>{
++createIterator();
+}
+
+ConcreteIterator .up.|>Iterator
+ConcreteAggregate .up.|>Aggregate
+ConcreteAggregate .right.>ConcreteIterator
+ConcreteIterator -left->ConcreteAggregate
+
+
+@enduml

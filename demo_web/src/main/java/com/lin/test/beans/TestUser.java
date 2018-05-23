@@ -1,5 +1,6 @@
 package com.lin.test.beans;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -12,6 +13,7 @@ import java.io.Serializable;
  */
 public class TestUser implements Serializable {
     private static final long serialVersionUID = -7721059177263362069L;
+    @NotNull(message = "fucked null")
     private String name;
     private Long id;
 

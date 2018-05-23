@@ -1,0 +1,43 @@
+@startuml
+
+interface AbstractIterator{
++{abstract} void next();
++{abstract} boolean isLast();
++{abstract} previous();
++{abstract} boolean isFirst();
++{abstract} Object getNextItem();
+}
+
+abstract class AbstractObjectList{
+#List<Object> objects;
++AbstractObjectList(List objects);
++void addObject(Object obj);
++void removeObject(Object obj);
++List getObjects();
++{abstract} AbstractIterator createIterator();
+}
+
+class ProductList{
++ProductList(List products);
++ AbstractIterator createIterator();
+}
+
+class ProductIterator{
+-ProductList productList;
+-List products;
+-int cursor1;
+-int cursor2;
++ProductIterator(ProductList list);
++void next();
++boolean isLast();
++previous();
++boolean isFirst();
++Object getNextItem();
+}
+
+ProductIterator .up.|>AbstractIterator
+ProductList -up-|>AbstractObjectList
+ProductList .right.> ProductIterator
+ProductIterator -left->ProductList
+
+@enduml

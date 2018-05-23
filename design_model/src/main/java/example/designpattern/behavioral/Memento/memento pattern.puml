@@ -1,0 +1,30 @@
+@startuml
+
+class ChessmanMemento{
+-String label;
+-int x;
+-int y;
++ChessmanMemento(String label,int x,int y)
+--set--
+--get--
+}
+
+class MementoCaretaker{
+-ArrayList mementolist;
++ChessmanMemento getMemento(int i);
++void setMemento(ChessmanMemento memento)
+}
+class Chessman{
+-String label;
+-int x;
+-int y;
++Chessman(String label,int x,int y)
++ChessmanMemento save();
++restore(ChessmanMemento c);
+--set--
+--get--
+}
+
+MementoCaretaker o-up->ChessmanMemento
+Chessman .right->ChessmanMemento
+@enduml

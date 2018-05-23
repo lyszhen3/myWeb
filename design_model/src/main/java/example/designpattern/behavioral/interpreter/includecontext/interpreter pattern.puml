@@ -1,0 +1,8 @@
+@startuml
+Abstract class Node{
++{abstract}void interprete(Context context);
+}
+
+
+
+@enduml

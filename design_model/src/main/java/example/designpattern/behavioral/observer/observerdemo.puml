@@ -1,0 +1,18 @@
+@startuml
+
+interface Observer{
++void update(Obserable o,Object org);
+}
+interface DeleteObserver{
+}
+DeleteObserver -up-|>Observer
+interface AddObserver{
+}
+AddObserver -up-|>Observer
+
+class ConcreteObserver{
++void update(Observerable o,Object org);
+}
+ConcreteObserver .up.|>DeleteObserver
+ConcreteObserver .up.|>AddObserver
+@enduml

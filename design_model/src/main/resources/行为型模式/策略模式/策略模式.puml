@@ -1,0 +1,23 @@
+@startuml
+abstract class Strategy<<抽象策略类>>{
++{abstract} algorithm();
+}
+
+class ConcreteStrategyA<<具体策略类>>{
++algorithm()
+}
+class ConcreteStrategyB<<具体策略类>>{
++algorithm();
+}
+
+class Context<<环境类>>{
+-Strategy stragety;
++algorithm();
+}
+
+ConcreteStrategyA -up-|>Strategy
+ConcreteStrategyB -up-|>Strategy
+Context o-right->Strategy:strategy
+
+
+@enduml

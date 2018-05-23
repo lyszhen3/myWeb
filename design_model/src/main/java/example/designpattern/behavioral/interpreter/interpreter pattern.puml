@@ -1,0 +1,53 @@
+@startuml
+
+abstract class AbstractNode{
++{abstract}String interpret();
+}
+
+class DirectionNode{
+-String direction;
++DirectionNode(String direction);
++String interpret();
+}
+
+
+class ActionNode{
+-String action;
++ActionNode(String action);
++String interpret();
+}
+
+class DistanceNode{
+-String distance;
++DistanceNode(String distance);
++String interpret();
+}
+
+class AndNode{
+-AbstractNode left;
+-AbstractNode right;
++AndNode(AbstractNode left,AbstractNode right);
++String interpret();
+}
+
+class SentenceNode{
+-AbstractNode direction;
+-AbstractNode distance;
+-AbstractNode action;
++SentenceNode(AbstractNode direction,\nAbstractNode distance,\nAbstractNode action);
++String interpret();
+}
+
+DirectionNode -right-|>AbstractNode
+ActionNode -up-|>AbstractNode
+DistanceNode -up-|>AbstractNode
+
+SentenceNode -up-|>AbstractNode
+AndNode -left-|>AbstractNode
+
+SentenceNode o-->AbstractNode
+AndNode o-->AbstractNode
+
+
+
+@enduml

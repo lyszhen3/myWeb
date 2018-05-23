@@ -1,0 +1,30 @@
+@startuml
+
+Abstract class Colleague<<抽象同事类>>{
+
+}
+
+class ConcreteColleagueA<<具体同事类>>{
+
+}
+
+class ConcreteColleagueB<<具体同事类>>{
+
+}
+Abstract class Mediator<<抽象中介者>>{
+
+}
+
+
+class ConcreteMediator<<具体中介者>>{
+
+}
+ConcreteColleagueA -up-|>Colleague
+ConcreteColleagueB -up-|>Colleague
+ConcreteMediator -up-|>Mediator
+Colleague -left->Mediator:mediator
+
+ConcreteMediator -right->ConcreteColleagueA
+ConcreteMediator -right->ConcreteColleagueB
+
+@enduml

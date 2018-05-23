@@ -1,0 +1,31 @@
+@startuml
+
+interface Observer<<观察者>>{
++{abstract} update();
+}
+class ConcreteObserver<<具体观察者>>{
+-observerState;
++update();
+}
+note bottom:observerState=subject.getState();
+class Subject<<目标>>{
++attach(Observer obs);
++detach(Observer obs);
++notify();
+}
+note bottom:for(obs:observers){\nobs.update();}
+
+class ConcreteSubject<<具体目标>>{
+-subjectState;
++getState();
++setState();
+}
+note "return subjectState" as N1
+ConcreteSubject..N1
+
+
+ConcreteObserver .up.|>Observer
+ConcreteSubject -up-|>Subject
+ConcreteObserver -left->ConcreteSubject:subject
+Subject -right->Observer:observers
+@enduml

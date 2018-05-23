@@ -1,0 +1,35 @@
+@startuml
+
+interface Discount{
++{abstract} double calculate(double price);
+}
+
+class StudentDiscount{
++double calculate(double price);
+}
+
+
+class VIPDiscount{
++double calculate(double price);
+}
+
+
+class ChildrenDiscount{
++double calculate(double price);
+}
+
+class MovieTicket{
+-double price;
+-Discount discount;
++void setPrice(double price)
++void setDiscount(Discount discount);
++double getPrice();
+}
+
+StudentDiscount .up.|>Discount
+ChildrenDiscount .up.|>Discount
+VIPDiscount .up.|>Discount
+MovieTicket -right->Discount
+
+
+@enduml

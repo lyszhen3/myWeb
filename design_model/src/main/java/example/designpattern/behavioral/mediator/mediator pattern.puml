@@ -1,0 +1,52 @@
+@startuml
+
+abstract class Component{
+#Mediator mediator;
++void setMediator(Mediator mediator);
++{abstract} void change();
++{abstract} void update();
+}
+
+class Button{
++void change();
++void update();
+}
+class TextBox{
++void change();
++void update();
+}
+class List{
++void change();
++void update();
+}
+class ComboBox{
++void change();
++void update();
+}
+
+abstract class Mediator{
++{abstract} void componentChanged(Component c)
+}
+class ConcreteMediator{
++Button addButton;
++List list;
++TextBox userNameTextBox;
++ComboBox cb;
++void componentChanged(Component c);
+}
+Button --up-|>Component
+TextBox --up-|>Component
+List --up-|>Component
+ComboBox --up-|>Component
+
+ConcreteMediator -up-|>Mediator
+Component o-left->Mediator
+Mediator .right.>Component
+ConcreteMediator o-right->Button
+ConcreteMediator o-right->TextBox
+
+ConcreteMediator o-right->List
+
+ConcreteMediator o-right->ComboBox
+
+@enduml

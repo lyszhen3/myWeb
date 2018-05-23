@@ -1,4 +1,6 @@
-package example.designpattern.structural.defaultadapter;
+package example.designpattern.structural.adapter.defaultadapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by lys on 5/2/2018.
@@ -14,5 +16,8 @@ public class ConcreteServiceClass extends AbstractServiceClass{
 		System.out.println("嗯？");
 	}
 
+	public static void main(String[] args) {
+		ArrayList list= new ArrayList();
+	}
 
 }
