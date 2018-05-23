@@ -1,0 +1,25 @@
+@startuml
+
+abstract class State<<抽象状态类>>{
++{abstract} handle();
+}
+class ConcreteStateA<<具体状态类>>{
++handle();
+}
+class ConcreteStateB<<具体状态类>>{
++handle();
+}
+class Context<<环境类>>{
+-State state;
++reqeust();
+..request()..
+state.handle();
+....
++setState(State state);
+}
+ConcreteStateA -up-|>State
+ConcreteStateB -up-|>State
+
+Context o-right->State:state
+
+@enduml

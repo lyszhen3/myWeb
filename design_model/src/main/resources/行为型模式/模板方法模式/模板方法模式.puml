@@ -1,0 +1,21 @@
+@startuml
+
+abstract class AbstractClass<<抽象类>>{
++TemplateMethod()
+..TemplateMethod()..
+PrimitiveOperation1()
+PrimitiveOPeration2()
+PrimitiveOperation3()
+....
++PrimitiveOperation1()
++PrimitiveOPeration2()
++PrimitiveOperation3()
+}
+
+class ConcreteClass<<具体类>>{
++PrimitiveOPeration2()
++PrimitiveOperation3()
+}
+ConcreteClass -up-|>AbstractClass
+
+@enduml

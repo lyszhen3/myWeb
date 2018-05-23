@@ -1,0 +1,52 @@
+@startuml
+
+abstract class AccountState{
+#acc:Account
++{abstract} deposit(double amount) : void
++{abstract} withdraw(double amount) : void
++{abstract} computeInterest() : void
++{abstract} stateCheck() : void
+}
+
+class OverdraftState{
++OverdraftState(AccountState state)
++deposit(double amount) : void
++withdraw(double amount) : void
++computeInterest() : void
++stateCheck() : void
+}
+class NormalState{
++NormalState(AccountState state)
++deposit(double amount) : void
++withdraw(double amount) : void
++computeInterest() : void
++stateCheck() : void
+}
+class RestrictedState{
++RestrictedState(AccountState state)
++deposit(double amount) : void
++withdraw(double amount) : void
++computeInterest() : void
++stateCheck() : void
+}
+
+
+class Account{
+-state : AccountState
+-owner : String
+-balance : double  =0
++Account(String owner,double init)
++getBalance() : double
++setBalance(double balance) :void
++setState(AccountState state) :void
++deposit(double amount) :void
++withdraw(double amount) :void
++computeInterest() : void
+}
+
+NormalState -up-|>AccountState
+RestrictedState -up-|>AccountState
+OverdraftState -up-|>AccountState
+Account -right->AccountState:state
+AccountState -left->Account:acc
+@enduml

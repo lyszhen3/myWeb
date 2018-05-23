@@ -1,0 +1,21 @@
+@startuml
+
+abstract class Account{
++validate(String account,String password) : boolean
++{abstract} calulateInterest() : void
++display() : void
++handle(String account,String password) : void
+}
+
+class CurrentAccount{
++calulateInterest() : void
+}
+class SavingAccount{
++calulateInterest() : void
+}
+
+SavingAccount -up-|>Account
+CurrentAccount -up-|>Account
+
+
+@enduml

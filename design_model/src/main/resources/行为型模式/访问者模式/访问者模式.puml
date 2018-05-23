@@ -1,0 +1,39 @@
+@startuml
+interface Visitor<<抽象访问者>>{
++{abstract} visitConcreteElementA(ConcreteElementA elementA)
++{abstract} visitConcreteElementB(ConcreteElementB elementB)
+}
+
+class ConcreteVisitorA<<具体访问者>>{
++ visitConcreteElementA(ConcreteElementA elementA)
++ visitConcreteElementB(ConcreteElementB elementB)
+}
+class ConcreteVisitorB<<具体访问者>>{
++visitConcreteElementA(ConcreteElementA elementA)
++visitConcreteElementB(ConcreteElementB elementB)
+}
+interface Element<<抽象元素>>{
++{abstract} accept(Visitor visitor)
+}
+class ConcreteElementA<<具体抽象类>>{
++accept(Visitor visitor)
++operationA()
+}
+class ConcreteElementB<<具体抽象类>>{
++accept(Visitor visitor)
++operationB()
+}
+class ObjectStructure<<对象结构>>{
+
+}
+
+ConcreteVisitorA .up.|>Visitor
+ConcreteVisitorB .up.|>Visitor
+ConcreteElementA .up.|>Element
+ConcreteElementB .up.|>Element
+ObjectStructure -right->Element
+Client -down->ObjectStructure
+Client -right->Visitor
+
+
+@enduml
