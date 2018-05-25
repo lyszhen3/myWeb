@@ -1,4 +1,4 @@
-package com.lin.utils;
+package com.lin.utils.validatepng;
 import java.io.ByteArrayInputStream;  
 import java.awt.*;  
 /** 

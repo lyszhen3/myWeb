@@ -389,6 +389,23 @@
         <!--</dependency>-->
 
     </dependencies>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <url>http://118.31.45.164/manager/text</url>
+                    <server>alibabaecs.deploy</server>
+                    <update>true</update>
+                    <path>/${build.finalName}</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <repositories>
         <repository>

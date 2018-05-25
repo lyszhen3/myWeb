@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Objects;
+
 /**
  * Created by pc on 2017-10-11.
  *
@@ -28,8 +31,8 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        Test test = new Test();
-        test.xx(new IninImpl3());
+        List<String> list = null;
+
     }
 
 
