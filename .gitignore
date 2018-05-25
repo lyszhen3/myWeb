@@ -49,6 +49,5 @@ Temporary Items
 .idea
 *.iml
 target/
-demo_web/src/main/resources/rsakey/private.key
-demo_web/src/main/resources/rsakey/public.key
+demo_web/src/main/resources/rsakey
 
