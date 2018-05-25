@@ -9,7 +9,7 @@ import com.lin.test.bo.UserBo;
 import com.lin.test.services.TestMore;
 import com.lin.test.services.TestService;
 import com.lin.test.services.TransactionalService;
-import com.lin.utils.ValidateCode;
+import com.lin.utils.validatepng.ValidateCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
