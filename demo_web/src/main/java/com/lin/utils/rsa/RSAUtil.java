@@ -158,7 +158,7 @@ public class RSAUtil {
 
 	public static void main(String[] args) {
 //		getKeyPair("d:\\");
-		byte[] encypt = encryptBase64("49c532f347c99fd4b5f7f72d4414b507".getBytes());
+		byte[] encypt = encryptBase64("fdljljljflksjlf".getBytes());
 		System.out.println(new String(encypt));
 
 		byte[] decrypt = decryptBase64(encypt);
