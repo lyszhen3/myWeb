@@ -1,4 +1,4 @@
-package com.lin.test.actions;
+package com.lin.test.controllers;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

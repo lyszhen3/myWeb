@@ -16,7 +16,8 @@
 
     <!--扫描注入-->
     <context:component-scan base-package="com.*">
-        <!--<context:exclude-filter type="annotation" expression="org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession"/>-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
     </context:component-scan>
     <!--加载配置文件-->
     <bean class="com.lin.core.config.EncryptPropertyPlaceholderConfigurer">
@@ -79,13 +80,13 @@
         <constructor-arg index="2" value="6000"/>
         <constructor-arg index="3" ref="retryPolicy"/>
     </bean>-->
-
-    <mvc:interceptors>
+    <!--转移到mvc配置中-->
+    <!--<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/*"/>
-            <bean class="com.lin.interceptors.MySelfInterceptor" />
+            <bean class="com.lin.interceptors.MySelfInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 
 
     <!--添加dubbo服务-->

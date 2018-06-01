@@ -49,11 +49,11 @@
             <param-name>contextClass</param-name>
             <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
         </init-param>
-        <init-param>
+<!--        <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring-mvc.xml</param-value>
-            <!--<param-value>com.lin.core.config.WebMvcConfig</param-value>-->
-        </init-param>
+            <param-value>classpath*:spring-mvc.xml</param-value>
+            &lt;!&ndash;<param-value>com.lin.core.config.WebMvcConfig</param-value>&ndash;&gt;
+        </init-param>-->
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
