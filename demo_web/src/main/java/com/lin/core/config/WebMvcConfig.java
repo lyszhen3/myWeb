@@ -133,14 +133,12 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		resolver.setMaxInMemorySize(4096);
 		resolver.setDefaultEncoding("UTF-8");
 		return resolver;
-
 	}
 
 //	@Override
 //	public Validator getValidator() {
 //		return new LocalValidatorFactoryBean();
 //	}
-
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor( new MySelfInterceptor());
