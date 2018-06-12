@@ -32,7 +32,7 @@
 						<input type="text" name="code" autocomplete="off" placeholder="请输入验证码" class="layui-input" <#--lay-verify="required|number|code"-->>
 					</div>
 					<div class="layui-input-inline code">
-						<div><img src="img/code.png" alt="验证码"/></div>
+						<div><img src="/verCode" alt="验证码"/></div>
 					</div>
 				</div>
 				<div class="layui-form-item submit-login">

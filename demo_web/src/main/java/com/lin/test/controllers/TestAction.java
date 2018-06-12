@@ -54,8 +54,12 @@ public class TestAction {
 	@Resource(name = "lin_testService")
 	private TestService testService;
 
+	private TransactionalService transactionalService;
+
 	@Autowired
-	private TransactionalService TransactionnalServiceImpl;
+	public void setTransactionalService(TransactionalService transactionalService) {
+		this.transactionalService = transactionalService;
+	}
 
 	private TestMore testMore;
 
@@ -388,7 +392,7 @@ public class TestAction {
 	@RequestMapping("tttttt")
 	@ResponseBody
 	public String tttttt(Shop shop, @Valid TestUser user, Errors errors) {
-		if(errors.hasErrors()){
+		if (errors.hasErrors()) {
 			throw new NullException(errors.getAllErrors().get(0).getDefaultMessage());
 		}
 		System.out.println(shop.getShopName());
@@ -396,22 +400,23 @@ public class TestAction {
 		return "hello";
 	}
 
-	public class NullException extends RuntimeException{
+	public class NullException extends RuntimeException {
 
 		private static final long serialVersionUID = 2014051027509027137L;
 
-		NullException(String msg){
+		NullException(String msg) {
 			super(msg);
 		}
 	}
 
 	/**
 	 * 异常处理
+	 *
 	 * @param ex
 	 * @return
 	 */
 	@ExceptionHandler(RuntimeException.class)
-	public ResponseEntity<JSONObject> handleRuntimeException(RuntimeException ex){
+	public ResponseEntity<JSONObject> handleRuntimeException(RuntimeException ex) {
 		JSONObject jsonObject = JSON.parseObject(String.format("{\"message\":\"%s\"}", ex.getMessage()));
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(jsonObject);
 	}
@@ -425,7 +430,7 @@ public class TestAction {
 	@RequestMapping("testAopTransactional")
 	@ResponseBody
 	public String testAopTransactional() {
-		TransactionnalServiceImpl.a();
+		transactionalService.a();
 		return "ok";
 	}
 
@@ -461,7 +466,7 @@ public class TestAction {
 		try {
 			System.out.println(response.getCharacterEncoding());
 			response.setHeader("Content-disposition", "attachment;filename=" +
-					encodeURIComponent("文件名.txt")+";"+"filename*=utf-8''"+encodeURIComponent("文件名.txt"));
+					encodeURIComponent("文件名.txt") + ";" + "filename*=utf-8''" + encodeURIComponent("文件名.txt"));
 			ServletOutputStream outputStream = response.getOutputStream();
 			outputStream.write(2);
 			outputStream.close();
@@ -471,9 +476,9 @@ public class TestAction {
 	}
 
 
-	public static String encodeURIComponent(String value){
+	public static String encodeURIComponent(String value) {
 		try {
-			return URLEncoder.encode(value,"UTF-8").replaceAll("\\+","%20");
+			return URLEncoder.encode(value, "UTF-8").replaceAll("\\+", "%20");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 			return null;
