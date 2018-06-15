@@ -6,6 +6,8 @@ import com.lin.data.beans.Account;
 import com.lin.test.beans.Shop;
 import com.lin.test.beans.TestUser;
 import com.lin.test.bo.UserBo;
+import com.lin.test.services.PrototypeService;
+import com.lin.test.services.SchedulePolling.SchedulePolling;
 import com.lin.test.services.TestMore;
 import com.lin.test.services.TestService;
 import com.lin.test.services.TransactionalService;
@@ -69,6 +71,20 @@ public class TestAction {
 		this.testMore = testMore;
 	}
 
+	private PrototypeService prototypeService;
+
+	@Autowired
+	public void setPrototypeService(PrototypeService prototypeService) {
+		this.prototypeService = prototypeService;
+	}
+
+	private SchedulePolling schedulePolling;
+
+	@Autowired
+	public void setSchedulePolling(SchedulePolling schedulePolling) {
+		this.schedulePolling = schedulePolling;
+	}
+
 	/**
 	 * 老layuidemo
 	 *
@@ -83,6 +99,7 @@ public class TestAction {
 
 		return "sysman/mainIndex";
 	}
+
 
 	/**
 	 * layui demo
@@ -214,6 +231,29 @@ public class TestAction {
 //        response.addHeader("Content-Disposition", "attachment;filename=image.png");
 		model.addAttribute("name", "负载2");
 		return "test";
+	}
+
+	/**
+	 * 测试单列controller下多列service
+	 *
+	 * @return
+	 */
+	@RequestMapping("prototypeTest")
+	@ResponseBody
+	public JSONObject testProto() {
+		JSONObject obj = new JSONObject();
+		obj.put("msg", "成功");
+		obj.put("result", prototypeService.toString());
+		prototypeService.innerBeanScope();
+		return obj;
+	}
+
+	@RequestMapping("schedulePollingTest")
+	@ResponseBody
+	public JSONObject schedulePollingTest() {
+
+		schedulePolling.excute();
+		return JSON.parseObject("{}");
 	}
 
 	/**

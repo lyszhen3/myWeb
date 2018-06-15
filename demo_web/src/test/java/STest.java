@@ -1,6 +1,14 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import mvctest.Car;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
@@ -12,6 +20,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.nio.charset.Charset;
 import java.util.Date;
 
 /**
@@ -62,6 +71,21 @@ public class STest {
     public static void main(String[] args) {
         System.out.println(StringUtils.hasText(null));
         System.out.println(StringUtils.isEmpty(""));
+    }
+
+    @Test
+    public void paBaidu() throws IOException {
+        HttpGet httpGet = new HttpGet("http://www.baidu.com");
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+        httpGet.setConfig(requestConfig);
+        HttpClient client = HttpClientBuilder.create().build();
+
+        HttpResponse response = client.execute(httpGet);
+        HttpEntity entity = response.getEntity();
+        String s = EntityUtils.toString(entity,Charset.forName("UTF-8"));
+        System.out.println(s);
+
+
     }
 
 }

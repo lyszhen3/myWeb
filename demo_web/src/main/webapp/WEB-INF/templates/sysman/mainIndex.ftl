@@ -13,9 +13,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
 
-    <link rel="stylesheet" href="sysman/plugins/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="sysman/css/global.css" media="all">
-    <link rel="stylesheet" type="sysman/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/sysman/plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/sysman/css/global.css" media="all">
+    <link rel="stylesheet" type="/sysman/css/font-awesome.min.css">
 
 </head>
 
@@ -43,7 +43,7 @@
                 </li>-->
                 <li class="layui-nav-item">
                     <a href="javascript:;" class="admin-header-user">
-                        <img src="sysman/images/0.jpg" />
+                        <img src="/sysman/images/0.jpg" />
                         <span>${userName}</span>
                     </a>
                     <dl class="layui-nav-child">
@@ -59,14 +59,14 @@
                             </a>
                         </dd>-->
                         <dd>
-                            <a href="sysman/system/loginout.htm"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+                            <a href="/sysman/system/loginout.htm"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
                         </dd>
                     </dl>
                 </li>
             </ul>
             <ul class="layui-nav admin-header-item-mobile">
                 <li class="layui-nav-item">
-                    <a href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
+                    <a href="/login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
                 </li>
             </ul>
         </div>
@@ -114,9 +114,9 @@
     </script>
     <!--锁屏模板 end -->
 
-    <script type="text/javascript" src="sysman/plugins/layui/layui.js"></script>
-    <script type="text/javascript" src="sysman/datas/nav.js"></script>
-    <script src="sysman/js/index.js"></script>
+    <script type="text/javascript" src="/sysman/plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="/sysman/datas/nav.js"></script>
+    <script src="/sysman/js/index.js"></script>
     <script>
         layui.use('layer', function() {
             var $ = layui.jquery,

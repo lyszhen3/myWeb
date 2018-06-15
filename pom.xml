@@ -7,6 +7,7 @@
     <groupId>myWeb</groupId>
     <artifactId>myWeb</artifactId>
     <version>1.1-SNAPSHOT</version>
+
     <!--
     mvn versions:set -DnewVersion=1.0.1-SNAPSHOT
     mvn -N versions:update-child-modules
@@ -27,6 +28,7 @@
     <properties>
         <spring.version>4.3.10.RELEASE</spring.version>
         <aspectj>1.8.9</aspectj>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>

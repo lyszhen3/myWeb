@@ -24,6 +24,10 @@ public class CallableDemo {
             while (!fs.isDone()) ;
             try {
                 System.out.println(fs.get());
+                if(fs.get().contains("[7]")){
+                    executorService.shutdown();
+                }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -98,7 +102,7 @@ class TaskWithResource implements Callable<String> {
         System.out.println(this);
         System.out.println("call()方法自动调用！！！" + Thread.currentThread().getName());
 
-        return "call()方法自动调用，返回结果：" + i + "   " + Thread.currentThread().getName();
+        return "call()方法自动调用，返回结果：[" + i + "]    " + Thread.currentThread().getName();
     }
 }
 

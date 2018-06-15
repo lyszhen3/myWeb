@@ -1,11 +1,13 @@
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Created by pc on 2017-10-11.
@@ -36,9 +38,13 @@ public class Test {
         }
     }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
     }
+
+  public static void deleteFile(File file) throws IOException {
+      ScheduledExecutorService executorService = Executors.newScheduledThreadPool(10);
+
+}
 
 
 }
