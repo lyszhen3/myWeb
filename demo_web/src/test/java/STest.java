@@ -75,7 +75,7 @@ public class STest {
 
     @Test
     public void paBaidu() throws IOException {
-        HttpGet httpGet = new HttpGet("http://www.baidu.com");
+        HttpGet httpGet = new HttpGet("https://www.baidu.com");
         RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
         httpGet.setConfig(requestConfig);
         HttpClient client = HttpClientBuilder.create().build();
@@ -84,7 +84,6 @@ public class STest {
         HttpEntity entity = response.getEntity();
         String s = EntityUtils.toString(entity,Charset.forName("UTF-8"));
         System.out.println(s);
-
 
     }
 

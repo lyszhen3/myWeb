@@ -24,7 +24,7 @@ public class NormalTest {
         list.add(new Pmoney("LIN",0.11));
         list.add(new Pmoney("ZHANG",2001299.32));
         list.add(new Pmoney("WANG",0.999));
-        double sum = list.stream().mapToDouble(p -> p.getMoney()).sum();
+        double sum = list.stream().mapToDouble(Pmoney::getMoney).sum();
         System.out.println(sum);
         double d1 = 0.11;
         double d2 = 2001299.32;

@@ -22,13 +22,13 @@ import java.util.logging.Logger;
 public class FileOperation {
     private final static Path path = Paths.get("src/test","resources");
     private final static Logger log = Logger.getLogger(FileOperation.class.getName());
-    public boolean isAccessable(Path p){
+    private boolean isAccessable(Path p){
 
       return  Files.isWritable(p)&&Files.isExecutable(p)&&Files.isReadable(p)
                 &&Files.isRegularFile(p, LinkOption.NOFOLLOW_LINKS);
     }
 
-    public void dofilterAndPrintPath(Predicate<Path> pred) throws IOException {
+    private void dofilterAndPrintPath(Predicate<Path> pred) throws IOException {
         Files.newDirectoryStream(path).forEach(p->{
             if(pred.test(p)){
                 System.out.println(p.getFileName());
@@ -36,7 +36,7 @@ public class FileOperation {
         });
     }
 
-    public void precidcateWithLambda() throws IOException {
+    private void precidcateWithLambda() throws IOException {
 
         Predicate<Path> noFilter = p->true;
         log.info("无差别输出");

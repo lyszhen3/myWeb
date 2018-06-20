@@ -1,10 +1,6 @@
 package com;
 
-import com.alibaba.druid.sql.visitor.functions.Char;
-
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.util.HashMap;
 
 /**
  * Created by pc on 2017-01-11.
