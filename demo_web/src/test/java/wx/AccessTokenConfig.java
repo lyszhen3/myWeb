@@ -35,7 +35,9 @@ public class AccessTokenConfig {
 	@Test
 	public void postTowx() throws IOException {
 
-
+		System.out.println("新版本");
+		System.out.println("提交1");
+		System.out.println("提交2");
 		List<NameValuePair> paramList = new ArrayList<>();
 		paramList.add(new BasicNameValuePair("grant_type",grant_type));
 		paramList.add(new BasicNameValuePair("appid",appid));
