@@ -36,7 +36,7 @@ public class BufferToText {
         System.out.println("Decoded using"+encoding+":"+ Charset.forName(encoding).decode(buff));
         // Or,we could encode with something that will print;
         fc = new FileOutputStream("data3.txt").getChannel();
-        fc.write(ByteBuffer.wrap("some text".getBytes()));//如果不转换成UTF-16BE使用asCharBuffer读出会乱码，同样如果写入的格式是UTF-16BE 文件看起来会乱码
+        fc.write(ByteBuffer.wrap("some text".getBytes("UTF-16BE")));//如果不转换成UTF-16BE使用asCharBuffer读出会乱码，同样如果写入的格式是UTF-16BE 文件看起来会乱码
 
         fc.close();
         //Now try reading again;

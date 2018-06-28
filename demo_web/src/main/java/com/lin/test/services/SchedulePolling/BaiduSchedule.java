@@ -48,7 +48,7 @@ public class BaiduSchedule implements SchedulePolling {
 
 	@Override
 	public void excute() {
-		executorService.scheduleWithFixedDelay(new Task(), 1, 2, TimeUnit.SECONDS);
+		executorService.scheduleWithFixedDelay(new Task(), 10, 10, TimeUnit.SECONDS);
 	}
 
 

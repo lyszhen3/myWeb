@@ -8,5 +8,7 @@ package com.lin.test.services;
  * @since 3.0.0-SNAPSHOT
  */
 public interface TestMore {
+
+
     void say();
 }

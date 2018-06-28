@@ -66,25 +66,33 @@ public class STest {
             }
         });
         thread.start();
+        try {
+            paBaidu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
-        System.out.println(StringUtils.hasText(null));
-        System.out.println(StringUtils.isEmpty(""));
     }
 
     @Test
     public void paBaidu() throws IOException {
-        HttpGet httpGet = new HttpGet("https://www.baidu.com");
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
-        httpGet.setConfig(requestConfig);
-        HttpClient client = HttpClientBuilder.create().build();
+    	Myclass myclass = new Myclass();
+    	myclass.deprecateMethod();
 
-        HttpResponse response = client.execute(httpGet);
-        HttpEntity entity = response.getEntity();
-        String s = EntityUtils.toString(entity,Charset.forName("UTF-8"));
-        System.out.println(s);
+    }
+    public class Myclass{
 
+        /**
+         * @deprecated use {@link Myclass#replacementMethod()} instead.
+         */
+        void deprecateMethod(){
+
+        }
+        void replacementMethod(){
+
+        }
     }
 
 }

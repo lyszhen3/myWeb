@@ -24,6 +24,6 @@ public class test {
 
 	public void test2() {
 		System.out.println("test_2");
-
+		System.out.println();
 	}
 }

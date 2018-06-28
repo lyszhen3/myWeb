@@ -431,7 +431,7 @@ public class TestAction {
 
 	@RequestMapping("tttttt")
 	@ResponseBody
-	public String tttttt(Shop shop, @Valid TestUser user, Errors errors) {
+	public String tttttt(@Deprecated Shop shop, @Valid TestUser user, Errors errors) {
 		if (errors.hasErrors()) {
 			throw new NullException(errors.getAllErrors().get(0).getDefaultMessage());
 		}

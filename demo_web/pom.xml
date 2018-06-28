@@ -407,7 +407,7 @@
                     <url>http://118.31.45.164/manager/text</url>
                     <server>alibabaecs.deploy</server>
                     <update>true</update>
-                    <path>/${build.finalName}</path>
+                    <path>/${project.build.finalName}</path>
                 </configuration>
             </plugin>
         </plugins>

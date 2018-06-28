@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
  * @since 3.0.0-SNAPSHOT
  */
 @Service
-public class MoreFirstImpl implements TestMore{
+public class MoreFirstImpl extends AbstractTestMore{
+    {
+        System.out.println("--------"+this+"-----------");
+    }
     @Override
     public void say() {
         System.out.println("first");
