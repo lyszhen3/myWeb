@@ -41,6 +41,7 @@ public class AccessTokenConfig {
 
 		System.out.println("新版本1.0 修改3，要合并到1.2");
 		System.out.println("新版本1.0 修改4，要合并到1.2");
+		System.out.println("测试下git --amend -m <msg>");
 
 		List<NameValuePair> paramList = new ArrayList<>();
 		paramList.add(new BasicNameValuePair("grant_type",grant_type));
