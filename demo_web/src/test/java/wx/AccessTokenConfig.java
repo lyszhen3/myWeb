@@ -36,6 +36,7 @@ public class AccessTokenConfig {
 	public void postTowx() throws IOException {
 
 		System.out.println("新版本1.0 提交");
+		System.out.println("新版本1.0 修改，要合并到1.2");
 
 		List<NameValuePair> paramList = new ArrayList<>();
 		paramList.add(new BasicNameValuePair("grant_type",grant_type));
