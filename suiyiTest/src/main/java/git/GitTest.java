@@ -19,7 +19,7 @@ public class GitTest {
 	}
 
 	public void commit0(){
-
+		System.out.println("----");
 	}
 
 	public void commit2(){
