@@ -21,4 +21,8 @@ public class GitTest {
 	public void commit0(){
 
 	}
+
+	public void commit2(){
+
+	}
 }
