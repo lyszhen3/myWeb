@@ -17,4 +17,7 @@ public class GitTest2 {
 	public void test1(){
 
 	}
+	public void test2(){
+
+	}
 }
