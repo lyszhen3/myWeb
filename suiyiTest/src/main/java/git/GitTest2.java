@@ -10,5 +10,7 @@ package git;
 public class GitTest2 {
 	public void test(){
 		System.out.println("rebase 测试");
+
+		System.out.println("_____");
 	}
 }
