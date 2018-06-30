@@ -18,7 +18,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * @since 3.0.0-SNAPSHOT
  */
 public class Test {
-    /****/
+
     @org.junit.Test
     public void test(){
       Test test =null;
