@@ -11,5 +11,8 @@ public class GitTest {
 
 	public static void main(String[] args) {
 		System.out.println("日子过不下去了提交一下");
+
+
+		System.out.println("1.0 得commit 1");
 	}
 }
