@@ -11,5 +11,6 @@ public class GitTest {
 
 	public static void main(String[] args) {
 		System.out.println("用户撤销得提交");
+		System.out.println("用于撤销提交2");
 	}
 }
