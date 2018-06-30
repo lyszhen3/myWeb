@@ -28,4 +28,7 @@ public class GitTest {
 	public void commit3(){
 
 	}
+	public void commit4(){
+
+	}
 }
