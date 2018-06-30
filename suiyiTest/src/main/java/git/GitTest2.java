@@ -8,5 +8,7 @@ package git;
  * @since 3.0.0-SNAPSHOT
  */
 public class GitTest2 {
-
+	public void test(){
+		System.out.println("rebase 测试");
+	}
 }
