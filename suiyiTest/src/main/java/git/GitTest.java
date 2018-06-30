@@ -17,4 +17,8 @@ public class GitTest {
 
 		System.out.println("1.0 的commit 2");
 	}
+
+	public void commit0(){
+
+	}
 }
