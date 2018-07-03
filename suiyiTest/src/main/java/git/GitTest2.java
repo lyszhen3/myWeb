@@ -15,9 +15,12 @@ public class GitTest2 {
 	}
 
 	public void test1(){
+		System.out.println("同步到远程");
+		System.out.println("同步到远程");
 
 	}
 	public void test2(){
+		System.out.println("同步到远程");
 
 	}
 }

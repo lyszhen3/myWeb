@@ -186,7 +186,7 @@ public class Pic {
 			g = main.createGraphics();
 			//第二张图片位置
 			g.drawImage(son1, x1, y1, w, h, null);
-//			g.drawImage(son2, x2, y2, son2.getWidth(), son2.getHeight(), null);
+			g.drawImage(son2, x2, y2, 400, 800, null);
 			g.setColor(Color.BLACK);
 			g.setFont(new Font("Serif", Font.PLAIN, 50));
 			g.drawString("1.wocao", 100, 200);
@@ -212,10 +212,10 @@ public class Pic {
 		g.clearRect(0, 0, 1400, 1400);
 
 		g.drawImage(son1, x1, y1, 400, 400, null);
-		g.drawImage(son2, x2, y2, son2.getWidth(), son2.getHeight(), null);
+		g.drawImage(son2, x2, y2, 800, 400, null);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("Serif", Font.PLAIN, 50));
-		g.drawString("1.wocao", 100, 200);
+		g.drawString("1.wocao", 400, 1000);
 		g.dispose();
 
 		File file = new File("D:\\qr\\zz.jpg");
