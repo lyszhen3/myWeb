@@ -4,6 +4,7 @@
     <facet type="Spring" name="Spring">
       <configuration />
     </facet>
+    <!---->
     <facet type="web" name="Web">
       <configuration>
         <descriptors>
