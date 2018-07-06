@@ -22,6 +22,7 @@
         <module>data_baomidou</module>
         <module>design_model</module>
         <module>image</module>
+        <module>spring-test</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -9,7 +9,9 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -71,5 +73,24 @@ public class MessageConfig {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("天哪路", JSON.parse("{\"V\":\"TT\"}"));
 		System.out.println(JSON.toJSONString(jsonObject,SerializerFeature.UseSingleQuotes));
+	}
+	@Test
+	public void testHttpEntitry() throws IOException {
+
+		HttpGet httpGet = new HttpGet("https://www.baidu.com");
+		RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+		httpGet.setConfig(requestConfig);
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		HttpResponse execute = httpClient.execute(httpGet);
+
+		httpGet.addHeader("Content-Type", "application/json;charset=utf-8");
+		HttpEntity entity = execute.getEntity();
+		HttpEntity bufferedHttpEntity = new BufferedHttpEntity(entity);
+		String s = EntityUtils.toString(bufferedHttpEntity);
+		System.out.println("----"+bufferedHttpEntity.getContentType()+"-----");
+		System.out.println(s);
+		System.out.println(EntityUtils.toString(bufferedHttpEntity,"utf-8"));
+
+
 	}
 }
