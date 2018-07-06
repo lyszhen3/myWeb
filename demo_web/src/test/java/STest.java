@@ -16,6 +16,7 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.Test;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
@@ -74,6 +75,11 @@ public class STest {
     }
 
     public static void main(String[] args) {
+        STest sTest = new STest();
+        String identityHexString = ObjectUtils.getIdentityHexString(sTest);
+        System.out.println(identityHexString);
+        int i = System.identityHashCode(sTest);
+        System.out.println(i);
     }
 
     @Test

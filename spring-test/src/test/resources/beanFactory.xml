@@ -15,8 +15,31 @@
 						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
 						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <!--自定义方法写入1 -->
+        <!--<property name="customEditors">-->
+            <!--<map>-->
+                <!--<entry key="java.util.Date" >-->
+                    <!--<value>springframeworktest.beans.propertyeditor.DatePropertyEditor</value>-->
+                <!--</entry>-->
+            <!--</map>-->
+        <!--</property>-->
+        <!--自定义方法写入2-->
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="springframeworktest.beans.propertyeditor.DatePropertyEditorRegistar"/>
+            </list>
+        </property>
+    </bean>
 
 
+    <bean class="springframeworktest.beans.Apple">
+        <property name="name" value="雷猴"/>
+        <property name="id" value="111"/>
+        <property name="birthday" value="2018-07-06"/>
+    </bean>
+
+    <bean class="springframeworktest.beans.aware.AwareTest"/>
 
 
 </beans>

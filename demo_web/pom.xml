@@ -382,8 +382,6 @@
             <version>${project.version}</version>
             <!--<optional>true</optiona3.1-->
         </dependency>
-
-
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
