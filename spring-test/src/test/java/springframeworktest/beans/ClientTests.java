@@ -2,9 +2,14 @@ package springframeworktest.beans;
 
 import org.junit.Test;
 import org.springframework.beans.PropertyEditorRegistry;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import springframeworktest.beans.aware.AwareTest;
+import springframeworktest.beans.event.TestEvent;
 
 /**
  * Created by lys on 7/3/2018.
@@ -40,5 +45,19 @@ public class ClientTests {
 	public void testEditor(){
 		Apple bean = xmlContext.getBean(Apple.class);
 		System.out.println(bean.getBirthday());
+	}
+
+	@Test
+	public void testPostProcessor(){
+		ConfigurableListableBeanFactory bf = new XmlBeanFactory(new ClassPathResource("beanFactory.xml"));
+		BeanFactoryPostProcessor bfbb = (BeanFactoryPostProcessor)bf.getBean("bfpp");
+		bfbb.postProcessBeanFactory(bf);
+		System.out.println(bf.getBean("simpleBean"));
+	}
+
+	@Test
+	public void testEvent(){
+		TestEvent event = new TestEvent("hello","msg");
+		xmlContext.publishEvent(event);
 	}
 }

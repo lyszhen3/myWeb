@@ -41,5 +41,24 @@
 
     <bean class="springframeworktest.beans.aware.AwareTest"/>
 
+    <bean id="bfpp" class="springframeworktest.beans.processor.ObscentityRemovingBeanFactoryPostProcessor">
+        <property name="obscenties">
+            <set>
+                <value>bollocks</value>
+                <value>winky</value>
+                <value>bum</value>
+                <value>Microsoft</value>
+            </set>
+        </property>
+    </bean>
+    <bean id="simpleBean" class="springframeworktest.beans.processor.SimplePostProcessor">
+        <property name="connectionString" value="bollocks"/>
+        <property name="password" value="imaginecup"/>
+        <property name="userName" value="Microsoft"/>
+    </bean>
 
+
+    <bean id="testListener" class="springframeworktest.beans.event.TestListener">
+
+    </bean>
 </beans>
