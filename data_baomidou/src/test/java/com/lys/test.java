@@ -22,9 +22,14 @@ public class test {
     RoleMapper roleMapper;
 
     @Test
-    public void test(){
+    public void insert(){
         Role role = new Role();
-        role.setId(1112L);
+        role.setDescription("会不会有问题2");
         roleMapper.insert(role);
+    }
+
+    @Test
+    public void delete(){
+        roleMapper.deleteById(1111L);
     }
 }

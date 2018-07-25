@@ -17,7 +17,9 @@ package com.lys.data.beans;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 
@@ -29,7 +31,7 @@ import java.io.Serializable;
  * @author sjy
  * @Date 2016-09-09
  */
-@TableName()
+@TableName("role")
 public class Role implements Serializable {
 
     @TableField(exist = false)
@@ -38,7 +40,7 @@ public class Role implements Serializable {
     /**
      * 主键
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -58,6 +60,9 @@ public class Role implements Serializable {
      */
     @TableField
     private String description;
+
+    @TableLogic
+    private Integer isDelete;
 
     public Long getId() {
         return this.id;
@@ -89,6 +94,14 @@ public class Role implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
     }
 
     @Override

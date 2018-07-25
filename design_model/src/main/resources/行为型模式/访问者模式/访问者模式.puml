@@ -24,6 +24,9 @@ class ConcreteElementB<<具体抽象类>>{
 +operationB()
 }
 class ObjectStructure<<对象结构>>{
+-List<Element> elements
++void addEement(Element element)
++accept(Visitor visitor){\n elements.forEach(Element::accept)}
 
 }
 
