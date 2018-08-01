@@ -1,3 +1,6 @@
+import java.util.Collections;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by pc on 2017-10-11.
  *
@@ -18,5 +21,9 @@ public class Test {
 	}
 
 
+	public static void main(String[] args) {
+		long l = TimeUnit.SECONDS.toMillis(2l);
+		System.out.println(l);
+	}
 
 }

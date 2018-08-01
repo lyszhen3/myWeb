@@ -59,12 +59,3 @@ public class ThreadState {
 
 
 }
-class SleepUtils{
-	public static final void second(long seconds){
-
-		try {
-			TimeUnit.SECONDS.sleep(seconds);
-		} catch (InterruptedException ignore) {
-		}
-	}
-}
