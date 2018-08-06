@@ -2,6 +2,10 @@ package thread.volatileintroduce;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by lys on 2018/7/15.
  *
@@ -43,5 +47,29 @@ public class VolatileTest {
 		return t;
 	}
 
+	public static void main(String[] args) throws InterruptedException {
+		Bar bar = new Bar();
+		class Runner implements Runnable{
+			private long i;
+			public Runner(long id){
+				this.i = id;
+			}
 
+			public void run() {
+//				instance.setFoo();
+				bar.setS(i);
+				System.out.println("seti="+i+" geti="+bar.getS());
+			}
+		}
+		List<Thread> list = new ArrayList<>();
+		for (int i = 0; i < 1000; i++) {
+			Thread thread = new Thread(new Runner((long)i),String.format("Thread[%d]",i));
+			list.add(thread);
+		}
+
+		list.parallelStream().forEach(Thread::start);
+
+		TimeUnit.SECONDS.sleep(3);
+
+	}
 }

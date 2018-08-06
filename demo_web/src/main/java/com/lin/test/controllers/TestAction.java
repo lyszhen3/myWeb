@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -514,7 +516,16 @@ public class TestAction {
 			e.printStackTrace();
 		}
 	}
+	@ResponseBody
+	@RequestMapping("sessiontest")
+	public String getSession(HttpServletRequest request,HttpServletResponse response){
+		String id = request.getSession().getId();
 
+		Cookie cookie = new Cookie("SESSION",id);
+		response.addCookie(cookie);
+
+		return id;
+	}
 
 	public static String encodeURIComponent(String value) {
 		try {
