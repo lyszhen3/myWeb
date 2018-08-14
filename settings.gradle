@@ -1,0 +1,24 @@
+rootProject.name = 'myWeb'
+include ':suiyiTest'
+include ':data_beans'
+include ':demo_web'
+include ':dubbo:dubbo_demo:demo_api'
+include ':dubbo:dubbo_demo:demo_default'
+include ':dubbo:dubbo_demo'
+include ':dubbo'
+include ':data_baomidou'
+include ':design_model'
+include ':image'
+include ':spring-test'
+
+project(':suiyiTest').projectDir = "$rootDir/suiyiTest" as File
+project(':data_beans').projectDir = "$rootDir/data_beans" as File
+project(':demo_web').projectDir = "$rootDir/demo_web" as File
+project(':dubbo:dubbo_demo:demo_api').projectDir = "$rootDir/dubbo/dubbo_demo/demo_api" as File
+project(':dubbo:dubbo_demo:demo_default').projectDir = "$rootDir/dubbo/dubbo_demo/demo_default" as File
+project(':dubbo:dubbo_demo').projectDir = "$rootDir/dubbo/dubbo_demo" as File
+project(':dubbo').projectDir = "$rootDir/dubbo" as File
+project(':data_baomidou').projectDir = "$rootDir/data_baomidou" as File
+project(':design_model').projectDir = "$rootDir/design_model" as File
+project(':image').projectDir = "$rootDir/image" as File
+project(':spring-test').projectDir = "$rootDir/spring-test" as File

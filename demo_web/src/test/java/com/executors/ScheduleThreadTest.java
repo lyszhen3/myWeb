@@ -20,7 +20,6 @@ public class ScheduleThreadTest {
 		ScheduleThreadTest test = new ScheduleThreadTest();
 		test.test();
 	}
-
 	public void test() throws ExecutionException, InterruptedException {
 		Task task = new Task(String.valueOf(1));
 //		ScheduledFuture<JSONObject> schedule = ee.schedule(task, 5, TimeUnit.SECONDS);

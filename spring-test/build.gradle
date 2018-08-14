@@ -1,0 +1,6 @@
+
+description = 'spring-test'
+dependencies {
+    testCompile group: 'org.springframework', name: 'spring-context', version:'5.1.0.BUILD-SNAPSHOT'
+    testCompile group: 'org.springframework', name: 'spring-beans', version:'5.1.0.BUILD-SNAPSHOT'
+}

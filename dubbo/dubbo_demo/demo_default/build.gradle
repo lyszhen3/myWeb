@@ -1,0 +1,17 @@
+
+description = ''
+dependencies {
+    compile group: 'org.springframework', name: 'spring-beans', version:'4.3.10.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version:'4.3.10.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version:'4.3.10.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context-support', version:'4.3.10.RELEASE'
+    compile group: 'org.springframework', name: 'spring-aop', version:'4.3.10.RELEASE'
+    compile(group: 'com.alibaba', name: 'dubbo', version:'2.5.6') {
+exclude(module: 'spring')
+exclude(module: 'spring-core')
+exclude(module: 'netty')
+    }
+    compile group: 'org.apache.zookeeper', name: 'zookeeper', version:'3.4.6'
+    compile group: 'com.github.sgroschupf', name: 'zkclient', version:'0.1'
+  compile project(':dubbo:dubbo_demo:demo_api')
+}
