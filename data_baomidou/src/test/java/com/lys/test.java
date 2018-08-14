@@ -1,5 +1,6 @@
 package com.lys;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.lys.data.beans.Role;
 import com.lys.data.mappers.RoleMapper;
 import org.junit.Test;
@@ -32,4 +33,20 @@ public class test {
     public void delete(){
         roleMapper.deleteById(1111L);
     }
+
+    @Test
+    public void insertMillion(){
+        int radio = 6;
+        int base = 1000000;
+        Integer count = roleMapper.selectCount(new EntityWrapper<>());
+        for(int i = count;i<radio*base;i++){
+            Role role = new Role();
+            role.setDescription("插入数据啊~~插入一些数据"+(i+1));
+            role.setSort(i+1);
+            role.setIsDelete(1);
+            roleMapper.insert(role);
+        }
+
+    }
+
 }

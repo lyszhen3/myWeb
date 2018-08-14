@@ -1,4 +1,9 @@
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.OptionalInt;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -10,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @since 3.0.0-SNAPSHOT
  */
 public class Test {
+
 	@org.junit.Test
 	public void test() {
 		Test test = null;
@@ -22,8 +28,29 @@ public class Test {
 
 
 	public static void main(String[] args) {
-		long l = TimeUnit.SECONDS.toMillis(2l);
-		System.out.println(l);
+
+		ConcurrentLinkedQueue<Integer> queue = new ConcurrentLinkedQueue<>();
+		queue.offer(1);
+		queue.offer(2);
+		queue.offer(3);
+		System.out.println(queue.peek());
+		System.out.println(queue.peek());
+
+	}
+
+	@org.junit.Test
+	public void testBean() {
+
+		HashMap<String, Integer> map = new HashMap<>(10);
+		map.put("1", 1);
+		map.put("2", 2);
+		map.put("3", 3);
+		map.put("4", 4);
+		OptionalInt reduce = map.entrySet().stream().mapToInt(Map.Entry::getValue).reduce((a, b) -> a + b);
+		System.out.println(reduce.getAsInt());
+
 	}
 
 }
+
+

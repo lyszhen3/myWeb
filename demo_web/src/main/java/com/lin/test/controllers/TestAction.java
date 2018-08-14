@@ -41,7 +41,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -54,7 +53,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Controller
 public class TestAction {
 	private final static Logger log = LogManager.getLogger(TestAction.class);
-	static final ReentrantLock lock = new ReentrantLock();
+	private static final ReentrantLock lock = new ReentrantLock();
 	@Resource(name = "lin_testService")
 	private TestService testService;
 
