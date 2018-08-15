@@ -16,8 +16,7 @@ subprojects {
 
     repositories {
         mavenLocal()
-
-//    maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/public" }
         maven { url "http://repo.maven.apache.org/maven2" }
         maven { url "https://repo.spring.io/libs-snapshot" }
         maven { url "https://repo.spring.io/libs-milestone" }
