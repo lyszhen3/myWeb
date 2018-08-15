@@ -30,6 +30,12 @@ public class test {
     }
 
     @Test
+    public void count(){
+        Integer integer = roleMapper.selectCount(new EntityWrapper<>());
+        System.out.println(integer);
+    }
+
+    @Test
     public void delete(){
         roleMapper.deleteById(1111L);
     }
