@@ -4,7 +4,8 @@ import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Timer;
@@ -14,7 +15,7 @@ import java.util.TimerTask;
  * Created by sunyujia@aliyun.com on 2016/2/25.
  */
 public class ZkReentrantLockCleanerTask extends TimerTask {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(ZkReentrantLockCleanerTask.class);
+    private static final Logger logger = LogManager.getLogger(ZkReentrantLockCleanerTask.class);
 
     private CuratorFramework client;
 
@@ -39,10 +40,10 @@ public class ZkReentrantLockCleanerTask extends TimerTask {
             client = CuratorFrameworkFactory.newClient(zookeeperAddress, retryPolicy);
             client.start();
         }catch (Exception e){
-            log.error(e.getMessage(),e);
+            logger.error(e.getMessage(),e);
         }catch (Throwable ex){
             ex.printStackTrace();
-            log.error(ex.getMessage(),ex);
+            logger.error(ex.getMessage(),ex);
         }
     }
 

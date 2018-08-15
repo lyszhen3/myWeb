@@ -58,14 +58,14 @@
         </Console>
     </Appenders>
     <Loggers>
-
+        <!--root 只能存在一个-->
         <Root level="DEBUG">
             <AppenderRef ref="Daijia"/>
             <AppenderRef ref="info" />
         </Root>
-        <Root level="INFO">
-            <AppenderRef ref="STDOUT"/>
-        </Root>
+        <!--<Root level="INFO">-->
+            <!--<AppenderRef ref="STDOUT"/>-->
+        <!--</Root>-->
 
         <!--<Logger name="org.apache" level="info" />-->
         <!--<Logger name="org.springframework" level="debug"  />-->
