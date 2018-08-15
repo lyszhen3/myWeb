@@ -2,8 +2,9 @@ package com.lin.zkLock;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.zookeeper.KeeperException;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -17,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by sunyujia@aliyun.com on 2016/2/24.
  */
 public class ZkReentrantLock implements DistributedReentrantLock {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(ZkReentrantLock.class);
+    private static final Logger logger = LogManager.getLogger(ZkReentrantLock.class);
 
     /**
      * 线程池
@@ -70,7 +71,7 @@ public class ZkReentrantLock implements DistributedReentrantLock {
         } catch (InterruptedException e) {
             throw e;
         } catch (Exception e) {
-            log.error(e.getMessage(),e);
+            logger.error(e.getMessage(),e);
             throw new RuntimeException(e.getMessage(),e);
         }
     }
@@ -80,7 +81,7 @@ public class ZkReentrantLock implements DistributedReentrantLock {
         try {
             interProcessMutex.release();
         } catch (Throwable e) {
-            log.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
         } finally {
             executorService.schedule(new Cleaner(client, path), delayTimeForClean, TimeUnit.MILLISECONDS);
         }
@@ -94,7 +95,7 @@ public class ZkReentrantLock implements DistributedReentrantLock {
             this.client = client;
             this.path = path;
         }
-
+        @Override
         public void run() {
             try {
                 List list = client.getChildren().forPath(path);
@@ -106,7 +107,7 @@ public class ZkReentrantLock implements DistributedReentrantLock {
             } catch (KeeperException.NotEmptyException e2) {
                 //nothing
             } catch (Exception e) {
-                log.error(e.getMessage(), e);//准备删除时,正好有线程创建锁
+                logger.error(e.getMessage(), e);//准备删除时,正好有线程创建锁
             }
         }
     }
@@ -119,10 +120,12 @@ public class ZkReentrantLock implements DistributedReentrantLock {
         @Override
         public Thread newThread(Runnable r) {
            Thread t = new Thread( r,namePrefix + threadNumber.getAndIncrement());
-            if (t.isDaemon())
+            if (t.isDaemon()) {
                 t.setDaemon(true);
-            if (t.getPriority() != Thread.NORM_PRIORITY)
+            }
+            if (t.getPriority() != Thread.NORM_PRIORITY) {
                 t.setPriority(Thread.NORM_PRIORITY);
+            }
             return t;
         }
     }

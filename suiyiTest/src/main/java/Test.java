@@ -2,6 +2,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.OptionalInt;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
@@ -35,8 +36,14 @@ public class Test {
 		queue.offer(3);
 		System.out.println(queue.peek());
 		System.out.println(queue.peek());
-
+		ConcurrentHashMap hashMap = new ConcurrentHashMap();
+		hashMap.put("1",1);
+		hashMap.put("2",2);
+		hashMap.forEach((k,v)->{
+			System.out.println(v);
+		});
 	}
+
 
 	@org.junit.Test
 	public void testBean() {

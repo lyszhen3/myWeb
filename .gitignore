@@ -50,4 +50,7 @@ Temporary Items
 *.iml
 target/
 demo_web/src/main/resources/rsakey/
+.gradle
+build/
+out/
 
