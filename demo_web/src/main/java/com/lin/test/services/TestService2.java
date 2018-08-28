@@ -28,10 +28,15 @@ public class TestService2 {
     //    @Transactional(propagation= Propagation.REQUIRED,rollbackFor = {Exception.class})
     public void delete() throws Exception {
 
-        testMapper.deleteOne(4L);
+        try {
+            testMapper.deleteOne(4L);
 //        throw new Exception("我的天");
-        String xx = null;
-        xx.split("|");
+            String xx = null;
+            xx.split("|");
+        } catch (Exception e) {
+            //throw 异常会使事务回滚,否则不会回滚
+//        	throw new RuntimeException("xx");
+        }
     }
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updateOne(Account account) {

@@ -15,11 +15,11 @@ import javax.validation.constraints.NotNull;
  */
 public class Shop {
     private String id;
-    @NotNull(message = "我的天")
+//    @NotNull(message = "我的天")
     private String shopName;
     private String userName;
-    @NotNull(message = "手机号不能空")
-    @Phone(message = "手机必须13位")
+//    @NotNull(message = "手机号不能空")
+//    @Phone(message = "手机必须13位")
     private String phone;
 
     public String getShopName() {

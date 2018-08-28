@@ -2,12 +2,11 @@ package com.lin.core.config;
 
 
 import org.springframework.web.util.Log4jConfigListener;
-import org.springframework.web.util.Log4jWebConfigurer;
 
 import javax.servlet.ServletContextEvent;
 
 /**
- * log4J监听器
+ * 远古失期log4J监听器 输出文件位置设置 现在过时啦
  * Created by lin on 16/7/1.
  */
 public class Log4jListener extends Log4jConfigListener {

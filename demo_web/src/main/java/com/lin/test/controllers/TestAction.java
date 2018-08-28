@@ -37,8 +37,10 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
@@ -525,6 +527,24 @@ public class TestAction {
 
 		return id;
 	}
+
+	/**
+	 * 测试直接write
+	 * @param response
+	 */
+	@ResponseBody
+	@RequestMapping("testwrite")
+	public void writeout(HttpServletResponse response){
+
+		response.setContentType("text/html;charset=utf-8");
+
+		try(PrintWriter writer = response.getWriter()){
+			writer.write("ok");
+		}catch (IOException ignore) {
+		}
+
+	}
+
 
 	public static String encodeURIComponent(String value) {
 		try {

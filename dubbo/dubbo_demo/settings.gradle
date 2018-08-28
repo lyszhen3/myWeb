@@ -1,0 +1,5 @@
+rootProject.name = 'dubbo'
+
+
+include ':demo_api'
+include ':demo_default'

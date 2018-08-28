@@ -1,4 +1,4 @@
-package com.lin.TestAop;
+package com.lin.testaop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

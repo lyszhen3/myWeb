@@ -1,12 +1,16 @@
 package com.lin.test.controllers;
 
+import com.lin.test.bo.ShopBO;
 import com.lin.test.bo.UserBo;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
 import javax.validation.groups.Default;
 
 /**
@@ -21,27 +25,40 @@ public class ValidTestController {
 	/**
 	 * 验证标签 @Validated 表示Update{@link com.lin.test.bo.UserBo.Update} 组
 	 * 和 Default {@link javax.validation.groups.Default}   组需要验证
-	 * @param bo 参数
+	 *
+	 * @param bo     参数
 	 * @param errors 错误
 	 * @return json
 	 * @see com.lin.test.bo.UserBo.Update
 	 */
 	@RequestMapping("validGroupUpdate")
 	@ResponseBody
-	public String testValidUpdate(@Validated({UserBo.Update.class,Default.class}) UserBo bo, Errors errors){
+	public String testValidUpdate(@Validated({UserBo.Update.class, Default.class}) UserBo bo, Errors errors) {
 		String err = null;
 
-		if(errors.hasErrors()){
+		if (errors.hasErrors()) {
 			err = errors.getAllErrors().get(0).getDefaultMessage();
 		}
 		return err;
 	}
+
 	@RequestMapping("validGroupInsert")
 	@ResponseBody
-	public String testValidInsert(@Validated(UserBo.InGroup.class) UserBo bo, Errors erros){
+	public String testValidInsert(@Validated(UserBo.InGroup.class) UserBo bo, Errors errors) {
 		String err = null;
-		if(erros.hasErrors()){
-			err = erros.getAllErrors().get(0).getDefaultMessage();
+		if (errors.hasErrors()) {
+			err = errors.getAllErrors().get(0).getDefaultMessage();
+		}
+		return err;
+	}
+
+	@RequestMapping("validExtends")
+	@ResponseBody
+	public String testValidExtends(@Validated ShopBO shopBO, BindingResult errors) {
+
+		String err = null;
+		if (errors.hasErrors()) {
+			err = errors.getAllErrors().get(0).getDefaultMessage();
 		}
 		return err;
 	}

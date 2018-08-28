@@ -2,6 +2,7 @@ package com.lin.test.bo;
 
 import com.lin.base.BaseBo;
 import com.lin.valid.Phone;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.GroupSequence;
 import javax.validation.constraints.Max;

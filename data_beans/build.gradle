@@ -7,6 +7,8 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version:'5.1.38'
     compile group: 'javax.persistence', name: 'persistence-api', version:'1.0.2'
     compile group: 'com.baomidou', name: 'mybatis-plus', version:'2.1.6'
+//    本地包 可以直接输入到war
+    compile files('lib/duiba-java-sdk-0.0.14.jar')
     testCompile group: 'org.springframework', name: 'spring-test', version:'4.3.10.RELEASE'
     testCompile group: 'org.mockito', name: 'mockito-all', version:'1.9.5'
     testCompile group: 'com.jayway.jsonpath', name: 'json-path', version:'2.0.0'
