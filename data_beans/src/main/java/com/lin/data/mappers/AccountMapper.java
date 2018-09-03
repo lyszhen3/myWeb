@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
  * @author 自动生成
  */
 @Repository
-@Scope
-@Lazy
+//@Scope
+//@Lazy
 public interface AccountMapper extends Mapper<Account> {
 
 }

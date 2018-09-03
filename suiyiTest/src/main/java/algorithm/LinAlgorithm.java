@@ -54,12 +54,12 @@ public class LinAlgorithm {
 			}
 		}
 		int center = (left + right) / 2;
-		System.out.println("maxleft  time:"+"[left:"+left+" right:"+center+"]");
+		System.out.println("maxleft  time:" + "[left:" + left + " right:" + center + "]");
 		int maxLeftSum = maxSubRec(a, left, center);
-		System.out.println("maxLeftSum:"+maxLeftSum);
-		System.out.println("maxright time:"+"[left:"+(center+1)+" right:"+right+"]");
+		System.out.println("maxLeftSum:" + maxLeftSum);
+		System.out.println("maxright time:" + "[left:" + (center + 1) + " right:" + right + "]");
 		int maxRightSum = maxSubRec(a, center + 1, right);
-		System.out.println("maxRightSum:"+maxRightSum);
+		System.out.println("maxRightSum:" + maxRightSum);
 		int maxLeftBordSum = 0, leftBordSum = 0;
 		for (int i = center; i >= left; i--) {
 			leftBordSum += a[i];
@@ -76,7 +76,7 @@ public class LinAlgorithm {
 		}
 
 
-		System.out.println("time2:"+"left:"+left+" right:"+right+" center:"+center+" maxLeftBordSum:"+maxLeftBordSum+" maxRightBordSum:"+maxRightBorderSum);
+		System.out.println("time2:" + "left:" + left + " right:" + right + " center:" + center + " maxLeftBordSum:" + maxLeftBordSum + " maxRightBordSum:" + maxRightBorderSum);
 		return max3(maxLeftSum, maxRightSum, maxLeftBordSum + maxRightBorderSum);
 	}
 
@@ -101,5 +101,21 @@ public class LinAlgorithm {
 		int[] a = {4, -3, 5, -2, -1, 2, 6, -2};
 		int i = maxSubSum3(a);
 		System.out.println(i);
+		System.out.println(pow(2,30));
+	}
+
+
+	public static int pow(int r, int e) {
+		if (e == 1) {
+			return r;
+		} else if (e == 0) {
+			return 1;
+		}
+		if ((e & 1) == 1) {
+			//e 为奇数
+			return pow(r * r, e / 2)*r;
+		} else {
+			return pow(r * r, e / 2);
+		}
 	}
 }

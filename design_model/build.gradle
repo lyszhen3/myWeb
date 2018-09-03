@@ -1,2 +1,7 @@
-
 description = ''
+//sourceSets {
+//  main {
+//    resources.srcDirs = ["src/main/java"]
+//  }
+//}
+

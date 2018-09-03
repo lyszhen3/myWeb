@@ -18,7 +18,7 @@ public class XMLUtil {
 			DocumentBuilder builder = dFactory.newDocumentBuilder();
 			Document doc;
 			URL resource = XMLUtil.class.getResource("");
-			doc = builder.parse(new File(resource.getPath().replace("target/classes/", "src/main/java/") + "config.xml"));
+			doc = builder.parse(new File(resource.getPath().replace("classes/", "resources/") + "config.xml"));
 
 			//获取包含类名的文本节点
 			NodeList nl = doc.getElementsByTagName("className");

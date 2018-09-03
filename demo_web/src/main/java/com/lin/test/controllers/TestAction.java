@@ -3,6 +3,9 @@ package com.lin.test.controllers;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lin.data.beans.Account;
+import com.lin.springUtils.WebSpringFactory;
+import com.lin.springUtils.beantest.AbstractLin;
+import com.lin.springUtils.beantest.Lin;
 import com.lin.test.beans.Shop;
 import com.lin.test.beans.TestUser;
 import com.lin.test.bo.UserBo;
@@ -535,7 +538,9 @@ public class TestAction {
 	@ResponseBody
 	@RequestMapping("testwrite")
 	public void writeout(HttpServletResponse response){
-
+		AbstractLin bean = WebSpringFactory.getBean(Lin.class);
+		System.out.println(bean);
+		bean.hello();
 		response.setContentType("text/html;charset=utf-8");
 
 		try(PrintWriter writer = response.getWriter()){

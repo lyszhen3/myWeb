@@ -27,7 +27,7 @@ public class Interrupted {
 		System.out.println("SleepThread interrupted is "+sleepThread.isInterrupted());
 		System.out.println("BusyThread interrupted is "+busyThread.isInterrupted());
 		//防止sleepThread 喝 BusyThread 立即退出
-		SleepUtils.second(2);
+//		SleepUtils.second(2);
 	}
 
 	static class SleepRunner implements Runnable{
@@ -45,7 +45,6 @@ public class Interrupted {
 		@Override
 		public void run() {
 			while(true){
-
 			}
 		}
 	}
