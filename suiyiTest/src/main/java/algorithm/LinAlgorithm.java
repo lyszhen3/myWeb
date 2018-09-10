@@ -101,10 +101,16 @@ public class LinAlgorithm {
 		int[] a = {4, -3, 5, -2, -1, 2, 6, -2};
 		int i = maxSubSum3(a);
 		System.out.println(i);
-		System.out.println(pow(2,30));
+		System.out.println(pow(2, 30));
 	}
 
-
+	/**
+	 * r^e
+	 *
+	 * @param r
+	 * @param e
+	 * @return
+	 */
 	public static int pow(int r, int e) {
 		if (e == 1) {
 			return r;
@@ -113,9 +119,10 @@ public class LinAlgorithm {
 		}
 		if ((e & 1) == 1) {
 			//e 为奇数
-			return pow(r * r, e / 2)*r;
+			return pow(r * r, e / 2) * r;
 		} else {
 			return pow(r * r, e / 2);
 		}
 	}
+
 }
