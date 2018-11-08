@@ -13,7 +13,9 @@ public class Foo {
 	public Foo(Bar bar){
 		this.bar = bar;
 	}
+	public Foo(){
 
+	}
 	public Bar getBar() {
 		return bar;
 	}

@@ -2,7 +2,7 @@ package com.lin.test.services;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lin.data.beans.Account;
-import com.lin.data.mappers.TestMapper;
+import com.lin.data.mappers.AccountTestMapper;
 import com.lin.demo.services.DemoService;
 import com.lin.springUtils.WebSpringFactory;
 import com.lin.test.services.abstracts.MoneyVipPolicy;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -47,10 +46,10 @@ public class TestService {
 //        this.template = template;
 //    }
 
-    private TestMapper testMapper;
+    private AccountTestMapper testMapper;
 
     @Autowired
-    public void setTestMapper(TestMapper testMapper) {
+    public void setTestMapper(AccountTestMapper testMapper) {
         this.testMapper = testMapper;
     }
 

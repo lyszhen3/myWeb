@@ -1,6 +1,6 @@
 package com.lin.test.services.abstracts;
 
-import com.lin.data.mappers.TestMapper;
+import com.lin.data.mappers.AccountTestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public abstract class AbstractSmsTest {
 	@Autowired
-	private TestMapper testMapper;
+	private AccountTestMapper testMapper;
 	protected String name;
 
 	public abstract void setName(String name);

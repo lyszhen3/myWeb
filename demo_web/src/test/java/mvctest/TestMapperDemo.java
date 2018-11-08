@@ -3,6 +3,7 @@ package mvctest;
 import com.lin.data.beans.Book;
 import com.lin.data.mappers.BookMapper;
 import com.lin.data.mappers.RoleMapper;
+import com.lin.data.mappers.AccountTestMapper;
 import com.lin.data.mappers.TestMapper;
 import com.lin.test.services.abstracts.AbstractSmsTest;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -29,7 +31,7 @@ import java.util.logging.Logger;
 public class TestMapperDemo {
     private final static Logger log = Logger.getLogger(TestMapperDemo.class.getName());
     @Autowired
-    TestMapper mapper;
+    AccountTestMapper mapper;
     @Autowired
     BookMapper bookMapper;
 
@@ -37,6 +39,9 @@ public class TestMapperDemo {
     RoleMapper roleMapper;
     @Autowired
     AbstractSmsTest abstractSmsTest;
+
+    @Autowired
+    TestMapper testMapper;
     @Test
     public void test() {
         Book book = new Book();
@@ -66,6 +71,11 @@ public class TestMapperDemo {
         System.out.println(abstractSmsTest.getName());
         abstractSmsTest.ssout();
 
+    }
+    @Test
+    public void testTest(){
+        List<com.lin.data.beans.Test> tests = testMapper.selectList();
+        System.out.println(tests);
     }
 
 }

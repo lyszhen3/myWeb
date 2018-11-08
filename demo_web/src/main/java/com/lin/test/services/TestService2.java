@@ -1,7 +1,7 @@
 package com.lin.test.services;
 
 import com.lin.data.beans.Account;
-import com.lin.data.mappers.TestMapper;
+import com.lin.data.mappers.AccountTestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,9 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TestService2 {
 
-    TestMapper testMapper;
+    AccountTestMapper testMapper;
     @Autowired
-    public void setTestMapper(TestMapper testMapper) {
+    public void setTestMapper(AccountTestMapper testMapper) {
         this.testMapper = testMapper;
     }
 

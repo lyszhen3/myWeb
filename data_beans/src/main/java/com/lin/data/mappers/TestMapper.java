@@ -1,34 +1,37 @@
 package com.lin.data.mappers;
 
-
+import com.lin.data.beans.Test;
 import com.lin.data.core.mapper.Mapper;
-import com.lin.data.beans.Account;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * Created by pc on 2017-01-13.
+ * Created by lys on 2018/11/8.
  *
- * @author pc
+ * @author lys
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
 @Repository
-@Scope
-@Lazy(true)
-public interface TestMapper extends Mapper<Account> {
+@Lazy
+public interface TestMapper extends Mapper<Test> {
 
 
-    int testCount();
+	@Select("select*from `test` where `super_id` is null ")
+	@Results({@Result(property = "tests", column = "id", many = @Many(select = "selectBySuperId")),
+			@Result(property = "id", column = "id"),
+			@Result(property = "superId", column = "super_id")
+	})
+	List<Test> selectList();
 
-    List<Account> selList();
+	@Select("SELECT*FROM `test` WHERE `super_id`=#{superId}")
+	@Results({@Result(property = "tests", column = "id", many = @Many(select = "selectBySuperId")),
+			@Result(property = "id", column = "id"),
+			@Result(property = "superId", column = "super_id")
 
-
-    int insertOne(@Param("name") String name,@Param("email") String email);
-    int deleteOne(@Param("id") Long id);
-
+	})
+	Test selectBySuperId(@Param("superId") String superId);
 }
