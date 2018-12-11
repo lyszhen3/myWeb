@@ -6,6 +6,7 @@ import com.lin.data.mappers.RoleMapper;
 import com.lin.data.mappers.AccountTestMapper;
 import com.lin.data.mappers.TestMapper;
 import com.lin.test.services.abstracts.AbstractSmsTest;
+import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +75,9 @@ public class TestMapperDemo {
     }
     @Test
     public void testTest(){
-        List<com.lin.data.beans.Test> tests = testMapper.selectList();
+        RowBounds rowBounds = new RowBounds(0,2);
+
+        List<com.lin.data.beans.Test> tests = testMapper.selectList(rowBounds);
         System.out.println(tests);
     }
 

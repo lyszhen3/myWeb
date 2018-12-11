@@ -3,6 +3,9 @@ package springannotation.construction;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -19,10 +22,15 @@ public class ClientTest {
 
 
 	@Autowired
+	Environment environment;
+
+	@Autowired
 	Bar1 bar1;
 
 	@Test
-	public void test(){
-		System.out.println(bar1);
+	public void test() {
+		System.out.println(bar1.name);
+		String t = environment.getProperty("t");
+		System.out.println(t);
 	}
 }

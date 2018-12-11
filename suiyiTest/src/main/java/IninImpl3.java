@@ -5,5 +5,6 @@
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-public class IninImpl3 extends IninImpl1{
+public class IninImpl3 extends IninImpl1 {
+
 }

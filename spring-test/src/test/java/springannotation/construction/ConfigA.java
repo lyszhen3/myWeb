@@ -1,8 +1,9 @@
 package springannotation.construction;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
 /**
  * Created by lys on 2018/11/7.
@@ -13,10 +14,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan("springannotation.construction")
+@PropertySources(@PropertySource("classpath:spring.properties"))
 public class ConfigA {
 
-	@Bean
-	public Bar1 bar1(){
-		return new Bar1("hello");
-	}
 }

@@ -33,7 +33,7 @@ import java.lang.annotation.*;
  * @Inherited – 定义该注释和子类的关系
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
+@Target({ElementType.TYPE})
 public @interface Lys {
     enum Status {STARTED, STOPED}
 

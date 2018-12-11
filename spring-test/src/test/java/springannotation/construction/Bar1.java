@@ -1,5 +1,6 @@
 package springannotation.construction;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class Bar1 {
 
-	public Bar1(String name){
-		System.out.println(name);
-	}
+	@Value("${t:wo}")
+	protected String name;
 }

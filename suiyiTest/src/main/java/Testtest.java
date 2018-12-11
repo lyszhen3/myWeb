@@ -1,8 +1,6 @@
 import org.junit.Test;
 
-import java.rmi.server.UID;
 import java.util.*;
-import java.util.stream.Stream;
 
 /**
  * Created by pc on 2017-10-11.
@@ -41,7 +39,7 @@ public class Testtest {
 	}
 
 
-	@org.junit.Test
+	@Test
 	public void testBean() {
 
 		HashMap<String, Integer> map = new HashMap<>(10);
@@ -159,9 +157,13 @@ public class Testtest {
 	}
 
 	public static void main(String[] args) {
-
+		List<String> list = new ArrayList<>();
+		list.add("wo");
+		list.add("wo");
+		list.add(1,"ta");
+		list.forEach(System.out::println);
 //		swap(7, 4);
-		tt();
+//		tt();
 	}
 }
 

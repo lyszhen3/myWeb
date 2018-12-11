@@ -39,4 +39,14 @@ public class FutureTaskTest {
 		}
 
 	}
+
+	public static void main(String[] args) {
+		FutureTaskTest t1 = new FutureTaskTest();
+		String first = t1.executionTask("第一");
+		String second = t1.executionTask("第二");
+		String third = t1.executionTask("第一");
+		System.out.println(first);
+		System.out.println(second);
+		System.out.println(third);
+	}
 }
