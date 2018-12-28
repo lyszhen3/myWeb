@@ -24,6 +24,7 @@ public class Daemon {
 			try {
 				SleepUtils.second(10);
 			} finally {
+				//因为是守护线程,所以这个没输出..
 				System.out.println("Daemon Thread finally run");
 			}
 		}
