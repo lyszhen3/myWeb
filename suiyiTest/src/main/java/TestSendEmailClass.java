@@ -10,7 +10,7 @@ import java.util.Objects;
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-public class TestClass {
+public class TestSendEmailClass {
 	private int m;
 
 	public void testTree() {

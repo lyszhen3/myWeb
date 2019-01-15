@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by lys on 7/11/2018.
- *
+ * compare and switch
  * @author lys
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
