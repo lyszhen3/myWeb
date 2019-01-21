@@ -3,6 +3,10 @@ package com.lin.test.controllers;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lin.data.beans.Account;
+import com.lin.shiro.ShiroUser;
+import com.lin.springUtils.WebSpringFactory;
+import com.lin.springUtils.beantest.AbstractLin;
+import com.lin.springUtils.beantest.Lin;
 import com.lin.test.beans.Shop;
 import com.lin.test.beans.TestUser;
 import com.lin.test.bo.UserBo;
@@ -37,8 +41,10 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
@@ -456,7 +462,7 @@ public class TestAction {
 	 * @param ex
 	 * @return
 	 */
-	@ExceptionHandler(RuntimeException.class)
+//	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<JSONObject> handleRuntimeException(RuntimeException ex) {
 		JSONObject jsonObject = JSON.parseObject(String.format("{\"message\":\"%s\"}", ex.getMessage()));
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(jsonObject);
@@ -524,6 +530,33 @@ public class TestAction {
 		response.addCookie(cookie);
 
 		return id;
+	}
+
+	/**
+	 * 测试直接write
+	 * @param response
+	 */
+	@ResponseBody
+	@RequestMapping("testwrite")
+	public void writeout(HttpServletResponse response){
+		AbstractLin bean = WebSpringFactory.getBean(Lin.class);
+		System.out.println(bean);
+		bean.hello();
+		response.setContentType("text/html;charset=utf-8");
+
+		try(PrintWriter writer = response.getWriter()){
+			writer.write("ok");
+		}catch (IOException ignore) {
+		}
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/paytest",method = {RequestMethod.POST})
+	public String pay(String money){
+		Subject subject = SecurityUtils.getSubject();
+		ShiroUser shiroUser = (ShiroUser)subject.getPrincipal();
+		return shiroUser.getUserName()+":支付成功"+money;
 	}
 
 	public static String encodeURIComponent(String value) {

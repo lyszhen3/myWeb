@@ -1,6 +1,5 @@
 package com.lin.test.controllers;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.lys.Pic;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
