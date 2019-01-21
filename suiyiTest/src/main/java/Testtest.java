@@ -164,6 +164,7 @@ public class Testtest {
 		list.forEach(System.out::println);
 //		swap(7, 4);
 //		tt();
+		System.out.println(System.getProperty("java.io.tmpdir"));
 	}
 }
 

@@ -11,11 +11,13 @@ import javax.servlet.ServletContextEvent;
  */
 public class Log4jListener extends Log4jConfigListener {
     public static final String log4jdirkey = "LOG_DIR";
+    @Override
     public void contextDestroyed(ServletContextEvent servletcontextevent) {
         System.getProperties().remove(log4jdirkey);
         super.contextDestroyed(servletcontextevent);
     }
 
+    @Override
     public void contextInitialized(ServletContextEvent servletcontextevent) {
         System.out.println("我启动了？");
         String log4jdir = servletcontextevent.getServletContext().getRealPath("/");

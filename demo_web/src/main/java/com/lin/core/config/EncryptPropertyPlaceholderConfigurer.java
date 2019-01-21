@@ -22,6 +22,9 @@ public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderCon
 	@Override
 	protected String convertProperty(String propertyName, String propertyValue) {
 		if(encryptPropNames.contains(propertyName)){
+			if("root".equals(propertyValue)){
+				return super.convertProperty(propertyName, propertyValue);
+			}
 			byte[] bytes = RSAUtil.decryptBase64(propertyValue.getBytes());
 			propertyValue = new String(Objects.requireNonNull(bytes));
 		}

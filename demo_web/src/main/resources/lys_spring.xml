@@ -92,9 +92,10 @@
     </mvc:interceptors>-->
 
 
+    <context:annotation-config />
     <!--添加dubbo服务-->
     <import resource="dubbo_application.xml"/>
     <!-- 添加shiro-->
-    <import resource="shiro/apache-shiro.xml"/>
+    <bean class="com.lin.shiro.ShiroConfig"/>
 
 </beans>

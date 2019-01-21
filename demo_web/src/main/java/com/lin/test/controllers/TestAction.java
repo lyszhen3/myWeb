@@ -3,6 +3,7 @@ package com.lin.test.controllers;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lin.data.beans.Account;
+import com.lin.shiro.ShiroUser;
 import com.lin.springUtils.WebSpringFactory;
 import com.lin.springUtils.beantest.AbstractLin;
 import com.lin.springUtils.beantest.Lin;
@@ -461,7 +462,7 @@ public class TestAction {
 	 * @param ex
 	 * @return
 	 */
-	@ExceptionHandler(RuntimeException.class)
+//	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<JSONObject> handleRuntimeException(RuntimeException ex) {
 		JSONObject jsonObject = JSON.parseObject(String.format("{\"message\":\"%s\"}", ex.getMessage()));
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(jsonObject);
@@ -550,6 +551,13 @@ public class TestAction {
 
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/paytest",method = {RequestMethod.POST})
+	public String pay(String money){
+		Subject subject = SecurityUtils.getSubject();
+		ShiroUser shiroUser = (ShiroUser)subject.getPrincipal();
+		return shiroUser.getUserName()+":支付成功"+money;
+	}
 
 	public static String encodeURIComponent(String value) {
 		try {

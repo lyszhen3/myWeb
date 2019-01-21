@@ -39,6 +39,9 @@ public class Banner implements Observer {
 				retrieve();
 				break;
 			}
+			default:{
+				break;
+			}
 		}
 	}
 	public void delete(BannerControl b){

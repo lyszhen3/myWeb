@@ -1,6 +1,7 @@
 package thread.concurrentutil;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lys on 2018/8/14.
@@ -12,17 +13,14 @@ import java.util.concurrent.CountDownLatch;
 public class CountDownLatchTest {
 	static CountDownLatch c = new CountDownLatch(2);
 	public static void main(String[] args) throws InterruptedException {
-		Thread parsr1 = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				System.out.println(1);
-				c.countDown();
-				System.out.println(2);
-				c.countDown();
-			}
+		Thread parsr = new Thread(() -> {
+			System.out.println(1);
+			c.countDown();
+			System.out.println(2);
+			c.countDown();
 		});
-		parsr1.start();
-		c.await();
+		parsr.start();
+		c.await(3, TimeUnit.SECONDS);
 		System.out.println(3);
 
 

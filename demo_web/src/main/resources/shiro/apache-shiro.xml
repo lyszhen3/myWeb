@@ -21,6 +21,7 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
+                /** = authc
                 <!--/daili/**.js = anon
                 /daili/**.css = anon
                 /daili/**.jpg = anon
@@ -60,26 +61,49 @@
         <!-- 基于ehCache来缓存用户认证信息和授权信息的实现 -->
         <property name="cacheManager" ref="cacheManagers"/>
         <property name="sessionManager" ref="sessionManager"/>
-        <!-- sessionMode参数设置为native时，那么shrio就将用户的基本认证信息保存到缺省名称为shiro-activeSessionCache 的Cache中 -->
-        <!--<property name="sessionMode" value="native" />-->
         <!--设置自定义realm -->
         <property name="realm" ref="monitorRealm"/>
+
+        <!-- 记住我 -->
+        <!--<property name="rememberMeManager" ref="rememberMeManager"/>-->
+
     </bean>
 
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <!-- 记住我cookie -->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <!-- rememberMe是cookie的名字 -->
+        <constructor-arg value="rememberMe"/>
+        <!-- 记住我cookie生效时间30天 -->
+        <property name="maxAge" value="2592000"/>
+    </bean>
+
+
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="globalSessionTimeout" value="1800000"/>
         <property name="sessionDAO" ref="sessionDAO"/>
     </bean>
 
     <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+        <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
+        <!--<property name="sessionIdGenerator" ref="sessionIdGenerator"/>-->
     </bean>
+
+    <!-- Session ID 生成器 -->
+    <!--<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator">-->
+    <!--</bean>-->
 
     <bean id="cacheManagers" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManager" ref="ehCacheManagers"/>
+        <!--<property name="cacheManager" ref="ehCacheManagers"/>-->
+        <property name="cacheManagerConfigFile" value="classpath:shiro/shiro-ehcache.xml"/>
     </bean>
 
-    <bean id="ehCacheManagers" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:shared="true">
+<!--    <bean id="ehCacheManagers" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" p:shared="true">
         <property name="configLocation" value="classpath:shiro/shiro-ehcache.xml"/>
-    </bean>
+    </bean>-->
 
 
     <!-- securityManager -->
@@ -97,6 +121,7 @@
             class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
             depends-on="lifecycleBeanPostProcessor">
         <property name="proxyTargetClass" value="true"/>
+        <property name="usePrefix" value="true"/>
     </bean>
 
     <bean
