@@ -2,6 +2,7 @@ package com.lin.test.controllers;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.lin.core.config.MyHandler;
 import com.lin.data.beans.Account;
 import com.lin.shiro.ShiroUser;
 import com.lin.springUtils.WebSpringFactory;
@@ -23,6 +24,7 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,6 +33,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.WebSocketSession;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
@@ -238,6 +243,27 @@ public class TestAction {
 //        response.addHeader("Content-Disposition", "attachment;filename=image.png");
 		model.addAttribute("name", "负载2");
 		return "test";
+	}
+
+	private MyHandler myhandler;
+
+	@Autowired
+	public void setMyhandler(MyHandler myhandler) {
+		this.myhandler = myhandler;
+	}
+
+
+	/**
+	 * 调用websocketsession 发送消息 将本例子将session_id 和  WebSocketSession 绑定
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("testWebsocket")
+	public String testWebSocket(HttpServletRequest request) {
+		String id = request.getSession().getId();
+		myhandler.sendMsgBySessionId(id, "fuck me");
+		return "ff";
 	}
 
 	/**
@@ -521,12 +547,13 @@ public class TestAction {
 			e.printStackTrace();
 		}
 	}
+
 	@ResponseBody
 	@RequestMapping("sessiontest")
-	public String getSession(HttpServletRequest request,HttpServletResponse response){
+	public String getSession(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getSession().getId();
 
-		Cookie cookie = new Cookie("SESSION",id);
+		Cookie cookie = new Cookie("SESSION", id);
 		response.addCookie(cookie);
 
 		return id;
@@ -534,29 +561,30 @@ public class TestAction {
 
 	/**
 	 * 测试直接write
+	 *
 	 * @param response
 	 */
 	@ResponseBody
 	@RequestMapping("testwrite")
-	public void writeout(HttpServletResponse response){
+	public void writeout(HttpServletResponse response) {
 		AbstractLin bean = WebSpringFactory.getBean(Lin.class);
 		System.out.println(bean);
 		bean.hello();
 		response.setContentType("text/html;charset=utf-8");
 
-		try(PrintWriter writer = response.getWriter()){
+		try (PrintWriter writer = response.getWriter()) {
 			writer.write("ok");
-		}catch (IOException ignore) {
+		} catch (IOException ignore) {
 		}
 
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/paytest",method = {RequestMethod.POST})
-	public String pay(String money){
+	@RequestMapping(value = "/paytest", method = {RequestMethod.POST})
+	public String pay(String money) {
 		Subject subject = SecurityUtils.getSubject();
-		ShiroUser shiroUser = (ShiroUser)subject.getPrincipal();
-		return shiroUser.getUserName()+":支付成功"+money;
+		ShiroUser shiroUser = (ShiroUser) subject.getPrincipal();
+		return shiroUser.getUserName() + ":支付成功" + money;
 	}
 
 	public static String encodeURIComponent(String value) {

@@ -91,5 +91,10 @@
         <url-pattern>*.json</url-pattern>
     </servlet-mapping>
 
+    <!--web socket-->
+    <absolute-ordering>
+		<name>spring_web</name>
+	</absolute-ordering>
+
 </web-app>
     

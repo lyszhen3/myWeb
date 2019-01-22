@@ -7,12 +7,14 @@
         xmlns:aop="http://www.springframework.org/schema/aop"
         xmlns:task="http://www.springframework.org/schema/task"
         xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:websocket="http://www.springframework.org/schema/websocket"
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 						http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
-						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+                        http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
     <!--扫描注入-->
     <context:component-scan base-package="com.*">
@@ -92,10 +94,11 @@
     </mvc:interceptors>-->
 
 
-    <context:annotation-config />
+    <context:annotation-config/>
     <!--添加dubbo服务-->
     <import resource="dubbo_application.xml"/>
     <!-- 添加shiro-->
-    <bean class="com.lin.shiro.ShiroConfig"/>
+    <!--<bean class="com.lin.shiro.ShiroConfig"/>-->
+    <!--<bean class="com.lin.core.config.WebSocketConfig" />-->
 
 </beans>
