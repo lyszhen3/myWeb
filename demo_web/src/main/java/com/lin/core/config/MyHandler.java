@@ -22,6 +22,7 @@ public class MyHandler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		//这个肯定会有重复吧
 		webSocketSessions.add(session);
 //		super.afterConnectionEstablished(session);
 	}
