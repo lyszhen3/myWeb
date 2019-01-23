@@ -4,9 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.lin.data.beans.Account;
 import com.lin.shiro.ShiroUser;
-import com.lin.springUtils.WebSpringFactory;
-import com.lin.springUtils.beantest.AbstractLin;
-import com.lin.springUtils.beantest.Lin;
 import com.lin.test.beans.Shop;
 import com.lin.test.beans.TestUser;
 import com.lin.test.bo.UserBo;
@@ -29,7 +26,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -44,7 +44,6 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
@@ -539,9 +538,6 @@ public class TestAction {
 	@ResponseBody
 	@RequestMapping("testwrite")
 	public void writeout(HttpServletResponse response){
-		AbstractLin bean = WebSpringFactory.getBean(Lin.class);
-		System.out.println(bean);
-		bean.hello();
 		response.setContentType("text/html;charset=utf-8");
 
 		try(PrintWriter writer = response.getWriter()){
