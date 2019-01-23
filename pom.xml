@@ -23,6 +23,7 @@
         <module>design_model</module>
         <module>image</module>
         <module>spring-test</module>
+        <module>hello-maven-plugin</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -40,7 +41,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
@@ -85,7 +86,7 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
-         <repository>
+        <repository>
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
             <url>https://repo.spring.io/libs-snapshot</url>
