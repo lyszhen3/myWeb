@@ -8,10 +8,10 @@ import java.util.Map;
  * @since 3.0.0-SNAPSHOT
  */
 public class Hello {
-    //java8新特性能直接this 访问的是当前类
+    //java8新特性能直接this 访问的是当前类 因为lambda表达式相当于当前类生成了一个方法
     Runnable r1 = ()-> System.out.println(this);
     Runnable r2 = ()-> System.out.println(this.toString());
-    //匿名内部类访问的是内部类
+    //匿名内部类访问的是内部类 匿名类相当于动态生成了一个类
     Runnable r3 = new Runnable() {
         @Override
         public void run() {
@@ -25,6 +25,7 @@ public class Hello {
         }
     };
 
+    @Override
     public String toString(){
         return "hello world";
     }

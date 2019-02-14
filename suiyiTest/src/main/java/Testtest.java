@@ -30,7 +30,7 @@ public class Testtest {
 	public static void swap(int a, int b) {
 		System.out.println("交换前:" + a);
 		System.out.println("交换前:" + b);
-		a ^= b;
+		a ^= b; //异或
 		b ^= a;
 		a ^= b;
 //		a^=b^=a^=b;

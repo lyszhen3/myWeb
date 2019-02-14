@@ -22,8 +22,11 @@
     <context:component-scan base-package="com.*">
 
         <context:exclude-filter type="regex" expression="com.lin.core.config.WebMvcConfig"/>  <!--排除springmvc配置-->
-        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
         <context:exclude-filter type="annotation" expression="javax.annotation.Resource"/>
+        <context:exclude-filter type="regex" expression="com.lin.test.services.TestService"/>
+
+        <context:exclude-filter type="regex" expression="com.lin.core.config.WebSocketConfig"/>
         <context:exclude-filter type="regex" expression="com.lin.zkLock.client.OrderLockClient"/>
         <context:exclude-filter type="regex" expression="com.lin.zkLock.ZkDistributedLockTemplate"/>
 
@@ -95,6 +98,6 @@
     <!--</list>  -->
     <!--</property>  -->
     <!--</bean>  -->
-    <import resource="dubbo_application_test.xml"/>
+<!--    <import resource="dubbo_application_test.xml"/>-->
 
 </beans>
