@@ -3,6 +3,12 @@ allprojects {
     apply plugin: 'idea'
     group = 'myWeb'
     version = '1.1-SNAPSHOT'
+    idea {
+        module {
+            outputDir file('build/classes/main')
+            testOutputDir file('build/classes/test')
+        }
+    }
 }
 
 

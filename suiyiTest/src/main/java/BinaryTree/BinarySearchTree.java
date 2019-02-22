@@ -2,6 +2,8 @@ package BinaryTree;
 
 /**
  * Created by lys on 2018/12/21.
+ * 二叉树查找
+ * 性质: 左子树中所有项的值都小于x中的项, 右子树中所有项的值都大于x中的项
  *
  * @author lys
  * @version 3.0.0-SNAPSHOT
@@ -62,8 +64,24 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 		root = insert(x, root);
 	}
 
+	/**
+	 * Internal method to insert into a subtree,
+	 *
+	 * @param x    the item to insert.
+	 * @param root the node that roots the subtree.
+	 * @return the new root of subtree.
+	 */
 	private BinaryNode<AnyType> insert(AnyType x, BinaryNode<AnyType> root) {
-		return null;
+		if (root == null) {
+			return new BinaryNode<>(x, null, null);
+		}
+		int compareResult = x.compareTo(root.element);
+		if (compareResult < 0) {
+			root.left = insert(x, root.left);
+		} else if (compareResult > 0) {
+			root.right = insert(x, root.right);
+		}
+		return root;
 	}
 
 	public void remove(AnyType x) {
@@ -71,7 +89,37 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 	}
 
 	private BinaryNode<AnyType> remove(AnyType x, BinaryNode<AnyType> root) {
-		return null;
+		if (root == null) {
+			return root;
+		}
+		int compareResult = x.compareTo(root.element);
+		if (compareResult < 0) {
+			root.left = remove(x, root.left);
+		} else if (compareResult > 0) {
+			root.right = remove(x, root.right);
+		} else if (root.left != null && root.right != null) {
+			//这里遍历了两次 如何改成一次? 替换的同时又给删了
+//			root.element = findMin(root.right).element;
+//			root.right = remove(root.element, root.right);
+			root.right = removeMin(root,root.right);
+		} else {
+			root = (root.left != null) ? root.left : root.right;
+		}
+		return root;
+	}
+
+	private BinaryNode<AnyType> removeMin(BinaryNode<AnyType> n, BinaryNode<AnyType> t) {
+		if (t == null) {
+			return t;
+		}
+		if (t.left == null) {
+			n.element = t.element;
+			t = t.right;
+		} else {
+			t.left = removeMin(n,t.left);
+		}
+
+		return t;
 	}
 
 	public void printTree() {
@@ -113,4 +161,21 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 		}
 	}
 
+}
+
+class SearchTest {
+	public static void main(String[] args) {
+		BinarySearchTree<Integer> integerBinarySearchTree = new BinarySearchTree<Integer>();
+		integerBinarySearchTree.insert(6);
+		integerBinarySearchTree.insert(2);
+		integerBinarySearchTree.insert(8);
+		integerBinarySearchTree.insert(1);
+		integerBinarySearchTree.insert(5);
+		integerBinarySearchTree.insert(3);
+		integerBinarySearchTree.insert(4);
+		integerBinarySearchTree.remove(2);
+		Integer max = integerBinarySearchTree.findMax();
+		System.out.println("max:" + max);
+		System.out.println("min:" + integerBinarySearchTree.findMin());
+	}
 }

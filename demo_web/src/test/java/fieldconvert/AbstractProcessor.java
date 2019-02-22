@@ -23,11 +23,11 @@ public abstract class AbstractProcessor<A extends Annotation,B> {
           init();
     }
 
-    protected Class<A> annotation;
+    protected  Class<A> annotation;
 
     Class<B> fieldType;
 
-    public abstract B convert( B oriValue,Annotation annotation);
+    public abstract B convert( B oriValue,A annotation);
 
     public static void main(String[] args) {
 

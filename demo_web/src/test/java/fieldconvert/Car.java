@@ -45,7 +45,7 @@ public class Car {
         processors.add(bigDecimalConvertProcessor);
         processors.add(stringConvertProcessor);
         new FieldConvertUtil(processors,car).convert();
-        System.out.println(car.getName());
+        System.out.println(car.getXx()+"--"+car.getName());
 
     }
 }

@@ -21,6 +21,7 @@ public class FieldConvertUtil {
         this.obj = obj;
     }
 
+    @SuppressWarnings("unchecked")
     public void convert(){
          Class<?> clazz = obj.getClass();
         Field[] declaredFields = clazz.getDeclaredFields();

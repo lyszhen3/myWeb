@@ -15,10 +15,10 @@ public class StringConvertProcessor extends AbstractProcessor<JSONField,String>{
 
     
     @Override
-    public String convert(String oriValue, Annotation annotation) {
+    public String convert(String oriValue, JSONField annotation) {
 
 
-        return "";
+        return oriValue;
     }
 
     public static void main(String[] args) {

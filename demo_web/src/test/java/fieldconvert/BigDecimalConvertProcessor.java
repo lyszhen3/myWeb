@@ -23,11 +23,10 @@ public class BigDecimalConvertProcessor extends AbstractProcessor<JSONField, Big
     public final static RoundingMode ROUNDING_MODE = RoundingMode.DOWN;
 
     @Override
-    public  BigDecimal convert(BigDecimal oriValue, Annotation annotation) {
+    public  BigDecimal convert(BigDecimal oriValue, JSONField annotation) {
 
-        JSONField jsonField = (JSONField) annotation;
         if (oriValue != null) {
-            return convertValue(oriValue, jsonField.format());
+            return convertValue(oriValue, annotation.format());
         }
         return null;
 
