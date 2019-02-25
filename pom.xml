@@ -23,7 +23,6 @@
         <module>design_model</module>
         <module>image</module>
         <module>spring-test</module>
-        <module>hello-maven-plugin</module>
     </modules>
     <packaging>pom</packaging>
 
