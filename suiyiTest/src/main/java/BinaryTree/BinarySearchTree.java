@@ -63,7 +63,13 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 	public void insert(AnyType x) {
 		root = insert(x, root);
 	}
-
+	private int height( BinaryNode<AnyType> t){
+		if (t == null){
+			return -1;
+		} else {
+			return Math.max(height(t.right), height(t.left))+1;
+		}
+	}
 	/**
 	 * Internal method to insert into a subtree,
 	 *
@@ -123,7 +129,23 @@ public class BinarySearchTree<AnyType extends Comparable<? super AnyType>> {
 	}
 
 	public void printTree() {
+		if (isEmpty()){
+			System.out.println("empty tree");
+		} else {
+			printTree(root);
+		}
+	}
 
+	/**
+	 * 中序遍历
+	 * @param t
+	 */
+	private void printTree(BinaryNode<AnyType> t) {
+		if (t !=null){
+			printTree(t.left);
+			System.out.println(t.element);
+			printTree(t.right);
+		}
 	}
 
 

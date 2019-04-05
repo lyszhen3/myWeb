@@ -15,10 +15,14 @@ import java.util.concurrent.TimeUnit;
 public class ZkDistributedLockTemplate implements DistributedLockTemplate {
     private static final Logger log = LogManager.getLogger(ZkDistributedLockTemplate.class);
 
-    @Autowired
     private CuratorFramework client;
 
-//    public ZkDistributedLockTemplate(CuratorFramework client) {
+    @Autowired
+    public void setClient(CuratorFramework client) {
+        this.client = client;
+    }
+
+    //    public ZkDistributedLockTemplate(CuratorFramework client) {
 //        this.client = client;
 //    }
 
@@ -28,12 +32,13 @@ public class ZkDistributedLockTemplate implements DistributedLockTemplate {
         return distributedReentrantLock.tryLock(timeout, TimeUnit.MILLISECONDS);
     }
 
+    @Override
     public Object execute(String lockId, int timeout, Callback callback) {
         ZkReentrantLock distributedReentrantLock = null;
         boolean getLock=false;
         try {
             distributedReentrantLock = new ZkReentrantLock(client,lockId);
-            if(tryLock(distributedReentrantLock,new Long(timeout))){
+            if(tryLock(distributedReentrantLock, (long) timeout)){
                 getLock=true;
                 return callback.onGetLock();
             }else{

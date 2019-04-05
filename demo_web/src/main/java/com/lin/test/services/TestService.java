@@ -137,7 +137,7 @@ public class TestService {
      * @return long
      */
     public Long payMoney() {
-        Long money = 0L;
+        long money = 0L;
         return new MoneyVipPolicy() {
             @Override
             public Long getMoney() {

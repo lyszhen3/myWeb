@@ -1,5 +1,11 @@
 import org.junit.Test;
+import sun.tools.java.BinaryClass;
+import sun.tools.java.BinaryCode;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -33,7 +39,7 @@ public class Testtest {
 		a ^= b; //异或
 		b ^= a;
 		a ^= b;
-//		a^=b^=a^=b;
+
 		System.out.println("交换后:" + a);
 		System.out.println("交换后" + b);
 	}
@@ -164,7 +170,27 @@ public class Testtest {
 		list.forEach(System.out::println);
 //		swap(7, 4);
 //		tt();
+		Map<String, String> map = new HashMap<>();
 		System.out.println(System.getProperty("java.io.tmpdir"));
+
+		int i = 255;
+
+		byte t = (byte)i;
+		System.out.println(t);
+		int j = t>=0? t: 256+t;
+		System.out.println(j);
+
+		String s = Integer.toBinaryString(t);
+		TreeMap<String,Integer> zmap = new TreeMap<>();
+
+		System.out.println(s);
+		Integer zi = new Integer(3);
+		System.out.println(zi);
+		zi = 4;
+		System.out.println(zi);
+		String tc = "tc";
+//		int i1 = tc.hashCode();
+		System.out.println(tc.hashCode());
 	}
 }
 
