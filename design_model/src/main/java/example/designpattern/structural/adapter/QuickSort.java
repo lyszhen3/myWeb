@@ -1,13 +1,13 @@
 package example.designpattern.structural.adapter;
 
 //快速排序类：适配者
-public class QuickSort {
-    public int[] quickSort(int array[]) {
+ class QuickSort {
+     int[] quickSort(int[] array) {
         sort(array, 0, array.length - 1);
         return array;
     }
 
-    public void sort(int array[], int p, int r) {
+     void sort(int[] array, int p, int r) {
         int q = 0;
         if (p < r) {
             q = partition(array, p, r);
@@ -16,7 +16,7 @@ public class QuickSort {
         }
     }
 
-    public int partition(int[] a, int p, int r) {
+     int partition(int[] a, int p, int r) {
         int x = a[r];
         int j = p - 1;
         for (int i = p; i <= r - 1; i++) {
@@ -29,7 +29,7 @@ public class QuickSort {
         return j + 1;
     }
 
-    public void swap(int[] a, int i, int j) {
+     void swap(int[] a, int i, int j) {
         int t = a[i];
         a[i] = a[j];
         a[j] = t;
