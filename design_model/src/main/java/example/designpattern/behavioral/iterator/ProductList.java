@@ -8,7 +8,8 @@ class ProductList extends AbstractObjectList {
         super(products);  
     }  
 
-    //实现创建迭代器对象的具体工厂方法  
+    //实现创建迭代器对象的具体工厂方法
+    @Override
     public AbstractIterator createIterator() {  
         return new ProductIterator(this);  
     }  

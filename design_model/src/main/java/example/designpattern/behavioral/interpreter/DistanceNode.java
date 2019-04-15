@@ -8,7 +8,8 @@ class DistanceNode extends AbstractNode {
         this.distance = distance;  
     }  
 
-//距离表达式的解释操作  
+	//距离表达式的解释操作
+    @Override
     public String interpret() {  
         return this.distance;  
     }     

@@ -4,7 +4,7 @@ abstract class Approver{
 #Approver successor;
 #String name;
 +Approver(String name);
-+void setSuccessor(Approver sucessor);
++void setSuccessor(Approver successor);
 +{abstract} void processRequest();
 }
 

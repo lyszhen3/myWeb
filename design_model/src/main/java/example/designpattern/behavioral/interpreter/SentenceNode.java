@@ -12,7 +12,8 @@ class SentenceNode extends AbstractNode {
         this.distance = distance;  
     }  
 
-    //简单句子的解释操作  
+    //简单句子的解释操作
+    @Override
     public String interpret() {  
         return direction.interpret() + action.interpret() + distance.interpret();  
     }     

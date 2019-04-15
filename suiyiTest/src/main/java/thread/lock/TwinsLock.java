@@ -1,9 +1,5 @@
 package thread.lock;
 
-import javafx.concurrent.Worker;
-import org.junit.Test;
-import thread.SleepUtils;
-
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;

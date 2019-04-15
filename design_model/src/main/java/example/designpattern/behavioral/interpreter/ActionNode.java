@@ -8,7 +8,8 @@ class ActionNode extends AbstractNode {
         this.action = action;  
     }  
 
-    //动作（移动方式）表达式的解释操作  
+    //动作（移动方式）表达式的解释操作
+    @Override
     public String interpret() {  
         if (action.equalsIgnoreCase("move")) {  
             return "移动";  
