@@ -14,7 +14,8 @@ public class BasicFileOutput {
     static String file = "BasicFileOutPut.out";
 
     public static void main(String[] args) throws IOException {
-        BufferedReader in  = new BufferedReader(new FileReader("D:\\ideawork\\work1\\myWeb\\src\\test\\java\\com\\io\\BasicFileOutput.java"));
+        String path = "D:\\workspace\\self\\myWeb\\suiyiTest\\src\\main\\java\\io\\BasicFileOutput.java";
+        BufferedReader in  = new BufferedReader(new FileReader(path));
 
         PrintWriter out  =new PrintWriter(new BufferedWriter(new FileWriter(file)));
         String s;
