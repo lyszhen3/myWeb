@@ -1,11 +1,5 @@
 import org.junit.Test;
-import sun.tools.java.BinaryClass;
-import sun.tools.java.BinaryCode;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 
 /**

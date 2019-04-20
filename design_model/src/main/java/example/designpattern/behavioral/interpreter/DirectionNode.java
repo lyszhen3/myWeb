@@ -8,7 +8,8 @@ class DirectionNode extends AbstractNode {
         this.direction = direction;  
     }  
 
-    //方向表达式的解释操作  
+    //方向表达式的解释操作
+    @Override
     public String interpret() {  
         if (direction.equalsIgnoreCase("up")) {  
             return "向上";  

@@ -11,6 +11,7 @@ class AndNode extends AbstractNode {
 	}
 
 	//And表达式解释操作
+	@Override
 	public String interpret() {
 		return left.interpret() + "再" + right.interpret();
 	}

@@ -11,7 +11,10 @@ import java.io.UnsupportedEncodingException;
  */
 public class test {
 	public static void main(String[] args) throws UnsupportedEncodingException {
-
+		Thread thread = new Thread(() -> {
+			System.out.println("wo");
+		});
+		thread.start();
 	}
 
 	public void test1() {
@@ -25,5 +28,6 @@ public class test {
 	public void test2() {
 		System.out.println("test_2");
 		System.out.println();
+
 	}
 }

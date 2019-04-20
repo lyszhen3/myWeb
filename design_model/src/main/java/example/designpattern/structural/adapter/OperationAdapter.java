@@ -11,12 +11,12 @@ class OperationAdapter implements ScoreOperation {
     }
 
     @Override
-    public int[] sort(int array[]) {
+    public int[] sort(int[] array) {
         return sortObj.quickSort(array); //调用适配者类QuickSort的排序方法
     }
 
     @Override
-    public int search(int array[], int key) {
+    public int search(int[] array, int key) {
         return searchObj.binarySearch(array, key); //调用适配者类BinarySearch的查找方法
     }
 }
