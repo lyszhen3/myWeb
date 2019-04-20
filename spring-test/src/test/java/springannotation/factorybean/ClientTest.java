@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import springannotation.Bar;
 
+
 /**
  * Created by lys on 2019/1/23.
  *
@@ -54,8 +55,12 @@ public class ClientTest {
 		ApplicationContext context = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
 		Object factoryBeanTest = context.getBean("factoryBeanTest");
 		Object $factoryBeanTest = context.getBean("&factoryBeanTest");
+		Object bar = context.getBean("bar");
 		System.out.println(((Bar) factoryBeanTest).getName());
 		System.out.println(((FactoryBeanTest) $factoryBeanTest).getObjectType());
+		System.out.println(bar);
+		System.out.println(factoryBeanTest);
+		System.out.println($factoryBeanTest);
 	}
 
 }

@@ -25,7 +25,7 @@ class FactoryBeanTest implements FactoryBean<Bar>, BeanFactoryAware {
 	@Override
 	public Bar getObject() throws Exception {
 
-		// "factoryBeanTest" 和 "bar" 就是同一个实例
+		// "factoryBeanTest" 获取bar 和 getObject() 为同一个
 //		Bar bar =(Bar) beanFactory.getBean("bar");
 		//工厂 bean自己维护了一个单例 所以和 "bar" 不是同一个
 		Bar bar = getSingleton();

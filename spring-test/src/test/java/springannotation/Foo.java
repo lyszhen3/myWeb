@@ -1,5 +1,7 @@
 package springannotation;
 
+import org.springframework.core.annotation.Order;
+
 /**
  * Created by lys on 7/5/2018.
  *
@@ -14,7 +16,7 @@ public class Foo {
 		this.bar = bar;
 	}
 	public Foo(){
-
+		System.out.println("foo::实例化");
 	}
 	public Bar getBar() {
 		return bar;
