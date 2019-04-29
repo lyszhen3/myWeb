@@ -1,7 +1,9 @@
+import com.alibaba.fastjson.JSONObject;
 
-import com.DeepCopy;
-
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Created by pc on 2017-08-12.
@@ -20,6 +22,7 @@ public class MySort {
         }
         sout();
     }
+
     public void sout(){
         System.out.println("hello");
 
@@ -46,5 +49,12 @@ public class MySort {
         System.out.println(v);
         Class<?> clazz = MySort.class;
         System.out.println(clazz.getName());
+        JSONObject jsonObject = new JSONObject();
+        Map<String, Object> mm = new HashMap<>();
+        mm.put("10", new BigDecimal(1).setScale(2));
+        mm.put("20", new BigDecimal(2).setScale(2));
+        jsonObject.put("price", mm);
+        String s = jsonObject.toJSONString();
+        System.out.println(s);
     }
 }

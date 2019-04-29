@@ -1,7 +1,5 @@
 package com.java8Features;
 
-import com.sun.tools.javac.Main;
-
 import java.util.function.Function;
 
 /**

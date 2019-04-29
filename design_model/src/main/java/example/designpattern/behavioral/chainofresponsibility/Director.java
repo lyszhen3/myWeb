@@ -7,6 +7,7 @@ class Director extends Approver {
 	}
 
 	//具体请求处理方法
+	@Override
 	public void processRequest(PurchaseRequest request) {
 		if (request.getAmount() < 50000) {
 			System.out.println("主任" + this.name + "审批采购单：" + request.getAmount());

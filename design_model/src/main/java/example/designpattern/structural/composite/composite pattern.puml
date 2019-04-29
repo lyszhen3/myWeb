@@ -33,7 +33,7 @@ class TextFile{
 +void killVirus();
 }
 class Folder{
--ArrayList fileList;
+-ArrayList<AbstractFile> fileList;
 -String name;
 +Folder(String name);
 +void add(AbstractFile file);

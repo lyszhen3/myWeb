@@ -6,7 +6,8 @@ class Congress extends Approver {
 	}
 	//具体请求处理方法
 
-	public void processRequest(PurchaseRequest request) {
+    @Override
+    public void processRequest(PurchaseRequest request) {
 		System.out.println("召开董事会审批采购单：" + request.getNumber() + "，金额:"+request.getAmount());
 	}
 
