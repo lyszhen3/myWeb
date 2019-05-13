@@ -13,25 +13,27 @@ public class Person_Stub implements Person {
 
 	}
 
-	public int getAge() throws Throwable {
-		// pass method name to skeleton
-		ObjectOutputStream outStream =
-				new ObjectOutputStream(socket.getOutputStream());
-		outStream.writeObject("age");
-		outStream.flush();
-		ObjectInputStream inStream =
-				new ObjectInputStream(socket.getInputStream());
-		return inStream.readInt();
-	}
+    @Override
+    public int getAge() throws Throwable {
+        // pass method name to skeleton
+        ObjectOutputStream outStream =
+            new ObjectOutputStream(socket.getOutputStream());
+        outStream.writeObject("age");
+        outStream.flush();
+        ObjectInputStream inStream =
+            new ObjectInputStream(socket.getInputStream());
+        return inStream.readInt();
+    }
 
-	public String getName() throws Throwable {
-		// pass method name to skeleton
-		ObjectOutputStream outStream =
-				new ObjectOutputStream(socket.getOutputStream());
-		outStream.writeObject("name");
-		outStream.flush();
-		ObjectInputStream inStream =
-				new ObjectInputStream(socket.getInputStream());
-		return (String) inStream.readObject();
-	}
+    @Override
+    public String getName() throws Throwable {
+        // pass method name to skeleton
+        ObjectOutputStream outStream =
+            new ObjectOutputStream(socket.getOutputStream());
+        outStream.writeObject("name");
+        outStream.flush();
+        ObjectInputStream inStream =
+            new ObjectInputStream(socket.getInputStream());
+        return (String) inStream.readObject();
+    }
 }     
