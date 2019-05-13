@@ -12,6 +12,5 @@ dependencies {
     }
     compile group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.6'
     compile group: 'com.github.sgroschupf', name: 'zkclient', version: '0.1'
-    testCompile("org.apache.dubbo:dubbo:2.7.1")
     compile project(':dubbo:dubbo_demo:demo_api')
 }

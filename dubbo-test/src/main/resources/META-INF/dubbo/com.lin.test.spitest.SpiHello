@@ -1,0 +1,2 @@
+spiImpl1 = com.lin.test.spitest.SpiImpl1
+spiImpl2 = com.lin.test.spitest.SpiImpl2
