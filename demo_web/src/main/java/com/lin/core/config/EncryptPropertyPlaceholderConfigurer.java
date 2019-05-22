@@ -18,29 +18,32 @@ import java.util.Objects;
  */
 
 public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
-	private List<String> encryptPropNames;
-	@Override
-	protected String convertProperty(String propertyName, String propertyValue) {
-		if(encryptPropNames.contains(propertyName)){
-			if("root".equals(propertyValue)){
-				return super.convertProperty(propertyName, propertyValue);
-			}
-			byte[] bytes = RSAUtil.decryptBase64(propertyValue.getBytes());
-			propertyValue = new String(Objects.requireNonNull(bytes));
-		}
-		return super.convertProperty(propertyName, propertyValue);
-	}
+    private List<String> encryptPropNames;
 
-	public List<String> getEncryptPropNames() {
-		return encryptPropNames;
-	}
+    @Override
+    protected String convertProperty(String propertyName, String propertyValue) {
+        if (encryptPropNames.contains(propertyName)) {
+            //跳过rsa验证
+            if ("root".equals(propertyValue)) {
+                return super.convertProperty(propertyName, propertyValue);
+            }
+            byte[] bytes = RSAUtil.decryptBase64(propertyValue.getBytes());
+            propertyValue = new String(Objects.requireNonNull(bytes));
+        }
+        return super.convertProperty(propertyName, propertyValue);
+    }
 
-	public void setEncryptPropNames(List<String> encryptPropNames) {
-		this.encryptPropNames = encryptPropNames;
-	}
-	static class EncryptUtil{
-		static String ii="11";
+    public List<String> getEncryptPropNames() {
+        return encryptPropNames;
+    }
 
-	}
+    public void setEncryptPropNames(List<String> encryptPropNames) {
+        this.encryptPropNames = encryptPropNames;
+    }
+
+    static class EncryptUtil {
+        static String ii = "11";
+
+    }
 
 }
