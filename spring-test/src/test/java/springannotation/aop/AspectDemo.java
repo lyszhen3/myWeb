@@ -10,9 +10,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Created by lys on 2018/11/8.
- *
+ * <p>
  * 执行顺序 aop --> around --> before --> around --> after -->afterReturning
- *
  *
  * @author lys
  * @version 3.0.0-SNAPSHOT
@@ -22,20 +21,36 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class AspectDemo {
 
-    @Pointcut(value = "execution(int springannotation.aop.AopTestService.hello(String||Integer))")
+    /**
+     * 第一个*号表示匹配所有类型返回值
+     */
+    @Pointcut(value = "execution(* springannotation.aop.AopTestService.hello(String||Integer))")
     public void pointMethod() {
 
     }
 
-    @Before("pointMethod()")
-    public Object before(JoinPoint joinPoint) {
-        for (Object arg : joinPoint.getArgs()) {
-            if (arg.equals(1)) {
-                //AOP检验参数。。也不知可行不
-                throw new IllegalArgumentException("?");
-            }
-        }
-        System.out.println("之前");
+    @Pointcut("@annotation(springannotation.aop.AopAnnotation)")
+    public void pointMethod2() {
+
+    }
+
+    /**
+     * args(id) "id"匹配方法里的参数id 代表代理方法里的首个匹配到的此类型的参数
+     * --[@annotation(aopAnnotation) ]代表代理方法上的注解
+     *
+     * @param joinPoint
+     * @param id
+     * @param aopAnnotation
+     * @param paramAnnotation
+     * @return
+     */
+    @Before(value = "pointMethod()&&args(id)&&@annotation(aopAnnotation)&&@annotation(paramAnnotation)", argNames = "joinPoint,id,aopAnnotation,paramAnnotation")
+    public Object before(JoinPoint joinPoint, Object id, AopAnnotation aopAnnotation, ParamAnnotation paramAnnotation) {
+        System.out.println(aopAnnotation.des());
+        System.out.println("作者：" + paramAnnotation.name());
+        System.out.println(id);
+        System.out.println("之前" + "参数=" + joinPoint.getArgs()[0]);
+        System.out.println("传入的id：" + id);
         return null;
     }
 

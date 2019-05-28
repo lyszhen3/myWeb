@@ -8,6 +8,6 @@ package springannotation.aop;
  * @since 3.0.0-SNAPSHOT
  */
 public interface AopTestService {
-	void hello(String name);
+	String hello(String name);
 	int hello(Integer id);
 }

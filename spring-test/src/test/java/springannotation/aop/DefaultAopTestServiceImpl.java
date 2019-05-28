@@ -15,11 +15,17 @@ import java.util.regex.Pattern;
 @Service
 //@Primary
 public class DefaultAopTestServiceImpl implements AopTestService{
+
+	@AopAnnotation(des = "woCao")
+	@ParamAnnotation(name = "lys")
 	@Override
-	public void hello(String name) {
+	public String hello(String name) {
 		System.out.println("hello  "+name);
+		return "hello:" + name;
 	}
 
+	@AopAnnotation(des = "woCao")
+	@ParamAnnotation(name = "lys")
 	@Override
 	public int hello(Integer id) {
 		System.out.println("hello "+id);
