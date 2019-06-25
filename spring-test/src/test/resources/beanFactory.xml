@@ -39,6 +39,13 @@
         <property name="birthday" value="2018-07-06"/>
     </bean>
 
+    <!-- 很明显不能替换init-method的方法-->
+    <bean class="springframeworktest.beans.ReplaceMethodClass" init-method="init" >
+        <replaced-method name="hello" replacer="replacer"/>
+    </bean>
+
+    <bean id="replacer" class="springframeworktest.beans.Replacer"/>
+
     <bean class="springframeworktest.beans.aware.AwareTest"/>
 
     <bean id="bfpp" class="springframeworktest.beans.processor.ObscentityRemovingBeanFactoryPostProcessor">

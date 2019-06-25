@@ -48,6 +48,12 @@ public class ClientTests {
 	}
 
 	@Test
+	public void testReplace(){
+		ReplaceMethodClass bean = xmlContext.getBean(ReplaceMethodClass.class);
+
+	}
+
+	@Test
 	public void testPostProcessor(){
 		ConfigurableListableBeanFactory bf = new XmlBeanFactory(new ClassPathResource("beanFactory.xml"));
 		BeanFactoryPostProcessor bfbb = (BeanFactoryPostProcessor)bf.getBean("bfpp");
