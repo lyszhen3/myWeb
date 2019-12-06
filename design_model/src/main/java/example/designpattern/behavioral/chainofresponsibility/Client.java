@@ -7,11 +7,11 @@ class Client {
         gyang = new VicePresident("杨过");
         jguo = new President("郭靖");
         meeting = new Congress("董事会");
-//创建职责链
+        //创建职责链
         wjzhang.setSuccessor(gyang);
         gyang.setSuccessor(jguo);
         jguo.setSuccessor(meeting);
-//创建采购单
+        //创建采购单
         PurchaseRequest pr1 = new PurchaseRequest(45000, 10001, "购买倚天剑");
         wjzhang.processRequest(pr1);
         PurchaseRequest pr2 = new PurchaseRequest(60000, 10002, "购买《葵花宝典》");

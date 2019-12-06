@@ -27,7 +27,8 @@ public class Client {
 	@Test
 	public void test(){
 //		int hello = aopTestService.hello(1);
-		aopTestService.hello("1");
+		String hello = aopTestService.hello("1");
+		System.out.println("response:"+ hello);
 	}
 
 

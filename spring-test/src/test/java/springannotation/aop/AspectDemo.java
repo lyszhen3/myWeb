@@ -48,7 +48,6 @@ public class AspectDemo {
     public Object before(JoinPoint joinPoint, Object id, AopAnnotation aopAnnotation, ParamAnnotation paramAnnotation) {
         System.out.println(aopAnnotation.des());
         System.out.println("作者：" + paramAnnotation.name());
-        System.out.println(id);
         System.out.println("之前" + "参数=" + joinPoint.getArgs()[0]);
         System.out.println("传入的id：" + id);
         return null;
