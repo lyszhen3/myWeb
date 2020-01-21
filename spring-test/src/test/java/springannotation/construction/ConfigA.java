@@ -1,5 +1,6 @@
 package springannotation.construction;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -17,4 +18,15 @@ import org.springframework.context.annotation.PropertySources;
 @PropertySources(@PropertySource("classpath:spring.properties"))
 public class ConfigA {
 
+    @Bean
+    public Foo1 foo1(Foo2 foo2){
+        Foo1 foo1 = new Foo1();
+        foo1.setFoo2(foo2);
+        return foo1;
+    }
+
+    @Bean
+    public Foo2 foo2(){
+        return new Foo2();
+    }
 }
