@@ -1,4 +1,4 @@
-package BinaryTree;
+package algorithm.BinaryTree;
 
 /**
  * Created by lys on 2018/12/21.
