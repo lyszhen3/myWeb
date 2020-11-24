@@ -1,13 +1,27 @@
 package algorithm.btree;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author LinYuanSheng
  * @date 2020/11/19
+ * 有1<非子结点(根节点外)<=M
+ * ceil(M/2)-1<=键值数<=M-1
  */
-public class BTree {
-	public BTree(int M) {
+public class BTreeL<I, V> {
+
+	private TreeNode<I, V> rootNode;
+
+	public TreeNode<I, V> getRootNode() {
+		return rootNode;
+	}
+
+	public void setRootNode(TreeNode<I, V> rootNode) {
+		this.rootNode = rootNode;
+	}
+
+	public BTreeL(int M) {
 		this.M = M;
 	}
 
@@ -22,6 +36,15 @@ public class BTree {
 		private I index;
 		//值
 		private V value;
+		private Node<I,V> next;
+
+		public Node<I, V> getNext() {
+			return next;
+		}
+
+		public void setNext(Node<I, V> next) {
+			this.next = next;
+		}
 
 		public I getIndex() {
 			return index;
@@ -67,5 +90,17 @@ public class BTree {
 			this.childes = childes;
 		}
 	}
+
+	public void put(Node<I, V> node) {
+		List<Node<I, V>> rootNodes = this.rootNode.getNodes();
+		if (rootNodes == null) {
+			rootNodes = new ArrayList<>();
+		}
+
+	}
+
+	public void insert() {
+	}
+
 
 }
