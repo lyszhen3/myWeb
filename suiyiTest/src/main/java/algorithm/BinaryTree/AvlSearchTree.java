@@ -91,9 +91,11 @@ public class AvlSearchTree<AnyType extends Comparable<? super AnyType>> {
 	 * For AVL trees, this is a  single rotation for case 1.
 	 * Update heights, then return new root.
 	 *
-	 *       k2               k1
-	 * 	 k1     z  --->     x      k2
-	 * x	y                   y    z
+	 *        k2               k1
+	 * 	  k1     z  --->     x      k2
+	 *  x	 y              u    y    z
+	 * u
+	 *
 	 * @param k2 the  node that roots the subtree
 	 * @return new root
 	 */
@@ -129,7 +131,8 @@ public class AvlSearchTree<AnyType extends Comparable<? super AnyType>> {
 	 * Update heights, then return new root.
 	 *        k1                     k2
 	 *     z      k2    ----->   k1      y
-	 *          x    y          z   x
+	 *          x    y          z   x      u
+	 *                u
 	 * @param k1
 	 * @return
 	 */
