@@ -1,0 +1,8 @@
+description = ''
+dependencies {
+    compile(group: 'org.apache.dubbo', name: 'dubbo', version: '2.7.11') {
+        exclude(module: 'spring')
+        exclude(module: 'spring-core')
+        exclude(module: 'netty')
+    }
+}
