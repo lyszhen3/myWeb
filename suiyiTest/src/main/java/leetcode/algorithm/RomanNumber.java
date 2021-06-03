@@ -20,12 +20,31 @@ public class RomanNumber {
 		//著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 		int[] romChrNum = {1, 5, 10, 50, 100, 500, 1000};
 		String[] romChr = {"I", "V", "X", "L", "C", "D", "M"};
-		int num = 555;
+		int num = 3999;
 		//1<num<3999;
 
 		final String convert = convert(num, romChrNum, romChr, null);
 		System.out.println(convert);
+		System.out.println(convert(num));
 
+	}
+
+	public static String convert(int num) {
+		int[] romChrNum = {1,4,5,9,10,40,50,90,100,400,500,900,1000};
+		String[] romChr = {"I","IV", "V", "IX", "X",
+				"XL", "L", "XC","C",
+				"CD", "D", "CM","M"};
+
+		int index = romChrNum.length -1;
+		String charx = "";
+		while (num > 0) {
+			while (num >= romChrNum[index]) {
+				charx += romChr[index];
+				num -= romChrNum[index];
+			}
+			index --;
+		}
+		return charx;
 	}
 
 	private static String convert(int num, int[] romCharNum, String[] romChar, Integer index) {
