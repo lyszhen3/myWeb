@@ -1,7 +1,9 @@
 package algorithm.btree;
 
-import java.util.ArrayList;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * @author LinYuanSheng
@@ -11,13 +13,13 @@ import java.util.List;
  */
 public class BTreeL<I, V> {
 
-	private TreeNode<I, V> rootNode;
+	private TreeNode rootNode;
 
-	public TreeNode<I, V> getRootNode() {
+	public TreeNode getRootNode() {
 		return rootNode;
 	}
 
-	public void setRootNode(TreeNode<I, V> rootNode) {
+	public void setRootNode(TreeNode rootNode) {
 		this.rootNode = rootNode;
 	}
 
@@ -31,26 +33,17 @@ public class BTreeL<I, V> {
 
 	private int maxNodes = M - 1;
 
-	class Node<I, V> {
+	class Node<V> implements Comparable<Node<V>> {
 		//索引
-		private I index;
+		private Integer index;
 		//值
 		private V value;
-		private Node<I,V> next;
 
-		public Node<I, V> getNext() {
-			return next;
-		}
-
-		public void setNext(Node<I, V> next) {
-			this.next = next;
-		}
-
-		public I getIndex() {
+		public Integer getIndex() {
 			return index;
 		}
 
-		public void setIndex(I index) {
+		public void setIndex(Integer index) {
 			this.index = index;
 		}
 
@@ -61,46 +54,92 @@ public class BTreeL<I, V> {
 		public void setValue(V value) {
 			this.value = value;
 		}
+
+		@Override
+		public int compareTo(Node<V> o) {
+			if (o != null) {
+				final Integer index = o.getIndex();
+				if (index != null) {
+					//这里用反射试试
+					try {
+						final Method compareTo = Integer.class.getMethod("compareTo", Integer.class);
+						final Object invoke = compareTo.invoke(this.index, index);
+						return (int) invoke;
+					} catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException ignore) {
+					}
+
+				}
+			}
+
+			return 0;
+		}
 	}
 
-	class TreeNode<I, V> {
+	class TreeNode {
+
 		/**
 		 * 当前节点键,值
 		 */
-		private List<Node<I, V>> nodes;
+		private TreeSet<Node<V>> nodes;
 
 		/**
 		 * 子节点
 		 */
-		private List<TreeNode<I, V>> childes;
+		private List<TreeNode> childes;
 
-		public List<Node<I, V>> getNodes() {
+		public TreeSet<Node<V>> getNodes() {
 			return nodes;
 		}
 
-		public void setNodes(List<Node<I, V>> nodes) {
+		public void setNodes(TreeSet<Node< V>> nodes) {
 			this.nodes = nodes;
 		}
 
-		public List<TreeNode<I, V>> getChildes() {
+		public List<TreeNode> getChildes() {
 			return childes;
 		}
 
-		public void setChildes(List<TreeNode<I, V>> childes) {
+		public void setChildes(List<TreeNode> childes) {
 			this.childes = childes;
 		}
 	}
 
-	public void put(Node<I, V> node) {
-		List<Node<I, V>> rootNodes = this.rootNode.getNodes();
-		if (rootNodes == null) {
-			rootNodes = new ArrayList<>();
+	/**
+	 * m = 5
+	 * <p>
+	 * 这里索引和value先一样
+	 */
+	public void insert(V v) {
+		//金字塔总是从下往上垒
+		//如果叶子节点》=5 ，则分叉
+		//1.要从root开始找
+		//2.要一直往下寻找插入到叶子节点
+		final Node<V> node = new Node<>();
+		//先直接Integer
+		node.setIndex((Integer) v);
+		node.setValue(v);
+		insertNode(rootNode, node);
+	}
+
+	public void insertNode(TreeNode treeNode, Node<V> node) {
+		final List<TreeNode> childes = treeNode.getChildes();
+
+		if (childes != null && childes.size() > 0) {
+			for (int i = 0; i < childes.size(); i++) {
+				final TreeNode childTreeNodeN = childes.get(i +1);
+				//是否大于后一个节点头部，如果大于则下一个节点，如果小于则当前节点
+				final Node<V> first = childTreeNodeN.getNodes().first();
+				if (first.getIndex()> node.getIndex()) {
+					//如果大于插入当前节点
+					insertNode(childes.get(i), node);
+				}
+			}
+
 		}
+		//如果没有子节点，则插入当前节点
+		treeNode.getNodes().add(node);
+		//这里如果一个节点大于等于m个元素，则分叉
 
 	}
-
-	public void insert() {
-	}
-
 
 }
