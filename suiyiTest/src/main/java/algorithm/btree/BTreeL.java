@@ -2,8 +2,11 @@ package algorithm.btree;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  * @author LinYuanSheng
@@ -29,9 +32,7 @@ public class BTreeL<I, V> {
 
 	private int M = 3;
 
-	private int minNodes = M / 2;
-
-	private int maxNodes = M - 1;
+	private int MID = (int) Math.ceil(M / 2);
 
 	class Node<V> implements Comparable<Node<V>> {
 		//索引
@@ -77,6 +78,7 @@ public class BTreeL<I, V> {
 
 	class TreeNode {
 
+		private TreeNode parentNode;
 		/**
 		 * 当前节点键,值
 		 */
@@ -87,11 +89,21 @@ public class BTreeL<I, V> {
 		 */
 		private List<TreeNode> childes;
 
+		TreeNode(){
+			nodes =  new TreeSet<>();
+			childes = new ArrayList<>();
+		}
+		TreeNode(TreeSet<Node<V>> inNodes){
+			nodes =  new TreeSet<>();
+			childes = new ArrayList<>();
+			nodes.addAll(inNodes);
+		}
+
 		public TreeSet<Node<V>> getNodes() {
 			return nodes;
 		}
 
-		public void setNodes(TreeSet<Node< V>> nodes) {
+		public void setNodes(TreeSet<Node<V>> nodes) {
 			this.nodes = nodes;
 		}
 
@@ -101,6 +113,14 @@ public class BTreeL<I, V> {
 
 		public void setChildes(List<TreeNode> childes) {
 			this.childes = childes;
+		}
+
+		public TreeNode getParentNode() {
+			return parentNode;
+		}
+
+		public void setParentNode(TreeNode parentNode) {
+			this.parentNode = parentNode;
 		}
 	}
 
@@ -126,10 +146,10 @@ public class BTreeL<I, V> {
 
 		if (childes != null && childes.size() > 0) {
 			for (int i = 0; i < childes.size(); i++) {
-				final TreeNode childTreeNodeN = childes.get(i +1);
+				final TreeNode childTreeNodeN = childes.get(i);
 				//是否大于后一个节点头部，如果大于则下一个节点，如果小于则当前节点
-				final Node<V> first = childTreeNodeN.getNodes().first();
-				if (first.getIndex()> node.getIndex()) {
+				final Node<V> last = childTreeNodeN.getNodes().last();
+				if (node.getIndex() <= last.getIndex()) {
 					//如果大于插入当前节点
 					insertNode(childes.get(i), node);
 				}
@@ -138,7 +158,42 @@ public class BTreeL<I, V> {
 		}
 		//如果没有子节点，则插入当前节点
 		treeNode.getNodes().add(node);
-		//这里如果一个节点大于等于m个元素，则分叉
+		balance(treeNode);
+
+	}
+	public void balance(TreeNode treeNode){
+		//这里如果一个节点大于等于m个元素，则将该节点分叉出两个节点，将中间的元素上移到父节点
+		//分叉递归
+		if (treeNode.getNodes().size() >= M) {
+			final Optional<Node<V>> first = treeNode.getNodes().stream().skip(MID - 1).findFirst();
+
+			final TreeSet<Node<V>> leftChild = treeNode.getNodes().stream().limit(MID - 1).collect(Collectors.toCollection(TreeSet::new));
+
+			final TreeNode leftTree = new TreeNode(leftChild);
+			final TreeSet<Node<V>> rightChild = treeNode.getNodes().stream().skip(MID).collect(Collectors.toCollection(TreeSet::new));
+
+			final TreeNode rightTree = new TreeNode(rightChild);
+			final Node<V> vNode = first.get();
+			//插入父节点，如果父节点为空，则构造一个
+			TreeNode parentNode = treeNode.getParentNode();
+			if(parentNode == null) {
+				//如果父节点是空,则构造一个
+				parentNode = new TreeNode();
+				parentNode.getNodes().add(vNode);
+				parentNode.getChildes().add(leftTree);
+				parentNode.getChildes().add(rightTree);
+
+			}else {
+				parentNode.getNodes().add(vNode);
+				parentNode.getChildes().add(leftTree);
+				parentNode.getChildes().add(rightTree);
+				balance(parentNode);
+			}
+
+		}
+	}
+
+	public static void main(String[] args) {
 
 	}
 
