@@ -230,6 +230,7 @@ public class BTreeL<V> {
 
 			} else {
 				upFloor.getNodes().add(vNode);
+				//移除当前被拆分为两个分支的节点
 				upFloor.getChildes().remove(treeNode);
 				upFloor.getChildes().add(leftTree);
 				upFloor.getChildes().add(rightTree);
