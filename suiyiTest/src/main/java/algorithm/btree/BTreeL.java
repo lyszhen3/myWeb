@@ -204,9 +204,6 @@ public class BTreeL<V> {
 			//这里高度假设上层没有增加一个节点
 			rightTree.setHeight(height);
 			final Node<V> vNode = treeNode.getNodes().stream().skip(MID - 1).findFirst().get();
-			//TODO LYS 当前节点移除上移元素,这步可能要改
-//			treeNode.getNodes().remove(vNode);
-			//插入父节点，如果父节点为空，则构造一个
 
 			//把当前节点的子节点做分割给leftTree 和 rightTree
 			//子节点最后一个元素小于等于vNode的index的分给leftTree作为子节点，否则给rightTree作为子节点
@@ -228,7 +225,6 @@ public class BTreeL<V> {
 				upFloor.getChildes().add(leftTree);
 				upFloor.getChildes().add(rightTree);
 				this.rootNode = upFloor;
-
 				//高度调整
 				adjHeight(rootNode.getChildes());
 
