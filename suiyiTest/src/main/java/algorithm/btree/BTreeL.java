@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -14,7 +13,7 @@ import java.util.stream.Collectors;
  * 有1<非子结点(根节点外)<=M
  * ceil(M/2)-1<=键值数<=M-1
  */
-public class BTreeL<I, V> {
+public class BTreeL<V> {
 
 	private TreeNode rootNode;
 
@@ -28,11 +27,13 @@ public class BTreeL<I, V> {
 
 	public BTreeL(int M) {
 		this.M = M;
+		this.rootNode = new TreeNode();
+		this.rootNode.height = 0;
 	}
 
 	private int M = 3;
 
-	private int MID = (int) Math.ceil(M / 2);
+	private int MID = (M + 2 - 1) / 2;
 
 	class Node<V> implements Comparable<Node<V>> {
 		//索引
@@ -57,6 +58,14 @@ public class BTreeL<I, V> {
 		}
 
 		@Override
+		public String toString() {
+			return "Node{" +
+					"index=" + index +
+					", value=" + value +
+					'}';
+		}
+
+		@Override
 		public int compareTo(Node<V> o) {
 			if (o != null) {
 				final Integer index = o.getIndex();
@@ -76,9 +85,15 @@ public class BTreeL<I, V> {
 		}
 	}
 
+	/**
+	 *
+	 */
+
 	class TreeNode {
 
-		private TreeNode parentNode;
+		//高度
+		private int height;
+
 		/**
 		 * 当前节点键,值
 		 */
@@ -89,14 +104,30 @@ public class BTreeL<I, V> {
 		 */
 		private List<TreeNode> childes;
 
-		TreeNode(){
-			nodes =  new TreeSet<>();
+		@Override
+		public String toString() {
+			return "TreeNode{" +
+					"nodes=" + nodes +
+					'}';
+		}
+
+		TreeNode() {
+			nodes = new TreeSet<>();
 			childes = new ArrayList<>();
 		}
-		TreeNode(TreeSet<Node<V>> inNodes){
-			nodes =  new TreeSet<>();
+
+		TreeNode(TreeSet<Node<V>> inNodes) {
+			nodes = new TreeSet<>();
 			childes = new ArrayList<>();
 			nodes.addAll(inNodes);
+		}
+
+		public int getHeight() {
+			return height;
+		}
+
+		public void setHeight(int height) {
+			this.height = height;
 		}
 
 		public TreeSet<Node<V>> getNodes() {
@@ -115,13 +146,6 @@ public class BTreeL<I, V> {
 			this.childes = childes;
 		}
 
-		public TreeNode getParentNode() {
-			return parentNode;
-		}
-
-		public void setParentNode(TreeNode parentNode) {
-			this.parentNode = parentNode;
-		}
 	}
 
 	/**
@@ -141,7 +165,7 @@ public class BTreeL<I, V> {
 		insertNode(rootNode, node);
 	}
 
-	public void insertNode(TreeNode treeNode, Node<V> node) {
+	private void insertNode(TreeNode treeNode, Node<V> node) {
 		final List<TreeNode> childes = treeNode.getChildes();
 
 		if (childes != null && childes.size() > 0) {
@@ -149,10 +173,12 @@ public class BTreeL<I, V> {
 				final TreeNode childTreeNodeN = childes.get(i);
 				//是否大于后一个节点头部，如果大于则下一个节点，如果小于则当前节点
 				final Node<V> last = childTreeNodeN.getNodes().last();
-				if (node.getIndex() <= last.getIndex()) {
+				if (node.getIndex() <= last.getIndex() || (i == childes.size() - 1 && node.getIndex() > last.getIndex())) {
 					//如果大于插入当前节点
 					insertNode(childes.get(i), node);
+					return;
 				}
+
 			}
 
 		}
@@ -161,39 +187,111 @@ public class BTreeL<I, V> {
 		balance(treeNode);
 
 	}
-	public void balance(TreeNode treeNode){
+
+	public void balance(TreeNode treeNode) {
 		//这里如果一个节点大于等于m个元素，则将该节点分叉出两个节点，将中间的元素上移到父节点
 		//分叉递归
+		//当前高度
+		final int height = treeNode.getHeight();
 		if (treeNode.getNodes().size() >= M) {
-			final Optional<Node<V>> first = treeNode.getNodes().stream().skip(MID - 1).findFirst();
-
 			final TreeSet<Node<V>> leftChild = treeNode.getNodes().stream().limit(MID - 1).collect(Collectors.toCollection(TreeSet::new));
 
 			final TreeNode leftTree = new TreeNode(leftChild);
+			//这里高度假设上层没有增加一个节点
+			leftTree.setHeight(height);
 			final TreeSet<Node<V>> rightChild = treeNode.getNodes().stream().skip(MID).collect(Collectors.toCollection(TreeSet::new));
-
 			final TreeNode rightTree = new TreeNode(rightChild);
-			final Node<V> vNode = first.get();
+			//这里高度假设上层没有增加一个节点
+			rightTree.setHeight(height);
+			final Node<V> vNode = treeNode.getNodes().stream().skip(MID - 1).findFirst().get();
+			//TODO LYS 当前节点移除上移元素,这步可能要改
+//			treeNode.getNodes().remove(vNode);
 			//插入父节点，如果父节点为空，则构造一个
-			TreeNode parentNode = treeNode.getParentNode();
-			if(parentNode == null) {
-				//如果父节点是空,则构造一个
-				parentNode = new TreeNode();
-				parentNode.getNodes().add(vNode);
-				parentNode.getChildes().add(leftTree);
-				parentNode.getChildes().add(rightTree);
 
-			}else {
-				parentNode.getNodes().add(vNode);
-				parentNode.getChildes().add(leftTree);
-				parentNode.getChildes().add(rightTree);
-				balance(parentNode);
+			//把当前节点的子节点做分割给leftTree 和 rightTree
+			//子节点最后一个元素小于等于vNode的index的分给leftTree作为子节点，否则给rightTree作为子节点
+			if (treeNode.getChildes() != null && treeNode.getChildes().size() > 0) {
+				final List<TreeNode> childes = treeNode.getChildes();
+				final List<TreeNode> leftTreeChild = childes.stream().filter(tree -> tree.getNodes().last().getIndex() <= vNode.getIndex()).collect(Collectors.toList());
+				final List<TreeNode> rightTreeChild = childes.stream().filter(tree -> tree.getNodes().first().getIndex() > vNode.getIndex()).collect(Collectors.toList());
+				leftTree.getChildes().addAll(leftTreeChild);
+				rightTree.getChildes().addAll(rightTreeChild);
+			}
+			//根据高度向上寻找父节点并把当前节点一个上移
+			TreeNode upFloor = findUpFloor(vNode, height - 1);
+
+			if (upFloor == null) {
+				//如果父节点为null,则新建一个节点，把左右节点设为子节点
+				upFloor = new TreeNode();
+				upFloor.setHeight(height);
+				upFloor.getNodes().add(vNode);
+				upFloor.getChildes().add(leftTree);
+				upFloor.getChildes().add(rightTree);
+				this.rootNode = upFloor;
+
+				//高度调整
+				adjHeight(rootNode.getChildes());
+
+			} else {
+				upFloor.getNodes().add(vNode);
+				upFloor.getChildes().remove(treeNode);
+				upFloor.getChildes().add(leftTree);
+				upFloor.getChildes().add(rightTree);
+				balance(upFloor);
 			}
 
 		}
 	}
 
+	private void adjHeight(List<TreeNode> childes) {
+		if (childes == null || childes.size() == 0) {
+			return;
+		}
+		for (TreeNode childe : childes) {
+			childe.setHeight(childe.getHeight() + 1);
+			adjHeight(childe.getChildes());
+		}
+	}
+
+	private TreeNode findUpFloor(Node<V> vNode, int height) {
+		if (height < 0) {
+			return null;
+		}
+		if (height == 0) {
+			return this.rootNode;
+		}
+		//这里要递归找
+		return findNode(vNode, height, this.rootNode);
+	}
+
+	private TreeNode findNode(Node<V> childNode, int height, TreeNode treeNode) {
+		if (treeNode.getHeight() == height) {
+			//如果高度符合
+			//校验子节点是否包含该元素
+			for (TreeNode childe : treeNode.getChildes()) {
+				if (childe.getNodes().contains(childNode)) {
+					return childe;
+				}
+			}
+
+		}
+		//如果高度不符合，向下找
+		for (TreeNode childe : treeNode.getChildes()) {
+			return findNode(childNode, height, childe);
+		}
+		return null;
+	}
+
 	public static void main(String[] args) {
+		BTreeL<Integer> bTreeL = new BTreeL<>(3);
+		bTreeL.insert(1);
+		bTreeL.insert(2);
+		bTreeL.insert(3);
+		bTreeL.insert(4);
+		bTreeL.insert(5);
+		bTreeL.insert(6);
+		bTreeL.insert(7);
+		bTreeL.insert(8);
 
 	}
 
