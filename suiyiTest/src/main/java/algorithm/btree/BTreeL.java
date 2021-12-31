@@ -165,6 +165,15 @@ public class BTreeL<V> {
 		insertNode(rootNode, node);
 	}
 
+	/**
+	 * 删除
+	 * @param v
+	 */
+	public void delete(V v) {
+
+
+	}
+
 	private void insertNode(TreeNode treeNode, Node<V> node) {
 		final List<TreeNode> childes = treeNode.getChildes();
 
@@ -214,7 +223,7 @@ public class BTreeL<V> {
 				leftTree.getChildes().addAll(leftTreeChild);
 				rightTree.getChildes().addAll(rightTreeChild);
 			}
-			//根据高度向上寻找父节点并把当前节点一个上移
+			//根据高度向上寻找父节点并把当前节点上移倒父节点
 			TreeNode upFloor = findUpFloor(vNode, height - 1);
 
 			if (upFloor == null) {
