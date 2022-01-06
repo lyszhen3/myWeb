@@ -167,11 +167,78 @@ public class BTreeL<V> {
 
 	/**
 	 * 删除
-	 * @param v
+	 *
+	 * @param v 1.如果是非叶子节点
+	 *          1.1 从左边子节点最右边的键替换，如果有子节点继续往下搜索替换，然后删除该子节点键值
+	 *          <p>
+	 *          2.如果是子叶节点
+	 *          2.1 直接删除该key，如果键个数不满足 ceil(M/2) -1 ,如果左右兄弟键值数量皆大于ceil(M/2)-1 ,则优先从左兄弟拿key，这里的操作是父节点一个key 下移，左兄弟最右边key上移倒父节点.
+	 *          否则把右兄弟最左的key上移
+	 *          2.2 如果兄弟节点键值个数均<=ceil(M/2) -1 则直接从父节点拿，此时该节点会合并，优先向左兄弟合并。因此导致父节点键值个数少于ceil(M/2)-1.则递归向上操作
 	 */
 	public void delete(V v) {
 
+		Integer index = (Integer) v;
+		deleteByIndex(index);
 
+	}
+
+	private void deleteByIndex(Integer index) {
+
+		//寻找节点
+		TreeNode treeNode = findTreeNode(index, rootNode);
+
+		if (isLeaf(treeNode)) {
+			//如果是叶子节点
+
+		}
+
+	}
+
+	/**
+	 * 如果是叶子节点
+	 *
+	 * @param treeNode
+	 * @return
+	 */
+	private boolean isLeaf(TreeNode treeNode) {
+		if (treeNode == null) {
+			return false;
+		}
+		return treeNode.getChildes() == null || treeNode.getChildes().size() <= 0;
+	}
+
+	private TreeNode findTreeNode(Integer index, TreeNode treeNode) {
+
+		if (treeNode == null) {
+			return null;
+		}
+		final TreeSet<Node<V>> nodes = treeNode.getNodes();
+		final List<TreeNode> childes = treeNode.getChildes();
+		for (Node<V> node : nodes) {
+			if (node.getIndex() == index.intValue()) {
+				//如果索引相等，则返回当前节点
+				return treeNode;
+			}
+			if (node.getIndex() < index) {
+				continue;
+			}
+			if (node.getIndex() > index) {
+				//如果大于搜索的索引，向下找子节点，该子节点键[min]<=index<=键[max]
+
+				if (childes != null) {
+					for (TreeNode childe : childes) {
+						final TreeSet<Node<V>> childNodes = childe.getNodes();
+						if (childNodes.first().getIndex() <= index && childNodes.last().getIndex() >= index) {
+							return findTreeNode(index, childe);
+						}
+					}
+				}
+
+			}
+		}
+
+		return null;
 	}
 
 	private void insertNode(TreeNode treeNode, Node<V> node) {
@@ -234,8 +301,8 @@ public class BTreeL<V> {
 				upFloor.getChildes().add(leftTree);
 				upFloor.getChildes().add(rightTree);
 				this.rootNode = upFloor;
-				//高度调整
-				adjHeight(rootNode.getChildes());
+				//高度+1
+				increaseHeight(rootNode.getChildes());
 
 			} else {
 				upFloor.getNodes().add(vNode);
@@ -249,13 +316,13 @@ public class BTreeL<V> {
 		}
 	}
 
-	private void adjHeight(List<TreeNode> childes) {
+	private void increaseHeight(List<TreeNode> childes) {
 		if (childes == null || childes.size() == 0) {
 			return;
 		}
 		for (TreeNode childe : childes) {
 			childe.setHeight(childe.getHeight() + 1);
-			adjHeight(childe.getChildes());
+			increaseHeight(childe.getChildes());
 		}
 	}
 
