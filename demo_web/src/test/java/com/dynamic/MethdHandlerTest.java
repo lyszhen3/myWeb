@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 public class MethdHandlerTest {
 	static class ClassA {
 		public void println(String arg) {
-			System.out.println(arg );
+			System.out.println("A:"+arg );
 		}
 	}
 
@@ -34,5 +34,6 @@ public class MethdHandlerTest {
 	public static void getPrint(Object obj,String arg) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 		Class<?> aClass = obj.getClass();
 		Method println = aClass.getMethod("println", String.class);
+		println.invoke(obj,arg);
 	}
 }
