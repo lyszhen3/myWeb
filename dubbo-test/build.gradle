@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'myWeb'
+version '1.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/org.apache.dubbo/dubbo
+    
+    compile group: 'org.apache.dubbo', name: 'dubbo', version: '2.7.1'
+}
