@@ -3,6 +3,7 @@ package algorithm.btree;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -154,6 +155,20 @@ public class BTreeL<V> {
 			return childes;
 		}
 
+		public TreeNode lastChild() {
+			if (childes == null || childes.isEmpty()) {
+				return null;
+			}
+			return childes.get(childes.size() - 1);
+		}
+
+		public TreeNode firstChild() {
+			if (childes == null || childes.isEmpty()) {
+				return null;
+			}
+			return childes.get(0);
+		}
+
 		public void setChildes(List<TreeNode> childes) {
 			this.childes = childes;
 		}
@@ -230,60 +245,68 @@ public class BTreeL<V> {
 
 		rotateForBalance(currentTree);
 
-
 	}
 
 	private void rotateForBalance(TreeNode currentTree) {
-		if (currentTree.getNodes().size() >= MIN_KEYS  || currentTree.getHeight() == 0) {
+		if (currentTree.getNodes().size() >= MIN_KEYS || currentTree.getHeight() == 0) {
 			//如果当前节点删除了一个还是符合最小键个数，则直接删除,如果是根节点也请直接删除吧。。
 			return;
 		}
-		if (currentTree.getNodes().size() < MIN_KEYS ) {
+		if (currentTree.getNodes().size() < MIN_KEYS) {
 			//这个时候要看兄弟节点满足不
-			TreeNode leftBrother =  findLeftBrotherTreeNode(currentTree);
+			TreeNode leftBrother = findLeftBrotherTreeNode(currentTree);
 
-			TreeNode rightBrother =  findRightBrotherTreeNode(currentTree);
+			TreeNode rightBrother = findRightBrotherTreeNode(currentTree);
 			if (leftBrother != null && leftBrother.getNodes().size() >= MIN_KEYS + 1) {
 				//如果左兄第满足则直接从左兄第取最右边的NODE 上移
 				final TreeNode parentTreeNode = currentTree.parentTreeNode;
 				//下移的node
-				Node<V>   downNode = findParentLeftNode(currentTree, parentTreeNode);
+				Node<V> downNode = findParentLeftNode(currentTree, parentTreeNode);
 				final TreeNode leftChild = downNode.leftChild;
 				//最后一个上移
 				final Node<V> last = leftChild.getNodes().last();
-				last.leftChild = leftChild;
-				last.rightChild = currentTree;
 				parentTreeNode.getNodes().remove(downNode);
 				parentTreeNode.getNodes().add(last);
 				currentTree.getNodes().add(downNode);
-				downNode.leftChild = null;
-				downNode.rightChild = null;
+				downNode.leftChild = last.rightChild;
+				downNode.rightChild = currentTree.firstChild();
+				last.leftChild = leftChild;
+				last.rightChild = currentTree;
 				return;
 			}
-			if (rightBrother != null && rightBrother.getNodes().size() >= MIN_KEYS +1) {
+			if (rightBrother != null && rightBrother.getNodes().size() >= MIN_KEYS + 1) {
 				//如果右兄弟满足则直接从有兄弟取最左边NODE 上移
 				final TreeNode parentTreeNode = currentTree.parentTreeNode;
 				//下移的node
-				Node<V>   downNode = findParentRightNode(currentTree, parentTreeNode);
+				Node<V> downNode = findParentRightNode(currentTree, parentTreeNode);
 				final TreeNode rightChild = downNode.rightChild;
 				//最后一个上移
 				final Node<V> first = rightChild.getNodes().first();
-				first.leftChild = currentTree;
-				first.rightChild = rightChild;
 				parentTreeNode.getNodes().remove(downNode);
 				parentTreeNode.getNodes().add(first);
 				currentTree.getNodes().add(downNode);
-				downNode.leftChild = null;
-				downNode.rightChild = null;
+				downNode.leftChild = currentTree.lastChild();
+				downNode.rightChild = first.leftChild;
+				first.leftChild = currentTree;
+				first.rightChild = rightChild;
 				return;
 			}
 			//如果左右节点均不满足，则直接从父节点拿一个下来(优先拿左边的，这里左边可能没有，也可能右边没有。要特殊考虑)，并合并左右子节点
 			final TreeNode parentTreeNode = currentTree.parentTreeNode;
 			final Node<V> downNode = findParentLeftNode(currentTree, parentTreeNode);
 			if (downNode != null) {
+				downNode.rightChild = currentTree.firstChild();
+				downNode.leftChild = leftBrother.lastChild();
 				currentTree.getNodes().add(downNode);
+				//合并操作
+				currentTree.getNodes().addAll(leftBrother.getNodes());
+				leftBrother.getChildes().addAll(currentTree.getChildes());
+				currentTree.setChildes(leftBrother.getChildes());
+				parentTreeNode.getNodes().remove(downNode);
+
 			}
 
+			rotateForBalance(parentTreeNode);
 		}
 	}
 
@@ -319,8 +342,8 @@ public class BTreeL<V> {
 		final List<TreeNode> childes = parentTreeNode.getChildes();
 		//这里也不用什么二分查找啦，随便写写
 		for (int i = 0; i < childes.size(); i++) {
-			if (childes.get(i) == currentTree && (i +1) <= childes.size() - 1) {
-				return childes.get(i +1);
+			if (childes.get(i) == currentTree && (i + 1) <= childes.size() - 1) {
+				return childes.get(i + 1);
 			}
 		}
 		return null;
@@ -334,7 +357,7 @@ public class BTreeL<V> {
 		final List<TreeNode> childes = parentTreeNode.getChildes();
 		//这里也不用什么二分查找啦，随便写写
 		for (int i = 0; i < childes.size(); i++) {
-			if (childes.get(i) == currentTree && (i -1) >= 0) {
+			if (childes.get(i) == currentTree && (i - 1) >= 0) {
 				return childes.get(i - 1);
 			}
 		}
@@ -382,26 +405,23 @@ public class BTreeL<V> {
 			return null;
 		}
 		final TreeSet<Node<V>> nodes = treeNode.getNodes();
-		final List<TreeNode> childes = treeNode.getChildes();
-		for (Node<V> node : nodes) {
+
+		final Iterator<Node<V>> iterator = nodes.iterator();
+		while (iterator.hasNext()) {
+			Node<V> node = iterator.next();
 			if (node.getIndex() == index.intValue()) {
 				//如果索引相等，则返回当前节点
 				return treeNode;
 			}
-			if (node.getIndex() < index) {
+			if (node.getIndex() < index && iterator.hasNext()) {
 				continue;
+			}
+			if (node.getIndex() < index && !iterator.hasNext()) {
+				return findTreeNode(index, node.rightChild);
 			}
 			if (node.getIndex() > index) {
 				//如果大于搜索的索引，向下找子节点，该子节点键[min]<=index<=键[max]
-
-				if (childes != null) {
-					for (TreeNode childe : childes) {
-						final TreeSet<Node<V>> childNodes = childe.getNodes();
-						if (childNodes.first().getIndex() <= index && childNodes.last().getIndex() >= index) {
-							return findTreeNode(index, childe);
-						}
-					}
-				}
+				return findTreeNode(index, node.leftChild);
 
 			}
 		}
@@ -457,6 +477,8 @@ public class BTreeL<V> {
 				final List<TreeNode> rightTreeChild = childes.stream().filter(tree -> tree.getNodes().first().getIndex() > vNode.getIndex()).collect(Collectors.toList());
 				leftTree.getChildes().addAll(leftTreeChild);
 				rightTree.getChildes().addAll(rightTreeChild);
+				leftTreeChild.forEach(t -> t.parentTreeNode=leftTree);
+				rightTreeChild.forEach(t -> t.parentTreeNode= rightTree);
 			}
 			//根据高度向上寻找父节点并把当前节点上移倒父节点
 			TreeNode upFloor = findUpFloor(vNode, height - 1);
@@ -541,6 +563,9 @@ public class BTreeL<V> {
 		bTreeL.insert(6);
 		bTreeL.insert(7);
 		bTreeL.insert(8);
+
+		bTreeL.delete(8);
+		bTreeL.delete(7);
 		//1
 
 	}
