@@ -248,8 +248,17 @@ public class BTreeL<V> {
 	}
 
 	private void rotateForBalance(TreeNode currentTree) {
-		if (currentTree.getNodes().size() >= MIN_KEYS || currentTree.getHeight() == 0) {
+		if (currentTree.getNodes().size() >= MIN_KEYS ) {
 			//如果当前节点删除了一个还是符合最小键个数，则直接删除,如果是根节点也请直接删除吧。。
+			return;
+		}
+		if (currentTree.getHeight() == 0) {
+			if (currentTree.getNodes().size() == 0) {
+				//如果当前节点是根目录，且元素被删光了，就把当前节点移除
+				decreaseHeight(currentTree.getChildes());
+				//按理说只有一个子节点
+				rootNode = currentTree.getChildes().get(0);
+			}
 			return;
 		}
 		if (currentTree.getNodes().size() < MIN_KEYS) {
@@ -524,6 +533,15 @@ public class BTreeL<V> {
 		}
 	}
 
+	private void decreaseHeight(List<TreeNode> childes) {
+		if (childes == null || childes.size() == 0) {
+			for (TreeNode childe : childes) {
+				childe.setHeight(childe.getHeight() - 1);
+				decreaseHeight(childe.getChildes());
+			}
+		}
+	}
+
 	private TreeNode findUpFloor(Node<V> vNode, int height) {
 		if (height < 0) {
 			return null;
@@ -565,6 +583,7 @@ public class BTreeL<V> {
 		bTreeL.insert(8);
 
 		bTreeL.delete(8);
+		//TODO LYS 还是有问题啊，的想想了
 		bTreeL.delete(7);
 		//1
 
