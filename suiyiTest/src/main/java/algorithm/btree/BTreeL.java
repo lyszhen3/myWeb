@@ -303,6 +303,7 @@ public class BTreeL<V> {
 			//如果左右节点均不满足，则直接从父节点拿一个下来(优先拿左边的，这里左边可能没有，也可能右边没有。要特殊考虑)，并合并左右子节点
 			final TreeNode parentTreeNode = currentTree.parentTreeNode;
 			final Node<V> downNode = findParentLeftNode(currentTree, parentTreeNode);
+			final Node<V> rightDownNode = findParentRightNode(currentTree, parentTreeNode);
 			if (downNode != null) {
 				downNode.rightChild = currentTree.firstChild();
 				downNode.leftChild = leftBrother.lastChild();
@@ -312,6 +313,19 @@ public class BTreeL<V> {
 				leftBrother.getChildes().addAll(currentTree.getChildes());
 				currentTree.setChildes(leftBrother.getChildes());
 				parentTreeNode.getNodes().remove(downNode);
+				//删除被合并的
+				parentTreeNode.getChildes().remove(leftBrother);
+
+			} else if (rightDownNode != null) {
+				rightDownNode.rightChild = rightBrother.firstChild();
+				rightDownNode.leftChild = currentTree.lastChild();
+				currentTree.getNodes().add(rightDownNode);
+				//合并操作
+				currentTree.getNodes().addAll(rightBrother.getNodes());
+				currentTree.getChildes().addAll(rightBrother.getChildes());
+				parentTreeNode.getNodes().remove(rightDownNode);
+				//删除被合并右子节点
+				parentTreeNode.getChildes().remove(rightBrother);
 
 			}
 
