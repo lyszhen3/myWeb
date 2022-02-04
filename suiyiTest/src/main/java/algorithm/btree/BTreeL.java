@@ -234,7 +234,7 @@ public class BTreeL<V> {
 
 			final Node<V> last = maxRightLeafTree.getNodes().last();
 			//删除查找到的元素
-			currentTree.getNodes().remove(vNode);
+//			currentTree.getNodes().remove(vNode);
 			//添加最大右叶子节点
 			currentTree.getNodes().add(last);
 			maxRightLeafTree.getNodes().remove(last);
@@ -248,7 +248,7 @@ public class BTreeL<V> {
 	}
 
 	private void rotateForBalance(TreeNode currentTree) {
-		if (currentTree.getNodes().size() >= MIN_KEYS ) {
+		if (currentTree.getNodes().size() >= MIN_KEYS) {
 			//如果当前节点删除了一个还是符合最小键个数，则直接删除,如果是根节点也请直接删除吧。。
 			return;
 		}
@@ -500,8 +500,8 @@ public class BTreeL<V> {
 				final List<TreeNode> rightTreeChild = childes.stream().filter(tree -> tree.getNodes().first().getIndex() > vNode.getIndex()).collect(Collectors.toList());
 				leftTree.getChildes().addAll(leftTreeChild);
 				rightTree.getChildes().addAll(rightTreeChild);
-				leftTreeChild.forEach(t -> t.parentTreeNode=leftTree);
-				rightTreeChild.forEach(t -> t.parentTreeNode= rightTree);
+				leftTreeChild.forEach(t -> t.parentTreeNode = leftTree);
+				rightTreeChild.forEach(t -> t.parentTreeNode = rightTree);
 			}
 			//根据高度向上寻找父节点并把当前节点上移倒父节点
 			TreeNode upFloor = findUpFloor(vNode, height - 1);
@@ -549,11 +549,13 @@ public class BTreeL<V> {
 
 	private void decreaseHeight(List<TreeNode> childes) {
 		if (childes == null || childes.size() == 0) {
-			for (TreeNode childe : childes) {
-				childe.setHeight(childe.getHeight() - 1);
-				decreaseHeight(childe.getChildes());
-			}
+			return;
 		}
+		for (TreeNode childe : childes) {
+			childe.setHeight(childe.getHeight() - 1);
+			decreaseHeight(childe.getChildes());
+		}
+
 	}
 
 	private TreeNode findUpFloor(Node<V> vNode, int height) {
@@ -597,7 +599,6 @@ public class BTreeL<V> {
 		bTreeL.insert(8);
 
 		bTreeL.delete(8);
-		//TODO LYS 还是有问题啊，的想想了
 		bTreeL.delete(7);
 		//1
 
