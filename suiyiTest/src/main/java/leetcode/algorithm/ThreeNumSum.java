@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 三数之和
  * 输出数组3个元素相加为0的所有可能
  * {-1,1,0,-3,1,2}
  * 不重复..
  * 输出[{-1,1,0},{-3,1,2}]
  */
-public class SumIsZeroUnDuplication {
+public class ThreeNumSum {
 
 	public static void main(String[] args) {
 
