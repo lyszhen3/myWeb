@@ -21,6 +21,7 @@ public class Son  extends Human{
     public static void main(String[] args) {
         Human h = new Son(11L,"JIA");
         Family f = new Family();
+        System.out.println();
     }
 
     public Long getId() {
