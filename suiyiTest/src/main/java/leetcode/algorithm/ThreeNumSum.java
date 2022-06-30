@@ -1,6 +1,7 @@
 package leetcode.algorithm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,11 +13,13 @@ import java.util.List;
  */
 public class ThreeNumSum {
 
+	//TODO LYS
+	//回啦试下双指针,这个方法太戳了
 	public static void main(String[] args) {
 
 		int[] array = {-1, 1, 0, -3, 1, 2};
+		Arrays.sort(array);
 		final List<int[]> solve = solve(array);
-
 		for (int[] anInt : solve) {
 			for (int i : anInt) {
 				System.out.print(i);
