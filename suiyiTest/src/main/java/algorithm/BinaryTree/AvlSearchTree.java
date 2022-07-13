@@ -87,6 +87,7 @@ public class AvlSearchTree<AnyType extends Comparable<? super AnyType>> {
 	}
 
 	/**
+	 * 以左子节点上升一层 右旋
 	 * Rotate binary tree node with left child
 	 * For AVL trees, this is a  single rotation for case 1.
 	 * Update heights, then return new root.
@@ -126,6 +127,7 @@ public class AvlSearchTree<AnyType extends Comparable<? super AnyType>> {
 	}
 
 	/**
+	 * 以右子节点上升 左旋
 	 *  Rotate binary tree node with right child
 	 * For AVL trees, this is a  single rotation for case 1.
 	 * Update heights, then return new root.
