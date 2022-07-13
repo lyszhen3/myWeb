@@ -10,6 +10,6 @@ package spi;
 public class SpiImpl2 implements SpiHello {
 	@Override
 	public void sayHello() {
-		System.out.println("impl2");
+		System.out.println("impl2,天才");
 	}
 }
