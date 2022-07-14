@@ -176,13 +176,13 @@ public class BTreeL<V> {
 	}
 
 	/**
-	 * m = 5
+	 * 假设 m = 5
 	 * <p>
 	 * 这里索引和value先一样
 	 */
 	public void insert(V v) {
 		//金字塔总是从下往上垒
-		//如果叶子节点》=5 ，则分叉
+		//如果叶子节点》=m ，则分叉
 		//1.要从root开始找
 		//2.要一直往下寻找插入到叶子节点
 		final Node<V> node = new Node<>();
@@ -455,6 +455,7 @@ public class BTreeL<V> {
 	private void insertNode(TreeNode treeNode, Node<V> node) {
 		final List<TreeNode> childes = treeNode.getChildes();
 
+		//寻找往哪个子节点插入node
 		if (childes != null && childes.size() > 0) {
 			for (int i = 0; i < childes.size(); i++) {
 				final TreeNode childTreeNodeN = childes.get(i);
