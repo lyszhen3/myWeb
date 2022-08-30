@@ -17,6 +17,7 @@ public class MergeSort {
 			return ints;
 		}
 		// 傻逼.
+		//一直二分拆开,然后排序,然后合并
 		int m = (s + e) / 2;
 		int[] merge_s = merge(a, s, m);
 		int[] merge_e = merge(a, m + 1, e);
