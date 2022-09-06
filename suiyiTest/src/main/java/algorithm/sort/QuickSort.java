@@ -4,7 +4,8 @@ package algorithm.sort;
  * @author LinYuanSheng
  * @date 2022/8/30
  * 快排
- * 3,2,6,7,9,1,5,8,4
+ * 分区治理,递归
+ *
  */
 public class QuickSort {
 
