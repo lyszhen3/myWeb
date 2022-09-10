@@ -3,7 +3,7 @@ package algorithm.sort;
 /**
  * @author LinYuanSheng
  * @date 2022/8/30
- * 插入排序
+ * 归并排序
  * 分治,排序
  * 3,4,6,7,|2,1,5,8
  */

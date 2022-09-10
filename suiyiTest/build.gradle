@@ -7,4 +7,5 @@ dependencies {
     compile 'org.apache.commons:commons-email:1.5'
     compile 'com.google.guava:guava:31.0.1-jre'
     compile 'com.alibaba:fastjson:1.2.78'
+    compile 'org.apache.commons:commons-lang3:3.12.0'
 }
