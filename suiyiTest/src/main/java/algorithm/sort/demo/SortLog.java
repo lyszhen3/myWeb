@@ -14,11 +14,14 @@ import java.util.*;
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  * 垃圾代码,不知道怎么优化
+ * 10个300M已经排序的文件 用1G内存排序输出到一个文件
+ *
+ * 弄出10个数组,每个数组40M,从10个文件中取40M数据.第一波输出大约有400M数据
+ * 因为10个数组都是有序的,所以都去第一条数据,比较时间大小,最小的放到输出数组,然后把该数组的下标+1
+ * 一次下去,直到其中一个数组已经遍历完成. 从该数组对应的文件继续取出数据替换之前的数据,以此下去读完所有文件
  */
 public class SortLog {
 
-	static BufferedReader bufferedReader;
-	static BufferedReader bufferedReader2;
 	static Map<Integer, BufferedReader> bufferedReaderMap = new HashMap<>();
 	static BufferedWriter bufferedWriter;
 
@@ -26,12 +29,12 @@ public class SortLog {
 		try {
 			final File file = new File("C:\\Users\\lyszh\\Desktop\\log1.txt");
 			final FileInputStream fileInputStream = new FileInputStream(file);
-			bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
 			bufferedReaderMap.put(0, bufferedReader);
 			final File file2 = new File("C:\\Users\\lyszh\\Desktop\\log2.txt");
 			final FileInputStream fileInputStream2 = new FileInputStream(file2);
 
-			bufferedReader2 = new BufferedReader(new InputStreamReader(fileInputStream2));
+			BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(fileInputStream2));
 
 			bufferedReaderMap.put(1, bufferedReader2);
 
@@ -47,6 +50,8 @@ public class SortLog {
 			list.add(part2);
 			//归并排序
 			String[] mergePart = mergeSort(list, new HashMap<>());
+			//写
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -82,9 +87,7 @@ public class SortLog {
 					lines[j] = Pair.of(j, parts.get(j)[map.get(j)]);
 				} else {
 					part = readPart(j, 3);
-					if (part == null) {
-						//那么这个文件读完了..
-					}
+
 					parts.remove(j);
 					parts.add(j, part);
 
@@ -102,13 +105,7 @@ public class SortLog {
 				}
 				final long l = fetchTimestamp(a1.getRight());
 				final long l1 = fetchTimestamp(a2.getRight());
-				if (l > l1) {
-					return 1;
-				} else if (l == l1) {
-					return 0;
-				} else {
-					return -1;
-				}
+				return Long.compare(l, l1);
 			});
 
 			if (lines[0] == null) {
