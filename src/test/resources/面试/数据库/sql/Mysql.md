@@ -19,13 +19,19 @@
    1. redo.log
       1. 刷盘的时候如果突然宕机,可以通过redo.log重新写入磁盘
 5. mvcc
-      > readView有下列属性
+> readView有下列属性  
+事务记录属性:DB_TRX_ID(事务id),DB_ROLL_PT(指向上一条事务地址),记录在undo.log中
+
+![avatar](trxcolum.png)
    1. 已提交最大事务id
    2. 活跃中的事务id
    3. 当前最大事务id
    * 其他事务可以通过readView看到小于等于已提交最大事务id得事务(可见),  
    大于已提交最大事务id小于等于当前最大事务id为活跃id(不可见,当前事务可以看到自己的未提交事务),  
    大于当前最大事务id(不可见)
+     * m_up_limit_id(已提交最大事务id)
+     * m_low_limit_id(当前最大事务id+1)
+![avatar](readView.png)
 ## buffer pool
 1. 
 
