@@ -27,7 +27,7 @@
 > readView有下列属性  
 > 事务记录属性:DB_TRX_ID(事务id),DB_ROLL_PT(指向上一条事务地址),记录在undo.log中
 
-![img](trxcolum.png)
+![img](img/trxcolum.png)
 
 1. 已提交最大事务id
 2. 活跃中的事务id
@@ -39,7 +39,7 @@
     * m_up_limit_id(已提交最大事务id)
     * m_low_limit_id(当前最大事务id+1)
 
-![img](readView.png)
+![img](img/readView.png)
 
 ## buffer pool
 
@@ -49,7 +49,7 @@
         * 对应一个缓存页
         * 记录缓存页元数据信息,包括所属表空间、数据页编号、缓存页在buffer pool中的地址
 
-![img](bufferPoll1.png)
+![img](img/bufferPoll1.png)
 
 2. 管理及淘汰
     1. 初始化
@@ -68,7 +68,7 @@
         * 双向链表
         * 刷盘结束后清除对应节点中的数据
 
-![img](bufferPoll2.png)
+![img](img/bufferPoll2.png)
 
 4. 查询
     * MYSQL中还有一个哈希表数据结构，用表空间号+数据页号作为key，缓存页的地址作为value。  
@@ -90,6 +90,6 @@
             * innodb_old_blocks 默认1000(单位毫秒)如果一个数据页进入冷数据后，一秒内又被访问，则进到热数据
             * 只有热数据后3/4的数据再次被访问才移到热数据头部
 
-![img](bufferPoll3.png)
+![img](img/bufferPoll3.png)
 
 ## 基础问题
