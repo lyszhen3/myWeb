@@ -4,7 +4,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import springannotation.Bar;
 
@@ -16,7 +15,7 @@ import springannotation.Bar;
  * @since 3.0.0-SNAPSHOT
  */
 @Component
-class FactoryBeanTest implements FactoryBean<Bar>, BeanFactoryAware {
+class BarFactoryBean implements FactoryBean<Bar>, BeanFactoryAware {
 
 	BeanFactory beanFactory;
 

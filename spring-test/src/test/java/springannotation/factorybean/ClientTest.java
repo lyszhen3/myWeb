@@ -23,7 +23,7 @@ import springannotation.Bar;
 public class ClientTest {
 
 	@Autowired
-	private FactoryBeanTest factoryBeanTest;
+	private BarFactoryBean barFactoryBean;
 
 
 	/**
@@ -36,31 +36,40 @@ public class ClientTest {
 	public void test() {
 		Bar object = null;
 		try {
-			object = factoryBeanTest.getObject();
+			object = barFactoryBean.getObject();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(factoryBeanTest.getClass());
-		Bar bean = (Bar) factoryBeanTest.beanFactory.getBean("bar");
-		Object factoryBeanTest = this.factoryBeanTest.beanFactory.getBean("factoryBeanTest");
+		System.out.println(barFactoryBean.getClass());
+		Bar bean = (Bar) barFactoryBean.beanFactory.getBean("bar");
+		Object factoryBeanTest = this.barFactoryBean.beanFactory.getBean("barFactoryBean");
 		System.out.println("bar1::" + bean);
-		System.out.println(this.factoryBeanTest.getObjectType());
+		System.out.println(this.barFactoryBean.getObjectType());
+
+		//barFactoryBean 和 barFactoryBean.getObject() 生产出得是同一个对象
 		System.out.println("bar2::" + object);
 		System.out.println("bar3::"+factoryBeanTest);
 //		System.out.println(bar.getName());
 
 	}
 
-	public static void main(String[] args) {
+
+	@Test
+	public void test_main() {
+
 		ApplicationContext context = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
-		Object factoryBeanTest = context.getBean("factoryBeanTest");
-		Object $factoryBeanTest = context.getBean("&factoryBeanTest");
+		Object barFactoryBean = context.getBean("barFactoryBean");
+		Object $barFactoryBean = context.getBean("&barFactoryBean");
 		Object bar = context.getBean("bar");
-		System.out.println(((Bar) factoryBeanTest).getName());
-		System.out.println(((FactoryBeanTest) $factoryBeanTest).getObjectType());
-		System.out.println(bar);
-		System.out.println(factoryBeanTest);
-		System.out.println($factoryBeanTest);
+		System.out.println(((Bar) barFactoryBean).getName());
+		System.out.println(((BarFactoryBean) $barFactoryBean).getObjectType());
+		//bar bean
+		System.out.println("bar bean :" + ((Bar)bar).getName());
+		//factoryBean 生产得bar bean
+		System.out.println("factoryBean bar:" + barFactoryBean);
+
+		//factoryBean
+		System.out.println("factoryBean:" + $barFactoryBean);
 	}
 
 }

@@ -26,6 +26,7 @@ public class ObscentityRemovingBeanFactoryPostProcessor implements BeanFactoryPo
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		String[] beanNames = beanFactory.getBeanDefinitionNames();
+		//遍历所有spring bean做修饰,有点坑爹
 		for (String beanName : beanNames) {
 			BeanDefinition bd = beanFactory.getBeanDefinition(beanName);
 			StringValueResolver valueResolver = new StringValueResolver() {
