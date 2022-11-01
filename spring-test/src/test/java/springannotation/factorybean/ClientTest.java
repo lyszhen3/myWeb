@@ -2,8 +2,10 @@ package springannotation.factorybean;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,16 +22,16 @@ import springannotation.Bar;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = FactoryBeanConfig.class)
-public class ClientTest {
+public class ClientTest implements ApplicationContextAware {
 
 	@Autowired
 	private BarFactoryBean barFactoryBean;
 
-
+	ApplicationContext context;
 	/**
 	 * 由于factory bean的作用 被设置了属性
 	 */
-//	@Autowired
+	@Autowired
 	private Bar bar;
 
 	@Test
@@ -56,15 +58,18 @@ public class ClientTest {
 
 	@Test
 	public void test_main() {
+		//不在new一个新的spring 上下文
+//		ApplicationContext context = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
 
-		ApplicationContext context = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
 		Object barFactoryBean = context.getBean("barFactoryBean");
 		Object $barFactoryBean = context.getBean("&barFactoryBean");
-		Object bar = context.getBean("bar");
+		Object barBean = context.getBean("bar");
 		System.out.println(((Bar) barFactoryBean).getName());
 		System.out.println(((BarFactoryBean) $barFactoryBean).getObjectType());
+
+		System.out.println(this.bar);
 		//bar bean
-		System.out.println("bar bean :" + ((Bar)bar).getName());
+		System.out.println("bar bean :" +barBean + ",getName:" +((Bar)barBean).getName());
 		//factoryBean 生产得bar bean
 		System.out.println("factoryBean bar:" + barFactoryBean);
 
@@ -72,4 +77,8 @@ public class ClientTest {
 		System.out.println("factoryBean:" + $barFactoryBean);
 	}
 
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.context = applicationContext;
+	}
 }
