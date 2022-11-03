@@ -59,15 +59,13 @@ public class ClientTest implements ApplicationContextAware {
 	@Test
 	public void test_main() {
 		//不在new一个新的spring 上下文
-//		ApplicationContext context = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
+		ApplicationContext context = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
 
+		Object barBean = context.getBean("bar");
 		Object barFactoryBean = context.getBean("barFactoryBean");
 		Object $barFactoryBean = context.getBean("&barFactoryBean");
-		Object barBean = context.getBean("bar");
 		System.out.println(((Bar) barFactoryBean).getName());
 		System.out.println(((BarFactoryBean) $barFactoryBean).getObjectType());
-
-		System.out.println(this.bar);
 		//bar bean
 		System.out.println("bar bean :" +barBean + ",getName:" +((Bar)barBean).getName());
 		//factoryBean 生产得bar bean
