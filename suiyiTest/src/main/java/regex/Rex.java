@@ -31,6 +31,8 @@ public class Rex {
 		//字符串的获取
 		//现在获取三个字符串取出
 		reg.getString("ming tian jiu yao fangjia le ", getStringReg);
+
+		reg.getString("承诺10月9日送达", "\\d{1,2}月\\d{1,2}日");
 	}
 
 	/**
@@ -39,7 +41,7 @@ public class Rex {
 	 *    
 	 */
 
-	private void getString(String str, String regx) {
+	public void getString(String str, String regx) {
 		//1.将正在表达式封装成对象Patten 类来实现
 		Pattern pattern = Pattern.compile(regx);
 		//2.将字符串和正则表达式相关联
@@ -54,6 +56,19 @@ public class Rex {
 			//获取的字符串的首位置和末位置
 			System.out.println(matcher.start() + "--" + matcher.end());
 		}
+	}
+
+	public String getString2(String str , String regx) {
+		//1.将正在表达式封装成对象Patten 类来实现
+		Pattern pattern = Pattern.compile(regx);
+		//2.将字符串和正则表达式相关联
+		Matcher matcher = pattern.matcher(str);
+		//3.String 对象中的matches 方法就是通过这个Matcher和pattern来实现的。
+		//查找符合规则的子串
+		if (matcher.find()) {
+			return matcher.group();
+		}
+		return null;
 	}
 
 	/**
