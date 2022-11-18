@@ -1,5 +1,6 @@
 package springannotation.dependon;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,4 +12,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class NormalBean_2 {
+	private NormalBean normalBean;
+
+	@Autowired
+	public void setNormalBean(NormalBean normalBean) {
+		this.normalBean = normalBean;
+	}
 }

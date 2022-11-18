@@ -26,4 +26,13 @@ public class DependOnTest {
 		System.out.println(normalBean);
 
 	}
+
+	@Test
+	public void testCycleDepend() {
+		//循环构造依赖会报错
+		final AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(DependOnConfig.class);
+
+		final Object normalBean = annotationConfigApplicationContext.getBean("normalBean");
+		System.out.println(normalBean);
+	}
 }
