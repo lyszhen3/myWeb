@@ -24,27 +24,27 @@ public class ZShapeSort {
 	/**
 	 * 通过二维数组实现?
 	 *
-	 * @param input
-	 * @param row
+	 * @param s
+	 * @param numRows
 	 * @return
 	 */
-	private static String convert(String input, int row) {
+	private static String convert(String s, int numRows) {
 
-		if (input == null || input.length() == 0) {
+		if (s == null || s.length() == 0) {
 			return null;
 		}
 		//计算横坐标的长度
 		//一个竖斜需要的长度z= row + (row-2)
 		//xLength = (input.length +z -1/z) *row  因为长度只能长不能少
-		int z = row + (row - 2);
-		int xLength = ((input.length() + z - 1) / z) * (row - 1);
-		char[][] xy = new char[xLength][row];
+		int z = numRows + (numRows - 2);
+		int xLength = ((s.length() + z - 1) / z) * (numRows - 1);
+		char[][] xy = new char[xLength][numRows];
 
 		//0代表竖,1,代表斜,竖的时候x轴不变,y轴变
 		int type = 0;
 		int x = 0, y = 0;
-		for (int i = 0; i < input.length(); i++) {
-			xy[x][y] = input.charAt(i);
+		for (int i = 0; i < s.length(); i++) {
+			xy[x][y] = s.charAt(i);
 			if (type == 1) {
 				x++;
 				y--;
@@ -55,7 +55,7 @@ public class ZShapeSort {
 			}
 			if (type == 0) {
 				y++;
-				if (y == row - 1) {
+				if (y == numRows - 1) {
 					type = 1;
 				}
 			}
@@ -65,7 +65,9 @@ public class ZShapeSort {
 			//纵坐标长度
 			for (int j = 0; j < xy.length; j++) {
 				//横坐标长度
-				stringBuilder.append(xy[j][i]);
+				if (xy[j][i] != '\u0000') {
+					stringBuilder.append(xy[j][i]);
+				}
 			}
 		}
 
