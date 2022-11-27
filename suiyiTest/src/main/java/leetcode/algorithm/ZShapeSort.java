@@ -17,7 +17,9 @@ public class ZShapeSort {
 		int row = 3;
 
 		final String convert = convert(input, row);
+		final String convert2 = convert2(input, row);
 		System.out.println(convert);
+		System.out.println(convert2);
 
 	}
 
@@ -68,6 +70,64 @@ public class ZShapeSort {
 				if (xy[j][i] != '\u0000') {
 					stringBuilder.append(xy[j][i]);
 				}
+			}
+		}
+
+		return stringBuilder.toString();
+	}
+
+	/**
+	 * 在string中按规律寻找, 比如 row =3
+	 * 那么第一行就是 0*2*(row-1) , 1*2*(row-1), 2*2*(row-1) ...
+	 * 第二行    0*2*(row-2) +`1, 1+ 1*2*(row-2), 1+ 2*2(row-2)
+	 *
+	 * @param s
+	 * @param numRows
+	 * @return
+	 */
+	private static String convert2(String s, int numRows) {
+
+		if (s == null || s.length() == 0) {
+			return null;
+		}
+		if (numRows == 1) {
+			return s;
+		}
+
+		//等差值
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0; i < numRows; i++) {
+			int indexF = 0;
+			for (int j = 0; ; j++) {
+				if (j == 0) {
+					indexF = i;
+				} else {
+					if (i == numRows -1) {
+						//如果是下面的行
+						//只走偶数逻辑
+						j++;
+					}
+					if ((j & 1) == 1) {
+						//奇数
+						//从下往上走
+
+						indexF += 2 * (numRows - 1 - i);
+
+					} else if ((j & 1) != 1) {
+						//从上往下走
+						indexF += 2 * (i);
+					}
+					if (i == 0) {
+						//如果是最上面的点,只走奇数逻辑
+						j++;
+					}
+				}
+
+				if (indexF > s.length() - 1) {
+					break;
+				}
+				stringBuilder.append(s.charAt(indexF));
+
 			}
 		}
 
