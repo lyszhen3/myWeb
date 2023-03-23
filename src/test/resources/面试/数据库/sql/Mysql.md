@@ -26,7 +26,7 @@
 #### mvcc
 
 > readView有下列属性  
-> 事务记录属性:DB_TRX_ID(事务id),DB_ROLL_PT(指向上一条事务地址),记录在undo.log中
+> 事务记录属性:DB_TRX_ID(事务id),DB_ROLL_PTR(指向上一条事务地址),记录在undo.log中
 
 ![img](img/trxcolum.png)
 
@@ -79,7 +79,7 @@
     * 缺点
         * buffer pool的预读机制会导致有些冷数据加入到头部
             * 预读机制是当读取多页相连数据到一定数量时，会把下一条数据也读入缓存
-                * innodb_read_ahead_threshold 默认值56指读的相连数据页超过56页时，会把后面区间的数据也预读进缓存。
+                * innodb_read_ahead_threshold 默认值56 指读的相连数据页超过56页时，会把后面区间的数据也预读进缓存。
                 * innodb_random_read_ahead 默认关闭 一个区里的13个连续数据页，并且这些数据都是频繁被访问。  
                   触发预读将该区里的数据也加载进缓存
             * 全表查询会把热数据顶掉
