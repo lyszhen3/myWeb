@@ -1,5 +1,9 @@
 # Redis
 
+## 基础操作
+* set
+  ![img](/img/redis-sets.png)
+
 ## 持久化
 
 1. RDB
