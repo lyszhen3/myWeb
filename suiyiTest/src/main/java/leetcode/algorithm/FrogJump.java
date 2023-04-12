@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.algorithm;
 
 /**
  * Created by lys on 2022/9/30.
