@@ -21,32 +21,99 @@ public class Brackets {
 
 	public static void main(String[] args) {
 
+		int n  = 4;
 
-		final List<String> strings = generateParenthesis(4);
-		System.out.println(strings);
+		final List<String> kh = kh(new ArrayList<>(), n);
+
+		System.out.println("回溯算法:" + kh);
+
+		final List<String> strings = generateBrace(n);
+		System.out.println("动态规划:" + strings);
+
+	}
+
+	/**
+	 * 回溯算法
+	 * @param allR
+	 * @param num
+	 * @return
+	 */
+	public static List<String> kh(List<String> allR, int num) {
+
+		if (allR == null) {
+			allR = new ArrayList<>();
+		}
+		tc("", 0, 0, 1, num * 2, allR);
+
+		return allR;
+	}
+
+	public static void tc(String bras, int right, int rightNum, int index, int total, List<String> list) {
+		if (index > total) {
+			list.add(bras);
+			return;
+		}
+		if (index == 1) {
+			tc(bras + "(", ++right, ++rightNum, ++index, total, list);
+			return;
+		}
+		if (index == total) {
+			tc(bras + ")", --right, rightNum, ++index, total, list);
+			return;
+		}
+		if (rightNum >= (total / 2)) {
+			tc(bras + ")", --right, rightNum, ++index, total, list);
+			return;
+		}
+		if (right <= 0) {
+			tc(bras + "(", ++right, ++rightNum, ++index, total, list);
+			return;
+		}
+
+		int rrn = rightNum + 1;
+		int rr = right + 1;
+		int ri = index + 1;
+		tc(bras + "(", rr, rrn, ri, total, list);
+		tc(bras + ")", --right, rightNum, ++index, total, list);
+
 	}
 
 
-	public static List<String> generateParenthesis(int n) {
+	/**
+	 * 动态规划方案
+	 *
+	 * @param n
+	 * @return 如果要求所有合法的括号集合
+	 * ({p}) {q}
+	 * {p}表示n=p时括号的集合, {q} 表示n=q时括号的集合
+	 * p + q = n-1
+	 */
+	public static List<String> generateBrace(int n) {
+		//搞个集合记录之前的产生的数据
 		List<List<String>> result = new ArrayList<>();
+
 		if (n == 0) {
 			return new ArrayList<>();
 		}
 		List<String> list0 = new ArrayList<>();
 		list0.add("");
 		result.add(list0);
+
 		List<String> list1 = new ArrayList<>();
 		list1.add("()");
 		result.add(list1);
+
 		for (int i = 2; i <= n; i++) {
+			//生成填充result结果
+
 			List<String> temp = new ArrayList<>();
-			for (int j = 0; j < i; j++) {
-				List<String> str1 = result.get(j);
-				List<String> str2 = result.get(i - 1 - j);
-				for (String s1 : str1) {
-					for (String s2 : str2) {
-						String el = "(" + s1 + ")" + s2;
-						temp.add(el);
+			for (int p = 0; p < i; p++) {
+				final List<String> pCollection = result.get(p);
+				final List<String> qCollection = result.get(i - 1 - p);
+				for (String pStr : pCollection) {
+					for (String qStr : qCollection) {
+						String newStr = "(" +pStr +")" +qStr;
+						temp.add(newStr);
 					}
 				}
 
