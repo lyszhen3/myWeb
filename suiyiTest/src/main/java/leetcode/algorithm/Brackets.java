@@ -23,7 +23,7 @@ public class Brackets {
 
 		int n  = 4;
 
-		final List<String> kh = kh(new ArrayList<>(), n);
+		final List<String> kh = kh(n);
 
 		System.out.println("回溯算法:" + kh);
 
@@ -34,18 +34,15 @@ public class Brackets {
 
 	/**
 	 * 回溯算法
-	 * @param allR
 	 * @param num
 	 * @return
 	 */
-	public static List<String> kh(List<String> allR, int num) {
+	public static List<String> kh( int num) {
 
-		if (allR == null) {
-			allR = new ArrayList<>();
-		}
-		tc("", 0, 0, 1, num * 2, allR);
+		List<String> result = new ArrayList<>();
+		tc("", 0, 0, 1, num * 2, result);
 
-		return allR;
+		return result;
 	}
 
 	public static void tc(String bras, int right, int rightNum, int index, int total, List<String> list) {
