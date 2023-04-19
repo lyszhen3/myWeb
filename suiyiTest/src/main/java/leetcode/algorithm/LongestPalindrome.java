@@ -41,12 +41,12 @@ public class LongestPalindrome {
 		}
 		return R - L - 1;
 	}
-	//todo lys 如果用动态规划会怎么做呢?
 
 	/**
 	 * 存在一个回文 aba 那么 左边-1=右边 +1 那么也是个回文,例如 cabac
 	 * 我们将a[l][r]=true表示回文保存起来,如此依赖a[l-1][r+1]也能轻松确定是否回文
 	 * 动态规划还不如上面的来得快呢
+	 * 这个需要把所有的情况都计算一遍,上面的算法当往外延申遇到不符合的情况的就推出了,故快一些
 	 * @param s
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class LongestPalindrome {
 		char[] charArray = s.toCharArray();
 
 		//遍历长度
-		for (int n = 2; n <=s.length(); n++) {
+		for (int n = 2; n <= s.length(); n++) {
 
 			for (int l = 0; l < s.length(); l++) {
 				int r = l + n - 1;
