@@ -8,14 +8,14 @@ import com.lin.shiro.ShiroUser;
 import com.lin.springUtils.WebSpringFactory;
 import com.lin.springUtils.beantest.AbstractLin;
 import com.lin.springUtils.beantest.Lin;
-import com.lin.Test.beans.Shop;
-import com.lin.Test.beans.TestUser;
-import com.lin.Test.bo.UserBo;
-import com.lin.Test.services.PrototypeService;
-import com.lin.Test.services.SchedulePolling.SchedulePolling;
-import com.lin.Test.services.TestMore;
-import com.lin.Test.services.TestService;
-import com.lin.Test.services.TransactionalService;
+import com.lin.test.beans.Shop;
+import com.lin.test.beans.TestUser;
+import com.lin.test.bo.UserBo;
+import com.lin.test.services.PrototypeService;
+import com.lin.test.services.SchedulePolling.SchedulePolling;
+import com.lin.test.services.TestMore;
+import com.lin.test.services.TestService;
+import com.lin.test.services.TransactionalService;
 import com.lin.utils.validatepng.ValidateCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,10 +30,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -60,8 +62,12 @@ import java.util.concurrent.locks.ReentrantLock;
 public class TestAction {
 	private final static Logger log = LogManager.getLogger(TestAction.class);
 	private static final ReentrantLock lock = new ReentrantLock();
-	@Resource(name = "lin_testService")
 	private TestService testService;
+
+	@Autowired
+	public void setTestService(TestService testService) {
+		this.testService = testService;
+	}
 
 	private TransactionalService transactionalService;
 

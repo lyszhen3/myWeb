@@ -2,11 +2,10 @@ package com.lin.springUtils.beantest;
 
 import com.lin.data.beans.Account;
 import com.lin.data.mappers.AccountMapper;
-import com.lin.Test.services.TransactionalService;
+import com.lin.test.services.TransactionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 
 /**
  * Created by lys on 2018/8/30.
@@ -51,7 +50,7 @@ public abstract class AbstractLin implements Task {
 		System.out.println("hello");
 	}
 
-	@PostConstruct
+//	@PostConstruct
 	public void init(){
 		Account account = accountMapper.selectByPrimaryKey(1L);
 		this.account = account;

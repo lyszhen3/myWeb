@@ -5,7 +5,7 @@ import com.lin.data.beans.Account;
 import com.lin.data.mappers.AccountTestMapper;
 import com.lin.demo.services.DemoService;
 import com.lin.springUtils.WebSpringFactory;
-import com.lin.Test.services.abstracts.MoneyVipPolicy;
+import com.lin.test.services.abstracts.MoneyVipPolicy;
 import com.lin.zkLock.Callback;
 import com.lin.zkLock.ZkDistributedLockTemplate;
 import org.apache.logging.log4j.LogManager;

@@ -1,13 +1,12 @@
 package com.lin.modules;
 
-import com.lin.Test.services.ImageService;
+import com.lin.test.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.List;
 

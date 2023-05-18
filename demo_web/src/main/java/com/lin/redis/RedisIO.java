@@ -10,7 +10,6 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 
@@ -72,7 +71,7 @@ public class RedisIO {
 	/**
 	 * 初始化线程池
 	 */
-	@PostConstruct
+//	@PostConstruct
 	public void init() {
 		JedisPoolConfig config = new JedisPoolConfig();
 		config.setMaxTotal(maxActive);

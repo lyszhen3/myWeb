@@ -5,7 +5,7 @@ import com.lin.data.mappers.BookMapper;
 import com.lin.data.mappers.RoleMapper;
 import com.lin.data.mappers.AccountTestMapper;
 import com.lin.data.mappers.TestMapper;
-import com.lin.Test.services.abstracts.AbstractSmsTest;
+import com.lin.test.services.abstracts.AbstractSmsTest;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.junit.runner.RunWith;

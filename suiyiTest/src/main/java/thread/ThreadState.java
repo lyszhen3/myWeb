@@ -1,9 +1,5 @@
 package thread;
 
-import jdk.nashorn.internal.ir.Block;
-
-import java.util.concurrent.TimeUnit;
-
 /**
  * Created by lys on 2018/7/24.
  *

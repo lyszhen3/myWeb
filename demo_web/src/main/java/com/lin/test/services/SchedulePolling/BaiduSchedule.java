@@ -2,7 +2,7 @@ package com.lin.test.services.SchedulePolling;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lin.data.beans.Account;
-import com.lin.Test.services.TestService;
+import com.lin.test.services.TestService;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

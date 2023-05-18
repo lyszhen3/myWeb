@@ -1,8 +1,8 @@
 package com.lin.test.controllers;
 
 import com.lin.Test;
-import com.lin.Test.bo.ShopBO;
-import com.lin.Test.bo.UserBo;
+import com.lin.test.bo.ShopBO;
+import com.lin.test.bo.UserBo;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
