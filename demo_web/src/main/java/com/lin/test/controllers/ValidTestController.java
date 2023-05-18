@@ -1,16 +1,15 @@
 package com.lin.test.controllers;
 
-import com.lin.test.bo.ShopBO;
-import com.lin.test.bo.UserBo;
+import com.lin.Test;
+import com.lin.Test.bo.ShopBO;
+import com.lin.Test.bo.UserBo;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.Valid;
 import javax.validation.groups.Default;
 
 /**
@@ -23,13 +22,13 @@ import javax.validation.groups.Default;
 @Controller
 public class ValidTestController {
 	/**
-	 * 验证标签 @Validated 表示Update{@link com.lin.test.bo.UserBo.Update} 组
+	 * 验证标签 @Validated 表示Update{@link Test.bo.UserBo.Update} 组
 	 * 和 Default {@link javax.validation.groups.Default}   组需要验证
 	 *
 	 * @param bo     参数
 	 * @param errors 错误
 	 * @return json
-	 * @see com.lin.test.bo.UserBo.Update
+	 * @see Test.bo.UserBo.Update
 	 */
 	@RequestMapping("validGroupUpdate")
 	@ResponseBody

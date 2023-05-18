@@ -2,7 +2,7 @@ package com.lin.springUtils.beantest;
 
 import com.lin.data.beans.Account;
 import com.lin.data.mappers.AccountMapper;
-import com.lin.test.services.TransactionalService;
+import com.lin.Test.services.TransactionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 

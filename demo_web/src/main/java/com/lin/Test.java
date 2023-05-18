@@ -1,4 +1,4 @@
-package com;
+package com.lin;
 
 import java.io.UnsupportedEncodingException;
 
@@ -9,7 +9,7 @@ import java.io.UnsupportedEncodingException;
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-public class test {
+public class Test {
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		Thread thread = new Thread(() -> {
 			System.out.println("wo");

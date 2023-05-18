@@ -1,6 +1,6 @@
 package com.lin.test.bo;
 
-import com.lin.test.beans.Shop;
+import com.lin.Test.beans.Shop;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

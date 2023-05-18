@@ -2,7 +2,7 @@ package com.lin.test.validcontrollers;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.lin.test.bo.UserBo;
+import com.lin.Test.bo.UserBo;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
