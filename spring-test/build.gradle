@@ -1,8 +1,9 @@
 description = 'spring-test'
+
 dependencies {
-    testImplementation group: 'org.springframework', name: 'spring-context', version: '5.1.0.RELEASE'
-    testImplementation group: 'org.springframework', name: 'spring-beans', version: '5.1.0.RELEASE'
-    testImplementation group: 'org.springframework', name: 'spring-test', version: '5.1.0.RELEASE'
-    testImplementation group: 'org.springframework', name: 'spring-aop', version: '5.1.0.RELEASE'
-    testImplementation group: 'org.springframework', name: 'spring-aspects', version: '5.1.0.RELEASE'
+    testImplementation ("org.springframework:spring-context:${springVersion}")
+    testImplementation ("org.springframework:spring-beans:${springVersion}")
+    testImplementation ("org.springframework:spring-test:${springVersion}")
+    testImplementation ("org.springframework:spring-aop:${springVersion}")
+    testImplementation ("org.springframework:spring-aspects:${springVersion}")
 }

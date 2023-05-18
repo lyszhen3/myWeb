@@ -1,17 +1,16 @@
 description = ''
 dependencies {
-    implementation group: 'org.springframework', name: 'spring-beans', version: '5.1.0.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-jdbc', version: '5.1.0.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-core', version: '5.1.0.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-context-support', version: '5.1.0.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-aop', version: '5.1.0.RELEASE'
-    implementation(group: 'com.alibaba', name: 'dubbo', version: '2.5.6') {
+    implementation 'org.springframework:spring-beans:5.2.22.RELEASE'
+    implementation 'org.springframework:spring-jdbc:5.2.22.RELEASE'
+    implementation 'org.springframework:spring-core:5.2.22.RELEASE'
+    implementation 'org.springframework:spring-context-support:5.2.22.RELEASE'
+    implementation 'org.springframework:spring-aop:5.2.22.RELEASE'
+    implementation('com.alibaba:dubbo:2.5.6') {
         exclude(module: 'spring')
         exclude(module: 'spring-core')
         exclude(module: 'netty')
     }
-    implementation group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.6'
+    implementation 'org.apache.zookeeper:zookeeper:3.4.14'
     implementation group: 'com.github.sgroschupf', name: 'zkclient', version: '0.1'
     implementation project(path: ':dubbo:dubbo_demo:demo_api')
-//    implementation project(':dubbo:dubbo_demo:demo_api')
 }
