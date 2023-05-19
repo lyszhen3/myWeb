@@ -12,11 +12,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation("junit:junit:4.13.1")
     // https://mvnrepository.com/artifact/org.apache.dubbo/dubbo
-    implementation(group: 'org.apache.dubbo', name: 'dubbo', version: '2.7.11') {
-        exclude(module: 'spring')
-        exclude(module: 'spring-core')
-        exclude(module: 'netty')
+    implementation("org.apache.dubbo:dubbo:2.7.11") {
+        exclude(module: "spring")
+        exclude(module: "spring-core")
+        exclude(module: "netty")
     }
 }

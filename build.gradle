@@ -1,5 +1,6 @@
 allprojects {
 //    apply plugin: 'maven'
+    apply plugin: 'java-gradle-plugin'
     apply plugin: 'java-library'
     apply plugin: 'idea'
     group = 'myWeb'

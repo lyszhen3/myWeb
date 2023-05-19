@@ -2,67 +2,67 @@ apply plugin: 'war'
 
 description = 'demo_web'
 dependencies {
-    implementation project(':data_beans')
-    implementation group: 'org.springframework', name: 'spring-beans', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-jdbc', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-core', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-web', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-oxm', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-tx', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-webmvc', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-aop', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-context-support', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-expression', version: '4.3.10.RELEASE'
-    implementation group: 'org.springframework', name: 'spring-test', version: '4.3.10.RELEASE'
-    implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.8.9'
-    implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.9'
-    implementation group: 'org.apache.shiro', name: 'shiro-spring', version: '1.4.0'
-    implementation group: 'org.apache.shiro', name: 'shiro-core', version: '1.4.0'
-    implementation group: 'org.apache.shiro', name: 'shiro-ehcache', version: '1.4.0'
-    implementation group: 'com.alibaba', name: 'druid', version: '1.1.5'
-    implementation group: 'redis.clients', name: 'jedis', version: '2.9.0'
-    implementation group: 'org.springframework.data', name: 'spring-data-redis', version: '1.7.10.RELEASE'
-    implementation group: 'commons-logging', name: 'commons-logging', version: '1.2'
-//    compile group: 'net.sf.json-lib', name: 'json-lib', version:'2.4'
-    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.12'
-    implementation group: 'commons-beanutils', name: 'commons-beanutils', version: '20030211.134440'
-    implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.23'
-    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.1'
-    implementation group: 'commons-io', name: 'commons-io', version: '2.5'
-    implementation group: 'net.sf.barcode4j', name: 'barcode4j-light', version: '2.0'
-    implementation(group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.9') {
-        exclude(module: 'netty')
+    implementation project(":data_beans")
+    implementation("org.springframework:spring-beans:${springVersion}")
+    implementation("org.springframework:spring-jdbc:${springVersion}")
+    implementation("org.springframework:spring-core:${springVersion}")
+    implementation("org.springframework:spring-web:${springVersion}")
+    implementation("org.springframework:spring-oxm:${springVersion}")
+    implementation("org.springframework:spring-tx:${springVersion}")
+    implementation("org.springframework:spring-webmvc:${springVersion}")
+    implementation("org.springframework:spring-aop:${springVersion}")
+    implementation("org.springframework:spring-context-support:${springVersion}")
+    implementation("org.springframework:spring-expression:${springVersion}")
+    implementation("org.springframework:spring-test:${springVersion}")
+    implementation("org.aspectj:aspectjrt:1.8.9")
+    implementation("org.aspectj:aspectjweaver:1.8.9")
+    implementation("org.apache.shiro:shiro-spring:1.4.0")
+    implementation("org.apache.shiro:shiro-core:1.4.0")
+    implementation("org.apache.shiro:shiro-ehcache:1.4.0")
+    implementation("com.alibaba:druid:1.1.5")
+    implementation("redis.clients:jedis:2.9.0")
+    implementation("org.springframework.data:spring-data-redis:1.7.10.RELEASE")
+    implementation("commons-logging:commons-logging:1.2")
+//    compile ("net.sf.json-lib:json-lib', version:'2.4'
+    implementation("com.alibaba:fastjson:1.2.12")
+    implementation("commons-beanutils:commons-beanutils:20030211.134440")
+    implementation("org.freemarker:freemarker:2.3.23")
+    implementation("commons-fileupload:commons-fileupload:1.3.1")
+    implementation("commons-io:commons-io:2.5")
+    implementation("net.sf.barcode4j:barcode4j-light:2.0")
+    implementation("org.apache.zookeeper:zookeeper:3.4.9") {
+        exclude(module: "netty")
     }
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.9.1'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.9.1'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.9.1'
-    implementation group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.9.1'
-    implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
-    implementation group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
-    implementation group: 'com.google.code.findbugs', name: 'annotations', version: '2.0.3'
-    implementation group: 'javax.ws.rs', name: 'jsr311-api', version: '1.0'
-    implementation group: 'com.rabbitmq', name: 'amqp-client', version: '5.2.0'
+    implementation("org.apache.logging.log4j:log4j-api:2.9.1")
+    implementation("org.apache.logging.log4j:log4j-core:2.9.1")
+    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.9.1")
+    implementation("org.apache.logging.log4j:log4j-1.2-api:2.9.1")
+    implementation("javax.servlet:javax.servlet-api:3.1.0")
+    implementation("javax.persistence:persistence-api:1.0.2")
+    implementation("com.google.code.findbugs:annotations:2.0.3")
+    implementation("javax.ws.rs:jsr311-api:1.0")
+    implementation("com.rabbitmq:amqp-client:5.2.0")
     implementation project(':dubbo:dubbo_demo:demo_api')
-    implementation(group: 'com.alibaba', name: 'dubbo', version: '2.5.6') {
+    implementation("com.alibaba:dubbo:2.5.6") {
         exclude(module: 'spring')
         exclude(module: 'spring-core')
         exclude(module: 'netty')
         exclude(module: 'curator-framework')
     }
-    implementation group: 'org.elasticsearch.client', name: 'transport', version: '5.6.3'
-    implementation group: 'org.apache.curator', name: 'curator-recipes', version: '2.12.0'
-    implementation group: 'org.apache.curator', name: 'curator-framework', version: '2.12.0'
-    implementation group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
-    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '5.1.0.Final'
-    implementation group: 'org.springframework.session', name: 'spring-session', version: '1.3.1.RELEASE'
-    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
-    implementation 'org.springframework:spring-websocket:4.3.10.RELEASE'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.8'
-    implementation project(':image')
-    testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
-    testImplementation group: 'com.jayway.jsonpath', name: 'json-path', version: '2.0.0'
-    testImplementation 'javax.websocket:javax.websocket-client-api:1.1'
-    testImplementation 'org.apache.tomcat:tomcat-websocket-api:9.0.14'
+    implementation("org.elasticsearch.client:transport:5.6.3")
+    implementation("org.apache.curator:curator-recipes:2.12.0")
+    implementation("org.apache.curator:curator-framework:2.12.0")
+    implementation("javax.validation:validation-api:1.1.0.Final")
+    implementation("org.hibernate:hibernate-validator:5.1.0.Final")
+    implementation("org.springframework.session:spring-session:1.3.1.RELEASE")
+    implementation("org.apache.commons:commons-lang3:3.4")
+    implementation("org.springframework:spring-websocket:4.3.10.RELEASE")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.9.8")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.9.8")
+    implementation project(":image")
+    testImplementation("org.mockito:mockito-all:1.9.5")
+    testImplementation("com.jayway.jsonpath:json-path:2.0.0")
+    testImplementation("javax.websocket:javax.websocket-client-api:1.1")
+    testImplementation("org.apache.tomcat:tomcat-websocket-api:9.0.14")
 }
-test.enabled =false
+test.enabled = false
