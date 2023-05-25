@@ -10,7 +10,7 @@ include ':data_baomidou'
 include ':design_model'
 include ':image'
 include ':spring-test'
-include 'dubbo-test'
+include ':dubbo-test'
 
 project(':suiyiTest').projectDir = "$rootDir/suiyiTest" as File
 project(':data_beans').projectDir = "$rootDir/data_beans" as File
