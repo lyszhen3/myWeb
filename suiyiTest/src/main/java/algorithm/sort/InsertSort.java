@@ -21,6 +21,7 @@ public class InsertSort {
 				if (a[j] > v) {
 					a[j + 1] = a[j];
 				} else {
+					//如果离i最近的j的值较小,那后面的值肯定也比i小
 					break;
 				}
 			}

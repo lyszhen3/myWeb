@@ -5,6 +5,7 @@ package algorithm.sort;
  * @date 2022/8/30
  * 归并排序
  * 分治,排序
+ * 非原地排序
  * 3,4,6,7,|2,1,5,8
  */
 public class MergeSort {

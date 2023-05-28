@@ -28,7 +28,7 @@ public class QuickSort {
 		//用数组的最后一位作为分区值,比该值小的在左边,比该值大的在右边
 
 		//总共三个区域
-		//e.g  3,2,1,7,6,5
+		//e.g  3,2,1,7,6,4,5
 		//3,2,1[i],7,6[j],4,5
 		//当j到4时, 交换 a[j]=4 和 a[i+1]=7
 		//3,2,1,4[i],6,7[j],5
@@ -54,7 +54,7 @@ public class QuickSort {
 	}
 
 	public static void main(String[] args) {
-		int[] a= {3,2,1,5,6,9,10};
+		int[] a= { 3,2,1,7,6,4,5};
 		quickSort(a, 0, a.length-1);
 		for (int i = 0; i < a.length; i++) {
 			System.out.print(a[i] + ",");
