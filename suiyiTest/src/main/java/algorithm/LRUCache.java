@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.HashMap;
+
 public class LRUCache {
 	//数组的容量
 	public int capacity;
@@ -151,6 +153,106 @@ public class LRUCache {
 
 		public void setVal(int val) {
 			this.val = val;
+		}
+	}
+
+	/**
+	 * hash map 实现
+	 */
+	class HashMapLRUCache<K,V>{
+
+		private final int MAX_CAPACITY;
+
+		private HashMap<K, Node<K,V>> hashMap;
+
+		private Node<K,V> first;
+
+		private Node<K,V> last;
+
+		public HashMapLRUCache(int capacity) {
+			MAX_CAPACITY = capacity;
+			hashMap = new HashMap<>();
+		}
+
+		public V get(K key){
+			final Node<K, V> kvNode = hashMap.get(key);
+			if (kvNode == null) {
+				return null;
+			}
+			move2First(kvNode);
+			return kvNode.value;
+		}
+
+		public void put(K k, V v) {
+			Node<K, V> kvNode = hashMap.get(k);
+
+			if (kvNode == null) {
+				if (hashMap.size() >= MAX_CAPACITY) {
+					hashMap.remove(last.key);
+					removeLast();
+				}
+				kvNode = new Node<>();
+				kvNode.key = k;
+			}
+			kvNode.value = v;
+			move2First(kvNode);
+			hashMap.put(k, kvNode);
+
+		}
+
+		public void remove(K v) {
+
+		}
+
+		private void removeLast() {
+			if (last == null) {
+				return;
+			}
+
+			last = last.pre;
+			if (last == null) {
+				//last和first 是同一个
+				first = null;
+			} else {
+				last.next = null;
+			}
+		}
+
+		/**
+		 * 移到顶部, 底部的会被淘汰
+		 * @param kvNode
+		 */
+		private void move2First(Node<K, V> kvNode) {
+			if (kvNode == null) {
+				return;
+			}
+			if (first == kvNode) {
+				return;
+			}
+
+			if (kvNode.pre != null) {
+				kvNode.pre.next = kvNode.next;
+			}
+			if (first == null || last == null) {
+				first = last = kvNode;
+			}
+
+			if (kvNode.next != null) {
+				kvNode.next.pre = kvNode.pre;
+			}
+			first.pre = kvNode;
+			kvNode.next = first;
+			first = kvNode;
+			kvNode.pre = null;
+		}
+
+		class Node<K,V>{
+			K key;
+			V value;
+
+			Node<K, V> pre;
+
+			Node<K,V> next;
 		}
 	}
 }
