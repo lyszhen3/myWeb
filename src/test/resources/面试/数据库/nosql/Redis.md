@@ -21,7 +21,7 @@
    * flush方式有三种:  
       appendfsync always //每次写操作都flush，影响性能  
       appendfsync everysec //每秒flush  
-      appendfsync no //消极等待OS刷新(一般30s),可能丢失数据
+      appendfsync no //消极等待OS刷新(一般30s),当服务器宕机将丢失较多数据
    * bgrewirteaof(aof重写)
      * 解决aof文件越来越大
      * 命令互相抵消,整理,重写后文件变小
