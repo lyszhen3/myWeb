@@ -2,7 +2,7 @@
 
 ## 基础操作
 * set
-  ![img](/img/redis-sets.png)
+  ![img](img/redis-sets.png)
 
 ## 持久化
 
