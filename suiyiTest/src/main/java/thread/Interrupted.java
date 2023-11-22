@@ -24,6 +24,7 @@ public class Interrupted {
 		TimeUnit.SECONDS.sleep(5);
 		sleepThread.interrupt();
 		busyThread.interrupt();
+		//线程中断操作会让sleep线程报出中断报错,并清除中断标志
 		System.out.println("SleepThread interrupted is "+sleepThread.isInterrupted());
 		System.out.println("BusyThread interrupted is "+busyThread.isInterrupted());
 		//防止sleepThread 喝 BusyThread 立即退出

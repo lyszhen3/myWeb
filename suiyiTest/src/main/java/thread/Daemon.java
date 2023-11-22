@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lys on 2018/7/25.
- *
+ * 所有的非守护线程结束后,守护线程会被立马停止,finally块语句有可能不输出
  * @author lys
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
