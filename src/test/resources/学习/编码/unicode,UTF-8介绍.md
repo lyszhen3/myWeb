@@ -17,6 +17,8 @@
    | 2字节 | 110xxxxx 10xxxxxx                   | U+0080 -> U+07FF     |
    | 3字节 | 1110xxxx 10xxxxxx 10xxxxxx          | U+0800 -> U+FFFF     |
    | 4字节 | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx | U+10000 -> U+10FFFF  |
+   汉字"中" unicode=\u4e2d 二进制填充进UTF-8 3字节位数 1110[0100] 10[111000] 10[101101]
+2. 
 
 
 
