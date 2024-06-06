@@ -39,6 +39,8 @@ class SafeLazyIntialization {
 /**
  * 由于早起synchronized 开销较大所以采取这个方式
  * 但是由于赋予对象内存地址和初始化 会存在重排的可能，所以此方法在多线程使用可能会产生错误
+ * tips.如果先赋予了内存地址, 其他线程instance不为null直接返回了.但是这个对象的字段属性还未初始化完成,
+ * 会导致使用该对象的程序拿到错误的对象值
  * 正确方法
  * @see thread.SafeDoublecheckedLocking,thread.InstanceFactory
  */
