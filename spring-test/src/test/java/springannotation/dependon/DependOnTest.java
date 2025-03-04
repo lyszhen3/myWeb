@@ -1,10 +1,10 @@
 package springannotation.dependon;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Created by lys on 2022/11/5.
@@ -13,10 +13,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = DependOnConfig.class)
 public class DependOnTest {
-
 
 	@Test
 	public void testDepend() {

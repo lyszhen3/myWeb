@@ -4,7 +4,7 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.util.ObjectUtils;
 
 import java.io.IOException;
@@ -21,71 +21,74 @@ import java.util.Date;
  * @since 3.0.0-SNAPSHOT
  */
 public class STest {
-    @Test
-    public  void main() throws IOException {
-       Settings settings = Settings.builder()
+	@Test
+	public void main() throws IOException {
+		Settings settings = Settings.builder()
 
-              .put("client.transport.sniff", true)
-               .build();
-        TransportClient client = new PreBuiltTransportClient(Settings.EMPTY);
-        client.addTransportAddresses(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"),9300));
+				.put("client.transport.sniff", true)
+				.build();
+		TransportClient client = new PreBuiltTransportClient(Settings.EMPTY);
+		client.addTransportAddresses(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
 
-        IndexResponse response = client.prepareIndex("twitter", "tweet", "1")
-                .setSource(XContentFactory.jsonBuilder()
-                        .startObject()
-                        .field("user", "kimchy")
-                        .field("postDate", new Date())
-                        .field("message", "trying out Elasticsearch")
-                        .endObject()
-                )
-                .get();
+		IndexResponse response = client.prepareIndex("twitter", "tweet", "1")
+				.setSource(XContentFactory.jsonBuilder()
+						.startObject()
+						.field("user", "kimchy")
+						.field("postDate", new Date())
+						.field("message", "trying out Elasticsearch")
+						.endObject()
+				)
+				.get();
 
-        System.out.println(response.toString());
-        client.close();
-    }
-    @Test
-    public void testMoreThread(){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 100; i++) {
-                    System.out.println(i);
-                }
-            }
-        });
-        thread.start();
-        try {
-            paBaidu();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+		System.out.println(response.toString());
+		client.close();
+	}
 
-    public static void main(String[] args) {
-        STest sTest = new STest();
-        String identityHexString = ObjectUtils.getIdentityHexString(sTest);
-        System.out.println(identityHexString);
-        int i = System.identityHashCode(sTest);
-        System.out.println(i);
-    }
+	@Test
+	public void testMoreThread() {
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 0; i < 100; i++) {
+					System.out.println(i);
+				}
+			}
+		});
+		thread.start();
+		try {
+			paBaidu();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    @Test
-    public void paBaidu() throws IOException {
-    	Myclass myclass = new Myclass();
-    	myclass.deprecateMethod();
+	public static void main(String[] args) {
+		STest sTest = new STest();
+		String identityHexString = ObjectUtils.getIdentityHexString(sTest);
+		System.out.println(identityHexString);
+		int i = System.identityHashCode(sTest);
+		System.out.println(i);
+	}
 
-    }
-    public class Myclass{
+	@Test
+	public void paBaidu() throws IOException {
+		Myclass myclass = new Myclass();
+		myclass.deprecateMethod();
 
-        /**
-         * @deprecated use {@link Myclass#replacementMethod()} instead.
-         */
-        void deprecateMethod(){
+	}
 
-        }
-        void replacementMethod(){
+	public class Myclass {
 
-        }
-    }
+		/**
+		 * @deprecated use {@link Myclass#replacementMethod()} instead.
+		 */
+		void deprecateMethod() {
+
+		}
+
+		void replacementMethod() {
+
+		}
+	}
 
 }

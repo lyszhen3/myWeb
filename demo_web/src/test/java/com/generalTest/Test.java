@@ -1,7 +1,5 @@
 package com.generalTest;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
 /**
  * Created by pc on 2017-06-16.
  *
@@ -12,9 +10,9 @@ import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
  */
 public class Test {
 
-    public static void main(String[] args) {
-        Student per=new Student();
-        System.out.println(per.getClazz());
-        System.out.println(per.getClazz2());
-    }
+	public static void main(String[] args) {
+		Student per = new Student();
+		System.out.println(per.getClazz());
+		System.out.println(per.getClazz2());
+	}
 }

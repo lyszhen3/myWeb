@@ -1,6 +1,6 @@
 package org.lys.image;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.lys.image.config.BasicContent;
 import org.lys.image.config.ImageDrawConfig;
 

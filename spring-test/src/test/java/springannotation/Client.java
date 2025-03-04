@@ -1,6 +1,6 @@
 package springannotation;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import springannotation.component.ConfigA;
@@ -30,7 +30,7 @@ public class Client {
 	 * @see ConfigB 使用了{@link org.springframework.context.annotation.Configuration} 来注入spring 容器中bar 只被创建一次
 	 */
 	@Test
-	public void testConfiguration(){
+	public void testConfiguration() {
 		ApplicationContext context = new AnnotationConfigApplicationContext(ConfigB.class);
 		Bar bar = context.getBean(Bar.class);
 		System.out.println(bar);

@@ -1,7 +1,6 @@
 package com.executors;
 
 import com.alibaba.fastjson.JSONObject;
-import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.*;
@@ -16,10 +15,12 @@ import java.util.concurrent.*;
 public class ScheduleThreadTest {
 
 	static ScheduledExecutorService ee = Executors.newScheduledThreadPool(1);
+
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		ScheduleThreadTest test = new ScheduleThreadTest();
 		test.test();
 	}
+
 	public void test() throws ExecutionException, InterruptedException {
 		Task task = new Task(String.valueOf(1));
 //		ScheduledFuture<JSONObject> schedule = ee.schedule(task, 5, TimeUnit.SECONDS);
@@ -29,19 +30,20 @@ public class ScheduleThreadTest {
 //		}
 		ScheduledFuture<?> scheduledFuture = ee.scheduleWithFixedDelay(new TaskRunnable(ee), 0, 1, TimeUnit.SECONDS);
 
-
 	}
 
 	class TaskRunnable implements Runnable {
 		ExecutorService executorService;
-		TaskRunnable(ExecutorService executorService){
+
+		TaskRunnable(ExecutorService executorService) {
 			this.executorService = executorService;
 		}
+
 		@Override
 		public void run() {
 			System.out.println(111);
 			LocalDateTime now = LocalDateTime.now();
-			if(now.getSecond()>50){
+			if (now.getSecond() > 50) {
 				executorService.shutdown();
 			}
 		}

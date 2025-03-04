@@ -1,6 +1,6 @@
 package springframeworktest.beans;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.PropertyEditorRegistry;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -28,42 +28,44 @@ public class ClientTests {
 		Apple bean = xmlContext.getBean(Apple.class);
 		System.out.println(bean.getName());
 	}
+
 	@Test
-	public void testAware(){
+	public void testAware() {
 		AwareTest awareTest = xmlContext.getBean(AwareTest.class);
 		awareTest.testAware();
 	}
 
 	/**
-	 *方法1
+	 * 方法1
+	 *
 	 * @see springframeworktest.beans.propertyeditor.DatePropertyEditor#setAsText(String)
 	 * 方法2
 	 * @see springframeworktest.beans.propertyeditor.DatePropertyEditorRegistar#registerCustomEditors(PropertyEditorRegistry)
 	 * and beanFactory.xml
 	 */
 	@Test
-	public void testEditor(){
+	public void testEditor() {
 		Apple bean = xmlContext.getBean(Apple.class);
 		System.out.println(bean.getBirthday());
 	}
 
 	@Test
-	public void testReplace(){
+	public void testReplace() {
 		ReplaceMethodClass bean = xmlContext.getBean(ReplaceMethodClass.class);
 
 	}
 
 	@Test
-	public void testPostProcessor(){
+	public void testPostProcessor() {
 		ConfigurableListableBeanFactory bf = new XmlBeanFactory(new ClassPathResource("beanFactory.xml"));
-		BeanFactoryPostProcessor bfbb = (BeanFactoryPostProcessor)bf.getBean("bfpp");
+		BeanFactoryPostProcessor bfbb = (BeanFactoryPostProcessor) bf.getBean("bfpp");
 		bfbb.postProcessBeanFactory(bf);
 		System.out.println(bf.getBean("simpleBean"));
 	}
 
 	@Test
-	public void testEvent(){
-		TestEvent event = new TestEvent("hello","msg");
+	public void testEvent() {
+		TestEvent event = new TestEvent("hello", "msg");
 		xmlContext.publishEvent(event);
 	}
 }

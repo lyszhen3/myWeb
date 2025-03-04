@@ -1,41 +1,43 @@
 package com;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Created by pc on 2017-03-14.
- *需要redis.xml
+ * 需要redis.xml
+ *
  * @author pc
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration( value="/lys_spring.xml" )
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(value = "/lys_spring.xml")
 public class TestRedis {
 
-    @Autowired
-    RedisTemplate redisTemplate;
-    @Test
-    public void test(){
+	@Autowired
+	RedisTemplate redisTemplate;
 
-        redisTemplate.execute(new RedisCallback() {
-            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+	@Test
+	public void test() {
+
+		redisTemplate.execute(new RedisCallback() {
+			public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
 //存
-                redisConnection.setNX("mytest1".getBytes(),"mytest1value".getBytes());
+				redisConnection.setNX("mytest1".getBytes(), "mytest1value".getBytes());
 //取
-                System.out.println(new String(redisConnection.get("mytest1".getBytes())));
-                return null;
-            }
-        });
+				System.out.println(new String(redisConnection.get("mytest1".getBytes())));
+				return null;
+			}
+		});
 
-    }
+	}
 
 }

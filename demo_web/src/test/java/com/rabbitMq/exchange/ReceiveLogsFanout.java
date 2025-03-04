@@ -2,7 +2,6 @@ package com.rabbitMq.exchange;
 
 import com.rabbitmq.client.*;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 

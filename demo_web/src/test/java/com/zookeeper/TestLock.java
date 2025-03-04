@@ -1,6 +1,6 @@
 package com.zookeeper;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by pc on 2017-06-14.
@@ -11,18 +11,18 @@ import org.junit.Test;
  * @since 3.0.0-SNAPSHOT
  */
 public class TestLock {
-    private final static String connectString="127.0.0.1:2181";
-    private final static int sessionTimeout=1000;
+	private final static String connectString = "127.0.0.1:2181";
 
-    @Test
-    public void testLock(){
+	private final static int sessionTimeout = 1000;
 
-        try {
+	@Test
+	public void testLock() {
 
+		try {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    }
+	}
 }

@@ -1,13 +1,10 @@
 package springannotation.aop;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Created by lys on 2018/11/8.
@@ -16,7 +13,7 @@ import java.util.regex.Pattern;
  * @version 3.0.0-SNAPSHOT
  * @since 3.0.0-SNAPSHOT
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AopConfig.class)
 public class Client {
 
@@ -25,11 +22,10 @@ public class Client {
 	private AopTestService aopTestService;
 
 	@Test
-	public void test(){
+	public void test() {
 //		int hello = aopTestService.hello(1);
 		String hello = aopTestService.hello("1");
-		System.out.println("response:"+ hello);
+		System.out.println("response:" + hello);
 	}
-
 
 }

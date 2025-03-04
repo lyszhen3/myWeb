@@ -1,17 +1,17 @@
 package mvctest;
 
 import com.lin.data.beans.Book;
+import com.lin.data.mappers.AccountTestMapper;
 import com.lin.data.mappers.BookMapper;
 import com.lin.data.mappers.RoleMapper;
-import com.lin.data.mappers.AccountTestMapper;
 import com.lin.data.mappers.TestMapper;
 import com.lin.test.services.abstracts.AbstractSmsTest;
 import org.apache.ibatis.session.RowBounds;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -28,22 +28,27 @@ import java.util.logging.Logger;
  * SpringJUnit4ClassRunner 支持多线程
  * Junit4可不支持
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration("/lys_spring_test.xml")
 public class TestMapperDemo {
 	private final static Logger log = Logger.getLogger(TestMapperDemo.class.getName());
+
 	@Autowired
 	AccountTestMapper mapper;
+
 	@Autowired
 	BookMapper bookMapper;
 
 	@Autowired
 	RoleMapper roleMapper;
+
 	@Autowired
 	AbstractSmsTest abstractSmsTest;
 
 	static int THREAD_TIME = 20;
+
 	CountDownLatch c = new CountDownLatch(THREAD_TIME);
+
 	@Autowired
 	TestMapper testMapper;
 
@@ -59,7 +64,6 @@ public class TestMapperDemo {
 		log.info(String.valueOf(book.getId()));
 
 	}
-
 
 	@Test
 	public void testBaomidou() {
@@ -77,8 +81,9 @@ public class TestMapperDemo {
 		System.out.println(System.currentTimeMillis() - start);
 		System.out.println(tests);
 	}
+
 	@Test
-	public void testRole(){
+	public void testRole() {
 		long start = System.currentTimeMillis();
 		roleMapper.selectList();
 		System.out.println(System.currentTimeMillis() - start);
