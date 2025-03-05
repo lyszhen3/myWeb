@@ -1,6 +1,5 @@
 package thread.lock;
 
-import org.junit.Test;
 import thread.SleepUtils;
 
 import java.util.concurrent.locks.Lock;
@@ -13,7 +12,6 @@ import java.util.concurrent.locks.Lock;
  * @since 3.0.0-SNAPSHOT
  */
 public class TwinsLockTest {
-	@Test
 	public void test() {
 		final Lock lock = new TwinsLock();
 

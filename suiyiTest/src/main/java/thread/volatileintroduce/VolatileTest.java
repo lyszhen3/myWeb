@@ -1,6 +1,6 @@
 package thread.volatileintroduce;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,9 @@ import java.util.concurrent.TimeUnit;
 public class VolatileTest {
 
 	int i;
+
 	int j;
+
 	boolean t = false;
 
 	@Test
@@ -49,21 +51,22 @@ public class VolatileTest {
 
 	public static void main(String[] args) throws InterruptedException {
 		Bar bar = new Bar();
-		class Runner implements Runnable{
+		class Runner implements Runnable {
 			private long i;
-			public Runner(long id){
+
+			public Runner(long id) {
 				this.i = id;
 			}
 
 			public void run() {
 //				instance.setFoo();
 				bar.setS(i);
-				System.out.println("seti="+i+" geti="+bar.getS());
+				System.out.println("seti=" + i + " geti=" + bar.getS());
 			}
 		}
 		List<Thread> list = new ArrayList<>();
 		for (int i = 0; i < 1000; i++) {
-			Thread thread = new Thread(new Runner((long)i),String.format("Thread[%d]",i));
+			Thread thread = new Thread(new Runner((long) i), String.format("Thread[%d]", i));
 			list.add(thread);
 		}
 

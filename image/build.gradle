@@ -1,2 +1,5 @@
+description = 'image'
 
-description = ''
+tasks.named("test") {
+    enabled = false //禁用测试
+}

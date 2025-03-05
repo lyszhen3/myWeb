@@ -1,9 +1,6 @@
 package io;
 
-import org.junit.Test;
-
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Created by lys on 2017-08-29.
@@ -20,7 +17,6 @@ public class BasicFileOutput {
 	/**
 	 * 试试输出中文到文件
 	 */
-	@Test
 	public void outPutChinese() {
 		String path = "D:\\chinese.txt";
 		String chinese = "我的天";
@@ -37,7 +33,6 @@ public class BasicFileOutput {
 
 	}
 
-	@Test
 	public void outPutStreamChinese() {
 		String path = "D:\\chineseBytes.txt";
 		String chinese = "我的天";

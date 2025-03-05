@@ -1,18 +1,11 @@
-plugins {
-    id 'java'
-}
-
 group 'myWeb'
 version '1.1-SNAPSHOT'
-
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation("junit:junit:4.13.1")
     // https://mvnrepository.com/artifact/org.apache.dubbo/dubbo
     implementation("org.apache.dubbo:dubbo:2.7.11") {
         exclude(module: "spring")

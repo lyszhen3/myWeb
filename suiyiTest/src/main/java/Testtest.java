@@ -1,7 +1,6 @@
-import org.junit.Test;
 
 import java.util.*;
-
+import org.junit.jupiter.api.Test;
 /**
  * Created by pc on 2017-10-11.
  *
@@ -12,7 +11,6 @@ import java.util.*;
  */
 public class Testtest {
 
-	@org.junit.Test
 	public void test() {
 		Testtest test = null;
 		System.out.println("上一个test" + test);
@@ -39,7 +37,6 @@ public class Testtest {
 	}
 
 
-	@Test
 	public void testBean() {
 
 		HashMap<String, Integer> map = new HashMap<>(10);

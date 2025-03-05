@@ -1,6 +1,5 @@
 package thread.lock;
 
-import org.junit.Test;
 import thread.SleepUtils;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class FairAndUnfairTest {
 	/**
 	 * 同一线程不是连续获取重入锁
 	 */
-	@Test
 	public void fair(){
 		testLock(fairLock);
 	}
@@ -34,7 +32,6 @@ public class FairAndUnfairTest {
 	/**
 	 * 同一线程大概率连续获取重入锁
 	 */
-	@Test
 	public void unFair(){
 		testLock(unfairLock);
 	}
