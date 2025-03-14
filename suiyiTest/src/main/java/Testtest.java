@@ -1,6 +1,7 @@
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import org.junit.jupiter.api.Test;
+
 /**
  * Created by pc on 2017-10-11.
  *
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
  */
 public class Testtest {
 
+	@Test
 	public void test() {
 		Testtest test = null;
 		System.out.println("上一个test" + test);
@@ -24,7 +26,6 @@ public class Testtest {
 		return r;
 	}
 
-
 	public static void swap(int a, int b) {
 		System.out.println("交换前:" + a);
 		System.out.println("交换前:" + b);
@@ -35,7 +36,6 @@ public class Testtest {
 		System.out.println("交换后:" + a);
 		System.out.println("交换后" + b);
 	}
-
 
 	public void testBean() {
 
@@ -107,26 +107,24 @@ public class Testtest {
 //		l2s8.next = l2s9;
 //		l2s9.next = l2s10;
 
-
 		ListNode index1 = l1;
 		ListNode index2 = l2;
-		ListNode listNode=new ListNode(0);
+		ListNode listNode = new ListNode(0);
 		ListNode index = listNode;
-		while(index1!=null || index2!=null){
+		while (index1 != null || index2 != null) {
 
-
-			int i = index1!=null? index1.val:0;
-			int j = index2!=null? index2.val:0;
-			int sum = i+j;
-			if((sum+index.val)/10>0){
-				index.next = new ListNode((sum+index.val)/10);
-				index.val = (sum+index.val)%10;
-			}else{
-				index.val = sum+index.val;
+			int i = index1 != null ? index1.val : 0;
+			int j = index2 != null ? index2.val : 0;
+			int sum = i + j;
+			if ((sum + index.val) / 10 > 0) {
+				index.next = new ListNode((sum + index.val) / 10);
+				index.val = (sum + index.val) % 10;
+			} else {
+				index.val = sum + index.val;
 			}
-			index1 = index1!=null?index1.next:null;
-			index2 = index2!=null?index2.next:null;
-			if((index1!=null||index2!=null)&&index.next==null ){
+			index1 = index1 != null ? index1.next : null;
+			index2 = index2 != null ? index2.next : null;
+			if ((index1 != null || index2 != null) && index.next == null) {
 				index.next = new ListNode(0);
 
 			}
@@ -135,7 +133,7 @@ public class Testtest {
 		}
 
 		ListNode out = listNode;
-		while (out!=null){
+		while (out != null) {
 			System.out.print(out.val);
 			out = out.next;
 		}
@@ -145,6 +143,7 @@ public class Testtest {
 
 	static class ListNode {
 		int val;
+
 		ListNode next;
 
 		ListNode(int i) {
@@ -157,7 +156,7 @@ public class Testtest {
 		List<String> list = new ArrayList<>();
 		list.add("wo");
 		list.add("wo");
-		list.add(1,"ta");
+		list.add(1, "ta");
 		list.forEach(System.out::println);
 //		swap(7, 4);
 //		tt();
@@ -166,16 +165,16 @@ public class Testtest {
 
 		int i = 255;
 
-		byte t = (byte)i;
+		byte t = (byte) i;
 		System.out.println(t);
-		int j = t>=0? t: 256+t;
+		int j = t >= 0 ? t : 256 + t;
 		System.out.println(j);
 
 		String s = Integer.toBinaryString(t);
-		TreeMap<String,Integer> zmap = new TreeMap<>();
+		TreeMap<String, Integer> zmap = new TreeMap<>();
 
 		System.out.println(s);
-		Integer zi = new Integer(3);
+		Integer zi = 3;
 		System.out.println(zi);
 		zi = 4;
 		System.out.println(zi);
