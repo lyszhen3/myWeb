@@ -21,7 +21,7 @@ public class DeepCopy implements Cloneable,Serializable{
     protected Object clone() throws CloneNotSupportedException {
         DeepCopy obj=null;
         obj=(DeepCopy)super.clone();
-        obj.name=new Long(name);
+        obj.name=name;
 
         try {
             obj.integers= deepCopy(integers);
