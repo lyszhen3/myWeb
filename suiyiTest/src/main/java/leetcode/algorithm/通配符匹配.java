@@ -43,7 +43,6 @@ public class 通配符匹配 {
 			return true;
 		}
 
-
 		final int pL = p.length();
 
 		if (pL == 0) {
@@ -82,7 +81,8 @@ public class 通配符匹配 {
 					if (i == 0) {
 						dp[i][j] = true;
 					} else {
-						dp[i][j] = dp[i - 1][j] || dp[i][j - 1] || dp[i - 1][j - 1];
+						dp[i][j - 1] = dp[i - 1][j];
+						dp[i][j] = dp[i - 1][j] || dp[i - 1][j - 1];
 					}
 				} else if (pc == '?') {
 					if (i == 0) {
