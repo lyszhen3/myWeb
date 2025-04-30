@@ -14,8 +14,8 @@ public class 通配符匹配 {
 	public static void main(String[] args) {
 
 		通配符匹配 p = new 通配符匹配();
-		String s = "ab";
-		String ps = "*?*?*";
+		String s = "adceb";
+		String ps = "*a*b";
 		final boolean match = p.isMatch(s, ps);
 		System.out.println(match);
 
@@ -81,7 +81,7 @@ public class 通配符匹配 {
 					if (i == 0) {
 						dp[i][j] = true;
 					} else {
-						dp[i][j - 1] = dp[i - 1][j];
+						dp[i][j - 1] = dp[i - 1][j-1];
 						dp[i][j] = dp[i - 1][j] || dp[i - 1][j - 1];
 					}
 				} else if (pc == '?') {
