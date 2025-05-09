@@ -1,6 +1,5 @@
 package leetcode.algorithm;
 
-import org.gradle.internal.scripts.ScriptOriginUtil;
 
 /**
  * Created by lys on 2024-10-06.
