@@ -1,5 +1,3 @@
-import java.sql.Array;
-import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -39,6 +37,7 @@ public class Hello {
 		hello.r3.run();
 
 		hello.r4.run();
+		System.out.println();
 
     }
 
