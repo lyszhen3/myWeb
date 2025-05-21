@@ -54,5 +54,4 @@ demo_web/src/main/resources/rsakey/
 build/
 out/
 bin/
-.vscode/
 gradle/wrapper/gradle-8.12.1-all.zip
