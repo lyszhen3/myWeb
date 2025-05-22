@@ -44,9 +44,10 @@ subprojects {
     }
 
     dependencies {
-        testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-        testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+        testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
+        // testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+        //testImplementation("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+        //testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
         testImplementation 'org.hamcrest:hamcrest-all:1.3'
         testImplementation 'org.hamcrest:hamcrest-core:1.3'
     }

@@ -1,9 +1,4 @@
-group 'myWeb'
-version '1.1-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
+description = "dubbo-test"
 
 dependencies {
     // https://mvnrepository.com/artifact/org.apache.dubbo/dubbo

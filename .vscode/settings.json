@@ -1,3 +1,9 @@
 {
-     "java.jdt.ls.java.home": "D:\\Applications\\Scoop\\apps\\openjdk17\\current"
+     "java.jdt.ls.java.home": "D:\\Applications\\Scoop\\apps\\openjdk17\\current",
+     "java.import.gradle.java.home": "D:\\Applications\\Scoop\\apps\\openjdk17\\current",
+     "java.dependency.packagePresentation": "hierarchical",
+     "java.configuration.updateBuildConfiguration": "automatic",
+     "gradle.allowParallelRun": true,
+     "java.import.gradle.wrapper.enabled": false,
+     "java.import.gradle.home": "D:\\Applications\\Scoop\\apps\\gradle\\current"
 }
