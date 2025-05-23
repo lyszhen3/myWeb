@@ -1,4 +1,4 @@
-rootProject.name = 'dubbo'
+rootProject.name = 'dubbo_demo'
 
 
 include ':demo_api'

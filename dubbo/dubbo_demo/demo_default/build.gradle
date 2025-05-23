@@ -1,4 +1,4 @@
-description = ''
+description = 'demo_default'
 dependencies {
     implementation("org.springframework:spring-beans:5.2.22.RELEASE")
     implementation("org.springframework:spring-jdbc:5.2.22.RELEASE")
