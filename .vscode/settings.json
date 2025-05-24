@@ -4,6 +4,6 @@
      "java.dependency.packagePresentation": "hierarchical",
      "java.configuration.updateBuildConfiguration": "automatic",
      "gradle.allowParallelRun": true,
-     "java.import.gradle.wrapper.enabled": false,
+     "java.import.gradle.wrapper.enabled": true,
      "java.import.gradle.home": "D:\\Applications\\Scoop\\apps\\gradle\\current"
 }
