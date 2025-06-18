@@ -1,8 +1,10 @@
 # Srping
-## bean
-> e.g. AnnotationConfigApplicationContext
 
+## bean
+>
+> e.g. AnnotationConfigApplicationContext
 > 写了个简单的spring 加载bean的过程,没有涉及依赖其他bean,循环依赖等
+
 1. org.springframework.context.support.AbstractApplicationContext#refresh
    * org.springframework.context.support.AbstractApplicationContext#finishBeanFactoryInitialization  
    加载非懒加载的bean
@@ -14,6 +16,7 @@
           //创建bean,这里有bean属性复制,postProcess等
 
 > spring 循环依赖处理
+
 1. org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#beforeSingletonCreation
    放入singletonsCurrentlyInCreation Map ①
    * org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#createBean(java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.Object[])
