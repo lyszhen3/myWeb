@@ -1,7 +1,6 @@
 package springannotation.dependon;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * @author LinYuanSheng
