@@ -19,47 +19,66 @@ public class 扰乱字符串 {
         if (s1.length() != s2.length()) {
             return false;
         }
+        if (s1.length() == 0 || s2.length() == 0) {
+            return true;
+        }
 
         int n = s1.length();
         Boolean[][] dp = new Boolean[n][n];
 
-        return isScrambleRecursion(s1, s2, dp);
+        return isScrambleRecursion(0, s1, s2, dp);
     }
 
-    public boolean isScrambleRecursion(String s1, String s2, Boolean[][] dp) {
+    public boolean isScrambleRecursion(int start, String s1, String s2, Boolean[][] dp) {
         int n = s1.length();
-        for (int i = 0; i < n; i++) {
-            String sl1 = s1.substring(0, i + 1);
-            String sl2 = s2.substring(0, i + 1);
-            String sr2 = s2.substring(n - 1 - i, n);
 
-            if (sl1.equals(sl2)) {
-                dp[0][i] = true;
-                if (i == n - 1) {
-                    return true;
-                }
+        if (s1.equals(s2)) {
+            dp[start][start + n - 1] = true;
+            return true;
+        }
+        for (int i = 0; i < n; i++) {
+            String lsl1 = s1.substring(0, i + 1);
+            String lsl2 = s2.substring(0, i + 1);
+            String lsr2 = s2.substring(n - 1 - i, n);
+
+            if (lsl1.equals(lsl2)) {
+                dp[start][i + start] = true;
+
                 int sr = i + 1;
-                Boolean rdp = dp[sr][n - 1];
+                Boolean rdp = dp[start + sr][start + n - 1];
                 if (rdp == null) {
-                    return isScrambleRecursion(s1.substring(sr, n - 1), s2.substring(sr, n - 1), dp);
-                } else {
-                    return rdp;
+                    return isScrambleRecursion(start + sr, s1.substring(sr, n - 1), s2.substring(sr, n - 1), dp);
                 }
             }
-            if (sl1.equals(sr2)) {
-                dp[0][i] = true;
-                if (i == n - 1) {
-                    return true;
-                }
+            if (lsl1.equals(lsr2)) {
+                dp[start][start + i] = true;
+
                 int sr = i + 1;
-                Boolean rdp = dp[sr][n - 1];
+                Boolean rdp = dp[start + sr][start + n - 1];
                 if (rdp == null) {
-                    return isScrambleRecursion(s1.substring(sr, n - 1), s2.substring(0, n - 1 - sr), dp);
-                } else {
-                    return rdp;
+                    return isScrambleRecursion(start + sr, s1.substring(sr, n - 1), s2.substring(0, n - 1 - sr), dp);
                 }
             }
-            dp[0][i] = false;
+
+            String rsr1 = s1.substring(i + 1, n);
+            String rsr2 = s2.substring(i + 1, n);
+            String rsl2 = s2.substring(0, n - 1 - i);
+
+            if (rsr1.equals(rsr2)) {
+                dp[start + i + 1][start + n - 1] = true;
+                Boolean rdp = dp[start][start + i];
+                if (rdp == null) {
+                    return isScrambleRecursion(start, s1.substring(0, i + 1), s2.substring(0, i + 1), dp);
+                }
+            }
+            if (rsr1.equals(rsl2)) {
+                dp[start + i + 1][start + n - 1] = true;
+                Boolean rdp = dp[start][start + i];
+                if (rdp == null) {
+                    return isScrambleRecursion(start, s1.substring(0, i + 1), s2.substring(n - 1 - i, n - 1), dp);
+                }
+            }
+            dp[start][start + i] = false;
         }
 
         return false;
@@ -68,7 +87,7 @@ public class 扰乱字符串 {
     public static void main(String[] args) {
 
         扰乱字符串 m = new 扰乱字符串();
-        System.out.println(m.isScramble("great", "rgeat"));
+        System.out.println(m.isScramble("greate", "rgeate"));
 
     }
 
