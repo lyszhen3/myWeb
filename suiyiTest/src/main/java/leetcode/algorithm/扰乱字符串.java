@@ -47,10 +47,10 @@ public class 扰乱字符串 {
                 int sr = i + 1;
                 Boolean rdp = dp[start + sr][start + n - 1];
                 if (rdp == null) {
-                    boolean scrambleRecursion = isScrambleRecursion(start + sr, s1.substring(sr, n - 1),
-                            s2.substring(sr, n - 1), dp);
-                    dp[start + sr][start + n - 1] = scrambleRecursion;
+                    boolean scrambleRecursion = isScrambleRecursion(start + sr, s1.substring(sr, n),
+                            s2.substring(sr, n), dp);
                     if (scrambleRecursion) {
+                        dp[start + sr][start + n - 1] = scrambleRecursion;
                         return true;
                     } else {
                         continue;
@@ -63,10 +63,10 @@ public class 扰乱字符串 {
                 int sr = i + 1;
                 Boolean rdp = dp[start + sr][start + n - 1];
                 if (rdp == null) {
-                    boolean scrambleRecursion = isScrambleRecursion(start + sr, s1.substring(sr, n - 1),
-                            s2.substring(0, n - 1 - sr), dp);
-                    dp[start + sr][start + n - 1] = scrambleRecursion;
+                    boolean scrambleRecursion = isScrambleRecursion(start + sr, s1.substring(sr, n),
+                            s2.substring(0, n - sr), dp);
                     if (scrambleRecursion) {
+                        dp[start + sr][start + n - 1] = scrambleRecursion;
                         return true;
                     } else {
                         continue;
@@ -85,8 +85,8 @@ public class 扰乱字符串 {
                     if (rdp == null) {
                         boolean scrambleRecursion = isScrambleRecursion(start, s1.substring(0, i + 1),
                                 s2.substring(0, i + 1), dp);
-                        dp[start][start + i] = scrambleRecursion;
                         if (scrambleRecursion) {
+                            dp[start][start + i] = scrambleRecursion;
                             return true;
                         } else {
                             continue;
@@ -99,8 +99,8 @@ public class 扰乱字符串 {
                     if (rdp == null) {
                         boolean scrambleRecursion = isScrambleRecursion(start, s1.substring(0, i + 1),
                                 s2.substring(n - 1 - i, n), dp);
-                        dp[start][start + i] = scrambleRecursion;
                         if (scrambleRecursion) {
+                            dp[start][start + i] = scrambleRecursion;
                             return true;
                         } else {
                             continue;
@@ -117,7 +117,7 @@ public class 扰乱字符串 {
     public static void main(String[] args) {
 
         扰乱字符串 m = new 扰乱字符串();
-        System.out.println(m.isScramble("abca", "caba"));
+        System.out.println(m.isScramble("abcd", "badc"));
 
     }
 
