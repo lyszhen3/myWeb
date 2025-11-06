@@ -7,5 +7,6 @@
      "java.import.gradle.home": "D:\\Applications\\Scoop\\apps\\gradle\\current",
      "java.compile.nullAnalysis.mode": "automatic",
      "java.jdt.ls.javac.enabled": "on",
-     "java.debug.settings.onBuildFailureProceed": true
+     "java.debug.settings.onBuildFailureProceed": true,
+     "java.completion.engine": "dom"
 }
