@@ -21,6 +21,12 @@ set nobackup
 set noswapfile
 set tabstop=4
 set shiftwidth=4
+set textwidth=0
+set wrapmargin=0
+
+" 保存时路径补全
+set wildmenu
+set wildmode=list:full,full
 
 vnoremap <C-C> "+y
 vnoremap <C-X> "+x
