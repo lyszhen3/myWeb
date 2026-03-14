@@ -21,6 +21,12 @@ set nobackup
 set noswapfile
 set tabstop=4
 set shiftwidth=4
+set textwidth=0
+set wrapmargin=0
+
+" 保存时路径补全
+set wildmenu
+set wildmode=list:full,full
 
 vnoremap <C-C> "+y
 vnoremap <C-X> "+x
@@ -32,6 +38,36 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set encoding=utf-8
 set termencoding=cp936
 language messages zh_CN.UTF-8
+
+
+" 启用 vim-devicons
+let g:webdevicons_enable = 1
+
+" 在 NERDTree 中显示图标
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
+" 设置图标默认不闪烁
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+
+" 为 NERDTree 设置图标大小（可选）
+let g:WebDevIconsNerdTreeGitMode = 1
+
+" 显示文件类型图标
+let g:WebDevIconsShowFileTypes = 1
+
+" 在终端中也显示图标
+let g:WebDevIconsShowOnTabline = 1
+
+
+" 为 JSON 文件启用折叠功能
+augroup json_tree_view
+    autocmd!
+    autocmd FileType json setlocal foldmethod=indent
+    autocmd FileType json setlocal foldlevelstart=99
+    autocmd FileType json setlocal expandtab
+    autocmd FileType json setlocal shiftwidth=2
+    autocmd FileType json setlocal softtabstop=2
+augroup END
 
 command! Jsonf :execute '%!python -m json.tool --no-ensure-ascii'
 
@@ -50,8 +86,9 @@ Plugin 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
 Plugin 'elzr/vim-json'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 Plugin 'fidian/hexmode'
+Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 
 
