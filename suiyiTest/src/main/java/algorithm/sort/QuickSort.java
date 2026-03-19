@@ -1,5 +1,7 @@
 package algorithm.sort;
 
+import java.util.HashMap;
+
 /**
  * @author LinYuanSheng
  * @date 2022/8/30
@@ -21,6 +23,9 @@ public class QuickSort {
 			int p = partition(a, s, e);
 			quickSort(a, s, p - 1);
 			quickSort(a, p + 1, e);
+
+			HashMap hashMap = new HashMap();
+			hashMap.put(2,2);
 		}
 	}
 

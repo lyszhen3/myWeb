@@ -2,52 +2,60 @@ package algorithm;
 
 import java.util.HashMap;
 
+/**
+ * head 哨兵节点
+ * 
+ * 淘汰尾部节点，也就是head的prefix
+ * 
+ * @date 2026-03-19
+ * @author LinYuansheng
+ */
 public class LRUCache {
-	//数组的容量
+	// 数组的容量
 	public int capacity;
-	//数组
+	// 数组
 	public Node[] array;
-	//双向循环链接的头结点(哨兵节点)
-	public Node head;
-	//存储的元素个数
+	// 双向循环链接的头结点(哨兵节点)
+	public Node senHead;
+	// 存储的元素个数
 	public int num = 0;
 
 	public LRUCache(int capacity) {
 		this.capacity = capacity;
 		array = new Node[capacity];
-		head = new Node(-1, -1);
+		senHead = new Node(-1, -1);
 	}
 
 	public int get(int key) {
-		//根据key得到对应节点
+		// 根据key得到对应节点
 		Node node = getNode(key);
 		if (null == node) {
 			return -1;
 		}
-		//将此节点移动到双向循环链表的末尾
+		// 将此节点移动到双向循环链表的哨兵next
 		Node prefix = node.prefix;
 		Node next = node.next;
-		//先从双向循环链表中去掉自己 然后再拼到链接的末尾
+		// 先从双向循环链表中去掉自己 然后再拼到链接的末尾
 		prefix.next = next;
 		next.prefix = prefix;
-		Node p1 = head.prefix;
-		p1.next = node;
-		node.prefix = p1;
-		node.next = head;
-		head.prefix = node;
+		Node p1 = senHead.next;
+		p1.prefix = node;
+		node.next = p1;
+		node.prefix = senHead;
+		senHead.next = node;
 		return node.getVal();
 
 	}
 
 	private Node getNode(int key) {
-		//对key取capacity模然后得到数组下标
+		// 对key取capacity模然后得到数组下标
 		int hKey = key % capacity;
-		//拿到头结点
+		// 拿到头结点
 		Node node = array[hKey];
 		if (null == node) {
 			return null;
 		}
-		//按链表往后查找
+		// 按链表往后查找
 		while (null != node && node.key != key) {
 			node = node.hNext;
 		}
@@ -55,19 +63,19 @@ public class LRUCache {
 	}
 
 	public void put(int key, int value) {
-		//根据key得到对应节点
+		// 根据key得到对应节点
 		Node node = getNode(key);
 		if (null == node) {
-			//元素个数加加
+			// 元素个数加加
 			num++;
-			//如果超过容量 则去掉链表头一个非哨兵节点
+			// 如果超过容量 则去掉链表头一个非哨兵节点
 			if (num > capacity) {
-				Node next = head.next;
-				if (null == next) {
+				Node tail = senHead.prefix;
+				if (null == tail) {
 					return;
 				}
-				int dKey = next.getKey();
-				//根据待删除节点的key求得节点所在的数组下标
+				int dKey = tail.getKey();
+				// 根据待删除节点的key求得节点所在的数组下标
 				int hdKey = dKey % capacity;
 				Node tmp = array[hdKey];
 				Node tPrefix = null;
@@ -75,22 +83,18 @@ public class LRUCache {
 					tPrefix = tmp;
 					tmp = tmp.hNext;
 				}
-				//删除数组槽位的链表中的此节点
+				// 删除数组槽位的链表中的此节点
 				if (null != tPrefix) {
-					tPrefix.hNext = next.hNext;
+					tPrefix.hNext = tail.hNext;
 				} else {
-					array[hdKey] = next.hNext;
+					array[hdKey] = tail.hNext;
 				}
-				//删除循环双向链表中的此节点
-				node = head;
-				while (null != node.next && node.next.getKey() != dKey) {
-					node = node.next;
-				}
-				node.next = next.next;
-				next.next.prefix = node;
+				// 删除循环双向链表中的此节点
+				tail.prefix.next = tail.next;
+				tail.next.prefix = tail.prefix;
 				num--;
 			}
-			//定义新节点 将节点插入到数组槽位中的链表 同时也插入双向循环链表
+			// 定义新节点 将节点插入到数组槽位中的链表 同时也插入双向循环链表
 			Node nNode = new Node(key, value);
 			int hKey = key % capacity;
 			Node prefix = array[hKey];
@@ -102,40 +106,40 @@ public class LRUCache {
 				}
 				prefix.hNext = nNode;
 			}
-			prefix = head.prefix;
+			prefix = senHead.next;
 			if (null == prefix) {
-				head.prefix = nNode;
-				head.next = nNode;
-				nNode.prefix = head;
-				nNode.next = head;
+				senHead.next = nNode;
+				senHead.prefix = nNode;
+				nNode.next = senHead;
+				nNode.prefix = senHead;
 			} else {
-				prefix.next = nNode;
-				nNode.prefix = prefix;
-				nNode.next = head;
-				head.prefix = nNode;
+				prefix.prefix = nNode;
+				nNode.next = prefix;
+				nNode.prefix = senHead;
+				senHead.next = nNode;
 			}
 		} else {
-			//有此节点 则更新value 且将此节点移动到链表末尾
+			// 有此节点 则更新value 且将此节点移动到哨兵的next
 			node.setVal(value);
 			node.prefix.next = node.next;
 			node.next.prefix = node.prefix;
-			Node prefix = head.prefix;
-			prefix.next = node;
-			node.prefix = prefix;
-			node.next = head;
-			head.prefix = node;
+			Node hh = senHead.next;
+			hh.prefix = node;
+			node.next = hh;
+			node.prefix = senHead;
+			senHead.next = node;
 		}
 	}
 
-	//节点对象
+	// 节点对象
 	class Node {
 		int key;
 		int val;
-		//双向循环链表的上个节点
+		// 双向循环链表的上个节点
 		Node prefix;
-		//双向循环链表的下个节点
+		// 双向循环链表的下个节点
 		Node next;
-		//数组槽位的链表的下个节点
+		// 数组槽位的链表的下个节点
 		Node hNext;
 
 		public Node(int key, int val) {
@@ -159,22 +163,22 @@ public class LRUCache {
 	/**
 	 * hash map 实现
 	 */
-	class HashMapLRUCache<K,V>{
+	class HashMapLRUCache<K, V> {
 
 		private final int MAX_CAPACITY;
 
-		private HashMap<K, Node<K,V>> hashMap;
+		private HashMap<K, Node<K, V>> hashMap;
 
-		private Node<K,V> first;
+		private Node<K, V> first;
 
-		private Node<K,V> last;
+		private Node<K, V> last;
 
 		public HashMapLRUCache(int capacity) {
 			MAX_CAPACITY = capacity;
 			hashMap = new HashMap<>();
 		}
 
-		public V get(K key){
+		public V get(K key) {
 			final Node<K, V> kvNode = hashMap.get(key);
 			if (kvNode == null) {
 				return null;
@@ -211,7 +215,7 @@ public class LRUCache {
 
 			last = last.pre;
 			if (last == null) {
-				//last和first 是同一个
+				// last和first 是同一个
 				first = null;
 			} else {
 				last.next = null;
@@ -220,6 +224,7 @@ public class LRUCache {
 
 		/**
 		 * 移到顶部, 底部的会被淘汰
+		 * 
 		 * @param kvNode
 		 */
 		private void move2First(Node<K, V> kvNode) {
@@ -246,13 +251,13 @@ public class LRUCache {
 			kvNode.pre = null;
 		}
 
-		class Node<K,V>{
+		class Node<K, V> {
 			K key;
 			V value;
 
 			Node<K, V> pre;
 
-			Node<K,V> next;
+			Node<K, V> next;
 		}
 	}
 }
