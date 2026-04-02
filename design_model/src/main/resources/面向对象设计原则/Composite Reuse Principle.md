@@ -8,7 +8,7 @@ classDiagram
     class CustomerDAO {
         +addCustomer():void
     }
-    note "super.getConnection();" for CustomerDAO
+    note for CustomerDAO "super.getConnection();" 
     CustomerDAO --|> DBUtil
     class DBUtil2 {
         +getConnection():Connection
@@ -21,6 +21,6 @@ classDiagram
         -util:DBUtil2
         +addCustomer():void
     }
-    note "util.getConnection();" for CustomerDAO2
+    note for CustomerDAO2 "util.getConnection();" 
     CustomerDAO2 ..> DBUtil2
 ```

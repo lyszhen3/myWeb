@@ -12,7 +12,7 @@ classDiagram
         +createReport()
         +displayReport()
     }
-    note "没有使用接口分离职责过重" for CustomerDataDisplay
+    note for CustomerDataDisplay "没有使用接口分离职责过重" 
     class ConcreteClass {
         +dataRead()
         +transformToXML()

@@ -4,7 +4,7 @@
 classDiagram
     class Button {
     }
-    note "未使用迪米特法则" for Button
+    note for Button "未使用迪米特法则" 
     Button --> TextBox
     Button --> ComboBox
     Button --> List

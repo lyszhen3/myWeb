@@ -11,11 +11,12 @@ classDiagram
     class CustomerDao {
         +addCustomers():void
     }
-    note "没有使用依赖倒转" for CustomerDao
+    note for CustomerDao "没有使用依赖倒转" 
     CustomerDao ..> TXTDataConvertor
     CustomerDao ..> ExcelDataConvertor
-    abstract class AbstractDataConvertor {
-        +abstract readFile():void
+    class AbstractDataConvertor {
+        <<Abstract>>
+        +readFile():void*
     }
     class TXTDataConvertor2 {
         +readFile():void
@@ -26,7 +27,7 @@ classDiagram
     class CustomerDao2 {
         +addCustomers():void
     }
-    note "<classNmae>TXTDataConvertor</className>" for CustomerDao2
+    note for CustomerDao "<classNmae>TXTDataConvertor</className>"
     TXTDataConvertor2 --|> AbstractDataConvertor
     ExcelDataConvertor2 --|> AbstractDataConvertor
     CustomerDao2 ..> AbstractDataConvertor

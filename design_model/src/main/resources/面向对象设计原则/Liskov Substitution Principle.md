@@ -6,7 +6,7 @@ classDiagram
         +send(CommonCustomer customer):void
         +send(VIPCustomer customer):void
     }
-    note "未使用里氏替换" for EmailSender
+    note for EmailSender "未使用里氏替换" 
     class CommonCustomer {
         -name:String
         -email:String
@@ -20,11 +20,15 @@ classDiagram
     class EmailSender2 {
         +send(AbstractCustomer customer):void
     }
-    abstract class AbstractCustomer {
+    class AbstractCustomer {
+        <<Abstract>>
         #name:String
         #emial:String
     }
     CommonCustomer2 --|> AbstractCustomer
     VIPCustomer2 --|> AbstractCustomer
     EmailSender2 ..> AbstractCustomer
+
+
+    note "里氏替换原则<br>'所有引用基类对象的地方能够透明地使用'"
 ```
