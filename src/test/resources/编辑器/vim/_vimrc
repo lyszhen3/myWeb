@@ -24,6 +24,15 @@ set shiftwidth=4
 set textwidth=0
 set wrapmargin=0
 
+"不显示工具/菜单栏
+set guioptions-=T
+set guioptions-=m
+set guioptions-=L
+set guioptions-=r
+set guioptions-=b
+" 使用内置 tab 样式而不是 gui
+set guioptions-=e
+
 " 保存时路径补全
 set wildmenu
 set wildmode=list:full,full
@@ -72,25 +81,38 @@ augroup END
 command! Jsonf :execute '%!python -m json.tool --no-ensure-ascii'
 
 " set the runtime path to include Vundle and initialize
-set rtp+=C:/Program\ Files/Vim/bundle/Vundle.vim
+"set rtp+=D:/Applications/Scoop/apps/vim/bundle/Vundle.vim
 
-call vundle#begin()
+"call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
-Plugin 'plasticboy/vim-markdown'
-Plugin 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install' }
-Plugin 'elzr/vim-json'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'preservim/nerdtree'
-Plugin 'fidian/hexmode'
-Plugin 'ryanoasis/vim-devicons'
-call vundle#end()
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install mermaid@latest && cp node_modules/mermaid/dist/mermaid.min.js _static/mermaid.min.js' }
+"Plugin 'elzr/vim-json'
+"Plugin 'bling/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'preservim/nerdtree'
+"Plugin 'fidian/hexmode'
+"Plugin 'ryanoasis/vim-devicons'
+"call vundle#end()
 
+call plug#begin()
+
+Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install mermaid@latest && cp node_modules/mermaid/dist/mermaid.min.js _static/mermaid.min.js' }
+Plug 'elzr/vim-json'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdtree'
+Plug 'fidian/hexmode'
+Plug 'ryanoasis/vim-devicons'
+
+call plug#end()
 
 nnoremap <A-1> :NERDTreeToggle<CR>
 
