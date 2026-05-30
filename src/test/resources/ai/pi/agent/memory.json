@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "content": "执行软件的安装命令（如 npm install、pip install、scoop install、npx 安装等）需要用户确认，不能自动执行",
+      "category": "rule",
+      "createdAt": "2026-05-28"
+    },
+    {
+      "content": "gitnexus 已本地安装，优先使用本地 `gitnexus` 命令而不是 `npx gitnexus`",
+      "category": "rule",
+      "createdAt": "2026-05-28"
+    }
+  ]
+}

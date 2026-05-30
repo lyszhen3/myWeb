@@ -1,0 +1,13 @@
+{
+  "lastChangelogVersion": "0.76.0",
+  "theme": "light",
+  "shellPath": "D:\\Applications\\Scoop\\apps\\git\\current\\bin\\bash.exe",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:@narumitw/pi-plan-mode",
+    "npm:context-mode",
+    "npm:pi-studio",
+    "npm:pi-gitnexus"
+  ],
+  "hideThinkingBlock": false
+}

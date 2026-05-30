@@ -1,0 +1,18 @@
+{
+  "providers": {
+    "idealab": {
+      "baseUrl": "https://idealab.alibaba-inc.com/api/anthropic",
+      "api": "anthropic-messages",
+      "apiKey": "3007fd65a3968dd4ae2c149b9c522b9b",
+      "models": [
+        {
+          "id": "Qwen3.6-Plus-DogFooding",
+          "name": "Qwen 3.6 Plus",
+          "reasoning": true,
+          "thinking":"high",
+          "input": ["text"]
+        }
+      ]
+    }
+  }
+}

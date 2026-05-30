@@ -1,0 +1,5 @@
+{"type":"session","version":3,"id":"019e6d3a-fc4e-7bc4-81ea-cdcd2ea76aa7","timestamp":"2026-05-28T06:17:22.766Z","cwd":"C:\\Users\\alilys"}
+{"type":"model_change","id":"3310f26c","parentId":null,"timestamp":"2026-05-28T06:17:22.779Z","provider":"ollama","modelId":"Qwen3.6-Plus-DogFooding"}
+{"type":"thinking_level_change","id":"a28a53d3","parentId":"3310f26c","timestamp":"2026-05-28T06:17:22.779Z","thinkingLevel":"off"}
+{"type":"message","id":"63956bd6","parentId":"a28a53d3","timestamp":"2026-05-28T06:17:38.990Z","message":{"role":"user","content":[{"type":"text","text":"你好"}],"timestamp":1779949058985}}
+{"type":"message","id":"873c6292","parentId":"63956bd6","timestamp":"2026-05-28T06:17:38.991Z","message":{"role":"assistant","content":[{"type":"text","text":""}],"api":"anthropic","provider":"ollama","model":"Qwen3.6-Plus-DogFooding","usage":{"input":0,"output":0,"cacheRead":0,"cacheWrite":0,"totalTokens":0,"cost":{"input":0,"output":0,"cacheRead":0,"cacheWrite":0,"total":0}},"stopReason":"error","errorMessage":"No API provider registered for api: anthropic","timestamp":1779949058991}}
