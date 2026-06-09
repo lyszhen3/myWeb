@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "enabled": true,
+  "preset": "default",
+  "lines": [
+    [
+      {
+        "id": "model-provider-mpwlabbt-60igkw",
+        "type": "model-provider",
+        "enabled": true,
+        "options": {
+          "raw": false,
+          "hideWhenEmpty": false,
+          "hideWhenZero": false,
+          "bold": false,
+          "fg": "cyan",
+          "bg": "default"
+        }
+      },
+      {
+        "id": "thinking-level-mpwlabbt-4obohr",
+        "type": "thinking-level",
+        "enabled": true,
+        "options": {
+          "raw": false,
+          "hideWhenEmpty": false,
+          "hideWhenZero": false,
+          "bold": false,
+          "fg": "magenta",
+          "bg": "default"
+        }
+      },
+      {
+        "id": "text-verbosity-mpwlabbt-4glukv",
+        "type": "text-verbosity",
+        "enabled": true,
+        "options": {
+          "raw": false,
+          "hideWhenEmpty": false,
+          "hideWhenZero": false,
+          "bold": false,
+          "fg": "cyan",
+          "bg": "default"
+        }
+      },
+      {
+        "id": "context-length-mpwlabbt-0fmlw4",
+        "type": "context-length",
+        "enabled": true,
+        "options": {
+          "raw": false,
+          "hideWhenEmpty": false,
+          "hideWhenZero": false,
+          "bold": false,
+          "contextConditionalColors": false,
+          "tokenFormatStyle": "default",
+          "fg": "brightBlack",
+          "bg": "default",
+          "warningFg": "yellow",
+          "warningBg": "default",
+          "dangerFg": "red",
+          "dangerBg": "default",
+          "contextWarningPercent": 70,
+          "contextDangerPercent": 90
+        }
+      },
+      {
+        "id": "git-branch-mpwlabbt-xtygpg",
+        "type": "git-branch",
+        "enabled": true,
+        "options": {
+          "raw": false,
+          "hideWhenEmpty": false,
+          "hideWhenZero": false,
+          "bold": false,
+          "surroundLeft": "",
+          "surroundRight": "",
+          "gitBranchDisplayStyle": "default",
+          "fg": "magenta",
+          "bg": "default"
+        }
+      },
+      {
+        "id": "git-diff-mpwlabbt-xomgjr",
+        "type": "git-diff",
+        "enabled": true,
+        "options": {
+          "raw": false,
+          "hideWhenEmpty": false,
+          "hideWhenZero": false,
+          "bold": false,
+          "gitDiffMode": "compact",
+          "fg": "yellow",
+          "bg": "default"
+        }
+      },
+      {
+        "id": "cost-mpwlabbt-8ss0vb",
+        "type": "cost",
+        "enabled": true,
+        "options": {
+          "raw": false,
+          "hideWhenEmpty": false,
+          "hideWhenZero": false,
+          "bold": false,
+          "showSubscription": false,
+          "costFormatStyle": "default",
+          "fg": "green",
+          "bg": "default"
+        }
+      },
+      {
+        "id": "session-total-time-mpwlabbt-g1szis",
+        "type": "session-total-time",
+        "enabled": true,
+        "options": {
+          "raw": false,
+          "hideWhenEmpty": false,
+          "hideWhenZero": false,
+          "bold": false,
+          "fg": "yellow",
+          "bg": "default"
+        }
+      }
+    ]
+  ],
+  "separator": "dot",
+  "separatorFg": "default",
+  "separatorBg": "default",
+  "iconMode": "emoji",
+  "minimalist": false,
+  "terminal": {
+    "widthMode": "full",
+    "colorLevel": "ansi256"
+  },
+  "extensionStatusRow": {
+    "hiddenKeys": [],
+    "knownKeys": []
+  }
+}

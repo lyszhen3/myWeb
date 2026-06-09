@@ -1,0 +1,19 @@
+{
+  "lastChangelogVersion": "0.79.0",
+  "theme": "light",
+  "shellPath": "D:\\Applications\\Scoop\\apps\\git\\current\\bin\\bash.exe",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:@narumitw/pi-plan-mode",
+    "npm:pi-studio",
+    "npm:pi-gitnexus",
+    "npm:pi-subagents",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-web-access",
+    "npm:pi-hashline-edit",
+    "npm:context-mode",
+    "npm:pi-mcp-adapter",
+    "npm:pi-hermes-memory"
+  ],
+  "hideThinkingBlock": false
+}

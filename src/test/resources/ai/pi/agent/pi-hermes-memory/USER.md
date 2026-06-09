@@ -1,0 +1,1 @@
+编写 Java 代码时尽可能使用 lambda 方式：优先使用 Stream API、Optional 链式调用、方法引用等函数式编程风格，替代传统 for 循环和 if-else 嵌套。 <!-- created=2026-06-08, last=2026-06-08 -->

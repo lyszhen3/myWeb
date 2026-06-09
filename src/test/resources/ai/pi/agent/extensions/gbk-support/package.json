@@ -1,0 +1,11 @@
+{
+  "name": "pi-gbk-support",
+  "version": "1.0.0",
+  "description": "GBK encoding support for pi read/edit/write tools",
+  "dependencies": {
+    "iconv-lite": "^0.6.3"
+  },
+  "pi": {
+    "extensions": ["./index.ts"]
+  }
+}
