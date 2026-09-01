@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Java JUC 并发编程知识脑图",
+    "locale": "zh-CN",
+    "output": "JUC脑图.html",
+    "quality_profile": "showcase",
+    "viewBox": [1380, 660],
+    "views": [
+      { "id": "lock-core", "label": "锁与 AQS", "focus": ["juc", "lock", "reentrant-lock", "rw-lock", "condition"], "note": "AQS 独占/共享模式如何支撑 ReentrantLock 与读写锁。" },
+      { "id": "lock-free", "label": "无锁与容器", "focus": ["juc", "atomic", "atomic-integer", "long-adder", "collection", "chm", "cow-list"], "note": "CAS 原子类与线程安全容器的实现思路。" },
+      { "id": "pool", "label": "线程池", "focus": ["juc", "executor", "tpe", "fork-join", "scheduled"], "note": "任务提交、队列与线程复用的核心链路。" },
+      { "id": "coordination", "label": "协作与异步", "focus": ["juc", "sync-tools", "latch", "barrier", "semaphore", "async", "future", "completable-future"], "note": "多线程协作工具与异步结果编排。" }
+    ]
+  },
+  "components": [
+    { "id": "juc", "type": "cloud", "label": "java.util.concurrent", "sublabel": "JUC 并发工具体系", "tag": "JDK 5+ · Doug Lea", "pos": [580, 288], "size": [210, 84] },
+
+    { "id": "lock", "type": "security", "label": "锁 Lock", "sublabel": "AbstractQueuedSynchronizer", "tag": "state + CLH 队列", "pos": [300, 88], "size": [190, 64] },
+    { "id": "reentrant-lock", "type": "security", "label": "ReentrantLock", "sublabel": "可重入 · 公平/非公平", "pos": [30, 24], "size": [200, 56] },
+    { "id": "rw-lock", "type": "security", "label": "读写锁", "sublabel": "ReadWriteLock · StampedLock", "pos": [30, 92], "size": [200, 56] },
+    { "id": "condition", "type": "security", "label": "Condition", "sublabel": "await / signal 条件队列", "pos": [30, 160], "size": [200, 56] },
+
+    { "id": "atomic", "type": "backend", "label": "原子类 Atomic", "sublabel": "无锁 CAS", "tag": "乐观并发", "pos": [300, 298], "size": [190, 64] },
+    { "id": "atomic-integer", "type": "backend", "label": "AtomicInteger", "sublabel": "compareAndSet · 自旋重试", "pos": [30, 234], "size": [200, 56] },
+    { "id": "long-adder", "type": "backend", "label": "LongAdder", "sublabel": "Cell 数组分段累加", "pos": [30, 302], "size": [200, 56] },
+    { "id": "var-handle", "type": "backend", "label": "VarHandle", "sublabel": "Unsafe · 内存屏障语义", "pos": [30, 370], "size": [200, 56] },
+
+    { "id": "collection", "type": "database", "label": "并发容器", "sublabel": "线程安全集合", "tag": "替代 Collections.sync*", "pos": [300, 508], "size": [190, 64] },
+    { "id": "chm", "type": "database", "label": "ConcurrentHashMap", "sublabel": "CAS + 桶级 synchronized", "pos": [30, 444], "size": [200, 56] },
+    { "id": "cow-list", "type": "database", "label": "CopyOnWriteArrayList", "sublabel": "写时复制 · 读无锁", "pos": [30, 512], "size": [200, 56] },
+    { "id": "blocking-queue", "type": "database", "label": "BlockingQueue", "sublabel": "阻塞队列 · 生产者消费者", "pos": [30, 580], "size": [200, 56] },
+
+    { "id": "executor", "type": "frontend", "label": "线程池 Executor", "sublabel": "ExecutorService · Executors", "tag": "线程复用", "pos": [880, 88], "size": [190, 64] },
+    { "id": "tpe", "type": "frontend", "label": "ThreadPoolExecutor", "sublabel": "7 参数 · 4 拒绝策略", "pos": [1140, 24], "size": [200, 56] },
+    { "id": "fork-join", "type": "frontend", "label": "ForkJoinPool", "sublabel": "分治 · 工作窃取", "pos": [1140, 92], "size": [200, 56] },
+    { "id": "scheduled", "type": "frontend", "label": "ScheduledExecutor", "sublabel": "延迟任务 · 周期任务", "pos": [1140, 160], "size": [200, 56] },
+
+    { "id": "sync-tools", "type": "messagebus", "label": "同步工具类", "sublabel": "AQS 共享模式协作", "tag": "线程间协调", "pos": [880, 298], "size": [190, 64] },
+    { "id": "latch", "type": "messagebus", "label": "CountDownLatch", "sublabel": "一次性倒数 · await", "pos": [1140, 234], "size": [200, 56] },
+    { "id": "barrier", "type": "messagebus", "label": "CyclicBarrier", "sublabel": "可复用栅栏 · barrierAction", "pos": [1140, 302], "size": [200, 56] },
+    { "id": "semaphore", "type": "messagebus", "label": "Semaphore", "sublabel": "许可信号量 · 限流", "pos": [1140, 370], "size": [200, 56] },
+
+    { "id": "async", "type": "external", "label": "异步编排", "sublabel": "Future & CompletableFuture", "tag": "结果获取与组合", "pos": [880, 508], "size": [190, 64] },
+    { "id": "future", "type": "external", "label": "FutureTask", "sublabel": "get 阻塞 · cancel 取消", "pos": [1140, 444], "size": [200, 56] },
+    { "id": "completable-future", "type": "external", "label": "CompletableFuture", "sublabel": "thenApply · allOf 编排", "pos": [1140, 512], "size": [200, 56] },
+    { "id": "completion-service", "type": "external", "label": "CompletionService", "sublabel": "按完成顺序取结果", "pos": [1140, 580], "size": [200, 56] }
+  ],
+  "connections": [
+    { "id": "juc-lock", "from": "juc", "to": "lock", "variant": "emphasis" },
+    { "id": "juc-atomic", "from": "juc", "to": "atomic", "variant": "emphasis" },
+    { "id": "juc-collection", "from": "juc", "to": "collection", "variant": "emphasis" },
+    { "id": "juc-executor", "from": "juc", "to": "executor", "variant": "emphasis" },
+    { "id": "juc-sync-tools", "from": "juc", "to": "sync-tools", "variant": "emphasis" },
+    { "id": "juc-async", "from": "juc", "to": "async", "variant": "emphasis" },
+
+    { "id": "lock-reentrant", "from": "lock", "to": "reentrant-lock" },
+    { "id": "lock-rw", "from": "lock", "to": "rw-lock" },
+    { "id": "lock-condition", "from": "lock", "to": "condition" },
+
+    { "id": "atomic-ai", "from": "atomic", "to": "atomic-integer" },
+    { "id": "atomic-adder", "from": "atomic", "to": "long-adder" },
+    { "id": "atomic-vh", "from": "atomic", "to": "var-handle" },
+
+    { "id": "collection-chm", "from": "collection", "to": "chm" },
+    { "id": "collection-cow", "from": "collection", "to": "cow-list" },
+    { "id": "collection-queue", "from": "collection", "to": "blocking-queue" },
+
+    { "id": "executor-tpe", "from": "executor", "to": "tpe" },
+    { "id": "executor-fj", "from": "executor", "to": "fork-join" },
+    { "id": "executor-scheduled", "from": "executor", "to": "scheduled" },
+
+    { "id": "sync-latch", "from": "sync-tools", "to": "latch" },
+    { "id": "sync-barrier", "from": "sync-tools", "to": "barrier" },
+    { "id": "sync-semaphore", "from": "sync-tools", "to": "semaphore" },
+
+    { "id": "async-future", "from": "async", "to": "future" },
+    { "id": "async-cf", "from": "async", "to": "completable-future" },
+    { "id": "async-cs", "from": "async", "to": "completion-service" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "底层基石", "items": ["JMM: happens-before 决定可见性与有序性", "volatile 可见性 + 禁止重排序, 无原子性", "synchronized 锁升级: 偏向 → 轻量 → 重量"] },
+    { "dot": "emerald", "title": "线程池要点", "items": ["7 参数 + 4 拒绝策略", "提交: 核心线程 → 队列 → 最大线程 → 拒绝", "队列: Array 有界 / Linked 无界 / Synchronous"] },
+    { "dot": "violet", "title": "高频对比", "items": ["synchronized vs ReentrantLock: 可中断/超时/公平", "CountDownLatch 一次性 vs CyclicBarrier 可复用", "CHM: 1.7 分段锁 vs 1.8 CAS + 桶锁"] }
+  ]
+}
