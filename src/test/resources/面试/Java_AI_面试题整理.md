@@ -561,11 +561,13 @@ String task = queue.take(); // 队列空时阻塞
 
 **面试要点**
 - `ArrayBlockingQueue` 和 `LinkedBlockingQueue` 的核心区别：有界 vs 可选有界、单锁 vs 双锁。
+  - `LinkedBlockingQueue` put时 last = last.next = newNode
+  - `LinkedBlockingQueue` take时 head = head.nex    t
 - `SynchronousQueue` 容量为 0，常用于 Executors.newCachedThreadPool。
 
 ---
 
-15. 手写一个 LRU 缓存？
+1.  手写一个 LRU 缓存？
 
 **参考答案：**
 
