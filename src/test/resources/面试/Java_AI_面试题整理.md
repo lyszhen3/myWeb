@@ -2207,26 +2207,26 @@ FlowRuleManager.loadRules(Collections.singletonList(rule));
 
 **计算流程**
 
-给定输入序列 \(X \in \mathbb{R}^{n \times d}\)，通过三个权重矩阵得到 Query、Key、Value：
+给定输入序列 $(X \in \mathbb{R}^{n \times d})$，通过三个权重矩阵得到 Query、Key、Value：
 
-\[Q = XW_Q, \quad K = XW_K, \quad V = XW_V\]
+$[Q = XW_Q, \quad K = XW_K, \quad V = XW_V]$
 
 然后计算注意力输出：
 
-\[\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V\]
+$[\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V]$
 
 **复杂度分析**
 
-- \(QK^T\) 计算：\((n \times d) \cdot (d \times n) = n^2 d\)，时间复杂度 \(O(n^2 d)\)。
-- Attention Score 矩阵大小 \(n \times n\)，空间复杂度 \(O(n^2)\)。
+- $(QK^T)$ 计算：$((n \times d) \cdot (d \times n) = n^2 d)$，时间复杂度 $(O(n^2 d))$。
+- Attention Score 矩阵大小 $(n \times n)$，空间复杂度 $(O(n^2))$。
 
 **为什么是 \(O(n^2)\)**
 
 每个 token 都要与序列中所有其他 token 计算相似度，token 数翻倍，计算量翻 4 倍。
 
 **面试要点**
-- \(\sqrt{d_k}\) 是为了防止点积值过大导致 softmax 梯度消失。
-- Self-Attention 的 \(O(n^2)\) 复杂度是长文本扩展的主要瓶颈。
+- $(\sqrt{d_k})$ 是为了防止点积值过大导致 softmax 梯度消失。
+- Self-Attention 的 $(O(n^2))$ 复杂度是长文本扩展的主要瓶颈。
 
 ---
 
@@ -2887,6 +2887,8 @@ for chunk in client.chat.completions.create(
 - 需要处理特殊 token（如 `<|endoftext|>`）的终止判断。
 
 ---
+
+**agent应用** 
 
 ### 29. RAG（检索增强生成）
 
