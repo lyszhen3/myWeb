@@ -89,6 +89,14 @@
 4. 更新
     * 跟磁盘文件不一致的页为脏页(其实就是更新后的数据页)
     * 通过把脏页存储到flush链表来刷盘
+      * 通过LSN(Log Sequence Number:日志序列号)来标记
+      * pageA发生修改后， LSN = 100
+        * pageA -> pageA.oldest_modification = 100 加入flush，
+        * redo.log 还要记录 pageA.newest_modification = 100  最近的修改
+      * pageA再修改
+        * 如果100的flush还没刷盘，则不会再插入flush链表
+        * pageA -> pageA.newest_modification = 101
+        * 当这个节点刷盘时， 清空这个节点pageA的数据， 用redo.log 记录最新的 pageA.newest_modification = 101来刷盘
 5. LRU的缺点及优化
     * 缺点
         * buffer pool的预读机制会导致有些冷数据加入到头部
