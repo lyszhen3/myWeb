@@ -21,7 +21,7 @@
 
 **总结**：   
     写`buffer`，会跟踪写了多少数据。需要读的时候，需要调用flip()来将`buffer`从写模式切换到读模式，只能读取写入的数据，而非
-`buffer`中所有数据.  
+`buffer`中所有数据(包含未写的空白数据).  
     当数据读写完后， 使用 `buffer.clear()`或`buffer.compact()` 来清空buffer数据。  
     **buffer.clear()**:只清楚已经读取的数据  
     **buffer.compact()**:清除所有数据
